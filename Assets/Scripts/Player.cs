@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         Vector3 move = new Vector3(x, 0, z).normalized * Time.deltaTime * _moveSpeed;
         if(move != Vector3.zero)
         {
-            transform.Translate(move, Space.World);
+            transform.Translate(move);
             _animator.SetBool("isMove", true);
         }
         else
@@ -46,9 +46,10 @@ public class Player : MonoBehaviour
         mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
         mouseY += Input.GetAxis("Mouse Y") * _rotateSpeed;
 
-        Vector3 rotate = new Vector3(-mouseY, mouseX, 0);
+        Vector3 rotate = new Vector3(0, mouseX, 0);
         transform.eulerAngles = rotate;
-        _mainCamera.Rotate(rotate);
+        Vector3 cameraRotate = new Vector3(-mouseY, mouseX, 0);
+        _mainCamera.Rotate(cameraRotate);
 
         //회전 제한 필요
     }

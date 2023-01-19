@@ -7,11 +7,6 @@ public class MainCamera : MonoBehaviour
 {
     public Transform _target;
 
-    void Start()
-    {
-    
-    }
-
     void Update()
     {
         FollowCamera();
