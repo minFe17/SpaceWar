@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] float _moveSpeed;
+    [SerializeField] float _splintSpeed;
     [SerializeField] float _rotateSpeed;
+    [SerializeField] float _idleTime;
 
     Animator _animator;
     public MainCamera _mainCamera;
 
     float mouseX;
     float mouseY;
+    float idleTimer;
 
     void Start()
     {
@@ -26,18 +27,53 @@ public class Player : MonoBehaviour
 
     public void Move()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = new Vector3(x, 0, z).normalized * Time.deltaTime * _moveSpeed;
-        if(move != Vector3.zero)
+        //Splint
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Translate(move);
-            _animator.SetBool("isMove", true);
+            Vector3 splint = Vector3.forward * Time.deltaTime * _splintSpeed;
+            transform.Translate(splint);
+            _animator.SetBool("isRun", true);
+            _animator.SetBool("isWalk", false);
         }
+        //Walk
         else
         {
-            _animator.SetBool("isMove", false);
+            _animator.SetBool("isRun", false);
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            Vector3 move = new Vector3(x, 0, z).normalized * Time.deltaTime * _moveSpeed;
+            if (move != Vector3.zero)
+            {
+                idleTimer = 0f;
+                transform.Translate(move);
+                _animator.SetBool("isWalk", true);
+
+                if (x < 0)
+                {
+                    _animator.SetInteger("moveDirection", (int)MoveDirection.Left);
+                }
+                else if (x > 0)
+                {
+                    _animator.SetInteger("moveDirection", (int)MoveDirection.Right);
+                }
+                else if (z < 0)
+                {
+                    _animator.SetInteger("moveDirection", (int)MoveDirection.Back);
+                }
+                else
+                {
+                    _animator.SetInteger("moveDirection", (int)MoveDirection.Forward);
+                }
+            }
+            else
+            {
+                _animator.SetInteger("moveDirection", (int)MoveDirection.Idle);
+                if (idleTimer >= _idleTime)
+                    _animator.SetBool("isWalk", false);
+                else
+                    idleTimer += Time.deltaTime;
+            }
         }
     }
 
@@ -50,7 +86,14 @@ public class Player : MonoBehaviour
         transform.eulerAngles = rotate;
         Vector3 cameraRotate = new Vector3(-mouseY, mouseX, 0);
         _mainCamera.Rotate(cameraRotate);
-
-        //회전 제한 필요
     }
+}
+
+enum MoveDirection
+{
+    Idle,
+    Forward,
+    Left,
+    Right,
+    Back
 }
