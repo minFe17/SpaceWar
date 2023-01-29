@@ -1,28 +1,37 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] float _moveSpeed;
     [SerializeField] float _splintSpeed;
+    [SerializeField] float _jumpPower;
     [SerializeField] float _rotateSpeed;
     [SerializeField] float _idleTime;
 
     Animator _animator;
+    Rigidbody _rigidbody;
+
     public MainCamera _mainCamera;
 
     float mouseX;
     float mouseY;
     float idleTimer;
 
+    bool _isJump;
+
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody>();
+
     }
 
     void Update()
     {
         Move();
         Turn();
+        Jump();
     }
 
     public void Move()
@@ -86,6 +95,27 @@ public class Player : MonoBehaviour
         transform.eulerAngles = rotate;
         Vector3 cameraRotate = new Vector3(-mouseY, mouseX, 0);
         _mainCamera.Rotate(cameraRotate);
+    }
+
+    public void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && !_isJump)
+            StartCoroutine(JumpRoutine());
+    }
+
+    IEnumerator JumpRoutine()
+    {
+        _isJump = true;
+        _animator.SetTrigger("doJump");
+        yield return new WaitForSeconds(0.1f);
+        _rigidbody.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Floor")
+            _isJump = false;
     }
 }
 

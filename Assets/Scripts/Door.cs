@@ -40,12 +40,19 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
-        _leftDoor.transform.Translate(_leftDoorArea.position - _leftDoor.transform.position * Time.deltaTime);
-        _rightDoor.transform.Translate(_rightDoorArea.position - _leftDoor.transform.position * Time.deltaTime);
+        _leftDoor.transform.Translate((_leftDoorArea.position - _leftDoor.transform.position) * Time.deltaTime * _speed, Space.World);
+        _rightDoor.transform.Translate((_rightDoorArea.position - _rightDoor.transform.position) * Time.deltaTime * _speed, Space.World);
     }
 
     public void Close()
     {
+        _leftDoor.transform.Translate((_doorPos - _leftDoor.transform.position) * Time.deltaTime * _speed, Space.World);
+        _rightDoor.transform.Translate((_doorPos - _rightDoor.transform.position) * Time.deltaTime * _speed, Space.World);
+    }
+
+    public void Lock()
+    {
+        _isOpen = false;
         _leftDoor.transform.position = _doorPos;
         _rightDoor.transform.position = _doorPos;
     }
