@@ -4,7 +4,7 @@ using UnityEngine;
 public class DoorList : MonoBehaviour
 {
     public List<BoxCollider> doors = new List<BoxCollider>();
-
+    
     public void LockDoor()
     {
         for (int i = 0; i < doors.Count; i++)
