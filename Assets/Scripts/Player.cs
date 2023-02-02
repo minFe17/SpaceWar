@@ -12,12 +12,12 @@ public class Player : MonoBehaviour
     Animator _animator;
     Rigidbody _rigidbody;
 
-    public MainCamera _mainCamera;
+    ShotMode _shotMode;
 
     float mouseX;
     float mouseY;
     float idleTimer;
-
+    
     bool _isJump;
 
     void Start()
@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Move()
@@ -86,6 +87,33 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Fire()
+    {
+        if (Input.GetButton("Fire"))
+        {
+            switch(_shotMode)
+            {
+                case ShotMode.Single:
+                    _animator.SetTrigger("doSingleShot");
+                    break;
+                case ShotMode.Burst:
+                    _animator.SetTrigger("doBurstShot");
+                    break;
+                case ShotMode.Auto:
+                    _animator.SetTrigger("doAutoShot");
+                    break;
+                default:
+                    break;
+
+            }
+        }
+    }
+
+    public void ChangeShotMode()
+    {
+
+    }
+
     public void Turn()
     {
         mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
@@ -93,8 +121,6 @@ public class Player : MonoBehaviour
 
         Vector3 rotate = new Vector3(0, mouseX, 0);
         transform.eulerAngles = rotate;
-        Vector3 cameraRotate = new Vector3(-mouseY, mouseX, 0);
-        _mainCamera.Rotate(cameraRotate);
     }
 
     public void Jump()
@@ -126,4 +152,11 @@ enum MoveDirection
     Left,
     Right,
     Back
+}
+
+enum ShotMode
+{
+    Single,
+    Burst,
+    Auto
 }
