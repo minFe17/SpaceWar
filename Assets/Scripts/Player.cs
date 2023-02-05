@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] float _rotateSpeed;
     [SerializeField] float _idleTime;
     [SerializeField] float _fireDelay;
+    [SerializeField] int _maxAmmo;
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _bullet;
 
@@ -22,14 +23,18 @@ public class Player : MonoBehaviour
     float mouseY;
     float idleTimer;
 
+    int _curAmmo;
+
     bool _isJump;
     bool _isShot;
+    bool _isReload;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _shotMode = ShotMode.Single;
+        _curAmmo = _maxAmmo;
 
     }
 
@@ -41,6 +46,8 @@ public class Player : MonoBehaviour
         Fire();
         ChangeShotMode();
         Cursor.lockState = CursorLockMode.Locked;
+        if (Input.GetKeyDown(KeyCode.R))
+            Reload();
     }
 
     public void Move()
@@ -117,13 +124,26 @@ public class Player : MonoBehaviour
         if (Input.GetButtonUp("Fire"))
         {
             _animator.SetBool("isShotIdle", true);
-            Invoke("Idle", 0.5f);
+            Invoke("ShotIdle", 0.5f);
         }
     }
 
-    public void Idle()
+    public void ShotIdle()
     {
         _animator.SetBool("isShotIdle", false);
+    }
+
+    public void Reload()
+    {
+        _isReload = true;
+        _animator.SetTrigger("doReload");
+        Invoke("ReloadAmmo", 2.5f);
+    }
+
+    public void ReloadAmmo()
+    {
+        _curAmmo = _maxAmmo;
+        _isReload = false;
     }
 
     public void ChangeShotMode()
@@ -160,40 +180,65 @@ public class Player : MonoBehaviour
 
     IEnumerator SingleShotRoutine()
     {
-        _isShot = true;
-        _animator.SetTrigger("doSingleShot");
-        yield return new WaitForSeconds(0.3f);
-        MakeBullet();
-        _animator.SetBool("isShotIdle", true);
-        yield return new WaitForSeconds(_fireDelay);
-        _isShot = false;
+        if (_curAmmo > 0 && !_isReload)
+        {
+            _isShot = true;
+            _animator.SetTrigger("doSingleShot");
+            yield return new WaitForSeconds(0.3f);
+            MakeBullet();
+            _curAmmo--;
+            _animator.SetBool("isShotIdle", true);
+            yield return new WaitForSeconds(_fireDelay);
+            _isShot = false;
+        }
+
+        if (_curAmmo <= 0)
+            Reload();
     }
 
     IEnumerator BurstShotRoutine()
     {
-        _isShot = true;
-        _animator.SetTrigger("doBurstShot");
-
-        yield return new WaitForSeconds(0.2f);
-        for (int i = 0; i < 3; i++)
+        if (_curAmmo > 0 && !_isReload)
         {
-            yield return new WaitForSeconds(0.1f);
-            MakeBullet();
+            _isShot = true;
+            _animator.SetTrigger("doBurstShot");
+
+            yield return new WaitForSeconds(0.2f);
+            for (int i = 0; i < 3; i++)
+            {
+                if (_curAmmo <= 0)
+                {
+                    Reload();
+                    break;
+                }
+                yield return new WaitForSeconds(0.1f);
+                MakeBullet();
+                _curAmmo--;
+            }
+            _animator.SetBool("isShotIdle", true);
+            yield return new WaitForSeconds(_fireDelay);
+            _isShot = false;
         }
-        _animator.SetBool("isShotIdle", true);
-        yield return new WaitForSeconds(_fireDelay);
-        _isShot = false;
+
+        if (_curAmmo <= 0)
+            Reload();
     }
 
     IEnumerator AutoShotRoutine()
     {
-        _isShot = true;
-        _animator.SetTrigger("doAutoShot");
-        yield return new WaitForSeconds(0.2f);
-        MakeBullet();
-        yield return null;
-        _isShot = false;
+        if (_curAmmo > 0 && !_isReload)
+        {
+            _isShot = true;
+            _animator.SetTrigger("doAutoShot");
+            yield return new WaitForSeconds(0.2f);
+            MakeBullet();
+            _curAmmo--;
+            yield return null;
+            _isShot = false;
+        }
 
+        if (_curAmmo <= 0)
+            Reload();
     }
 
     IEnumerator JumpRoutine()
