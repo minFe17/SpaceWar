@@ -109,7 +109,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isShootIDle
+    m_ConditionEvent: isShotIdle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1673916888234799083}
@@ -188,7 +188,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: doSingleShot
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102949299928912516}
   m_Solo: 0
@@ -559,7 +562,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isShootIDle
+    m_ConditionEvent: isShotIdle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1673916888234799083}
@@ -609,7 +612,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isShootIDle
+    m_ConditionEvent: isShotIdle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -814,7 +817,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isShootIDle
+    m_ConditionEvent: isShotIdle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1673916888234799083}
@@ -881,7 +884,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isShootIDle
+  - m_Name: isShotIdle
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1344,7 +1347,7 @@ AnimatorStateMachine:
     m_Position: {x: -210, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1673916888234799083}
-    m_Position: {x: 780, y: 100, z: 0}
+    m_Position: {x: 790, y: 90, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -4984486721584596413}

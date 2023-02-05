@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField] float _jumpPower;
     [SerializeField] float _rotateSpeed;
     [SerializeField] float _idleTime;
+    [SerializeField] float _fireDelay;
+    [SerializeField] Transform _bulletPos;
+    [SerializeField] GameObject _bullet;
+
 
     Animator _animator;
     Rigidbody _rigidbody;
@@ -17,13 +21,15 @@ public class Player : MonoBehaviour
     float mouseX;
     float mouseY;
     float idleTimer;
-    
+
     bool _isJump;
+    bool _isShot;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
+        _shotMode = ShotMode.Single;
 
     }
 
@@ -32,6 +38,8 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Fire();
+        ChangeShotMode();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -89,29 +97,43 @@ public class Player : MonoBehaviour
 
     public void Fire()
     {
-        if (Input.GetButton("Fire"))
+        if (Input.GetButton("Fire") && !_isShot)
         {
-            switch(_shotMode)
+            switch (_shotMode)
             {
                 case ShotMode.Single:
-                    _animator.SetTrigger("doSingleShot");
+                    StartCoroutine(SingleShotRoutine());
                     break;
                 case ShotMode.Burst:
-                    _animator.SetTrigger("doBurstShot");
+                    StartCoroutine(BurstShotRoutine());
                     break;
                 case ShotMode.Auto:
-                    _animator.SetTrigger("doAutoShot");
+                    StartCoroutine(AutoShotRoutine());
                     break;
                 default:
                     break;
-
             }
         }
+        if (Input.GetButtonUp("Fire"))
+        {
+            _animator.SetBool("isShotIdle", true);
+            Invoke("Idle", 0.5f);
+        }
+    }
+
+    public void Idle()
+    {
+        _animator.SetBool("isShotIdle", false);
     }
 
     public void ChangeShotMode()
     {
-
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            _shotMode = ShotMode.Single;
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+            _shotMode = ShotMode.Burst;
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+            _shotMode = ShotMode.Auto;
     }
 
     public void Turn()
@@ -127,6 +149,51 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && !_isJump)
             StartCoroutine(JumpRoutine());
+    }
+
+    public void MakeBullet()
+    {
+        GameObject bullet = Instantiate(_bullet);
+        bullet.transform.position = _bulletPos.position;
+        bullet.transform.rotation = _bulletPos.rotation;
+    }
+
+    IEnumerator SingleShotRoutine()
+    {
+        _isShot = true;
+        _animator.SetTrigger("doSingleShot");
+        yield return new WaitForSeconds(0.3f);
+        MakeBullet();
+        _animator.SetBool("isShotIdle", true);
+        yield return new WaitForSeconds(_fireDelay);
+        _isShot = false;
+    }
+
+    IEnumerator BurstShotRoutine()
+    {
+        _isShot = true;
+        _animator.SetTrigger("doBurstShot");
+
+        yield return new WaitForSeconds(0.2f);
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            MakeBullet();
+        }
+        _animator.SetBool("isShotIdle", true);
+        yield return new WaitForSeconds(_fireDelay);
+        _isShot = false;
+    }
+
+    IEnumerator AutoShotRoutine()
+    {
+        _isShot = true;
+        _animator.SetTrigger("doAutoShot");
+        yield return new WaitForSeconds(0.2f);
+        MakeBullet();
+        yield return null;
+        _isShot = false;
+
     }
 
     IEnumerator JumpRoutine()
