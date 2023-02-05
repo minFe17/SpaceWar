@@ -5,7 +5,15 @@ public class Bullet : MonoBehaviour
     [SerializeField] int _damage;
     [SerializeField] float _speed;
     [SerializeField] float _lifeTime;
-    
+
+    CapsuleCollider _collider;
+    Rigidbody _rigidbody;
+
+    void Start()
+    {
+        _collider = GetComponent<CapsuleCollider>();
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -15,9 +23,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door")
             Remove();
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             //데미지 주기
             Remove();
