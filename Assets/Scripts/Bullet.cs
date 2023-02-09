@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
             Remove();
         if (collision.gameObject.tag == "Enemy")
         {
-            //데미지 주기
+            collision.gameObject.GetComponent<Turret>().TakeDamage(_damage);
             Remove();
         }
     }
