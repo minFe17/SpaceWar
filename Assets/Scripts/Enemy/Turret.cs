@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] GameObject _gun;
+    [SerializeField] Transform _gun;
     [SerializeField] GameObject _bullet;
     [SerializeField] Transform _bulletPos;
+    [SerializeField] GameObject _dieEffect;
     [SerializeField] int _maxHp;
     [SerializeField] float _attackDelay;
 
@@ -40,7 +41,7 @@ public class Turret : MonoBehaviour
     public void LookTarget()
     {
         if (!_isAttack)
-            _gun.transform.LookAt(_target.position);
+            _gun.LookAt(_target.position);
     }
 
     public void TakeDamage(int damage)
@@ -49,11 +50,17 @@ public class Turret : MonoBehaviour
         if (_curHp <= 0)
         {
             _isDie = true;
-            //ÆÄ±«(ÀÌÆåÆ®)
-            //ÆÄ±«ÀÌÆåÆ® ¾ø¾îÁö¸é ÅÍ·¿ ¾ø¾Ö±â
-            Destroy(this.gameObject);
+            _dieEffect.SetActive(true);
+            Invoke("Die", 1f);
+
+            Destroy(this.gameObject, 2f);
             _enemyController._enemyList.Remove(this.gameObject);
         }
+    }
+
+    public void Die()
+    {
+        _gun.localEulerAngles = new Vector3(60, _gun.eulerAngles.y, _gun.eulerAngles.z);
     }
 
     IEnumerator AttackRoutine()
@@ -65,7 +72,7 @@ public class Turret : MonoBehaviour
             yield return new WaitForSeconds(1f);
             GameObject bullet = Instantiate(_bullet);
             bullet.transform.position = _bulletPos.position;
-            bullet.transform.rotation = _gun.transform.rotation;
+            bullet.transform.rotation = _gun.rotation;
             yield return new WaitForSeconds(_attackDelay);
             _isAttack = false;
 

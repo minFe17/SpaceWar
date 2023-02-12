@@ -56,22 +56,25 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemy\TurretMissile.cs" />
     <Compile Include="Assets\Scripts\Enemy\Turret.cs" />
+    <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\Door\Door.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Door\DoorList.cs" />
     <Compile Include="Assets\Scripts\Door\BattleField.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
-    <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\Turn_Move.cs" />
-    <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
-    <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
-    <Compile Include="Assets\Scripts\Enemy\TurretMissile.cs" />
-    <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\Turn_Move.cs" />
+    <Compile Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
+    <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
     <None Include="Assets\DownloadAssets\Map\_Creepy_Cat\_Docs\Doc.txt" />
+    <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
     <None Include="Assets\DownloadAssets\Map\Sci-Fi Styled Modular Pack\Readme.txt" />
     <None Include="Assets\DownloadAssets\Map\_Barking_Dog\Readme_Please.txt" />
   </ItemGroup>
