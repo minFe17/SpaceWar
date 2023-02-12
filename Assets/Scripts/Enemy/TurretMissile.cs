@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class TurretMissile : Bullet
 {
+
     void Start()
     {
-        
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        _rigidbody.AddRelativeForce(Vector3.forward * _speed * Time.deltaTime, ForceMode.Impulse);
     }
 }

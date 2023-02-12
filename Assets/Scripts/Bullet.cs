@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] float _lifeTime;
 
     CapsuleCollider _collider;
-    Rigidbody _rigidbody;
+    protected Rigidbody _rigidbody;
 
     public float _speed;
 
