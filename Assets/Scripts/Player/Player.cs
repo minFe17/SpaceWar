@@ -48,13 +48,14 @@ public class Player : MonoBehaviour
         Jump();
         Fire();
         ChangeShotMode();
+        Reload();
         Cursor.lockState = CursorLockMode.Locked;
-        if (Input.GetKeyDown(KeyCode.R))
-            Reload();
     }
 
     public void Move()
     {
+        if (_isDie)
+            return;
         //Splint
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -107,7 +108,7 @@ public class Player : MonoBehaviour
 
     public void Fire()
     {
-        if (Input.GetButton("Fire") && !_isShot)
+        if (Input.GetButton("Fire") && !_isShot && !_isDie)
         {
             switch (_shotMode)
             {
@@ -138,9 +139,12 @@ public class Player : MonoBehaviour
 
     public void Reload()
     {
-        _isReload = true;
-        _animator.SetTrigger("doReload");
-        Invoke("ReloadAmmo", 2.5f);
+        if(Input.GetKeyDown(KeyCode.R) && !_isDie)
+        {
+            _isReload = true;
+            _animator.SetTrigger("doReload");
+            Invoke("ReloadAmmo", 2.5f);
+        }
     }
 
     public void ReloadAmmo()
@@ -170,7 +174,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (Input.GetButtonDown("Jump") && !_isJump)
+        if (Input.GetButtonDown("Jump") && !_isJump && !_isDie)
             StartCoroutine(JumpRoutine());
     }
 

@@ -114,7 +114,7 @@ MonoBehaviour:
   _bulletPos: {fileID: 1034329089122052621}
   _dieEffect: {fileID: 7874108628950747213}
   _maxHp: 5
-  _attackDelay: 2
+  _attackDelay: 1.5
 --- !u!1 &4793522874848227860
 GameObject:
   m_ObjectHideFlags: 0

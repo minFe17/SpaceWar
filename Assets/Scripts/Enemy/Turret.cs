@@ -17,11 +17,6 @@ public class Turret : MonoBehaviour
     bool _isAttack;
     bool _isDie;
 
-    void Start()
-    {
-
-    }
-
     public void Init(EnemyController enemyController, Transform target)
     {
         _curHp = _maxHp;
@@ -40,12 +35,15 @@ public class Turret : MonoBehaviour
 
     public void LookTarget()
     {
-        if (!_isAttack)
+        if (!_isAttack && !_isDie)
             _gun.LookAt(_target.position);
     }
 
     public void TakeDamage(int damage)
     {
+        if (_isDie)
+            return;
+
         _curHp -= damage;
         if (_curHp <= 0)
         {
