@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleField: {fileID: 792038588}
   _target: {fileID: 1023885882}
-  _turret: {fileID: 4793522874221908136, guid: 61ffcd125ef57e246a379c63ad3f209e, type: 3}
+  _turret: {fileID: 4793522874221908136, guid: 71407e657dd9eef43bd77f4da8d361e2, type: 3}
   _spawnDelay: 2
   _minEnemy: 3
   _maxEnemy: 7
@@ -2408,7 +2408,7 @@ GameObject:
   - component: {fileID: 792038586}
   - component: {fileID: 792038587}
   - component: {fileID: 792038588}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BattleField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3161,13 +3161,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a73dd0a30a7474881b8aa6dd1c3b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHp: 10
+  _maxAmmo: 30
   _moveSpeed: 5
   _splintSpeed: 10
   _jumpPower: 7
   _rotateSpeed: 1
   _idleTime: 3
   _fireDelay: 1
-  _maxAmmo: 30
   _bulletPos: {fileID: 1862664764}
   _bullet: {fileID: 6543711731859061464, guid: 180d81f8de7dcb84292d251e9f7f1312, type: 3}
 --- !u!65 &1023885880
@@ -14886,11 +14887,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 640829571875198695, guid: 44228934330b6694aac80664655a5f0d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000001638556
+      value: -0.000000016385558
       objectReference: {fileID: 0}
     - target: {fileID: 640829571875198695, guid: 44228934330b6694aac80664655a5f0d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000005250999
+      value: 0.0000000052509987
       objectReference: {fileID: 0}
     - target: {fileID: 1028531343655952521, guid: 44228934330b6694aac80664655a5f0d, type: 3}
       propertyPath: m_LocalRotation.y

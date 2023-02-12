@@ -3,11 +3,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] int _damage;
-    [SerializeField] float _speed;
     [SerializeField] float _lifeTime;
 
     CapsuleCollider _collider;
     Rigidbody _rigidbody;
+
+    public float _speed;
 
     void Start()
     {
@@ -23,18 +24,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door")
-            Remove();
         if (collision.gameObject.tag == "Enemy")
-        {
             collision.gameObject.GetComponent<Turret>().TakeDamage(_damage);
-            Remove();
-        }
 
         if(collision.gameObject.tag == "Player")
-        {
             collision.gameObject.GetComponent<Player>().TakeDamage(_damage);
-        }
+
+        Remove();
     }
 
     public void Remove()

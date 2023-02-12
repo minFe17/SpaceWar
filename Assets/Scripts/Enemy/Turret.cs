@@ -14,6 +14,7 @@ public class Turret : MonoBehaviour
 
     int _curHp;
     bool _isAttack;
+    bool _isDie;
 
     void Start()
     {
@@ -47,6 +48,7 @@ public class Turret : MonoBehaviour
         _curHp -= damage;
         if (_curHp <= 0)
         {
+            _isDie = true;
             //ÆÄ±«(ÀÌÆåÆ®)
             //ÆÄ±«ÀÌÆåÆ® ¾ø¾îÁö¸é ÅÍ·¿ ¾ø¾Ö±â
             Destroy(this.gameObject);
@@ -56,14 +58,18 @@ public class Turret : MonoBehaviour
 
     IEnumerator AttackRoutine()
     {
+        while (!_isDie)
+        {
+            yield return new WaitForSeconds(_attackDelay);
+            _isAttack = true;
+            yield return new WaitForSeconds(1f);
+            GameObject bullet = Instantiate(_bullet);
+            bullet.transform.position = _bulletPos.position;
+            bullet.transform.rotation = _gun.transform.rotation;
+            yield return new WaitForSeconds(_attackDelay);
+            _isAttack = false;
 
-        yield return new WaitForSeconds(_attackDelay);
-        _isAttack = true;
-        yield return new WaitForSeconds(1f);
-        GameObject bullet = Instantiate(_bullet);
-        bullet.transform.position = _bulletPos.position;
-        bullet.transform.LookAt(_target.position);
-        yield return new WaitForSeconds(_attackDelay);
-        _isAttack = false;
+        }
+
     }
 }

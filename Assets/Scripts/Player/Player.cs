@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int _maxHp;
+    [SerializeField] int _maxAmmo;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _splintSpeed;
     [SerializeField] float _jumpPower;
     [SerializeField] float _rotateSpeed;
     [SerializeField] float _idleTime;
     [SerializeField] float _fireDelay;
-    [SerializeField] int _maxAmmo;
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _bullet;
 
@@ -23,11 +24,13 @@ public class Player : MonoBehaviour
     float mouseY;
     float idleTimer;
 
+    int _curHp;
     int _curAmmo;
 
     bool _isJump;
     bool _isShot;
     bool _isReload;
+    bool _isDie;
 
     void Start()
     {
@@ -35,7 +38,7 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _shotMode = ShotMode.Single;
         _curAmmo = _maxAmmo;
-
+        _curHp = _maxHp;
     }
 
     void Update()
@@ -180,7 +183,16 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (_isDie)
+            return;
 
+        _curHp -= damage;
+
+        if(_curHp <= 0)
+        {
+            _isDie = true;
+            _animator.SetTrigger("doDie");
+        }
     }
 
     IEnumerator SingleShotRoutine()
