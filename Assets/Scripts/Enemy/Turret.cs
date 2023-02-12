@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] int _maxHp;
     [SerializeField] GameObject _gun;
+    [SerializeField] GameObject _bullet;
+    [SerializeField] Transform _bulletPos;
+    [SerializeField] int _maxHp;
     [SerializeField] float _attackDelay;
 
     Transform _target;
@@ -55,11 +57,12 @@ public class Turret : MonoBehaviour
     IEnumerator AttackRoutine()
     {
 
-        //바라보고 몇 초 뒤에 공격(코루틴)(공격 전 범위 알려주기)
         yield return new WaitForSeconds(_attackDelay);
         _isAttack = true;
         yield return new WaitForSeconds(1f);
-        //미사일 소환하거나 등등 (어택)
+        GameObject bullet = Instantiate(_bullet);
+        bullet.transform.position = _bulletPos.position;
+        bullet.transform.LookAt(_target.position);
         yield return new WaitForSeconds(_attackDelay);
         _isAttack = false;
     }

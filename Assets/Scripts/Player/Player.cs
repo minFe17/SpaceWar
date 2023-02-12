@@ -178,6 +178,11 @@ public class Player : MonoBehaviour
         bullet.transform.rotation = _bulletPos.rotation;
     }
 
+    public void TakeDamage(int damage)
+    {
+
+    }
+
     IEnumerator SingleShotRoutine()
     {
         if (_curAmmo > 0 && !_isReload)

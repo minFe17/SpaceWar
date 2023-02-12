@@ -30,6 +30,11 @@ public class Bullet : MonoBehaviour
             collision.gameObject.GetComponent<Turret>().TakeDamage(_damage);
             Remove();
         }
+
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Player>().TakeDamage(_damage);
+        }
     }
 
     public void Remove()
