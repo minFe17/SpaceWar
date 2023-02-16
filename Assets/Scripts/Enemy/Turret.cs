@@ -1,27 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : Enemy
 {
     [SerializeField] Transform _gun;
     [SerializeField] GameObject _bullet;
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _dieEffect;
-    [SerializeField] int _maxHp;
-    [SerializeField] float _attackDelay;
-
-    Transform _target;
-    EnemyController _enemyController;
-
-    int _curHp;
+    
     bool _isAttack;
     bool _isDie;
 
-    public void Init(EnemyController enemyController, Transform target)
+    public override void Init(EnemyController enemyController, Transform target)
     {
-        _curHp = _maxHp;
         _enemyController = enemyController;
         _target = target;
+        _curHp = _maxHp;
         _enemyController._enemyList.Add(this.gameObject);
         StartCoroutine(AttackRoutine());
     }
@@ -29,17 +23,15 @@ public class Turret : MonoBehaviour
     void Update()
     {
         LookTarget();
-        //Enemy 상속받기? (만들고 상속할지 말지)
-
     }
 
-    public void LookTarget()
+    public override void LookTarget()
     {
         if (!_isAttack && !_isDie)
             _gun.LookAt(_target.position);
     }
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         if (_isDie)
             return;
@@ -73,8 +65,6 @@ public class Turret : MonoBehaviour
             bullet.transform.rotation = _gun.rotation;
             yield return new WaitForSeconds(_attackDelay);
             _isAttack = false;
-
         }
-
     }
 }

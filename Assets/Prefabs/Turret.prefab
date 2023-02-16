@@ -40,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4793522874221908137}
+  - component: {fileID: 4793522874221908141}
   - component: {fileID: 4793522874221908138}
   - component: {fileID: 4793522874221908140}
-  - component: {fileID: 4793522874221908141}
   m_Layer: 7
   m_Name: Turret
   m_TagString: Enemy
@@ -68,6 +68,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &4793522874221908141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793522874221908136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591aefd1fada9094fbe7b0c66c98f177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 5
+  _attackDelay: 1.5
+  _gun: {fileID: 4793522874848227861}
+  _bullet: {fileID: 666665278089340076, guid: 667059b8d3ef840469c8837f0eb6b026, type: 3}
+  _bulletPos: {fileID: 1034329089122052621}
+  _dieEffect: {fileID: 7874108628950747213}
 --- !u!65 &4793522874221908138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97,24 +115,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
---- !u!114 &4793522874221908141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4793522874221908136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 591aefd1fada9094fbe7b0c66c98f177, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gun: {fileID: 4793522874848227861}
-  _bullet: {fileID: 666665278089340076, guid: 667059b8d3ef840469c8837f0eb6b026, type: 3}
-  _bulletPos: {fileID: 1034329089122052621}
-  _dieEffect: {fileID: 7874108628950747213}
-  _maxHp: 5
-  _attackDelay: 1.5
 --- !u!1 &4793522874848227860
 GameObject:
   m_ObjectHideFlags: 0

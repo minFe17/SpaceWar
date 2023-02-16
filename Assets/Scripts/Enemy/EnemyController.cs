@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _minEnemy;
     [SerializeField] int _maxEnemy;
 
+    public GameObject[] enemys;
     public List<GameObject> _enemyList = new List<GameObject>();
 
     BoxCollider _ground;
@@ -56,18 +57,25 @@ public class EnemyController : MonoBehaviour
         return spawnPos;
     }
 
+    public void SpawnEnemy()
+    {
+        Vector3 spawnPos = GetRandomSpawnPosition();
+
+        int ramdom = Random.Range(0, enemys.Length);
+        GameObject enemy = Instantiate(enemys[ramdom], spawnPos, Quaternion.identity);
+        enemy.GetComponent<Enemy>().Init(this, _target);
+    }
+
     IEnumerator SpawnEnemyRoutine()
     {
         for (_waveIndex = 0; _waveIndex <= _wave; _waveIndex++)
         {
 
             yield return new WaitForSeconds(_spawnDelay);
-            int enemy = Random.Range(_minEnemy, _maxEnemy);
-            for (int j = 0; j <= enemy; j++)
+            int enemyCount = Random.Range(_minEnemy, _maxEnemy);
+            for (int j = 0; j <= enemyCount; j++)
             {
-                Vector3 spawnPos = GetRandomSpawnPosition();
-                GameObject turret = Instantiate(_turret, spawnPos, Quaternion.identity);
-                turret.GetComponent<Turret>().Init(this, _target);
+                SpawnEnemy();
             }
 
             while (true)

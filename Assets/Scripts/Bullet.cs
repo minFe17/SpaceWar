@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
-            collision.gameObject.GetComponent<Turret>().TakeDamage(_damage);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(_damage);
 
         if(collision.gameObject.tag == "Player")
             collision.gameObject.GetComponent<Player>().TakeDamage(_damage);
@@ -36,5 +36,10 @@ public class Bullet : MonoBehaviour
     public void Remove()
     {
         Destroy(this.gameObject);
+    }
+
+    public virtual void ABC()
+    {
+        Debug.Log("abc");
     }
 }

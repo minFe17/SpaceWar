@@ -71,6 +71,7 @@
     <Compile Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Enemy\Scorpion.cs" />
+    <Compile Include="Assets\Scripts\Enemy\DeliveryRobot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
