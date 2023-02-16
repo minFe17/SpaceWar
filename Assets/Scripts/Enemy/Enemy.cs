@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
         transform.LookAt(_target.position);
     }
 
-    public virtual void TakeDamage(int damage) // virtual? abstract?
+    public virtual void TakeDamage(int damage)
     {
         _curHp -= damage;
     }
