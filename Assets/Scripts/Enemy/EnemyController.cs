@@ -35,7 +35,6 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         ClearCheck();
-        //미니맵으로 클리어 표시?
     }
 
     public void ClearCheck()

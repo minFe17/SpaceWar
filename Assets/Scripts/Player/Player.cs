@@ -48,7 +48,8 @@ public class Player : MonoBehaviour
         Jump();
         Fire();
         ChangeShotMode();
-        Reload();
+        if(Input.GetKeyDown(KeyCode.R))
+            Reload();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -139,7 +140,7 @@ public class Player : MonoBehaviour
 
     public void Reload()
     {
-        if(Input.GetKeyDown(KeyCode.R) && !_isDie)
+        if(!_isDie)
         {
             _isReload = true;
             _animator.SetTrigger("doReload");
@@ -257,7 +258,7 @@ public class Player : MonoBehaviour
             yield return null;
             _isShot = false;
         }
-
+      
         if (_curAmmo <= 0)
             Reload();
     }
