@@ -18,7 +18,6 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.up * _speed * Time.deltaTime);
         Invoke("Remove", _lifeTime);
     }
 
@@ -33,13 +32,13 @@ public class Bullet : MonoBehaviour
         Remove();
     }
 
+    public virtual void Move()
+    {
+        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+    }
+
     public void Remove()
     {
         Destroy(this.gameObject);
-    }
-
-    public virtual void ABC()
-    {
-        Debug.Log("abc");
     }
 }

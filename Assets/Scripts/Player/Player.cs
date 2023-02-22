@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] float _fireDelay;
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _bullet;
+    [SerializeField] GameObject _zoomCamera;
 
 
     Animator _animator;
@@ -46,10 +47,10 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Zoom();
         Fire();
         ChangeShotMode();
-        if(Input.GetKeyDown(KeyCode.R))
-            Reload();
+        Reload();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -107,6 +108,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Zoom()
+    {
+        if(Input.GetMouseButton(1))
+        {
+            _zoomCamera.SetActive(true);
+            AimingEnemy();
+        }
+        if(Input.GetMouseButtonUp(1))
+        {
+            _zoomCamera.SetActive(false);
+        }
+    }
+
+    public void AimingEnemy()
+    {
+        // 마우스 입력으로 카메라 회전
+        // 상체 움직일 방법?
+        // 조준점 만들기(UI)
+    }
+
     public void Fire()
     {
         if (Input.GetButton("Fire") && !_isShot && !_isDie)
@@ -142,9 +163,13 @@ public class Player : MonoBehaviour
     {
         if(!_isDie)
         {
-            _isReload = true;
-            _animator.SetTrigger("doReload");
-            Invoke("ReloadAmmo", 2.5f);
+            if(Input.GetKeyDown(KeyCode.R) || _curAmmo <= 0)
+            {
+                _isReload = true;
+                _animator.SetTrigger("doReload");
+                Invoke("ReloadAmmo", 2.5f);
+            }
+            
         }
     }
 

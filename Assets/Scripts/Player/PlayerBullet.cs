@@ -11,6 +11,6 @@ public class PlayerBullet : Bullet
 
     void Update()
     {
-        transform.Translate(Vector3.up * _speed * Time.deltaTime);
+        Move();
     }
 }
