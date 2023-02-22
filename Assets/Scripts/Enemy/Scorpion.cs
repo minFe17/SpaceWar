@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scorpion : Enemy
+public class Scorpion : MovableEnemy
 {
     Animator _animator;
 
@@ -11,9 +11,15 @@ public class Scorpion : Enemy
         _animator = GetComponent<Animator>();
     }
 
+    void FixedUpdate() 
+    {
+        FreezeVelocity();
+    }
+
     void Update()
     {
         LookTarget();
+        Move();
     }
 
 }

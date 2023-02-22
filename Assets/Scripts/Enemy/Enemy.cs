@@ -5,8 +5,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int _maxHp;
-    public int _damage; // ? ÅÍ·¿ÇÑÅ× ÇÊ¿ä¾øÀ½
-    public float _moveSpeed; // ? ÅÍ·¿ÇÑÅ× ÇÊ¿ä¾øÀ½
     public float _attackDelay;
 
     protected Transform _target;
@@ -30,7 +28,6 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         _curHp -= damage;
+        // ìˆ˜ì •
     }
-
-    // Move()
 }

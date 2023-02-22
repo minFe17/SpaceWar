@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryRobot : Enemy
+public class DeliveryRobot : MovableEnemy
 {
     Animator _animator;
 
@@ -11,8 +11,14 @@ public class DeliveryRobot : Enemy
         _animator = GetComponent<Animator>();
     }
 
+    void FixedUpdate() 
+    {
+        FreezeVelocity();
+    }
+
     void Update()
     {
         LookTarget();
+        Move();
     }
 }
