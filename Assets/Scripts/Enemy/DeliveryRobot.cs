@@ -11,20 +11,24 @@ public class DeliveryRobot : MovableEnemy
         _animator = GetComponent<Animator>();
     }
 
-    void FixedUpdate() 
-    {
-        FreezeVelocity();
-    }
-
     void Update()
     {
         LookTarget();
         Move();
     }
 
+    public override void Move()
+    {
+        if(!_isAttack && !_isDie)
+        {
+            _nav.SetDestination(_target.position);
+            // _animator.SetBool("isMove", true);
+        }
+    }
+
     protected override IEnumerator AttackRoutine()
     {
-        _isAttack = true;
+        // _isAttack = true;
         yield return null;
     }
 }

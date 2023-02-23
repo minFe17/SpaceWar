@@ -15,7 +15,7 @@ public class Turret : Enemy
         _enemyController = enemyController;
         _target = target;
         _curHp = _maxHp;
-        _enemyController._enemyList.Add(this.gameObject);
+        _enemyController._enemyList.Add(this);
         StartCoroutine(AttackRoutine());
     }
 
@@ -43,7 +43,7 @@ public class Turret : Enemy
             Invoke("Die", 1f);
 
             Destroy(this.gameObject, 2f);
-            _enemyController._enemyList.Remove(this.gameObject);
+            _enemyController._enemyList.Remove(this);
         }
     }
 
@@ -52,7 +52,7 @@ public class Turret : Enemy
         _gun.localEulerAngles = new Vector3(60, _gun.eulerAngles.y, _gun.eulerAngles.z);
     }
 
-    IEnumerator AttackRoutine()
+    protected override IEnumerator AttackRoutine()
     {
         while (!_isDie)
         {

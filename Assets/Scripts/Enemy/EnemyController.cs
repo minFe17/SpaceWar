@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _maxEnemy;
 
     public GameObject[] enemys;
-    public List<GameObject> _enemyList = new List<GameObject>();
+    public List<Enemy> _enemyList = new List<Enemy>();
 
     BoxCollider _ground;
 

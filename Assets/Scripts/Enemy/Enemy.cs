@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
         _enemyController = enemyController;
         _target = target;
         _curHp = _maxHp;
-        _enemyController._enemyList.Add(this.gameObject);
+        _enemyController._enemyList.Add(this);
     }
 
     public virtual void LookTarget()
@@ -36,7 +36,13 @@ public class Enemy : MonoBehaviour
         {
             _isDie = true;
         }
-        Destroy(this.gameObject, 2f);
-        _enemyController._enemyList.Remove(this.gameObject);
+        Destroy(this.gameObject, 1f);
+        _enemyController._enemyList.Remove(this);
+    }
+
+    protected virtual IEnumerator AttackRoutine()
+    {
+        
+        yield return null;
     }
 }

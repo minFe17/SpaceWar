@@ -22,18 +22,12 @@ public class MovableEnemy : Enemy
         _nav.speed = _moveSpeed;
     }
 
-    public void Move()
+    public virtual void Move()
     {
         if(!_isAttack && !_isDie)
         {
             _nav.SetDestination(_target.position);
         }
-    }
-
-    public void FreezeVelocity()
-    {
-        _rigidbody.velocity = Vector3.zero;
-        _rigidbody.angularVelocity = Vector3.zero;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,12 +40,4 @@ public class MovableEnemy : Enemy
     {
         
     }
-
-    protected virtual IEnumerator AttackRoutine()
-    {
-        
-        yield return null;
-    }
-
-   
 }
