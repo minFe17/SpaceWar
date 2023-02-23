@@ -1416,11 +1416,12 @@ GameObject:
   - component: {fileID: 3376095817313449579}
   - component: {fileID: 7345611524349817682}
   - component: {fileID: 7345611524349817681}
+  - component: {fileID: 4002163708471356582}
   - component: {fileID: 7345611524349817680}
   - component: {fileID: 4850654536355126355}
   m_Layer: 0
   m_Name: DeliveryRobot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1453,10 +1454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a62e5dadc58b874ca75b065e9e8719b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 0
-  _attackDelay: 0
-  _damage: 0
-  _moveSpeed: 0
+  _maxHp: 5
+  _attackDelay: 1
+  _damage: 3
+  _moveSpeed: 1.5
 --- !u!95 &7345611524349817682
 Animator:
   serializedVersion: 5
@@ -1490,6 +1491,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 3.5, z: 2.5}
   m_Center: {x: 0, y: 1.7, z: 0}
+--- !u!65 &4002163708471356582
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345611524349817711}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 3.5, z: 1}
+  m_Center: {x: 0, y: 1.7, z: 2}
 --- !u!54 &7345611524349817680
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1516,7 +1530,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

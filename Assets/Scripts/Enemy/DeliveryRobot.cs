@@ -21,4 +21,10 @@ public class DeliveryRobot : MovableEnemy
         LookTarget();
         Move();
     }
+
+    protected override IEnumerator AttackRoutine()
+    {
+        _isAttack = true;
+        yield return null;
+    }
 }

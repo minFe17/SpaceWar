@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     protected EnemyController _enemyController;
 
     protected int _curHp;
+    protected bool _isDie;
 
     public virtual void Init(EnemyController enemyController, Transform target)
     {
@@ -27,7 +28,15 @@ public class Enemy : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
+        if (_isDie)
+            return;
+
         _curHp -= damage;
-        // 수정
+        if (_curHp <= 0)
+        {
+            _isDie = true;
+        }
+        Destroy(this.gameObject, 2f);
+        _enemyController._enemyList.Remove(this.gameObject);
     }
 }

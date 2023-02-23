@@ -9,7 +9,6 @@ public class Turret : Enemy
     [SerializeField] GameObject _dieEffect;
     
     bool _isAttack;
-    bool _isDie;
 
     public override void Init(EnemyController enemyController, Transform target)
     {

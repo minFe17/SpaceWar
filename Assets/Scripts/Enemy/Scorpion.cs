@@ -22,4 +22,9 @@ public class Scorpion : MovableEnemy
         Move();
     }
 
+    protected override IEnumerator AttackRoutine()
+    {
+        _isAttack = true;
+        yield return null;
+    }
 }

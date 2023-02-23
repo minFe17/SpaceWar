@@ -5,20 +5,29 @@ using UnityEngine.AI;
 
 public class MovableEnemy : Enemy
 {
-    public int _damage; 
+    public int _damage;
+    public float _moveSpeed;
 
     protected NavMeshAgent _nav;
+    protected BoxCollider _collider;
     protected Rigidbody _rigidbody;
+
+    protected bool _isAttack;
 
     void Awake()
     {
         _nav = GetComponent<NavMeshAgent>();
+        _collider = GetComponent<BoxCollider>();
         _rigidbody = GetComponent<Rigidbody>();
+        _nav.speed = _moveSpeed;
     }
 
     public void Move()
     {
-        _nav.SetDestination(_target.position);
+        if(!_isAttack && !_isDie)
+        {
+            _nav.SetDestination(_target.position);
+        }
     }
 
     public void FreezeVelocity()
@@ -27,5 +36,22 @@ public class MovableEnemy : Enemy
         _rigidbody.angularVelocity = Vector3.zero;
     }
 
-    // Attack()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+            StartCoroutine(AttackRoutine());
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
+    }
+
+    protected virtual IEnumerator AttackRoutine()
+    {
+        
+        yield return null;
+    }
+
+   
 }
