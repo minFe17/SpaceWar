@@ -14,11 +14,14 @@ public class Player : MonoBehaviour
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _bullet;
     [SerializeField] GameObject _zoomCamera;
+    [SerializeField] GameObject _model;
+    [SerializeField] GameObject _aimPoint;
 
 
     Animator _animator;
     Rigidbody _rigidbody;
 
+    Transform _idleBulletPos;
     ShotMode _shotMode;
 
     float mouseX;
@@ -29,6 +32,7 @@ public class Player : MonoBehaviour
     int _curAmmo;
 
     bool _isJump;
+    bool _isAiming;
     bool _isShot;
     bool _isReload;
     bool _isDie;
@@ -40,6 +44,7 @@ public class Player : MonoBehaviour
         _shotMode = ShotMode.Single;
         _curAmmo = _maxAmmo;
         _curHp = _maxHp;
+        _idleBulletPos = _bulletPos;
     }
 
     void Update()
@@ -110,22 +115,45 @@ public class Player : MonoBehaviour
 
     public void Zoom()
     {
-        if(Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             _zoomCamera.SetActive(true);
             AimingEnemy();
         }
-        if(Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1))
         {
             _zoomCamera.SetActive(false);
+            StopAimingEnemy();
         }
     }
 
     public void AimingEnemy()
     {
-        // 마우스 입력으로 카메라 회전
+        _isAiming = true;
+        _aimPoint.gameObject.SetActive(true);
+        mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
+        mouseY += Input.GetAxis("Mouse Y") * _rotateSpeed;
+        Rotate(mouseY);
+        transform.eulerAngles = new Vector3(0, mouseX, 0);
         // 상체 움직일 방법?
         // 조준점 만들기(UI)
+    }
+
+    public void StopAimingEnemy()
+    {
+        _isAiming = false;
+        _aimPoint.gameObject.SetActive(false);
+        _bulletPos = _idleBulletPos;
+        mouseY = 0;
+        Rotate(mouseY);
+    }
+
+    public void Rotate(float y)
+    {
+        Vector3 rotate = new Vector3(-y, mouseX, 0);
+        _model.transform.eulerAngles = rotate;
+        _zoomCamera.transform.eulerAngles = rotate;
+        _bulletPos.transform.eulerAngles = rotate;
     }
 
     public void Fire()
@@ -161,15 +189,14 @@ public class Player : MonoBehaviour
 
     public void Reload()
     {
-        if(!_isDie)
+        if (!_isDie)
         {
-            if(Input.GetKeyDown(KeyCode.R) || _curAmmo <= 0)
+            if (Input.GetKeyDown(KeyCode.R) || _curAmmo <= 0)
             {
                 _isReload = true;
                 _animator.SetTrigger("doReload");
                 Invoke("ReloadAmmo", 2.5f);
             }
-            
         }
     }
 
@@ -191,11 +218,14 @@ public class Player : MonoBehaviour
 
     public void Turn()
     {
-        mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
-        mouseY += Input.GetAxis("Mouse Y") * _rotateSpeed;
+        if (!_isAiming)
+        {
+            mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
 
-        Vector3 rotate = new Vector3(0, mouseX, 0);
-        transform.eulerAngles = rotate;
+            Vector3 rotate = new Vector3(0, mouseX, 0);
+            transform.eulerAngles = rotate;
+            _bulletPos.eulerAngles = rotate;
+        }
     }
 
     public void Jump()
@@ -218,7 +248,7 @@ public class Player : MonoBehaviour
 
         _curHp -= damage;
 
-        if(_curHp <= 0)
+        if (_curHp <= 0)
         {
             _isDie = true;
             _animator.SetTrigger("doDie");
@@ -283,7 +313,7 @@ public class Player : MonoBehaviour
             yield return null;
             _isShot = false;
         }
-      
+
         if (_curAmmo <= 0)
             Reload();
     }

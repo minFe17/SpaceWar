@@ -1158,7 +1158,6 @@ MonoBehaviour:
   _maxHp: 0
   _attackDelay: 0
   _damage: 0
-  _moveSpeed: 0
 --- !u!95 &8112109049705270371
 Animator:
   serializedVersion: 5
@@ -1190,7 +1189,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.5, z: 1}
+  m_Size: {x: 0.7, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0.25, z: -0.2}
 --- !u!54 &8112109049705270373
 Rigidbody:
