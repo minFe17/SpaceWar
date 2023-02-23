@@ -115,15 +115,18 @@ public class Player : MonoBehaviour
 
     public void Zoom()
     {
-        if (Input.GetMouseButton(1))
+        if(!_isDie)
         {
-            _zoomCamera.SetActive(true);
-            AimingEnemy();
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            _zoomCamera.SetActive(false);
-            StopAimingEnemy();
+            if (Input.GetMouseButton(1))
+            {
+                _zoomCamera.SetActive(true);
+                AimingEnemy();
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+                _zoomCamera.SetActive(false);
+                StopAimingEnemy();
+            }
         }
     }
 
@@ -131,6 +134,7 @@ public class Player : MonoBehaviour
     {
         _isAiming = true;
         _aimPoint.gameObject.SetActive(true);
+        _animator.SetBool("isZoom", true);
         mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
         mouseY += Input.GetAxis("Mouse Y") * _rotateSpeed;
         Rotate(mouseY);
@@ -143,9 +147,15 @@ public class Player : MonoBehaviour
     {
         _isAiming = false;
         _aimPoint.gameObject.SetActive(false);
+        Invoke("EndZoom", 0.1f);
         _bulletPos = _idleBulletPos;
         mouseY = 0;
         Rotate(mouseY);
+    }
+
+    void EndZoom()
+    {
+        _animator.SetBool("isZoom", false);
     }
 
     public void Rotate(float y)
@@ -182,7 +192,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ShotIdle()
+    void ShotIdle()
     {
         _animator.SetBool("isShotIdle", false);
     }
@@ -200,7 +210,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ReloadAmmo()
+    void ReloadAmmo()
     {
         _curAmmo = _maxAmmo;
         _isReload = false;
