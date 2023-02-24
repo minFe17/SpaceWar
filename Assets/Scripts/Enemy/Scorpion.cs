@@ -22,7 +22,7 @@ public class Scorpion : MovableEnemy
         if(!_isAttack && !_isDie)
         {
             _nav.SetDestination(_target.position);
-            // _animator.SetBool("isMove", true);
+            _animator.SetBool("isMove", true);
         }
     }
 

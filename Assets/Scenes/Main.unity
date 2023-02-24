@@ -1221,7 +1221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &422694186
 Transform:
   m_ObjectHideFlags: 0
@@ -1230,7 +1230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422694185}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15, y: 29.42, z: 20}
+  m_LocalPosition: {x: 15, y: 27.5, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1257,8 +1257,8 @@ MonoBehaviour:
   _maxEnemy: 7
   enemys:
   - {fileID: 4793522874221908136, guid: 71407e657dd9eef43bd77f4da8d361e2, type: 3}
-  - {fileID: 8112109049705270368, guid: 1be69adf7f1fd6c40991475ac8b345da, type: 3}
-  - {fileID: 7345611524349817711, guid: 772e3862a6f932e4eb045cc7a3d8a8b1, type: 3}
+  - {fileID: 1734458830461285796, guid: 1be69adf7f1fd6c40991475ac8b345da, type: 3}
+  - {fileID: 645469222335424898, guid: 772e3862a6f932e4eb045cc7a3d8a8b1, type: 3}
   _enemyList: []
 --- !u!65 &422694188
 BoxCollider:
@@ -1272,7 +1272,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 20, y: 7, z: 30}
-  m_Center: {x: 10, y: 3.5, z: -2}
+  m_Center: {x: 10, y: 0, z: -2}
 --- !u!1 &424203273 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1278267228540944, guid: a02ce749f148249039a33e6457063ccd, type: 3}
@@ -15773,11 +15773,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3918459917889155153, guid: 6dd8898d14546a644ba88b81d6c96138, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000006612057
+      value: 0.00000006612057
       objectReference: {fileID: 0}
     - target: {fileID: 3918459917889155153, guid: 6dd8898d14546a644ba88b81d6c96138, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000019105583
+      value: -0.000000019105583
       objectReference: {fileID: 0}
     - target: {fileID: 3918459917889155153, guid: 6dd8898d14546a644ba88b81d6c96138, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15810,7 +15810,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 640829571875198695, guid: 44228934330b6694aac80664655a5f0d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016385561
+      value: 0.00000001638556
       objectReference: {fileID: 0}
     - target: {fileID: 640829571875198695, guid: 44228934330b6694aac80664655a5f0d, type: 3}
       propertyPath: m_LocalRotation.z
@@ -15818,11 +15818,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1028531343655952521, guid: 44228934330b6694aac80664655a5f0d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000003306028
+      value: 0.000000033060285
       objectReference: {fileID: 0}
     - target: {fileID: 1028531343655952521, guid: 44228934330b6694aac80664655a5f0d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000009552791
+      value: -0.0000000095527914
       objectReference: {fileID: 0}
     - target: {fileID: 4273118567578174320, guid: 44228934330b6694aac80664655a5f0d, type: 3}
       propertyPath: m_RootOrder
