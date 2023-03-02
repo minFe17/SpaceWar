@@ -4,7 +4,7 @@ public class RoomNode : Node
 {
     public RoomNode(Vector2Int bottomLeftAreaCorner, Vector2Int topRightAReaCorner, Node parentNode, int index) : base(parentNode)
     {
-        // 사각형 모서리
+        // 던전 사각형 모서리
         this.BottomLeftAreaCorner = bottomLeftAreaCorner;   // 왼쪽 아래
         this.TopRightAreaCorner = topRightAReaCorner;       // 오른쪽 위
         this.BottomRightAreaCorner = new Vector2Int(topRightAReaCorner.x, bottomLeftAreaCorner.y);  // 오른쪽 아래
