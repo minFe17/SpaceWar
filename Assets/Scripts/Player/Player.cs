@@ -24,9 +24,12 @@ public class Player : MonoBehaviour
     Transform _idleBulletPos;
     ShotMode _shotMode;
 
-    float mouseX;
-    float mouseY;
-    float idleTimer;
+    Vector3 _move;
+
+    float _mouseX;
+    float _mouseY;
+    float _idleTimer;
+    float _speed;
 
     int _curHp;
     int _curAmmo;
@@ -49,7 +52,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Move();
+        Walk();
+        Sprint();
         Turn();
         Jump();
         Zoom();
@@ -59,63 +63,61 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void Move()
+    public void Walk()
     {
         if (_isDie)
             return;
-        //Splint
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            Vector3 splint = Vector3.forward * Time.deltaTime * _splintSpeed;
-            transform.Translate(splint);
-            _animator.SetBool("isRun", true);
-            _animator.SetBool("isWalk", false);
-        }
+
         //Walk
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        _animator.SetFloat("AxisX", x);
+        _animator.SetFloat("AxisZ", z);
+
+        _move = new Vector3(x, 0, z).normalized * Time.deltaTime * _moveSpeed;
+
+        if (_move != Vector3.zero)
+        {
+            _idleTimer = 0f;
+            _animator.SetBool("isMove", true);
+            transform.Translate(_move);
+        }
         else
         {
-            _animator.SetBool("isRun", false);
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-
-            Vector3 move = new Vector3(x, 0, z).normalized * Time.deltaTime * _moveSpeed;
-            if (move != Vector3.zero)
-            {
-                idleTimer = 0f;
-                transform.Translate(move);
-                _animator.SetBool("isWalk", true);
-
-                if (x < 0)
-                {
-                    _animator.SetInteger("moveDirection", (int)MoveDirection.Left);
-                }
-                else if (x > 0)
-                {
-                    _animator.SetInteger("moveDirection", (int)MoveDirection.Right);
-                }
-                else if (z < 0)
-                {
-                    _animator.SetInteger("moveDirection", (int)MoveDirection.Back);
-                }
-                else
-                {
-                    _animator.SetInteger("moveDirection", (int)MoveDirection.Forward);
-                }
-            }
-            else
-            {
-                _animator.SetInteger("moveDirection", (int)MoveDirection.Idle);
-                if (idleTimer >= _idleTime)
-                    _animator.SetBool("isWalk", false);
-                else
-                    idleTimer += Time.deltaTime;
-            }
+            IdleTimer();
         }
     }
 
+    void IdleTimer()
+    {
+        if (_idleTimer >= _idleTime)
+            _animator.SetBool("isMove", false);
+        else
+            _idleTimer += Time.deltaTime;
+    }
+
+    public void Sprint()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _speed += Time.deltaTime * _splintSpeed;
+            if (_speed > 1)
+                _speed = 1;
+            transform.Translate(_move * _speed);
+        }
+        else
+        {
+            _speed -= Time.deltaTime * _splintSpeed;
+            if (_speed < 0)
+                _speed = 0;
+        }
+        _animator.SetFloat("Speed", _speed);
+    }
+        
     public void Zoom()
     {
-        if(!_isDie)
+        if (!_isDie)
         {
             if (Input.GetMouseButton(1))
             {
@@ -135,10 +137,10 @@ public class Player : MonoBehaviour
         _isAiming = true;
         _aimPoint.gameObject.SetActive(true);
         _animator.SetBool("isZoom", true);
-        mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
-        mouseY += Input.GetAxis("Mouse Y") * _rotateSpeed;
-        Rotate(mouseY);
-        transform.eulerAngles = new Vector3(0, mouseX, 0);
+        _mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
+        _mouseY += Input.GetAxis("Mouse Y") * _rotateSpeed;
+        Rotate(_mouseY);
+        transform.eulerAngles = new Vector3(0, _mouseX, 0);
         // 상체 움직일 방법?
         // 조준점 만들기(UI)
     }
@@ -149,8 +151,8 @@ public class Player : MonoBehaviour
         _aimPoint.gameObject.SetActive(false);
         Invoke("EndZoom", 0.1f);
         _bulletPos = _idleBulletPos;
-        mouseY = 0;
-        Rotate(mouseY);
+        _mouseY = 0;
+        Rotate(_mouseY);
     }
 
     void EndZoom()
@@ -160,7 +162,7 @@ public class Player : MonoBehaviour
 
     public void Rotate(float y)
     {
-        Vector3 rotate = new Vector3(-y, mouseX, 0);
+        Vector3 rotate = new Vector3(-y, _mouseX, 0);
         _model.transform.eulerAngles = rotate;
         _zoomCamera.transform.eulerAngles = rotate;
         _bulletPos.transform.eulerAngles = rotate;
@@ -230,9 +232,9 @@ public class Player : MonoBehaviour
     {
         if (!_isAiming)
         {
-            mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
+            _mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
 
-            Vector3 rotate = new Vector3(0, mouseX, 0);
+            Vector3 rotate = new Vector3(0, _mouseX, 0);
             transform.eulerAngles = rotate;
             _bulletPos.eulerAngles = rotate;
         }
