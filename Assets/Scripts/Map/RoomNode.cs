@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RoomNode : Node
 {
+    // RoomNode 생성자
     public RoomNode(Vector2Int bottomLeftAreaCorner, Vector2Int topRightAReaCorner, Node parentNode, int index) : base(parentNode)
     {
         // 던전 사각형 모서리

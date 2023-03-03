@@ -19,6 +19,7 @@ public abstract class Node
 
     public int TreeLayerIndex { get; set; }
 
+    // Node »ý¼ºÀÚ
     public Node(Node parentNode)
     {
         childrenNodeList = new List<Node>();

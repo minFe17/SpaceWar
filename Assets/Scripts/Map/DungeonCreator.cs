@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DungeonCreator : MonoBehaviour
 {
-    public int _dungeonWidth;
-    public int _dungeonLength;
-    public int _roomWidthMin;
-    public int _roomLengthMin;
-    public int _maxIterations;
-    public int _corridorWidth;
+    public int _dungeonWidth;   // 맵 가로 길이
+    public int _dungeonLength;  // 맵 세로 길이
+    public int _roomWidthMin;   // 방 최소 가로 길이
+    public int _roomLengthMin;  // 방 최소 세로 길이
+    public int _maxIterations;  // 최대 반복?
+    public int _corridorWidth;  // 복도 길이?
 
     void Start()
     {
@@ -20,7 +17,7 @@ public class DungeonCreator : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     void CreateDungeon()
