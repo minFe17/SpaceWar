@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ public abstract class Node
     {
         childrenNodeList = new List<Node>();
         this.Parent = parentNode;
-        if(parentNode!=null)
+        if (parentNode != null)
         {
             parentNode.AddChild(this);
         }
@@ -35,7 +34,7 @@ public abstract class Node
         childrenNodeList.Add(node);
     }
 
-    public void RemoveChild(Node node) 
+    public void RemoveChild(Node node)
     {
         childrenNodeList.Remove(node);
     }
