@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D9C0D0BF-451D-4FA9-ADE2-D2C7349185EA}</ProjectGuid>
+    <ProjectGuid>{4868FE88-ABDE-3C1D-1606-8C3098182CA6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,13 +53,15 @@
     <UnityVersion>2021.3.16f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Enemy\Scorpion.cs" />
+    <Compile Include="Assets\Scripts\Map\CorridorNode.cs" />
     <Compile Include="Assets\Scripts\Map\BinarySpacePartitioner.cs" />
     <Compile Include="Assets\Scripts\Enemy\TurretMissile.cs" />
     <Compile Include="Assets\Scripts\Map\DungeonGenerator.cs" />
+    <Compile Include="Assets\Scripts\Map\CorridorsGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemy\Turret.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\Door\Door.cs" />
@@ -81,8 +83,6 @@
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Map\RoomGenerator.cs" />
     <Compile Include="Assets\Scripts\Map\StructureHelper.cs" />
-    <Compile Include="Assets\Scripts\Map\CorridorNode.cs" />
-    <Compile Include="Assets\Scripts\Map\CorridorsGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
