@@ -7,7 +7,7 @@ public class DungeonCreator : MonoBehaviour
     public int _roomWidthMin;   // 방 최소 가로 길이
     public int _roomLengthMin;  // 방 최소 세로 길이
     public int _maxIterations;  // 최대 반복?
-    public int _corridorWidth;  // 복도 길이?
+    public int _corridorWidth;  // 복도 넓이?
     public Material _material;
 
     [Range(0.0f, 0.3f)] //슬라이더 범위 지정

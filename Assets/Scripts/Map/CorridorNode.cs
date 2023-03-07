@@ -30,10 +30,10 @@ public class CorridorNode : Node
                 ProcessRoomInRelationUpOrDown(_structure2, _structure1);
                 break;
             case ERelativePositionType.Left:
-                ProcessRoomInRelationLeftOrRight(_structure1, _structure2);
+                ProcessRoomInRelationLeftOrRight(_structure2, _structure1);
                 break;
             case ERelativePositionType.Right:
-                ProcessRoomInRelationLeftOrRight(_structure2, _structure1);
+                ProcessRoomInRelationLeftOrRight(_structure1, _structure2);
                 break;
             default:
                 break;
@@ -148,7 +148,7 @@ public class CorridorNode : Node
         else
             rightStructure = possibleNeighboursInRightStructure[0];
 
-        int y = GetValidYForNeighourLeftRight(leftStructure.TopLeftAreaCorner, leftStructure.BottomRightAreaCorner,
+        int y = GetValidYForNeighourLeftRight(leftStructure.TopRightAreaCorner, leftStructure.BottomRightAreaCorner,
                                               rightStructure.TopLeftAreaCorner, rightStructure.BottomLeftAreaCorner);
 
         while (y == -1 && sortedLeftStructure.Count > 0)
@@ -156,7 +156,7 @@ public class CorridorNode : Node
             sortedLeftStructure = sortedLeftStructure.Where(child => child.TopLeftAreaCorner.y != leftStructure.TopLeftAreaCorner.y).ToList();
             leftStructure = sortedLeftStructure[0];
 
-            y = GetValidYForNeighourLeftRight(leftStructure.TopLeftAreaCorner, leftStructure.BottomRightAreaCorner,
+            y = GetValidYForNeighourLeftRight(leftStructure.TopRightAreaCorner, leftStructure.BottomRightAreaCorner,
                                               rightStructure.TopLeftAreaCorner, rightStructure.BottomLeftAreaCorner);
         }
         BottomLeftAreaCorner = new Vector2Int(leftStructure.BottomRightAreaCorner.x, y);
