@@ -141,7 +141,7 @@ public class CorridorNode : Node
 
         var possibleNeighboursInRightStructure = rightStructureChildren.Where(
             child => GetValidYForNeighourLeftRight(leftStructure.TopRightAreaCorner, leftStructure.BottomRightAreaCorner,
-                                                   child.TopLeftAreaCorner, child.BottomLeftAreaCorner) != -1).ToList();
+                                                   child.TopLeftAreaCorner, child.BottomLeftAreaCorner) != -1).OrderBy(child => child.BottomRightAreaCorner.x).ToList();
 
         if (possibleNeighboursInRightStructure.Count <= 0)
             rightStructure = structure2;
