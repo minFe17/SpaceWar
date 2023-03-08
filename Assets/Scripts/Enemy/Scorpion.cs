@@ -81,10 +81,4 @@ public class Scorpion : MovableEnemy
 
         _isAttack = false;
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-            _isMiss = true;
-    }
 }

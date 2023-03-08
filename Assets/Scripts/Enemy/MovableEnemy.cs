@@ -36,6 +36,7 @@ public class MovableEnemy : Enemy
 
     private void OnTriggerExit(Collider other)
     {
-        
+        if (other.gameObject.tag == "Player")
+            _isMiss = true;
     }
 }

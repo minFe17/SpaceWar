@@ -19,16 +19,66 @@ public class DeliveryRobot : MovableEnemy
 
     public override void Move()
     {
-        if(!_isAttack && !_isDie)
+        if (!_isAttack && !_isDie && !_isHitted)
         {
-            //nav mesh agent 없애고 다른 방법
             _animator.SetBool("isMove", true);
+            _move = _target.position - transform.position;
+            transform.Translate(_move.normalized * Time.deltaTime * _moveSpeed, Space.World);
         }
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        if (_isDie)
+            return;
+
+        _curHp -= damage;
+
+        if (_curHp <= 0)
+        {
+            _animator.SetTrigger("doDie");
+            _isDie = true;
+            _enemyController._enemyList.Remove(this);
+        }
+        else
+        {
+            _animator.SetBool("isMove", false);
+            _isHitted = true;
+            Invoke("Moveable", 1f);
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
+    }
+
+    void Moveable()
+    {
+        _isHitted = false;
     }
 
     protected override IEnumerator AttackRoutine()
     {
-        // _isAttack = true;
-        yield return null;
+        _isAttack = true;
+        _animator.SetBool("isMove", false);
+        yield return new WaitForSeconds(_attackDelay / 2);
+        _animator.SetBool("isAttack", true);
+        yield return new WaitForSeconds(0.3f);
+        if (!_isMiss)
+        {
+            _player.TakeDamage(_damage);
+            yield return new WaitForSeconds(0.5f);
+            _animator.SetBool("isAttack", false);
+            yield return new WaitForSeconds(_attackDelay / 2);
+        }
+        else
+        {
+            _animator.SetBool("isAttack", false);
+            yield return new WaitForSeconds(0.5f);
+            _isMiss = false;
+        }
+
+        _isAttack = false;
     }
 }
