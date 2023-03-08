@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] BattleField _battleField;
+    [SerializeField] Player _player;
     [SerializeField] Transform _target;
     [SerializeField] GameObject _turret;
     [SerializeField] float _spawnDelay;
@@ -63,7 +64,7 @@ public class EnemyController : MonoBehaviour
 
         int ramdom = Random.Range(0, enemys.Length);
         GameObject enemy = Instantiate(enemys[ramdom], spawnPos, Quaternion.identity);
-        enemy.GetComponent<Enemy>().Init(this, _target);
+        enemy.GetComponent<Enemy>().Init(_player, this, _target);
     }
 
     IEnumerator SpawnEnemyRoutine()

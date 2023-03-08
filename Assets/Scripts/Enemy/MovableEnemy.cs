@@ -8,31 +8,29 @@ public class MovableEnemy : Enemy
     public int _damage;
     public float _moveSpeed;
 
-    protected NavMeshAgent _nav;
     protected BoxCollider _collider;
     protected Rigidbody _rigidbody;
 
+    protected Vector3 _move;
+
     protected bool _isAttack;
+    protected bool _isHitted;
+    protected bool _isMiss;
 
     void Awake()
     {
-        _nav = GetComponent<NavMeshAgent>();
         _collider = GetComponent<BoxCollider>();
         _rigidbody = GetComponent<Rigidbody>();
-        _nav.speed = _moveSpeed;
     }
 
     public virtual void Move()
     {
-        if(!_isAttack && !_isDie)
-        {
-            _nav.SetDestination(_target.position);
-        }
+        
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !_isAttack)
             StartCoroutine(AttackRoutine());
     }
 

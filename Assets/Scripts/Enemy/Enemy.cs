@@ -7,14 +7,16 @@ public class Enemy : MonoBehaviour
     public int _maxHp;
     public float _attackDelay;
 
-    protected Transform _target;
+    protected Player _player;
     protected EnemyController _enemyController;
+    protected Transform _target;
 
     protected int _curHp;
     protected bool _isDie;
 
-    public virtual void Init(EnemyController enemyController, Transform target)
+    public virtual void Init(Player player, EnemyController enemyController, Transform target)
     {
+        _player = player;
         _enemyController = enemyController;
         _target = target;
         _curHp = _maxHp;
@@ -42,7 +44,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual IEnumerator AttackRoutine()
     {
-        
         yield return null;
     }
 }

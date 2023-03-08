@@ -48,11 +48,12 @@ public class Player : MonoBehaviour
         _curAmmo = _maxAmmo;
         _curHp = _maxHp;
         _idleBulletPos = _bulletPos;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        Walk();
+        Move();
         Sprint();
         Turn();
         Jump();
@@ -60,10 +61,9 @@ public class Player : MonoBehaviour
         Fire();
         ChangeShotMode();
         Reload();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void Walk()
+    public void Move()
     {
         if (_isDie)
             return;

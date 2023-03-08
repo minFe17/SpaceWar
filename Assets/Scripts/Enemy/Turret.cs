@@ -10,8 +10,9 @@ public class Turret : Enemy
     
     bool _isAttack;
 
-    public override void Init(EnemyController enemyController, Transform target)
+    public override void Init(Player player, EnemyController enemyController, Transform target)
     {
+        _player = player;
         _enemyController = enemyController;
         _target = target;
         _curHp = _maxHp;
@@ -47,7 +48,7 @@ public class Turret : Enemy
         }
     }
 
-    public void Die()
+    void Die()
     {
         _gun.localEulerAngles = new Vector3(60, _gun.eulerAngles.y, _gun.eulerAngles.z);
     }

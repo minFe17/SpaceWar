@@ -21,13 +21,13 @@ public class Bullet : MonoBehaviour
         Invoke("Remove", _lifeTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Enemy")
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(_damage);
+        if (other.gameObject.tag == "Enemy")
+            other.gameObject.GetComponent<Enemy>().TakeDamage(_damage);
 
-        if(collision.gameObject.tag == "Player")
-            collision.gameObject.GetComponent<Player>().TakeDamage(_damage);
+        if(other.gameObject.tag == "Player")
+            other.gameObject.GetComponent<Player>().TakeDamage(_damage);
 
         Remove();
     }

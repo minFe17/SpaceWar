@@ -21,7 +21,7 @@ public class DeliveryRobot : MovableEnemy
     {
         if(!_isAttack && !_isDie)
         {
-            _nav.SetDestination(_target.position);
+            //nav mesh agent 없애고 다른 방법
             _animator.SetBool("isMove", true);
         }
     }
