@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
+    // 신 로드 or 화면 어둡게 했다 다시 밝게
     [SerializeField] GameManager _gameManager;
     bool _inPlayer;
 
