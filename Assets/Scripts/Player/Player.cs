@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -339,9 +340,9 @@ public class Player : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
             _isJump = false;
     }
 }

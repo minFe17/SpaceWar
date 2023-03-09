@@ -83,12 +83,14 @@
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Map\RoomGenerator.cs" />
     <Compile Include="Assets\Scripts\Map\StructureHelper.cs" />
+    <Compile Include="Assets\Scripts\Portal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
     <None Include="Assets\DownloadAssets\Map\_Creepy_Cat\_Docs\Doc.txt" />
     <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
     <None Include="Assets\DownloadAssets\Map\Sci-Fi Styled Modular Pack\Readme.txt" />
+    <None Include="Assets\DownloadAssets\Effect\Hovl Studio\Magic effects pack\Demo scene\Readme.txt" />
     <None Include="Assets\DownloadAssets\Map\_Barking_Dog\Readme_Please.txt" />
   </ItemGroup>
   <ItemGroup>

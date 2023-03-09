@@ -40,7 +40,7 @@ public class DungeonCreator : MonoBehaviour
     public float _roomBottomCornerModifier;
     [Range(0.7f, 1.0f)] //슬라이더 범위 지정
     public float _roomTopCornerModifier;
-    [Range(0, 2)]       //슬라이더 범위 지정
+    [Range(0, 10)]       //슬라이더 범위 지정
     public int _roomOffset;
 
     public GameObject _wallVertical;
@@ -85,6 +85,11 @@ public class DungeonCreator : MonoBehaviour
         Vector3 topLeft = new Vector3(bottomLeftCorner.x, 0, topRightCorner.y);
         Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
 
+        Debug.Log("bottomLeft : " + bottomLeft);
+        Debug.Log("bottomRight : " + bottomRight);
+        Debug.Log("topLeft : " + topLeft);
+        Debug.Log("topRight : " + topRight);
+
         Vector3[] vertices = new Vector3[] { topLeft, topRight, bottomLeft, bottomRight };
 
         Vector2[] uvs = new Vector2[vertices.Length];
@@ -98,6 +103,13 @@ public class DungeonCreator : MonoBehaviour
         mesh.vertices = vertices;
         mesh.uv = uvs;
         mesh.triangles = triangles;
+        mesh.RecalculateNormals();
+        foreach (var data in mesh.normals)
+        {
+            Debug.Log(data);
+        }
+
+        Debug.Log("Length" + mesh.normals.Length);
 
         GameObject dungeonFloor = new GameObject("Mesh" + bottomLeftCorner, typeof(MeshFilter), typeof(MeshRenderer));
         dungeonFloor.transform.position = Vector3.zero;
