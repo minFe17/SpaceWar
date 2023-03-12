@@ -3,12 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] int _mapStage;
-    [SerializeField] int _levelStage;
+    [SerializeField] UIManager _uiManager;
+    int _mapStage;
+    int _levelStage;
 
     void Start()
     {
-
+        _mapStage = 1;
+        _levelStage = 1;
+        _uiManager.ShowStage(_mapStage, _levelStage);
     }
 
     void Update()
@@ -38,5 +41,7 @@ public class GameManager : MonoBehaviour
         {
             _levelStage++;
         }
-    }   
+        _uiManager.ShowStage(_mapStage, _levelStage);
+
+    }
 }

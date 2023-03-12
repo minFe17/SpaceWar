@@ -39,6 +39,7 @@ public class Scorpion : MovableEnemy
         {
             _animator.SetTrigger("doDie");
             _isDie = true;
+            MakeMoney();
             _enemyController._enemyList.Remove(this);
         }
         else

@@ -42,7 +42,7 @@ public class Turret : Enemy
             _isDie = true;
             _dieEffect.SetActive(true);
             Invoke("Die", 1f);
-
+            
             Destroy(this.gameObject, 2f);
             _enemyController._enemyList.Remove(this);
         }
@@ -51,6 +51,7 @@ public class Turret : Enemy
     void Die()
     {
         _gun.localEulerAngles = new Vector3(60, _gun.eulerAngles.y, _gun.eulerAngles.z);
+        MakeMoney();
     }
 
     protected override IEnumerator AttackRoutine()

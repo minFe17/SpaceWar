@@ -7,12 +7,15 @@ public class Enemy : MonoBehaviour
     public int _maxHp;
     public float _attackDelay;
 
+    protected GameObject _silverCoin;
+    protected GameObject _goldCoin;
     protected Player _player;
     protected EnemyController _enemyController;
     protected Transform _target;
 
-    protected int _curHp;
-    protected bool _isDie;
+    public int _curHp;
+    public bool _isDie;
+    // 나중에 코인을 리스트로 저장하기
 
     public virtual void Init(Player player, EnemyController enemyController, Transform target)
     {
@@ -37,9 +40,25 @@ public class Enemy : MonoBehaviour
         if (_curHp <= 0)
         {
             _isDie = true;
+            MakeMoney();
+            Destroy(this.gameObject, 1f);
+            _enemyController._enemyList.Remove(this);
         }
-        Destroy(this.gameObject, 1f);
-        _enemyController._enemyList.Remove(this);
+    }
+
+    protected void MakeMoney()
+    {
+        int random = Random.Range(0, 2);
+        if(random == 0)
+        {
+            GameObject coin = Instantiate(_silverCoin);
+            coin.transform.position = transform.position;
+        }
+        else
+        {
+            GameObject coin = Instantiate(_goldCoin);
+            coin.transform.position = transform.position;
+        }
     }
 
     protected virtual IEnumerator AttackRoutine()

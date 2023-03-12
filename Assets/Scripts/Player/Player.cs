@@ -12,18 +12,19 @@ public class Player : MonoBehaviour
     [SerializeField] float _rotateSpeed;
     [SerializeField] float _idleTime;
     [SerializeField] float _fireDelay;
+
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _bullet;
     [SerializeField] GameObject _zoomCamera;
     [SerializeField] GameObject _model;
     [SerializeField] GameObject _aimPoint;
-
+    [SerializeField] UIManager _uiManager;
 
     Animator _animator;
     Rigidbody _rigidbody;
 
     Transform _idleBulletPos;
-    ShotMode _shotMode;
+    EShotModeType _shotMode;
 
     Vector3 _move;
 
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
 
     int _curHp;
     int _curAmmo;
+    int _money;
 
     bool _isJump;
     bool _isAiming;
@@ -45,11 +47,23 @@ public class Player : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
-        _shotMode = ShotMode.Single;
+        _money = 0;
+        Cursor.lockState = CursorLockMode.Locked;
+        Init();
+    }
+
+    void Init()
+    {
+        _shotMode = EShotModeType.Single;
+        _idleBulletPos = _bulletPos;
+
         _curAmmo = _maxAmmo;
         _curHp = _maxHp;
-        _idleBulletPos = _bulletPos;
-        Cursor.lockState = CursorLockMode.Locked;
+
+        _uiManager.ShowHp(_curHp, _maxHp);
+        _uiManager.ShowMoney(_money);
+        _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
+        _uiManager.ShowShotMode(_shotMode);
     }
 
     void Update()
@@ -175,13 +189,13 @@ public class Player : MonoBehaviour
         {
             switch (_shotMode)
             {
-                case ShotMode.Single:
+                case EShotModeType.Single:
                     StartCoroutine(SingleShotRoutine());
                     break;
-                case ShotMode.Burst:
+                case EShotModeType.Burst:
                     StartCoroutine(BurstShotRoutine());
                     break;
-                case ShotMode.Auto:
+                case EShotModeType.Auto:
                     StartCoroutine(AutoShotRoutine());
                     break;
                 default:
@@ -217,16 +231,19 @@ public class Player : MonoBehaviour
     {
         _curAmmo = _maxAmmo;
         _isReload = false;
+        _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
     }
 
     public void ChangeShotMode()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            _shotMode = ShotMode.Single;
+            _shotMode = EShotModeType.Single;
         else if (Input.GetKeyDown(KeyCode.Alpha2))
-            _shotMode = ShotMode.Burst;
+            _shotMode = EShotModeType.Burst;
         else if (Input.GetKeyDown(KeyCode.Alpha3))
-            _shotMode = ShotMode.Auto;
+            _shotMode = EShotModeType.Auto;
+
+        _uiManager.ShowShotMode(_shotMode);
     }
 
     public void Turn()
@@ -254,12 +271,19 @@ public class Player : MonoBehaviour
         bullet.transform.rotation = _bulletPos.rotation;
     }
 
+    public void GetMoney(int money)
+    {
+        _money += money;
+        _uiManager.ShowMoney(_money);
+    }
+
     public void TakeDamage(int damage)
     {
         if (_isDie)
             return;
 
         _curHp -= damage;
+        _uiManager.ShowHp(_curHp, _maxHp);
 
         if (_curHp <= 0)
         {
@@ -277,6 +301,7 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             MakeBullet();
             _curAmmo--;
+            _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
             _animator.SetBool("isShotIdle", true);
             yield return new WaitForSeconds(_fireDelay);
             _isShot = false;
@@ -304,6 +329,7 @@ public class Player : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 MakeBullet();
                 _curAmmo--;
+                _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
             }
             _animator.SetBool("isShotIdle", true);
             yield return new WaitForSeconds(_fireDelay);
@@ -323,6 +349,7 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             MakeBullet();
             _curAmmo--;
+            _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
             yield return null;
             _isShot = false;
         }
@@ -347,16 +374,7 @@ public class Player : MonoBehaviour
     }
 }
 
-enum MoveDirection
-{
-    Idle,
-    Forward,
-    Left,
-    Right,
-    Back
-}
-
-enum ShotMode
+public enum EShotModeType
 {
     Single,
     Burst,
