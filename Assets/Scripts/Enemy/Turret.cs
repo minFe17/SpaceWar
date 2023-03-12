@@ -4,10 +4,10 @@ using UnityEngine;
 public class Turret : Enemy
 {
     [SerializeField] Transform _gun;
-    [SerializeField] GameObject _bullet;
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _dieEffect;
-    
+
+    GameObject _bullet;
     bool _isAttack;
 
     public override void Init(Player player, EnemyController enemyController, Transform target)
@@ -16,8 +16,10 @@ public class Turret : Enemy
         _enemyController = enemyController;
         _target = target;
         _curHp = _maxHp;
+        _bullet = Resources.Load("Prefabs/Missile") as GameObject;
         _enemyController._enemyList.Add(this);
         StartCoroutine(AttackRoutine());
+        AddCoinList();
     }
 
     void Update()

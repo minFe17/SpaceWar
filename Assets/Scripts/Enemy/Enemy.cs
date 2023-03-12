@@ -7,14 +7,14 @@ public class Enemy : MonoBehaviour
     public int _maxHp;
     public float _attackDelay;
 
-    protected GameObject _silverCoin;
-    protected GameObject _goldCoin;
     protected Player _player;
     protected EnemyController _enemyController;
     protected Transform _target;
 
-    public int _curHp;
-    public bool _isDie;
+    protected int _curHp;
+    protected bool _isDie;
+
+    protected List<GameObject> _coinList = new List<GameObject>();
     // 나중에 코인을 리스트로 저장하기
 
     public virtual void Init(Player player, EnemyController enemyController, Transform target)
@@ -24,6 +24,13 @@ public class Enemy : MonoBehaviour
         _target = target;
         _curHp = _maxHp;
         _enemyController._enemyList.Add(this);
+        AddCoinList();
+    }
+
+    protected void AddCoinList()
+    {
+        _coinList.Add(Resources.Load("Prefabs/GoldCoin") as GameObject);
+        _coinList.Add(Resources.Load("Prefabs/SilverCoin") as GameObject);
     }
 
     public virtual void LookTarget()
@@ -48,17 +55,9 @@ public class Enemy : MonoBehaviour
 
     protected void MakeMoney()
     {
-        int random = Random.Range(0, 2);
-        if(random == 0)
-        {
-            GameObject coin = Instantiate(_silverCoin);
-            coin.transform.position = transform.position;
-        }
-        else
-        {
-            GameObject coin = Instantiate(_goldCoin);
-            coin.transform.position = transform.position;
-        }
+        int random = Random.Range(0, _coinList.Count);
+        GameObject coin = Instantiate(_coinList[random]);
+        coin.transform.position = transform.position;
     }
 
     protected virtual IEnumerator AttackRoutine()

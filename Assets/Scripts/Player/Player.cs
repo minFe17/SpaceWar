@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Transform _bulletPos;
+    [SerializeField] GameObject _zoomCamera;
+    [SerializeField] GameObject _model;
+    [SerializeField] GameObject _aimPoint;
+    [SerializeField] UIManager _uiManager;
+
     [SerializeField] int _maxHp;
     [SerializeField] int _maxAmmo;
     [SerializeField] float _moveSpeed;
@@ -13,17 +19,12 @@ public class Player : MonoBehaviour
     [SerializeField] float _idleTime;
     [SerializeField] float _fireDelay;
 
-    [SerializeField] Transform _bulletPos;
-    [SerializeField] GameObject _bullet;
-    [SerializeField] GameObject _zoomCamera;
-    [SerializeField] GameObject _model;
-    [SerializeField] GameObject _aimPoint;
-    [SerializeField] UIManager _uiManager;
+    GameObject _bullet;
 
     Animator _animator;
     Rigidbody _rigidbody;
-
     Transform _idleBulletPos;
+    
     EShotModeType _shotMode;
 
     Vector3 _move;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
+        _bullet = Resources.Load("Prefabs/Bullet") as GameObject;
         _money = 0;
         Cursor.lockState = CursorLockMode.Locked;
         Init();
