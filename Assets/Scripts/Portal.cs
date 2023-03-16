@@ -39,7 +39,6 @@ public class Portal : MonoBehaviour
         {
             ShowKeyUI();
             _inPlayer = true;
-
         }
     }
 

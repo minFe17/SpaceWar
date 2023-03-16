@@ -82,7 +82,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle_Shoot_Ar
+  m_Name: Idle_Shoot
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -323,7 +323,7 @@ AnimatorStateTransition:
     m_ConditionEvent: moveDirection
     m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 8572528141872683662}
+  m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -375,7 +375,7 @@ AnimatorStateTransition:
     m_ConditionEvent: moveDirection
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1300520531539242}
+  m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -422,7 +422,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isRun
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1102901032506865742}
+  m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -472,7 +472,7 @@ AnimatorStateTransition:
     m_ConditionEvent: moveDirection
     m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -7888659784695717144}
+  m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -497,7 +497,7 @@ AnimatorStateTransition:
     m_ConditionEvent: moveDirection
     m_EventTreshold: 4
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -3450412759283265232}
+  m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -941,7 +941,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shoot_Autoshot_AR
+  m_Name: Shoot_Autoshot
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1130,7 +1130,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shoot_BurstShot_AR
+  m_Name: Shoot_BurstShot
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1157,7 +1157,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shoot_SingleShot_AR
+  m_Name: Shoot_SingleShot
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

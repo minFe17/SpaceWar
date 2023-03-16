@@ -9,13 +9,17 @@ public class Door : MonoBehaviour
     [SerializeField] Transform _leftDoorArea;
     [SerializeField] Transform _rightDoorArea;
 
+    BoxCollider _collider;
     Vector3 _doorPos;
 
     bool _isOpen;
 
     void Start()
     {
+        _collider = GetComponent<BoxCollider>();
         _doorPos = _leftDoor.transform.position;
+        if(gameObject.GetComponentInParent<DoorList>())
+            gameObject.GetComponentInParent<DoorList>().doors.Add(this._collider);
     }
 
     void Update()

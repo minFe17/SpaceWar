@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ public class Player : MonoBehaviour
     Animator _animator;
     Rigidbody _rigidbody;
     Transform _idleBulletPos;
-    
+
     EShotModeType _shotMode;
 
     Vector3 _move;
@@ -131,7 +130,7 @@ public class Player : MonoBehaviour
         }
         _animator.SetFloat("Speed", _speed);
     }
-        
+
     public void Zoom()
     {
         if (!_isDie)
@@ -206,6 +205,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButtonUp("Fire"))
         {
+            Debug.Log(1);
             _animator.SetBool("isShotIdle", true);
             Invoke("ShotIdle", 0.5f);
         }
@@ -218,7 +218,7 @@ public class Player : MonoBehaviour
 
     public void Reload()
     {
-        if (!_isDie)
+        if (!_isDie && !_isReload)
         {
             if (Input.GetKeyDown(KeyCode.R) || _curAmmo <= 0)
             {
@@ -347,18 +347,23 @@ public class Player : MonoBehaviour
         if (_curAmmo > 0 && !_isReload)
         {
             _isShot = true;
-            _animator.SetTrigger("doAutoShot");
+            if(!_animator.GetCurrentAnimatorStateInfo(1).IsName("Shoot_Autoshot"))
+                _animator.SetTrigger("doAutoShot");
             yield return new WaitForSeconds(0.2f);
             MakeBullet();
             _curAmmo--;
             _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
-            yield return null;
-            _isShot = false;
         }
+        _isShot = false;
 
+        if (Input.GetButtonUp("Fire"))
+        {
+            Debug.Log(2);
+        }
         if (_curAmmo <= 0)
             Reload();
     }
+
 
     IEnumerator JumpRoutine()
     {

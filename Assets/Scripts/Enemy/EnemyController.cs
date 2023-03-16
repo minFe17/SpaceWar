@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] BattleField _battleField;
-    [SerializeField] Player _player;
-    [SerializeField] Transform _target;
-    [SerializeField] GameObject _turret;
+    [SerializeField] GameManager _gameManager; //맵 생성 후 받아와야함
+    [SerializeField] DoorList _doorList;       //맵 생성 후 받아와야함
+    [SerializeField] Player _player;           //맵 생성 후 받아와야함
+    [SerializeField] Transform _target;        //맵 생성 후 받아와야함
     [SerializeField] float _spawnDelay;
     [SerializeField] int _minEnemy;
     [SerializeField] int _maxEnemy;
@@ -25,13 +25,12 @@ public class EnemyController : MonoBehaviour
 
     bool _isClear;
 
-    void Start()
+    void Awake()
     {
         _ground = GetComponent<BoxCollider>();
-        _basePos = transform.position + _ground.center;
+        _basePos = transform.position + _ground.center; // 박스 콜라이더 센터는 필요없을수도
         _wave = Random.Range(0, 2);
-        _size = _ground.size;
-        StartCoroutine(SpawnEnemyRoutine());
+        _size = _ground.size;   //Init으로 옮기기
         AddEnemyList();
     }
 
@@ -40,6 +39,15 @@ public class EnemyController : MonoBehaviour
         _enemys.Add(Resources.Load("Prefabs/Turret") as GameObject);
         _enemys.Add(Resources.Load("Prefabs/Scorpion") as GameObject);
         _enemys.Add(Resources.Load("Prefabs/DeliveryRobot") as GameObject);
+    }
+
+    public void Init()
+    {
+        // 콜라이더 사이즈
+        // 게임매니저
+        // 문리스트
+        // 플레이어
+        // 타겟
     }
 
     void Update()
@@ -52,7 +60,7 @@ public class EnemyController : MonoBehaviour
         if (_waveIndex == _wave && _enemyList.Count == 0)
         {
             _isClear = true;
-            _battleField.Clear();
+            _gameManager.Clear(_doorList);
         }
     }
 
@@ -79,7 +87,6 @@ public class EnemyController : MonoBehaviour
     {
         for (_waveIndex = 0; _waveIndex <= _wave; _waveIndex++)
         {
-
             yield return new WaitForSeconds(_spawnDelay);
             int enemyCount = Random.Range(_minEnemy, _maxEnemy);
             for (int j = 0; j <= enemyCount; j++)
@@ -93,6 +100,16 @@ public class EnemyController : MonoBehaviour
                 if (_enemyList.Count == 0)
                     break;
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            _gameManager.Battle(_doorList);
+            _ground.enabled = false;
+            StartCoroutine(SpawnEnemyRoutine());
         }
     }
 }

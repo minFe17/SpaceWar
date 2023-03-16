@@ -21,6 +21,17 @@ public class Bullet : MonoBehaviour
         Invoke("Remove", _lifeTime);
     }
 
+
+    public virtual void Move()
+    {
+        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+    }
+
+    public void Remove()
+    {
+        Destroy(this.gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -32,13 +43,4 @@ public class Bullet : MonoBehaviour
         Remove();
     }
 
-    public virtual void Move()
-    {
-        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
-    }
-
-    public void Remove()
-    {
-        Destroy(this.gameObject);
-    }
 }
