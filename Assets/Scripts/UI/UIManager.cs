@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     public void ShowHp(int curHp, int maxHp)
     {
         _hpBar.fillAmount = (float)curHp / maxHp;
+        if (curHp < 0)
+            curHp = 0;
         _hpText.text = $"{curHp} / {maxHp}";
     }
 

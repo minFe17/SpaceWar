@@ -4,8 +4,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] UIManager _uiManager;
+    [SerializeField] GameOverUI _gameOverUI;
+
     int _mapStage;
     int _levelStage;
+    int _killEnemy;
+
+    float _playTime;
+
 
     void Start()
     {
@@ -16,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
+        PlayTime();
     }
 
     public void Battle(DoorList doorList)
@@ -42,6 +48,21 @@ public class GameManager : MonoBehaviour
             _levelStage++;
         }
         _uiManager.ShowStage(_mapStage, _levelStage);
+    }
 
+    public void AddKillEnemy()
+    {
+        _killEnemy++;
+    }
+
+    void PlayTime()
+    {
+        _playTime += Time.deltaTime;
+    }
+
+    public void GameOver()
+    {
+        _gameOverUI.ShowPlayTime(_playTime);
+        _gameOverUI.ShowKillEnemy(_killEnemy);
     }
 }

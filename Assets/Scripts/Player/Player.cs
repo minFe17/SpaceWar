@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _model;
     [SerializeField] GameObject _aimPoint;
     [SerializeField] UIManager _uiManager;
+    [SerializeField] GameOverUI _gameOverUI;
 
     [SerializeField] int _maxHp;
     [SerializeField] int _maxAmmo;
@@ -293,6 +294,15 @@ public class Player : MonoBehaviour
             _animator.SetTrigger("doDie");
         }
     }
+
+    void EndDie()
+    {
+        _gameOverUI.gameObject.SetActive(true);
+        _gameOverUI.ShowMoney(_money);
+        // 웨이브
+    }
+
+    
 
     IEnumerator SingleShotRoutine()
     {

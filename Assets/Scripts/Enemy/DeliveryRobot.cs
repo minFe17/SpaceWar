@@ -38,8 +38,6 @@ public class DeliveryRobot : MovableEnemy
         {
             _animator.SetTrigger("doDie");
             _isDie = true;
-            MakeMoney();
-            _enemyController._enemyList.Remove(this);
         }
         else
         {
@@ -51,6 +49,9 @@ public class DeliveryRobot : MovableEnemy
 
     public void Die()
     {
+        MakeMoney();
+        _gameManager.AddKillEnemy();
+        _enemyController._enemyList.Remove(this);
         Destroy(this.gameObject);
     }
 

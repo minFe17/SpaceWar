@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour
 
         int ramdom = Random.Range(0, _enemys.Count);
         GameObject enemy = Instantiate(_enemys[ramdom], spawnPos, Quaternion.identity);
-        enemy.GetComponent<Enemy>().Init(_player, this, _target);
+        enemy.GetComponent<Enemy>().Init(_gameManager, _player, this, _target);
     }
 
     IEnumerator SpawnEnemyRoutine()
