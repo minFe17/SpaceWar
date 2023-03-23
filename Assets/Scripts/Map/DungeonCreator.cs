@@ -4,20 +4,8 @@ using UnityEngine;
 
 public class DungeonCreator : MonoBehaviour
 {
-    // 수정하거나 생각할 것
-    // 방을 다 Room1처럼 생성 -> 방 부모 안에 문, 배틀필드, EnemyController 넣기
-    // 방 문 잠글 거는 방 부모 안에 있는 문들
-
-    // 기둥 = (2,0,2)
-    // 벽 = (넓은 쪽 : 6, 좁은 쪽 : 2)
-    // 문 = (넓은 쪽 : 10, 좁은 쪽 : 2)
-    // 문 위치 = 복도 중앙
-    // 문???
-    
-    // 몬스터 소환 범위 중심
-    // 몬스터 소한 범위는 바닥 넓이 or offset넣어서
-    // Nav mesh Agent는 어떻게???
-
+    //문, 몬스터 컨트롤러 설치
+    //문은 도어리스트 자식으로
     public int _dungeonWidth;   // 맵 가로 길이
     public int _dungeonLength;  // 맵 세로 길이
     public int _roomWidthMin;   // 방 최소 가로 길이
