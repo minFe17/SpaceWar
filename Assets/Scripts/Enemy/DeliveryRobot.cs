@@ -42,6 +42,7 @@ public class DeliveryRobot : MovableEnemy
         else
         {
             _animator.SetBool("isMove", false);
+            _animator.SetBool("isHit", true);
             _isHitted = true;
             Invoke("Moveable", 1f);
         }
@@ -58,6 +59,7 @@ public class DeliveryRobot : MovableEnemy
     void Moveable()
     {
         _isHitted = false;
+        _animator.SetBool("isHit", false);
     }
 
     protected override IEnumerator AttackRoutine()

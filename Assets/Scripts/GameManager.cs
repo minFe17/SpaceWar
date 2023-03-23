@@ -64,5 +64,6 @@ public class GameManager : MonoBehaviour
     {
         _gameOverUI.ShowPlayTime(_playTime);
         _gameOverUI.ShowKillEnemy(_killEnemy);
+        _gameOverUI.ShowWave(_mapStage, _levelStage);
     }
 }

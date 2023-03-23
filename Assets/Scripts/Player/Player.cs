@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _zoomCamera;
     [SerializeField] GameObject _model;
     [SerializeField] GameObject _aimPoint;
+    [SerializeField] GameManager _gameManager;
     [SerializeField] UIManager _uiManager;
     [SerializeField] GameOverUI _gameOverUI;
 
@@ -206,7 +207,6 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButtonUp("Fire"))
         {
-            Debug.Log(1);
             _animator.SetBool("isShotIdle", true);
             Invoke("ShotIdle", 0.5f);
         }
@@ -299,10 +299,9 @@ public class Player : MonoBehaviour
     {
         _gameOverUI.gameObject.SetActive(true);
         _gameOverUI.ShowMoney(_money);
-        // 웨이브
+        _gameManager.GameOver();
+        Cursor.lockState = CursorLockMode.None;
     }
-
-    
 
     IEnumerator SingleShotRoutine()
     {

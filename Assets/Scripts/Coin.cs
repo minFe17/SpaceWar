@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] Player _player;
+    [SerializeField] Player _player;    //Init
     [SerializeField] Transform _target;
     [SerializeField] int _money;
 
