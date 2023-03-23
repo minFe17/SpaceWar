@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -9,10 +9,15 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] Transform[] _secondMap;
     [SerializeField] Transform[] _thirdMap;
 
-    [SerializeField] WavePanel _wavePanel;
+    [SerializeField] Transform _startPos;
+
+    [SerializeField] Transform _playerImage;
+    [SerializeField] TMP_Text _dieWaveText;
+
     [SerializeField] TMP_Text _playTimeText;
     [SerializeField] TMP_Text _killEnemyText;
     [SerializeField] TMP_Text _moneyText;
+
 
     public List<Transform[]> _wavePos = new List<Transform[]>();
 
@@ -42,11 +47,13 @@ public class GameOverUI : MonoBehaviour
 
     public void ShowWave(int mapStage, int levelStage)
     {
-        _wavePanel.ShowWave(mapStage, levelStage);
+        _playerImage.position = _startPos.position;
+        _playerImage.position = _wavePos[mapStage - 1][levelStage - 1].position;
+        _dieWaveText.text = $"{mapStage} - {levelStage}";
     }
 
     public void RegameButton()
     {
-        //SceneManager.LoadScene();
+        SceneManager.LoadScene("Main");
     }
 }
