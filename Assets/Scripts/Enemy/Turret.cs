@@ -10,9 +10,8 @@ public class Turret : Enemy
     GameObject _bullet;
     bool _isAttack;
 
-    public override void Init(GameManager gameManager, Player player, EnemyController enemyController, Transform target)
+    public override void Init(Player player, EnemyController enemyController, Transform target)
     {
-        _gameManager = gameManager;
         _player = player;
         _enemyController = enemyController;
         _target = target;

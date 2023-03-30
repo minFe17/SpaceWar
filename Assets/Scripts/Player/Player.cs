@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _aimPoint;
     [SerializeField] GameManager _gameManager;
     [SerializeField] GameObject _infoPortalKeyUI;
-    [SerializeField] UIManager _uiManager;
+    [SerializeField] IngameUI _uiManager;
     [SerializeField] GameOverUI _gameOverUI;
 
     [SerializeField] int _maxHp;

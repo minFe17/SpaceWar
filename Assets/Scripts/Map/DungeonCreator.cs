@@ -62,6 +62,7 @@ public class DungeonCreator : MonoBehaviour
         {
             GameObject room = CreateMesh(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
             CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room);
+            CreateDoorList(room);
         }
 
         for (int i = 0; i < listOfCorridors.Count; i++) //汗档 积己
@@ -131,13 +132,24 @@ public class DungeonCreator : MonoBehaviour
     void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent)
     {
         Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
-        Vector3 bottomRight = new Vector3(topRightCorner.x, 0, bottomLeftCorner.y);
-        Vector3 topLeft = new Vector3(bottomLeftCorner.x, 0, topRightCorner.y);
         Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
 
         GameObject temp = Instantiate(_enemyController, parent.transform);
         temp.transform.position = (bottomLeft + topRight) / 2;
         temp.GetComponent<BoxCollider>().size = new Vector3((topRight.x - bottomLeft.x) - _enemyControllerOffset, 7, (topRight.z - bottomLeft.z) - _enemyControllerOffset);
+    }
+
+    void CreateDoorList(GameObject parent)
+    {
+        GameObject temp = new GameObject("DoorList");
+        temp.transform.SetParent(parent.transform);
+        temp.AddComponent<DoorList>();
+        CreateDoor();   //巩 积己
+    }
+
+    void CreateDoor()
+    {
+
     }
 
     void AddWallPositionToList(Vector3 wallPosition, List<Vector3Int> wallList, List<Vector3Int> doorList)

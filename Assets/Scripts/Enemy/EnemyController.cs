@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] GameManager _gameManager; //맵 생성 후 받아와야함
     [SerializeField] DoorList _doorList;       //맵 생성 후 받아와야함
     [SerializeField] Player _player;           //맵 생성 후 받아와야함
     [SerializeField] Transform _target;        //맵 생성 후 받아와야함
@@ -60,7 +59,7 @@ public class EnemyController : MonoBehaviour
         if (_waveIndex == _wave && _enemyList.Count == 0)
         {
             _isClear = true;
-            _gameManager.Clear(_doorList);
+            GenericSingleton<GameManager>.GetInstance().Clear(_doorList);
         }
     }
 
@@ -80,7 +79,7 @@ public class EnemyController : MonoBehaviour
 
         int ramdom = Random.Range(0, _enemys.Count);
         GameObject enemy = Instantiate(_enemys[ramdom], spawnPos, Quaternion.identity);
-        enemy.GetComponent<Enemy>().Init(_gameManager, _player, this, _target);
+        enemy.GetComponent<Enemy>().Init(_player, this, _target);
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -107,7 +106,7 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _gameManager.Battle(_doorList);
+            GenericSingleton<GameManager>.GetInstance().Battle(_doorList);
             _ground.enabled = false;
             StartCoroutine(SpawnEnemyRoutine());
         }

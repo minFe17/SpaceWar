@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] UIManager _uiManager;
-    [SerializeField] GameOverUI _gameOverUI;
+    [SerializeField] IngameUI _uiManager;
+    [SerializeField] GameOverUI _gameOverUI; 
 
     int _mapStage;
     int _levelStage;

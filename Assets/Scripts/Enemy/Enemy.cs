@@ -18,9 +18,8 @@ public class Enemy : MonoBehaviour
     protected List<GameObject> _coinList = new List<GameObject>();
     // 나중에 코인을 리스트로 저장하기
 
-    public virtual void Init(GameManager gameManager, Player player, EnemyController enemyController, Transform target)
+    public virtual void Init(Player player, EnemyController enemyController, Transform target)
     {
-        _gameManager = gameManager;
         _player = player;
         _enemyController = enemyController;
         _target = target;
@@ -50,7 +49,7 @@ public class Enemy : MonoBehaviour
         {
             _isDie = true;
             MakeMoney();
-            _gameManager.AddKillEnemy();
+            GenericSingleton<GameManager>.GetInstance().AddKillEnemy();
             Destroy(this.gameObject, 1f);
             _enemyController._enemyList.Remove(this);
         }

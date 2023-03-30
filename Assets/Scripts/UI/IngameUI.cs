@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class IngameUI : MonoBehaviour
 {
     [SerializeField] Image _hpBar;
     [SerializeField] TMP_Text _hpText;
