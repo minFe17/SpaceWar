@@ -28,9 +28,9 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         _ground = GetComponent<BoxCollider>();
-        _basePos = transform.position + _ground.center; // 박스 콜라이더 센터는 필요없을수도
+        _basePos = transform.position + _ground.center;
         _wave = Random.Range(0, 2);
-        _size = _ground.size;   //Init으로 옮기기
+        _size = _ground.size;
         AddEnemyList();
     }
 

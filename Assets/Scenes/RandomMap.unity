@@ -177,6 +177,9 @@ MonoBehaviour:
   _wallVertical: {fileID: 5492649358934495152, guid: 8c4600f76b32b5c48a82ec319a869416, type: 3}
   _wallHorizontal: {fileID: 1781949669117437317, guid: 11601ae1f57292048b62717c60eb0dba, type: 3}
   _wallWidth: 6
+  _door: {fileID: 0}
+  _enemyController: {fileID: 1686840618348503979, guid: 3102b211582e9b44e93b1a60249ad692, type: 3}
+  _enemyControllerOffset: 4
   _corridorWidth: 10
   _roomBottomCornerModifier: 0.1
   _roomTopCornerModifier: 0.9

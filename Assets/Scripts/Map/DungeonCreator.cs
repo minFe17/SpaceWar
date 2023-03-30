@@ -16,6 +16,10 @@ public class DungeonCreator : MonoBehaviour
     public GameObject _wallVertical;
     public GameObject _wallHorizontal;
     public int _wallWidth;
+    public GameObject _door;
+    public GameObject _enemyController;
+    public int _enemyControllerOffset;
+
 
     [Range(5, 10)]
     public int _corridorWidth;  // 복도 넓이
@@ -41,9 +45,11 @@ public class DungeonCreator : MonoBehaviour
     {
         DestroyAllChildren();
         DungeonGenerator generator = new DungeonGenerator(_dungeonWidth, _dungeonLength);
-        var listoOfRooms = generator.CalculateDungeon(_maxIterations, _roomWidthMin, _roomLengthMin,
+        var listOfRooms = generator.CalculateDungeon(_maxIterations, _roomWidthMin, _roomLengthMin,
                                                       _roomBottomCornerModifier, _roomTopCornerModifier,
-                                                      _roomOffset, _corridorWidth);
+                                                      _roomOffset);
+
+        var listOfCorridors = generator.CalculateCorridors(_corridorWidth);
 
         GameObject wallParent = new GameObject("wallParent");
         wallParent.transform.parent = transform;
@@ -52,15 +58,21 @@ public class DungeonCreator : MonoBehaviour
         _possibleWallHorizontalPosition = new List<Vector3Int>();
         _possibleDoorHorizontalPosition = new List<Vector3Int>();
 
-        for (int i = 0; i < listoOfRooms.Count; i++)
+        for (int i = 0; i < listOfRooms.Count; i++)     //방 생성
         {
-            CreateMesh(listoOfRooms[i].BottomLeftAreaCorner, listoOfRooms[i].TopRightAreaCorner, i);
-            CreateEnemyController();
+            GameObject room = CreateMesh(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
+            CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room);
         }
+
+        for (int i = 0; i < listOfCorridors.Count; i++) //복도 생성
+        {
+            CreateMesh(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner);
+        }
+
         CreateWalls(wallParent);
     }
 
-    void CreateMesh(Vector2 bottomLeftCorner, Vector2 topRightCorner, int j)
+    GameObject CreateMesh(Vector2 bottomLeftCorner, Vector2 topRightCorner)
     {
         Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
         Vector3 bottomRight = new Vector3(topRightCorner.x, 0, bottomLeftCorner.y);
@@ -81,14 +93,8 @@ public class DungeonCreator : MonoBehaviour
         mesh.uv = uvs;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
-        foreach (var data in mesh.normals)
-        {
-            Debug.Log(data);
-        }
 
-        Debug.Log("Length" + mesh.normals.Length);
-
-        GameObject dungeonFloor = new GameObject("Mesh " + j/*bottomLeftCorner*/, typeof(MeshFilter), typeof(MeshRenderer));
+        GameObject dungeonFloor = new GameObject("Mesh" + bottomLeftCorner, typeof(MeshFilter), typeof(MeshRenderer));
         dungeonFloor.transform.position = Vector3.zero;
         dungeonFloor.transform.localScale = Vector3.one;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
@@ -118,11 +124,20 @@ public class DungeonCreator : MonoBehaviour
             var wallPosition = new Vector3(bottomRight.x, 0, col);
             AddWallPositionToList(wallPosition, _possibleWallVerticalPosition, _possibleDoorVerticalPosition);
         }
+
+        return dungeonFloor;
     }
 
-    void CreateEnemyController()
+    void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent)
     {
+        Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
+        Vector3 bottomRight = new Vector3(topRightCorner.x, 0, bottomLeftCorner.y);
+        Vector3 topLeft = new Vector3(bottomLeftCorner.x, 0, topRightCorner.y);
+        Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
 
+        GameObject temp = Instantiate(_enemyController, parent.transform);
+        temp.transform.position = (bottomLeft + topRight) / 2;
+        temp.GetComponent<BoxCollider>().size = new Vector3((topRight.x - bottomLeft.x) - _enemyControllerOffset, 7, (topRight.z - bottomLeft.z) - _enemyControllerOffset);
     }
 
     void AddWallPositionToList(Vector3 wallPosition, List<Vector3Int> wallList, List<Vector3Int> doorList)
@@ -141,10 +156,10 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateWalls(GameObject wallParent)
     {
-        foreach(var wallPosition in _possibleWallHorizontalPosition)
+        foreach (var wallPosition in _possibleWallHorizontalPosition)
             CreateWall(wallParent, wallPosition, _wallHorizontal);
 
-        foreach(var wallPosition in _possibleWallVerticalPosition)
+        foreach (var wallPosition in _possibleWallVerticalPosition)
             CreateWall(wallParent, wallPosition, _wallVertical);
     }
 
@@ -155,9 +170,9 @@ public class DungeonCreator : MonoBehaviour
 
     void DestroyAllChildren()
     {
-        while(transform.childCount != 0)
+        while (transform.childCount != 0)
         {
-            foreach(Transform item in transform)
+            foreach (Transform item in transform)
                 DestroyImmediate(item.gameObject);
         }
     }
