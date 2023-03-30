@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,8 +19,9 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] TMP_Text _killEnemyText;
     [SerializeField] TMP_Text _moneyText;
 
-
     public List<Transform[]> _wavePos = new List<Transform[]>();
+
+    Vector3 _dieWavePos;
 
     void Awake()
     {
@@ -48,12 +50,22 @@ public class GameOverUI : MonoBehaviour
     public void ShowWave(int mapStage, int levelStage)
     {
         _playerImage.position = _startPos.position;
-        _playerImage.position = _wavePos[mapStage - 1][levelStage - 1].position;
+        _dieWavePos = _wavePos[mapStage - 1][levelStage - 1].position;
         _dieWaveText.text = $"{mapStage} - {levelStage}";
     }
 
     public void RegameButton()
     {
         SceneManager.LoadScene("Main");
+    }
+
+    void Update()
+    {
+        MovePlayerIcon();
+    }
+
+    void MovePlayerIcon()
+    {
+        _playerImage.Translate((_dieWavePos - _playerImage.position) * Time.deltaTime * 2f);
     }
 }

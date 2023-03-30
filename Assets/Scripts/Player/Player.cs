@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _model;
     [SerializeField] GameObject _aimPoint;
     [SerializeField] GameManager _gameManager;
+    [SerializeField] GameObject _infoPortalKeyUI;
     [SerializeField] UIManager _uiManager;
     [SerializeField] GameOverUI _gameOverUI;
 
@@ -278,6 +279,16 @@ public class Player : MonoBehaviour
     {
         _money += money;
         _uiManager.ShowMoney(_money);
+    }
+
+    public void ShowPortalKeyUI()
+    {
+        _infoPortalKeyUI.SetActive(true);
+    }
+
+    public void HidePortalKeyUI()
+    {
+        _infoPortalKeyUI.SetActive(false);
     }
 
     public void TakeDamage(int damage)
