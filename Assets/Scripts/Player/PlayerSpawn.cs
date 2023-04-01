@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerSpawn : MonoBehaviour
 {
     GameObject _player;
+    GameObject _mainCamera;
+    GameObject _followCam;
     
     public void Spawn()
     {
@@ -18,9 +20,16 @@ public class PlayerSpawn : MonoBehaviour
     public void SpawnCamera()
     {
         GameObject camera = Resources.Load("Prefabs/Main Camera") as GameObject;
-        GameObject temp = Instantiate(camera);
+        _mainCamera = Instantiate(camera);
         GameObject followCamera = Resources.Load("Prefabs/Follow Cam") as GameObject;
-        temp = Instantiate(followCamera);
-        temp.GetComponent<FollowCamera>().Init(_player.transform);
+        _followCam = Instantiate(followCamera);
+        _followCam.GetComponent<FollowCamera>().Init(_player.transform);
+    }
+    
+    public void DestroyPlayer()
+    {
+        Destroy(_player);
+        Destroy(_mainCamera);
+        Destroy(_followCam);
     }
 }

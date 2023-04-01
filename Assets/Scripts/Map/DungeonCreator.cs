@@ -21,7 +21,7 @@ public class DungeonCreator : MonoBehaviour
     public int _enemyControllerOffset;
 
 
-    [Range(5, 10)]
+    [Range(5, 15)]
     public int _corridorWidth;  // 복도 넓이
     [Range(0.0f, 0.3f)] //슬라이더 범위 지정
     public float _roomBottomCornerModifier;
@@ -35,6 +35,8 @@ public class DungeonCreator : MonoBehaviour
     List<Vector3Int> _possibleWallHorizontalPosition;
     List<Vector3Int> _possibleDoorVerticalPosition;
     List<Vector3Int> _possibleDoorHorizontalPosition;
+
+    PlayerSpawn _playerSpawn;
 
     void Start()
     {
@@ -149,7 +151,8 @@ public class DungeonCreator : MonoBehaviour
         GameObject playerSpawnPos = Resources.Load("Prefabs/PlayerSpawnPos") as GameObject;
         GameObject temp = Instantiate(playerSpawnPos, parent.transform);
         temp.transform.position = (bottomLeft + topRight) / 2;
-        temp.GetComponent<PlayerSpawn>().Spawn();
+        _playerSpawn = temp.GetComponent<PlayerSpawn>();
+        _playerSpawn.Spawn();
     }
 
     void CreatePortal(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent)
@@ -217,10 +220,16 @@ public class DungeonCreator : MonoBehaviour
 
     void DestroyAllChildren()
     {
+        GenericSingleton<UIManager>.GetInstance().DestroyUI();
+        if (_playerSpawn != null)
+            _playerSpawn.DestroyPlayer();
+
         while (transform.childCount != 0)
         {
             foreach (Transform item in transform)
                 DestroyImmediate(item.gameObject);
         }
+        
+        //Player, 카메라 2개
     }
 }

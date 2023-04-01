@@ -16,8 +16,8 @@ public class UIManager : MonoBehaviour
 
     public void CreateUI()
     {
-        _ui = Resources.Load("Prefabs/UI") as GameObject;
-        GameObject ui = Instantiate(_ui);
+        GameObject ui = Resources.Load("Prefabs/UI") as GameObject;
+        _ui = Instantiate(ui);
         _ingameUI = ui.GetComponentInChildren<IngameUI>();
         _gameOverUI = _ingameUI.GetGameOverUI();
         _aimPoint = _ingameUI.GetAimPoint();
@@ -27,6 +27,11 @@ public class UIManager : MonoBehaviour
     public void SetFollowCam(CinemachineFreeLook followCam)
     {
         _followCam = followCam;
+    }
+
+    public void DestroyUI()
+    {
+        Destroy(_ui);
     }
 
     //IngameUI

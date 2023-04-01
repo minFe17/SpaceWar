@@ -1973,7 +1973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1424901033252460386
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2437,7 +2437,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.581
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2776,7 +2776,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0 - 0
+  m_text: 1 - 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f671752947dc41e45ac7112e33cde4db, type: 2}
   m_sharedMaterial: {fileID: 7229368539504437433, guid: f671752947dc41e45ac7112e33cde4db, type: 2}
