@@ -7,9 +7,8 @@ public class Enemy : MonoBehaviour
     public int _maxHp;
     public float _attackDelay;
 
-    protected GameManager _gameManager;
-    protected Player _player;
     protected EnemyController _enemyController;
+    protected Player _player;
     protected Transform _target;
 
     protected int _curHp;
@@ -18,11 +17,11 @@ public class Enemy : MonoBehaviour
     protected List<GameObject> _coinList = new List<GameObject>();
     // 나중에 코인을 리스트로 저장하기
 
-    public virtual void Init(Player player, EnemyController enemyController, Transform target)
+    public virtual void Init(EnemyController enemyController)
     {
-        _player = player;
         _enemyController = enemyController;
-        _target = target;
+        _player = GenericSingleton<EnemyManager>.GetInstance().GetPlayer();
+        _target = GenericSingleton<EnemyManager>.GetInstance().GetTarget();
         _curHp = _maxHp;
         _enemyController._enemyList.Add(this);
         AddCoinList();
@@ -30,8 +29,8 @@ public class Enemy : MonoBehaviour
 
     protected void AddCoinList()
     {
-        _coinList.Add(Resources.Load("Prefabs/GoldCoin") as GameObject);
-        _coinList.Add(Resources.Load("Prefabs/SilverCoin") as GameObject);
+        _coinList.Add(Resources.Load("Prefabs/Coins/GoldCoin") as GameObject);
+        _coinList.Add(Resources.Load("Prefabs/Coins/SilverCoin") as GameObject);
     }
 
     public virtual void LookTarget()

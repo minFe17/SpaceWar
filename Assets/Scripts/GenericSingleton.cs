@@ -9,7 +9,7 @@ public class GenericSingleton<T> where T : MonoBehaviour
     {
         if(_instance == null)
         {
-            GameObject temp = new GameObject();
+            GameObject temp = new GameObject(typeof(T).Name);
             _instance = temp.AddComponent<T>();
             Object.DontDestroyOnLoad(temp);
         }

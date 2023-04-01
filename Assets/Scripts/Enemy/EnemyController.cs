@@ -35,9 +35,9 @@ public class EnemyController : MonoBehaviour
 
     void AddEnemyList()
     {
-        _enemys.Add(Resources.Load("Prefabs/Turret") as GameObject);
-        _enemys.Add(Resources.Load("Prefabs/Scorpion") as GameObject);
-        _enemys.Add(Resources.Load("Prefabs/DeliveryRobot") as GameObject);
+        _enemys.Add(Resources.Load("Prefabs/Enemys/FirstWorld/Turret") as GameObject);
+        _enemys.Add(Resources.Load("Prefabs/Enemys/FirstWorld/Scorpion") as GameObject);
+        _enemys.Add(Resources.Load("Prefabs/Enemys/FirstWorld/DeliveryRobot") as GameObject);
     }
 
     public void Init(DoorList doorList)
@@ -75,7 +75,7 @@ public class EnemyController : MonoBehaviour
 
         int ramdom = Random.Range(0, _enemys.Count);
         GameObject enemy = Instantiate(_enemys[ramdom], spawnPos, Quaternion.identity);
-        enemy.GetComponent<Enemy>().Init(_player, this, _target);
+        enemy.GetComponent<Enemy>().Init(this);
     }
 
     IEnumerator SpawnEnemyRoutine()

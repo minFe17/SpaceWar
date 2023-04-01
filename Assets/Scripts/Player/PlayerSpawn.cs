@@ -10,6 +10,7 @@ public class PlayerSpawn : MonoBehaviour
         GameObject temp = Instantiate(player);
         temp.transform.position = transform.position;
         SpawnCamera(temp.transform);
+        GenericSingleton<EnemyManager>.GetInstance().Init(temp);
     }
 
     public void SpawnCamera(Transform target)

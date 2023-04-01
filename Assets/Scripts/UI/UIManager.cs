@@ -14,8 +14,8 @@ public class UIManager : MonoBehaviour
         _ui = Resources.Load("Prefabs/UI") as GameObject;
         GameObject ui = Instantiate(_ui);
         _ingameUI = ui.GetComponentInChildren<IngameUI>();
-        _gameOverUI = _ingameUI.SetGameOverUI();
-        _aimPoint = _ingameUI.SetAimPoint();
+        _gameOverUI = _ingameUI.GetGameOverUI();
+        _aimPoint = _ingameUI.GetAimPoint();
     }
 
     //IngameUI

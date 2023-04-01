@@ -75,12 +75,12 @@ public class IngameUI : MonoBehaviour
         }
     }
 
-    public GameObject SetGameOverUI()
+    public GameObject GetGameOverUI()
     {
         return _gameOverUI;
     }
 
-    public GameObject SetAimPoint()
+    public GameObject GetAimPoint()
     {
         return _aimPoint;
     }
