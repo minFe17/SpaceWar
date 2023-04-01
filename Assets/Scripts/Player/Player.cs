@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     bool _isAiming;
     bool _isShot;
     bool _isReload;
+    bool _isOpenOption;
     bool _isDie;
 
     void Start()
@@ -77,6 +78,7 @@ public class Player : MonoBehaviour
         Fire();
         ChangeShotMode();
         Reload();
+        ShowOptionUI();
     }
 
     public void Move()
@@ -133,7 +135,7 @@ public class Player : MonoBehaviour
 
     public void Zoom()
     {
-        if (!_isDie)
+        if (!_isDie && !_isOpenOption)
         {
             if (Input.GetMouseButton(1))
             {
@@ -157,8 +159,6 @@ public class Player : MonoBehaviour
         _mouseY += Input.GetAxis("Mouse Y") * _rotateSpeed;
         Rotate(_mouseY);
         transform.eulerAngles = new Vector3(0, _mouseX, 0);
-        // 상체 움직일 방법?
-        // 조준점 만들기(UI)
     }
 
     public void StopAimingEnemy()
@@ -237,19 +237,23 @@ public class Player : MonoBehaviour
 
     public void ChangeShotMode()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            _shotMode = EShotModeType.Single;
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-            _shotMode = EShotModeType.Burst;
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-            _shotMode = EShotModeType.Auto;
+        if(!_isDie && !_isOpenOption)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                _shotMode = EShotModeType.Single;
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+                _shotMode = EShotModeType.Burst;
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+                _shotMode = EShotModeType.Auto;
 
-        GenericSingleton<UIManager>.GetInstance().ShowShotMode(_shotMode);
+            GenericSingleton<UIManager>.GetInstance().ShowShotMode(_shotMode);
+        }
+        
     }
 
     public void Turn()
     {
-        if (!_isAiming)
+        if (!_isAiming && !_isOpenOption)
         {
             _mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
 
@@ -276,6 +280,26 @@ public class Player : MonoBehaviour
     {
         _money += money;
         GenericSingleton<UIManager>.GetInstance().ShowMoney(_money);
+    }
+
+    public void ShowOptionUI()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            GenericSingleton<UIManager>.GetInstance().OnOffOptionUI();
+            if (!_isOpenOption)
+            {
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+                _isOpenOption = true;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
+                _isOpenOption = false;
+            }
+        }
     }
 
     public void ShowPortalKeyUI()

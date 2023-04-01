@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Cinemachine;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class UIManager : MonoBehaviour
     IngameUI _ingameUI;
     GameObject _gameOverUI;
     GameObject _aimPoint;
+    GameObject _optionUI;
+    CinemachineFreeLook _followCam;
+
+    bool _isOpen;
 
     public void CreateUI()
     {
@@ -16,6 +21,12 @@ public class UIManager : MonoBehaviour
         _ingameUI = ui.GetComponentInChildren<IngameUI>();
         _gameOverUI = _ingameUI.GetGameOverUI();
         _aimPoint = _ingameUI.GetAimPoint();
+        _optionUI = _ingameUI.GetOptionUI();
+    }
+
+    public void SetFollowCam(CinemachineFreeLook followCam)
+    {
+        _followCam = followCam;
     }
 
     //IngameUI
@@ -74,5 +85,13 @@ public class UIManager : MonoBehaviour
     public void ShowMoney(int money)
     {
         _gameOverUI.GetComponent<GameOverUI>().ShowMoney(money);
+    }
+
+    //OptionUI
+    public void OnOffOptionUI()
+    {
+        _isOpen = _optionUI.activeSelf == false;
+        _followCam.enabled = !_isOpen;
+        _optionUI.SetActive(_isOpen);
     }
 }

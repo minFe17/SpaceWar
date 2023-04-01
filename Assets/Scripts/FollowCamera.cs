@@ -11,5 +11,6 @@ public class FollowCamera : MonoBehaviour
     {
         _followCam.Follow = target;
         _followCam.LookAt = target;
+        GenericSingleton<UIManager>.GetInstance().SetFollowCam(_followCam);
     }
 }
