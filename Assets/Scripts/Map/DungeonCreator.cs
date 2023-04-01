@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DungeonCreator : MonoBehaviour
 {
-    //문, 몬스터 컨트롤러 설치
+    //문
     //문은 도어리스트 자식으로
+    // 0번째 방은 플레이어 스폰 방, 마지막 방은 포탈 방
     public int _dungeonWidth;   // 맵 가로 길이
     public int _dungeonLength;  // 맵 세로 길이
     public int _roomWidthMin;   // 방 최소 가로 길이
@@ -60,20 +61,32 @@ public class DungeonCreator : MonoBehaviour
 
         for (int i = 0; i < listOfRooms.Count; i++)     //방 생성
         {
-            GameObject room = CreateMesh(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
-            CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room);
-            CreateDoorList(room);
+            GameObject room = CreateMesh(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, i);
+            DoorList doorList = CreateDoorList(room);
+            if (i == 0)
+            {
+                CreatePlayerSpawnPos(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room);
+            }
+            else if (i == listOfRooms.Count - 1)
+            {
+                CreatePortal(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room);
+            }
+            else
+            {
+                CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList);
+
+            }
         }
 
         for (int i = 0; i < listOfCorridors.Count; i++) //복도 생성
         {
-            CreateMesh(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner);
+            CreateMesh(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, i);
         }
 
         CreateWalls(wallParent);
     }
 
-    GameObject CreateMesh(Vector2 bottomLeftCorner, Vector2 topRightCorner)
+    GameObject CreateMesh(Vector2 bottomLeftCorner, Vector2 topRightCorner, int j)
     {
         Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
         Vector3 bottomRight = new Vector3(topRightCorner.x, 0, bottomLeftCorner.y);
@@ -95,7 +108,7 @@ public class DungeonCreator : MonoBehaviour
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        GameObject dungeonFloor = new GameObject("Mesh" + bottomLeftCorner, typeof(MeshFilter), typeof(MeshRenderer));
+        GameObject dungeonFloor = new GameObject("Mesh " + j, typeof(MeshFilter), typeof(MeshRenderer));
         dungeonFloor.transform.position = Vector3.zero;
         dungeonFloor.transform.localScale = Vector3.one;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
@@ -129,7 +142,28 @@ public class DungeonCreator : MonoBehaviour
         return dungeonFloor;
     }
 
-    void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent)
+    void CreatePlayerSpawnPos(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent)
+    {
+        Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
+        Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
+
+        GameObject playerSpawnPos = Resources.Load("Prefabs/PlayerSpawnPos") as GameObject;
+        GameObject temp = Instantiate(playerSpawnPos, parent.transform);
+        temp.transform.position = (bottomLeft + topRight) / 2;
+        temp.GetComponent<PlayerSpawn>().Spawn();
+    }
+
+    void CreatePortal(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent)
+    {
+        Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
+        Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
+
+        GameObject portal = Resources.Load("Prefabs/Portal") as GameObject;
+        GameObject temp = Instantiate(portal, parent.transform);
+        temp.transform.position = (bottomLeft + topRight) / 2;
+    }
+
+    void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent, DoorList doorList)
     {
         Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
         Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
@@ -137,14 +171,16 @@ public class DungeonCreator : MonoBehaviour
         GameObject temp = Instantiate(_enemyController, parent.transform);
         temp.transform.position = (bottomLeft + topRight) / 2;
         temp.GetComponent<BoxCollider>().size = new Vector3((topRight.x - bottomLeft.x) - _enemyControllerOffset, 7, (topRight.z - bottomLeft.z) - _enemyControllerOffset);
+        temp.GetComponent<EnemyController>().Init(doorList);
     }
 
-    void CreateDoorList(GameObject parent)
+    DoorList CreateDoorList(GameObject parent)
     {
         GameObject temp = new GameObject("DoorList");
         temp.transform.SetParent(parent.transform);
         temp.AddComponent<DoorList>();
         CreateDoor();   //문 생성
+        return temp.GetComponent<DoorList>();
     }
 
     void CreateDoor()

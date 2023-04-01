@@ -3,21 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] IngameUI _uiManager;
-    [SerializeField] GameOverUI _gameOverUI; 
-
+    // ΩÃ±€≈Ê
     int _mapStage;
     int _levelStage;
     int _killEnemy;
 
     float _playTime;
 
-
     void Start()
     {
         _mapStage = 1;
         _levelStage = 1;
-        _uiManager.ShowStage(_mapStage, _levelStage);
+        GenericSingleton<UIManager>.GetInstance().ShowStage(_mapStage, _levelStage);
     }
 
     void Update()
@@ -47,7 +44,7 @@ public class GameManager : MonoBehaviour
         {
             _levelStage++;
         }
-        _uiManager.ShowStage(_mapStage, _levelStage);
+        GenericSingleton<UIManager>.GetInstance().ShowStage(_mapStage, _levelStage);
     }
 
     public void AddKillEnemy()
@@ -62,8 +59,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        _gameOverUI.ShowPlayTime(_playTime);
-        _gameOverUI.ShowKillEnemy(_killEnemy);
-        _gameOverUI.ShowWave(_mapStage, _levelStage);
+        GenericSingleton<GameOverUI>.GetInstance().ShowPlayTime(_playTime);
+        GenericSingleton<GameOverUI>.GetInstance().ShowKillEnemy(_killEnemy);
+        GenericSingleton<GameOverUI>.GetInstance().ShowWave(_mapStage, _levelStage);
     }
 }

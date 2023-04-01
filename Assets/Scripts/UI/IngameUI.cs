@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class IngameUI : MonoBehaviour
 {
+    [SerializeField] GameObject _aimPoint;
+    [SerializeField] GameObject _gameOverUI;
+
     [SerializeField] Image _hpBar;
     [SerializeField] TMP_Text _hpText;
 
@@ -70,5 +73,15 @@ public class IngameUI : MonoBehaviour
                 _shotModeText.text = "Auto";
                 break;
         }
+    }
+
+    public GameObject SetGameOverUI()
+    {
+        return _gameOverUI;
+    }
+
+    public GameObject SetAimPoint()
+    {
+        return _aimPoint;
     }
 }

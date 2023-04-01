@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] DoorList _doorList;       //맵 생성 후 받아와야함
     [SerializeField] Player _player;           //맵 생성 후 받아와야함
     [SerializeField] Transform _target;        //맵 생성 후 받아와야함
     [SerializeField] float _spawnDelay;
@@ -14,6 +13,7 @@ public class EnemyController : MonoBehaviour
     public List<Enemy> _enemyList = new List<Enemy>();
     List<GameObject> _enemys = new List<GameObject>();
 
+    DoorList _doorList;
     BoxCollider _ground;
 
     Vector3 _basePos;
@@ -40,13 +40,9 @@ public class EnemyController : MonoBehaviour
         _enemys.Add(Resources.Load("Prefabs/DeliveryRobot") as GameObject);
     }
 
-    public void Init()
+    public void Init(DoorList doorList)
     {
-        // 콜라이더 사이즈
-        // 게임매니저
-        // 문리스트
-        // 플레이어
-        // 타겟
+        _doorList = doorList;
     }
 
     void Update()

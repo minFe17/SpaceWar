@@ -6,11 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _zoomCamera;
     [SerializeField] GameObject _model;
-    [SerializeField] GameObject _aimPoint;
-    [SerializeField] GameManager _gameManager;
     [SerializeField] GameObject _infoPortalKeyUI;
-    [SerializeField] IngameUI _uiManager;
-    [SerializeField] GameOverUI _gameOverUI;
 
     [SerializeField] int _maxHp;
     [SerializeField] int _maxAmmo;
@@ -53,6 +49,7 @@ public class Player : MonoBehaviour
         _bullet = Resources.Load("Prefabs/Bullet") as GameObject;
         _money = 0;
         Cursor.lockState = CursorLockMode.Locked;
+        GenericSingleton<UIManager>.GetInstance().CreateUI();
         Init();
     }
 
@@ -64,10 +61,10 @@ public class Player : MonoBehaviour
         _curAmmo = _maxAmmo;
         _curHp = _maxHp;
 
-        _uiManager.ShowHp(_curHp, _maxHp);
-        _uiManager.ShowMoney(_money);
-        _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
-        _uiManager.ShowShotMode(_shotMode);
+        GenericSingleton<UIManager>.GetInstance().ShowHp(_curHp, _maxHp);
+        GenericSingleton<UIManager>.GetInstance().ShowCurrentMoney(_money);
+        GenericSingleton<UIManager>.GetInstance().ShowAmmo(_curAmmo, _maxAmmo);
+        GenericSingleton<UIManager>.GetInstance().ShowShotMode(_shotMode);
     }
 
     void Update()
@@ -154,7 +151,7 @@ public class Player : MonoBehaviour
     public void AimingEnemy()
     {
         _isAiming = true;
-        _aimPoint.gameObject.SetActive(true);
+        GenericSingleton<UIManager>.GetInstance().OnAimPoint();
         _animator.SetBool("isZoom", true);
         _mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
         _mouseY += Input.GetAxis("Mouse Y") * _rotateSpeed;
@@ -167,7 +164,7 @@ public class Player : MonoBehaviour
     public void StopAimingEnemy()
     {
         _isAiming = false;
-        _aimPoint.gameObject.SetActive(false);
+        GenericSingleton<UIManager>.GetInstance().OffAimPoint();
         Invoke("EndZoom", 0.1f);
         _bulletPos = _idleBulletPos;
         _mouseY = 0;
@@ -235,7 +232,7 @@ public class Player : MonoBehaviour
     {
         _curAmmo = _maxAmmo;
         _isReload = false;
-        _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
+        GenericSingleton<UIManager>.GetInstance().ShowAmmo(_curAmmo, _maxAmmo);
     }
 
     public void ChangeShotMode()
@@ -247,7 +244,7 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha3))
             _shotMode = EShotModeType.Auto;
 
-        _uiManager.ShowShotMode(_shotMode);
+        GenericSingleton<UIManager>.GetInstance().ShowShotMode(_shotMode);
     }
 
     public void Turn()
@@ -278,7 +275,7 @@ public class Player : MonoBehaviour
     public void GetMoney(int money)
     {
         _money += money;
-        _uiManager.ShowMoney(_money);
+        GenericSingleton<UIManager>.GetInstance().ShowMoney(_money);
     }
 
     public void ShowPortalKeyUI()
@@ -297,7 +294,7 @@ public class Player : MonoBehaviour
             return;
 
         _curHp -= damage;
-        _uiManager.ShowHp(_curHp, _maxHp);
+        GenericSingleton<UIManager>.GetInstance().ShowHp(_curHp, _maxHp);
 
         if (_curHp <= 0)
         {
@@ -308,9 +305,9 @@ public class Player : MonoBehaviour
 
     void EndDie()
     {
-        _gameOverUI.gameObject.SetActive(true);
-        _gameOverUI.ShowMoney(_money);
-        _gameManager.GameOver();
+        GenericSingleton<UIManager>.GetInstance().Die();
+        GenericSingleton<UIManager>.GetInstance().ShowMoney(_money);
+        GenericSingleton<GameManager>.GetInstance().GameOver();
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -323,7 +320,7 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             MakeBullet();
             _curAmmo--;
-            _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
+            GenericSingleton<UIManager>.GetInstance().ShowAmmo(_curAmmo, _maxAmmo);
             _animator.SetBool("isShotIdle", true);
             yield return new WaitForSeconds(_fireDelay);
             _isShot = false;
@@ -351,7 +348,7 @@ public class Player : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 MakeBullet();
                 _curAmmo--;
-                _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
+                GenericSingleton<UIManager>.GetInstance().ShowAmmo(_curAmmo, _maxAmmo);
             }
             _animator.SetBool("isShotIdle", true);
             yield return new WaitForSeconds(_fireDelay);
@@ -372,7 +369,7 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             MakeBullet();
             _curAmmo--;
-            _uiManager.ShowAmmo(_curAmmo, _maxAmmo);
+            GenericSingleton<UIManager>.GetInstance().ShowAmmo(_curAmmo, _maxAmmo);
         }
         _isShot = false;
 
