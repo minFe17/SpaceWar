@@ -89,7 +89,6 @@ public class Player : MonoBehaviour
         //Walk
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-
         _animator.SetFloat("AxisX", x);
         _animator.SetFloat("AxisZ", z);
 

@@ -6,7 +6,6 @@ public class DungeonCreator : MonoBehaviour
 {
     //문
     //문은 도어리스트 자식으로
-    // 0번째 방은 플레이어 스폰 방, 마지막 방은 포탈 방
     public int _dungeonWidth;   // 맵 가로 길이
     public int _dungeonLength;  // 맵 세로 길이
     public int _roomWidthMin;   // 방 최소 가로 길이
