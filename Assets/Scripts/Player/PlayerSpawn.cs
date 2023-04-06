@@ -25,6 +25,11 @@ public class PlayerSpawn : MonoBehaviour
         _followCam = Instantiate(followCamera);
         _followCam.GetComponent<FollowCamera>().Init(_player.transform);
     }
+
+    public Player GetPlayer()
+    {
+        return _player.GetComponent<Player>();
+    }
     
     public void DestroyPlayer()
     {

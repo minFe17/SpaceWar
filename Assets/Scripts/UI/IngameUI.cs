@@ -8,10 +8,6 @@ using UnityEngine.UI;
 
 public class IngameUI : MonoBehaviour
 {
-    [SerializeField] GameObject _aimPoint;
-    [SerializeField] GameObject _gameOverUI;
-    [SerializeField] GameObject _optionUI;
-
     [SerializeField] Image _hpBar;
     [SerializeField] TMP_Text _hpText;
 
@@ -76,18 +72,5 @@ public class IngameUI : MonoBehaviour
         }
     }
 
-    public GameObject GetGameOverUI()
-    {
-        return _gameOverUI;
-    }
-
-    public GameObject GetAimPoint()
-    {
-        return _aimPoint;
-    }
-
-    public GameObject GetOptionUI()
-    {
-        return _optionUI;
-    }
+    
 }

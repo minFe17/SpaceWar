@@ -19,7 +19,7 @@ public class Door : MonoBehaviour
         _collider = GetComponent<BoxCollider>();
         _doorPos = _leftDoor.transform.position;
         if(gameObject.GetComponentInParent<DoorList>())
-            gameObject.GetComponentInParent<DoorList>().doors.Add(this._collider);
+            gameObject.GetComponentInParent<DoorList>()._doors.Add(this._collider);
     }
 
     void Update()

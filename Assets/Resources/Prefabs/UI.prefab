@@ -3443,9 +3443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc563ac6a8343b245aed277afff835f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aimPoint: {fileID: 1424901032526674788}
-  _gameOverUI: {fileID: 1424901033990897586}
-  _optionUI: {fileID: 8611933032107190451}
   _hpBar: {fileID: 1424901033414711824}
   _hpText: {fileID: 1424901033323417118}
   _coinText: {fileID: 1424901034272024583}
@@ -3468,6 +3465,7 @@ GameObject:
   - component: {fileID: 1424901033761021771}
   - component: {fileID: 1424901033761021772}
   - component: {fileID: 1424901033761021773}
+  - component: {fileID: 5654779653260967464}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -3560,6 +3558,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5654779653260967464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424901033761021774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4e219fbe557fd4697ec1f80619adbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ingameUI: {fileID: 1424901033750217032}
+  _aimPoint: {fileID: 1424901032526674788}
+  _gameOverUI: {fileID: 1424901033990897586}
+  _optionUI: {fileID: 8611933032107190451}
 --- !u!1 &1424901033818505559
 GameObject:
   m_ObjectHideFlags: 0

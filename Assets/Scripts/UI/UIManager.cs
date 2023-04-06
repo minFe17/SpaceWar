@@ -1,11 +1,11 @@
-using System;
-using UnityEngine;
 using Cinemachine;
+using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     // ΩÃ±€≈Ê
     GameObject _ui;
+    MainUI _mainUI;
     IngameUI _ingameUI;
     GameObject _gameOverUI;
     GameObject _aimPoint;
@@ -18,10 +18,12 @@ public class UIManager : MonoBehaviour
     {
         GameObject ui = Resources.Load("Prefabs/UI") as GameObject;
         _ui = Instantiate(ui);
-        _ingameUI = ui.GetComponentInChildren<IngameUI>();
-        _gameOverUI = _ingameUI.GetGameOverUI();
-        _aimPoint = _ingameUI.GetAimPoint();
-        _optionUI = _ingameUI.GetOptionUI();
+
+        _mainUI = _ui.GetComponent<MainUI>();
+        _ingameUI = _mainUI.GetIngameUI();
+        _gameOverUI = _mainUI.GetGameOverUI();
+        _aimPoint = _mainUI.GetAimPoint();
+        _optionUI = _mainUI.GetOptionUI();
     }
 
     public void SetFollowCam(CinemachineFreeLook followCam)
@@ -95,7 +97,7 @@ public class UIManager : MonoBehaviour
     //OptionUI
     public void OnOffOptionUI()
     {
-        _isOpen = _optionUI.activeSelf == false;
+        _isOpen = (_optionUI.activeSelf == false);
         _followCam.enabled = !_isOpen;
         _optionUI.SetActive(_isOpen);
     }

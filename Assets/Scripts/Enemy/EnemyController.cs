@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] Player _player;           //맵 생성 후 받아와야함
-    [SerializeField] Transform _target;        //맵 생성 후 받아와야함
     [SerializeField] float _spawnDelay;
     [SerializeField] int _minEnemy;
     [SerializeField] int _maxEnemy;
@@ -16,6 +14,7 @@ public class EnemyController : MonoBehaviour
     DoorList _doorList;
     BoxCollider _ground;
 
+    Vector3 _createPos;
     Vector3 _basePos;
     Vector3 _size;
 
@@ -27,9 +26,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         _ground = GetComponent<BoxCollider>();
-        _basePos = transform.position + _ground.center;
         _wave = Random.Range(0, 2);
-        _size = _ground.size;
         AddEnemyList();
     }
 
@@ -40,9 +37,12 @@ public class EnemyController : MonoBehaviour
         _enemys.Add(Resources.Load("Prefabs/Enemys/FirstWorld/DeliveryRobot") as GameObject);
     }
 
-    public void Init(DoorList doorList)
+    public void Init(Vector3 createPos, DoorList doorList)
     {
+        _createPos = createPos;
         _doorList = doorList;
+        _basePos = _createPos + _ground.center;
+        _size = _ground.size;
     }
 
     void Update()
@@ -64,7 +64,7 @@ public class EnemyController : MonoBehaviour
         float posX = _basePos.x + Random.Range(-_size.x / 2f, _size.x / 2f);
         float posZ = _basePos.z + Random.Range(-_size.z / 2f, _size.z / 2f);
 
-        Vector3 spawnPos = new Vector3(posX, transform.position.y, posZ);
+        Vector3 spawnPos = new Vector3(posX, _basePos.y, posZ);
 
         return spawnPos;
     }
