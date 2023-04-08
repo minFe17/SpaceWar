@@ -301,6 +301,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OptionUIState(bool isOpenOtion)
+    {
+        _isOpenOption = isOpenOtion;
+    }
+
     public void ShowPortalKeyUI()
     {
         _infoPortalKeyUI.SetActive(true);
