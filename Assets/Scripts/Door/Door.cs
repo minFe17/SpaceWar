@@ -19,7 +19,7 @@ public class Door : MonoBehaviour
         _collider = GetComponent<BoxCollider>();
         _doorPos = _leftDoor.transform.position;
         if(gameObject.GetComponentInParent<DoorList>())
-            gameObject.GetComponentInParent<DoorList>()._doors.Add(this._collider);
+            gameObject.GetComponentInParent<DoorList>()._doors.Add(this);
     }
 
     void Update()
@@ -56,6 +56,7 @@ public class Door : MonoBehaviour
 
     public void Lock()
     {
+        _collider.enabled = false;
         _isOpen = false;
         _leftDoor.transform.position = _doorPos;
         _rightDoor.transform.position = _doorPos;

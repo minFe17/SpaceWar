@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class DoorList : MonoBehaviour
 {
-    public List<BoxCollider> _doors = new List<BoxCollider>();
+    public List<Door> _doors = new List<Door>();
 
     public void LockDoor()
     {
         for (int i = 0; i < _doors.Count; i++)
         {
-            _doors[i].enabled = false;
-            _doors[i].gameObject.GetComponent<Door>().Lock();
+            _doors[i].Lock();
         }
     }
 
@@ -20,11 +19,5 @@ public class DoorList : MonoBehaviour
         {
             _doors[i].enabled = true;
         }
-    }
-
-    public void AddDoor(GameObject door)
-    {
-        if (door.GetComponent<BoxCollider>() != null)
-            _doors.Add(door.GetComponent<BoxCollider>());
     }
 }

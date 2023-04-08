@@ -4936,6 +4936,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1401821474702656, guid: 40622103d618b1e43b3c9ea67ff0a1e3, type: 3}
   m_PrefabInstance: {fileID: 4625733845423376767}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &6947309943995909861
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626624663735209023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &4625733846105811404
 Animator:
   serializedVersion: 5
@@ -4971,16 +4984,3 @@ MonoBehaviour:
   _parent: {fileID: 4625733846833040102}
   _money: 5
   _effect: {fileID: 4660557642431823789}
---- !u!65 &6947309943995909861
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4626624663735209023}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

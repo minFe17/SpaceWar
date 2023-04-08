@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 public class DungeonCreator : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class DungeonCreator : MonoBehaviour
     public int _wallWidth;
     public GameObject _doorVertical;
     public GameObject _doorHorizontal;
+    public int _doorWidth;
     public GameObject _enemyController;
     public int _enemyControllerOffset;
 
@@ -84,13 +86,13 @@ public class DungeonCreator : MonoBehaviour
         {
             CreateMesh(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, i);
         }
-        CreateWalls(wallParent);
 
         for (int i = 0; i < listOfCorridors.Count; i++)  // 문 생성, 벽 생성 후 하기 위해서
         {
-            CreateDoors2(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, doorList.gameObject);
+            CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, doorList.gameObject);
         }
-        CreateDoors(doorList.gameObject);
+
+        CreateWalls(wallParent);
     }
 
     GameObject CreateMesh(Vector2 bottomLeftCorner, Vector2 topRightCorner, int j)
@@ -201,49 +203,55 @@ public class DungeonCreator : MonoBehaviour
     void CreateWalls(GameObject wallParent)
     {
         foreach (var wallPosition in _possibleWallHorizontalPosition)
+        {
             CreateWall(wallParent, wallPosition, _wallHorizontal);
+        }
 
         foreach (var wallPosition in _possibleWallVerticalPosition)
+        {
             CreateWall(wallParent, wallPosition, _wallVertical);
+        }
     }
 
     void CreateWall(GameObject wallParent, Vector3Int wallPosition, GameObject wallPrefab)
     {
         Instantiate(wallPrefab, wallPosition, Quaternion.identity, wallParent.transform);
     }
-
-    void CreateDoors(GameObject doorParent)
-    {
-        foreach (var doorPosition in _possibleDoorHorizontalPosition)
-            CreateDoor(doorParent, doorPosition, _doorHorizontal);
-        foreach (var doorPosition in _possibleDoorVerticalPosition)
-            CreateDoor(doorParent, doorPosition, _doorVertical);
-    }
-
-    void CreateDoor(GameObject doorParent, Vector3Int doorPosition, GameObject doorPrefab)
-    {
-        GameObject door = Instantiate(doorPrefab, doorPosition, Quaternion.identity, doorParent.transform);
-        doorParent.GetComponent<DoorList>().AddDoor(door);
-    }
-
-    void CreateDoors2(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject doorParent)
+ 
+    void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject doorParent)
     {
         if ((topRightCorner.x - bottomLeftCorner.x) < (topRightCorner.y - bottomLeftCorner.y))  // z축이 긴 경우
         {
             Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, bottomLeftCorner.y);
             Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, topRightCorner.y);
-            //CreateDoor2(createBottomPos, createTopPos, _doorHorizontal, doorParnet);
+            CreateDoor(createBottomPos, createTopPos, _doorHorizontal, doorParent);
+            for (int i = 0; i < _doorWidth; i++)
+            {
+                Vector3Int bottomDoorPos = new Vector3Int((int)(createBottomPos.x / 2 + i), (int)createBottomPos.y, (int)createBottomPos.z);
+                Vector3Int topDoorPos = new Vector3Int((int)(createTopPos.x / 2 + i), (int)createTopPos.y, (int)createTopPos.z);
+                _possibleDoorHorizontalPosition.Add(bottomDoorPos);
+                _possibleDoorHorizontalPosition.Add(topDoorPos);
+            }
         }
         else // x축이 긴 경우
         {
             Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, 0, (bottomLeftCorner.y + topRightCorner.y) / 2);
             Vector3 createRightPos = new Vector3(topRightCorner.x, 0, (bottomLeftCorner.y + topRightCorner.y) / 2);
-            //CreateDoor2(createLeftPos, createRightPos, _doorVertical, doorParent);
+            CreateDoor(createLeftPos, createRightPos, _doorVertical, doorParent);
+            for (int i = 0; i < _doorWidth; i++)
+            {
+                Vector3Int leftDoorPos = new Vector3Int((int)createLeftPos.x, (int)createLeftPos.y, (int)(createLeftPos.z / 2 + i));
+                Vector3Int rightDoorPos = new Vector3Int((int)createRightPos.x, (int)createRightPos.y, (int)(createRightPos.z / 2 + i));
+                _possibleDoorVerticalPosition.Add(leftDoorPos);
+                _possibleDoorVerticalPosition.Add(rightDoorPos);
+            }
         }
     }
 
-    void CreateDoor2()
+    void CreateDoor(Vector3 doorPos1, Vector3 doorPos2, GameObject doorPrefab, GameObject doorParent)
     {
+        GameObject firstDoor = Instantiate(doorPrefab, doorPos1, Quaternion.identity, doorParent.transform);
+        GameObject secondDoor = Instantiate(doorPrefab, doorPos2, Quaternion.identity, doorParent.transform);
 
     }
 
