@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.Experimental.AI;
 
 public class DungeonCreator : MonoBehaviour
 {
@@ -57,9 +57,7 @@ public class DungeonCreator : MonoBehaviour
         GameObject wallParent = new GameObject("wallParent");
         wallParent.transform.parent = transform;
         _possibleWallVerticalPosition = new List<Vector3Int>();
-        _possibleDoorVerticalPosition = new List<Vector3Int>();
         _possibleWallHorizontalPosition = new List<Vector3Int>();
-        _possibleDoorHorizontalPosition = new List<Vector3Int>();
 
         DoorList doorList = CreateDoorList(transform);
 
@@ -87,12 +85,12 @@ public class DungeonCreator : MonoBehaviour
             CreateMesh(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, i);
         }
 
+        CreateWalls(wallParent);
+
         for (int i = 0; i < listOfCorridors.Count; i++)  // 문 생성, 벽 생성 후 하기 위해서
         {
-            CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, doorList.gameObject);
+            CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, doorList.gameObject, wallParent);
         }
-
-        CreateWalls(wallParent);
     }
 
     GameObject CreateMesh(Vector2 bottomLeftCorner, Vector2 topRightCorner, int j)
@@ -129,23 +127,23 @@ public class DungeonCreator : MonoBehaviour
         for (int row = (int)bottomLeft.x; row < (int)bottomRight.x; row += _wallWidth)
         {
             var wallPosition = new Vector3(row, 0, bottomLeft.z);
-            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition, _possibleDoorHorizontalPosition);
+            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
         }
         for (int row = (int)topLeft.x; row < (int)topRightCorner.x; row += _wallWidth)
         {
             var wallPosition = new Vector3(row, 0, topRight.z);
-            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition, _possibleDoorHorizontalPosition);
+            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
         }
 
         for (int col = (int)bottomLeft.z; col < (int)topLeft.z; col += _wallWidth)
         {
             var wallPosition = new Vector3(bottomLeft.x, 0, col);
-            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition, _possibleDoorVerticalPosition);
+            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition);
         }
         for (int col = (int)bottomRight.z; col < (int)topRight.z; col += _wallWidth)
         {
             var wallPosition = new Vector3(bottomRight.x, 0, col);
-            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition, _possibleDoorVerticalPosition);
+            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition);
         }
         return dungeonFloor;
     }
@@ -186,12 +184,11 @@ public class DungeonCreator : MonoBehaviour
         return temp.GetComponent<DoorList>();
     }
 
-    void AddWallPositionToList(Vector3 wallPosition, List<Vector3Int> wallList, List<Vector3Int> doorList)
+    void AddWallPositionToList(Vector3 wallPosition, List<Vector3Int> wallList)
     {
         Vector3Int point = Vector3Int.CeilToInt(wallPosition);
         if (wallList.Contains(point))
         {
-            doorList.Add(point);
             wallList.Remove(point);
         }
         else
@@ -217,34 +214,20 @@ public class DungeonCreator : MonoBehaviour
     {
         Instantiate(wallPrefab, wallPosition, Quaternion.identity, wallParent.transform);
     }
- 
-    void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject doorParent)
+
+    void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject doorParent, GameObject wallParent)
     {
         if ((topRightCorner.x - bottomLeftCorner.x) < (topRightCorner.y - bottomLeftCorner.y))  // z축이 긴 경우
         {
             Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, bottomLeftCorner.y);
             Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, topRightCorner.y);
             CreateDoor(createBottomPos, createTopPos, _doorHorizontal, doorParent);
-            for (int i = 0; i < _doorWidth; i++)
-            {
-                Vector3Int bottomDoorPos = new Vector3Int((int)(createBottomPos.x / 2 + i), (int)createBottomPos.y, (int)createBottomPos.z);
-                Vector3Int topDoorPos = new Vector3Int((int)(createTopPos.x / 2 + i), (int)createTopPos.y, (int)createTopPos.z);
-                _possibleDoorHorizontalPosition.Add(bottomDoorPos);
-                _possibleDoorHorizontalPosition.Add(topDoorPos);
-            }
         }
         else // x축이 긴 경우
         {
             Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, 0, (bottomLeftCorner.y + topRightCorner.y) / 2);
             Vector3 createRightPos = new Vector3(topRightCorner.x, 0, (bottomLeftCorner.y + topRightCorner.y) / 2);
             CreateDoor(createLeftPos, createRightPos, _doorVertical, doorParent);
-            for (int i = 0; i < _doorWidth; i++)
-            {
-                Vector3Int leftDoorPos = new Vector3Int((int)createLeftPos.x, (int)createLeftPos.y, (int)(createLeftPos.z / 2 + i));
-                Vector3Int rightDoorPos = new Vector3Int((int)createRightPos.x, (int)createRightPos.y, (int)(createRightPos.z / 2 + i));
-                _possibleDoorVerticalPosition.Add(leftDoorPos);
-                _possibleDoorVerticalPosition.Add(rightDoorPos);
-            }
         }
     }
 
@@ -252,7 +235,6 @@ public class DungeonCreator : MonoBehaviour
     {
         GameObject firstDoor = Instantiate(doorPrefab, doorPos1, Quaternion.identity, doorParent.transform);
         GameObject secondDoor = Instantiate(doorPrefab, doorPos2, Quaternion.identity, doorParent.transform);
-
     }
 
     Vector3 CalculateCreatePosition(Vector2 bottomLeftCorner, Vector2 topRightCorner)

@@ -254,7 +254,7 @@ MonoBehaviour:
   _material: {fileID: 2100000, guid: fef46b4cbb7ff5641982fa83456015a7, type: 2}
   _wallVertical: {fileID: 5492649358934495152, guid: 8c4600f76b32b5c48a82ec319a869416, type: 3}
   _wallHorizontal: {fileID: 1781949669117437317, guid: 11601ae1f57292048b62717c60eb0dba, type: 3}
-  _wallWidth: 6
+  _wallWidth: 3
   _doorVertical: {fileID: 327954005906293864, guid: 2ddb0ccbd4c25f443a1d33d7e7808c04, type: 3}
   _doorHorizontal: {fileID: 4264949078167020723, guid: 76279bc7243245c4bb62e2319f5c0375, type: 3}
   _doorWidth: 10
