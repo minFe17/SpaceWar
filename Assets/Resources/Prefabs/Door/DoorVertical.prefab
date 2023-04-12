@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 327954005906293867}
   - component: {fileID: 3908283724021651144}
   - component: {fileID: 4287638259675301520}
+  - component: {fileID: 2303530056316561552}
   m_Layer: 0
   m_Name: DoorVertical
   m_TagString: Untagged
@@ -64,6 +65,22 @@ MonoBehaviour:
   _speed: 0.7
   _leftDoorArea: {fileID: 5510012828879598786}
   _rightDoorArea: {fileID: 5510012828142588607}
+--- !u!54 &2303530056316561552
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327954005906293864}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5508250479323681479
 GameObject:
   m_ObjectHideFlags: 0

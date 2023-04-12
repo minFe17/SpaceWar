@@ -34,6 +34,8 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
             _isOpen = true;
+        else if (other.gameObject.tag == "Wall")
+            Destroy(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
