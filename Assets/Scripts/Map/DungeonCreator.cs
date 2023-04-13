@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using Utils;
 
 public class DungeonCreator : MonoBehaviour
 {
-    //문
-    //문은 도어리스트 자식으로
     public int _dungeonWidth;   // 맵 가로 길이
     public int _dungeonLength;  // 맵 세로 길이
     public int _roomWidthMin;   // 방 최소 가로 길이
@@ -162,7 +161,6 @@ public class DungeonCreator : MonoBehaviour
         GameObject portal = Resources.Load("Prefabs/Portal") as GameObject;
         GameObject temp = Instantiate(portal, parent.transform);
         temp.transform.position = createPos;
-        temp.GetComponent<Portal>().SetPlayer(_playerSpawn.GetPlayer());
     }
 
     void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent, DoorList doorList)
@@ -246,7 +244,7 @@ public class DungeonCreator : MonoBehaviour
 
     void DestroyAllChildren()
     {
-        GenericSingleton<UIManager>.GetInstance().DestroyUI();
+        GenericSingleton<UIManager>.Instance.DestroyUI();
         if (_playerSpawn != null)
             _playerSpawn.DestroyPlayer();
 

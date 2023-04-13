@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class GameManager : MonoBehaviour
 {
     // ΩÃ±€≈Ê
     int _mapStage;
+    public int MapStage { get { return _mapStage; } }
     int _levelStage;
     int _killEnemy;
 
@@ -14,7 +16,7 @@ public class GameManager : MonoBehaviour
     {
         _mapStage = 1;
         _levelStage = 1;
-        GenericSingleton<UIManager>.GetInstance().ShowStage(_mapStage, _levelStage);
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
     }
 
     void Update()
@@ -34,8 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void NextStage()
     {
-        //SceneManager.LoadScene();
-        if(_levelStage >= 5)
+        if (_levelStage >= 5)
         {
             _mapStage++;
             _levelStage = 1;
@@ -44,7 +45,9 @@ public class GameManager : MonoBehaviour
         {
             _levelStage++;
         }
-        GenericSingleton<UIManager>.GetInstance().ShowStage(_mapStage, _levelStage);
+
+        SceneManager.LoadScene($"{(EWorldType)_mapStage}");
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
     }
 
     public void AddKillEnemy()
@@ -59,8 +62,16 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        GenericSingleton<GameOverUI>.GetInstance().ShowPlayTime(_playTime);
-        GenericSingleton<GameOverUI>.GetInstance().ShowKillEnemy(_killEnemy);
-        GenericSingleton<GameOverUI>.GetInstance().ShowWave(_mapStage, _levelStage);
+        GenericSingleton<UIManager>.Instance.GameOverUI.ShowPlayTime(_playTime);
+        GenericSingleton<UIManager>.Instance.GameOverUI.ShowKillEnemy(_killEnemy);
+        GenericSingleton<UIManager>.Instance.GameOverUI.ShowWave(_mapStage, _levelStage);
     }
+}
+
+public enum EWorldType
+{
+    None,
+    FirstWorld,
+    SecondWorld,
+    ThirdWorld,
 }

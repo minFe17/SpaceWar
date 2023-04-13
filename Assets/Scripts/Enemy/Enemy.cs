@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class Enemy : MonoBehaviour
     public float _attackDelay;
 
     protected EnemyController _enemyController;
-    protected Player _player;
     protected Transform _target;
+    protected Player _player;
 
     protected int _curHp;
     protected bool _isDie;
@@ -20,8 +21,8 @@ public class Enemy : MonoBehaviour
     public virtual void Init(EnemyController enemyController)
     {
         _enemyController = enemyController;
-        _player = GenericSingleton<EnemyManager>.GetInstance().GetPlayer();
-        _target = GenericSingleton<EnemyManager>.GetInstance().GetTarget();
+        _target = GenericSingleton<EnemyManager>.Instance.Target;
+        _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
         _curHp = _maxHp;
         _enemyController._enemyList.Add(this);
         AddCoinList();
@@ -48,7 +49,7 @@ public class Enemy : MonoBehaviour
         {
             _isDie = true;
             MakeMoney();
-            GenericSingleton<GameManager>.GetInstance().AddKillEnemy();
+            GenericSingleton<GameManager>.Instance.AddKillEnemy();
             Destroy(this.gameObject, 1f);
             _enemyController._enemyList.Remove(this);
         }

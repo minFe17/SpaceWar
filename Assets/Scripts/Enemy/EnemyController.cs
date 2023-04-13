@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
+using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour
 {
@@ -27,14 +30,6 @@ public class EnemyController : MonoBehaviour
     {
         _ground = GetComponent<BoxCollider>();
         _wave = Random.Range(0, 2);
-        AddEnemyList();
-    }
-
-    void AddEnemyList()
-    {
-        _enemys.Add(Resources.Load("Prefabs/Enemys/FirstWorld/Turret") as GameObject);
-        _enemys.Add(Resources.Load("Prefabs/Enemys/FirstWorld/Scorpion") as GameObject);
-        _enemys.Add(Resources.Load("Prefabs/Enemys/FirstWorld/DeliveryRobot") as GameObject);
     }
 
     public void Init(Vector3 createPos, DoorList doorList)
@@ -43,6 +38,40 @@ public class EnemyController : MonoBehaviour
         _doorList = doorList;
         _basePos = _createPos + _ground.center;
         _size = _ground.size;
+    }
+
+    void AddEnemyList()
+    {
+        switch(GenericSingleton<GameManager>.Instance.MapStage)
+        {
+            case 1:
+                FirstWorldEnemy();
+                break;
+            case 2:
+                SecondWorldEnemy();
+                break;
+            case 3:
+                ThirdWorldEnemy();
+                break;
+        }
+    }
+
+    void FirstWorldEnemy()
+    {
+        for(int i=0; i<(int)EFirstWorldEnemyType.Max; i++)
+        {
+            _enemys.Add(Resources.Load($"Prefabs/Enemys/FirstWorld/{(EFirstWorldEnemyType)i}") as GameObject);
+        }
+    }
+
+    void SecondWorldEnemy()
+    {
+
+    }
+
+    void ThirdWorldEnemy()
+    {
+
     }
 
     void Update()
@@ -55,7 +84,7 @@ public class EnemyController : MonoBehaviour
         if (_waveIndex == _wave && _enemyList.Count == 0)
         {
             _isClear = true;
-            GenericSingleton<GameManager>.GetInstance().Clear(_doorList);
+            GenericSingleton<GameManager>.Instance.Clear(_doorList);
         }
     }
 
@@ -73,13 +102,15 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 spawnPos = GetRandomSpawnPosition();
 
-        int ramdom = Random.Range(0, _enemys.Count);
+        int ramdom = Random.Range(0, (int)EFirstWorldEnemyType.Max);
         GameObject enemy = Instantiate(_enemys[ramdom], spawnPos, Quaternion.identity);
         enemy.GetComponent<Enemy>().Init(this);
     }
 
     IEnumerator SpawnEnemyRoutine()
     {
+        if (_enemys.Count == 0)
+            AddEnemyList();
         for (_waveIndex = 0; _waveIndex <= _wave; _waveIndex++)
         {
             yield return new WaitForSeconds(_spawnDelay);
@@ -102,9 +133,17 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GenericSingleton<GameManager>.GetInstance().Battle(_doorList);
+            GenericSingleton<GameManager>.Instance.Battle(_doorList);
             _ground.enabled = false;
             StartCoroutine(SpawnEnemyRoutine());
         }
     }
+}
+
+public enum EFirstWorldEnemyType
+{
+    Turret,
+    Scorpion,
+    DeliveryRobot,
+    Max,
 }

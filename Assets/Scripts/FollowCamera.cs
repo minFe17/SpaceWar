@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Utils;
 
 public class FollowCamera : MonoBehaviour
 {
@@ -11,6 +12,6 @@ public class FollowCamera : MonoBehaviour
     {
         _followCam.Follow = target;
         _followCam.LookAt = target;
-        GenericSingleton<UIManager>.GetInstance().SetFollowCam(_followCam);
+        GenericSingleton<UIManager>.Instance.FollowCam = _followCam;
     }
 }

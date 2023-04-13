@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class Portal : MonoBehaviour
 {
-    // 신 로드 or 화면 어둡게 했다 다시 밝게
-    Player _player;
-
     bool _inPlayer;
-
-    public void SetPlayer(Player player)
-    {
-        _player = player;
-    }
 
     private void Update()
     {
@@ -23,7 +14,7 @@ public class Portal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && _inPlayer)
         {
-            GenericSingleton<GameManager>.GetInstance().NextStage();
+            GenericSingleton<GameManager>.Instance.NextStage();
             _inPlayer = false;
         }
     }
@@ -32,7 +23,7 @@ public class Portal : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _player.ShowPortalKeyUI();
+            GenericSingleton<UIManager>.Instance.PortalInfoKey.SetActive(true);
             _inPlayer = true;
         }
     }
@@ -41,7 +32,7 @@ public class Portal : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _player.HidePortalKeyUI();
+            GenericSingleton<UIManager>.Instance.PortalInfoKey.SetActive(false);
             _inPlayer = false;
         }
     }

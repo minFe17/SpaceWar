@@ -1,41 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainUI : MonoBehaviour
 {
     [SerializeField] IngameUI _ingameUI;
     [SerializeField] GameObject _aimPoint;
-    [SerializeField] GameObject _gameOverUI;
+    [SerializeField] GameOverUI _gameOverUI;
     [SerializeField] GameObject _optionUI;
 
-    void Start()
+    public void Init(UIManager uiManager)
     {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    public IngameUI GetIngameUI()
-    {
-        return _ingameUI;
-    }
-
-    public GameObject GetGameOverUI()
-    {
-        return _gameOverUI;
-    }
-
-    public GameObject GetAimPoint()
-    {
-        return _aimPoint;
-    }
-
-    public GameObject GetOptionUI()
-    {
-        return _optionUI;
+        uiManager.IngameUI = _ingameUI;
+        uiManager.AimPoint = _aimPoint;
+        uiManager.GameOverUI = _gameOverUI;
+        uiManager.OptionUI = _optionUI;
     }
 }

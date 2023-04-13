@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+using Utils;
 
 public class Scorpion : MovableEnemy
 {
@@ -51,7 +50,7 @@ public class Scorpion : MovableEnemy
     public void Die()
     {
         MakeMoney();
-        GenericSingleton<GameManager>.GetInstance().AddKillEnemy();
+        GenericSingleton<GameManager>.Instance.AddKillEnemy();
         _enemyController._enemyList.Remove(this);
         Destroy(this.gameObject);
     }

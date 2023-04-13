@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Utils;
 
 public class Turret : Enemy
 {
@@ -49,7 +50,7 @@ public class Turret : Enemy
     {
         _gun.localEulerAngles = new Vector3(60, _gun.eulerAngles.y, _gun.eulerAngles.z);
         MakeMoney();
-        GenericSingleton<GameManager>.GetInstance().AddKillEnemy();
+        GenericSingleton<GameManager>.Instance.AddKillEnemy();
     }
 
     protected override IEnumerator AttackRoutine()

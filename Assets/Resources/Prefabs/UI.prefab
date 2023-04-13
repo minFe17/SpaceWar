@@ -4138,7 +4138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ingameUI: {fileID: 1424901033750217032}
   _aimPoint: {fileID: 1424901032526674788}
-  _gameOverUI: {fileID: 1424901033990897586}
+  _gameOverUI: {fileID: 1424901033990897598}
   _optionUI: {fileID: 8611933032107190451}
 --- !u!1 &1424901033818505559
 GameObject:

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class PlayerSpawn : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class PlayerSpawn : MonoBehaviour
         _player = Instantiate(player);
         _player.transform.position = transform.position;
         SpawnCamera();
-        GenericSingleton<EnemyManager>.GetInstance().Init(_player);
+        GenericSingleton<EnemyManager>.Instance.Target = _player.transform;
     }
 
     public void SpawnCamera()
@@ -24,11 +25,6 @@ public class PlayerSpawn : MonoBehaviour
         GameObject followCamera = Resources.Load("Prefabs/Follow Cam") as GameObject;
         _followCam = Instantiate(followCamera);
         _followCam.GetComponent<FollowCamera>().Init(_player.transform);
-    }
-
-    public Player GetPlayer()
-    {
-        return _player.GetComponent<Player>();
     }
     
     public void DestroyPlayer()

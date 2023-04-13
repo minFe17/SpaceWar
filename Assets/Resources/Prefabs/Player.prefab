@@ -2890,7 +2890,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 2039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3301,7 +3301,7 @@ MonoBehaviour:
   _bulletPos: {fileID: 6224945380842809370}
   _zoomCamera: {fileID: 6224945380283946659}
   _model: {fileID: 3766465801936989489}
-  _infoPortalKeyUI: {fileID: 6224945380578610091}
+  _portalInfoKeyUI: {fileID: 6224945380578610091}
   _maxHp: 10
   _maxAmmo: 30
   _moveSpeed: 5

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class Coin : MonoBehaviour
 {
@@ -9,23 +10,14 @@ public class Coin : MonoBehaviour
     [SerializeField] GameObject _effect;
 
     Animator _animator;
+    Player _player;
 
     bool _isEat;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
-    }
-
-    void Update()
-    {
-        
-    }
-
-    void Move()
-    {
-        // 플레이어 근처면 따라가기? 
-        // 코인 먹힌 애니메이션
+        _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,7 +29,7 @@ public class Coin : MonoBehaviour
     void PlayerGetCoin()
     {
         _isEat = true;
-        GenericSingleton<EnemyManager>.GetInstance().GetPlayer().GetMoney(_money);
+        _player.GetMoney(_money);
         _animator.SetBool("isGetCoin", true);
     }
 

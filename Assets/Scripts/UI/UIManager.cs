@@ -6,11 +6,22 @@ public class UIManager : MonoBehaviour
     // ΩÃ±€≈Ê
     GameObject _ui;
     MainUI _mainUI;
+
     IngameUI _ingameUI;
-    GameObject _gameOverUI;
+    public IngameUI IngameUI { get { return _ingameUI; } set { _ingameUI = value; } }
     GameObject _aimPoint;
+    public GameObject AimPoint { get { return _aimPoint; } set { _aimPoint = value; } }
+    GameOverUI _gameOverUI;
+    public GameOverUI GameOverUI { get { return _gameOverUI; } set { _gameOverUI = value; } }
     GameObject _optionUI;
+    public GameObject OptionUI { get { return _optionUI; } set { _optionUI = value; } }
+
+    Player _player;
+    public Player Player { get { return _player; } set { _player = value; } }
+    GameObject _portalInfoKey;
+    public GameObject PortalInfoKey { get { return _portalInfoKey; } set { _portalInfoKey = value; } }
     CinemachineFreeLook _followCam;
+    public CinemachineFreeLook FollowCam { get { return _followCam; } set { _followCam = value; } }
 
     bool _isOpen;
 
@@ -20,78 +31,12 @@ public class UIManager : MonoBehaviour
         _ui = Instantiate(ui);
 
         _mainUI = _ui.GetComponent<MainUI>();
-        _ingameUI = _mainUI.GetIngameUI();
-        _gameOverUI = _mainUI.GetGameOverUI();
-        _aimPoint = _mainUI.GetAimPoint();
-        _optionUI = _mainUI.GetOptionUI();
-    }
-
-    public void SetFollowCam(CinemachineFreeLook followCam)
-    {
-        _followCam = followCam;
+        _mainUI.Init(this);
     }
 
     public void DestroyUI()
     {
         Destroy(_ui);
-    }
-
-    //IngameUI
-    public void ShowStage(int mapStage, int levelStage)
-    {
-        _ingameUI.ShowStage(mapStage, levelStage);
-    }
-
-    public void ShowHp(int curHp, int maxHp)
-    {
-        _ingameUI.ShowHp(curHp, maxHp);
-    }
-
-    public void ShowCurrentMoney(int money)
-    {
-        _ingameUI.ShowMoney(money);
-    }
-
-    public void ShowAmmo(int curAmmo, int maxAmmo)
-    {
-        _ingameUI.ShowAmmo(curAmmo, maxAmmo);
-    }
-
-    public void ShowShotMode(EShotModeType shotMode)
-    {
-        _ingameUI.ShowShotMode(shotMode);
-    }
-
-    // AimPoint
-    public void OnAimPoint()
-    {
-        _aimPoint.SetActive(true);
-    }
-
-    public void OffAimPoint()
-    {
-        _aimPoint.SetActive(false);
-    }
-
-    // gameOverUI
-    public void Die()
-    {
-        _gameOverUI.gameObject.SetActive(true);
-    }
-
-    public void ShowPlayTime(float time)
-    {
-        _gameOverUI.GetComponent<GameOverUI>().ShowPlayTime(time);
-    }
-
-    public void ShowKillEnemy(int killEnemy)
-    {
-        _gameOverUI.GetComponent<GameOverUI>().ShowKillEnemy(killEnemy);
-    }
-
-    public void ShowMoney(int money)
-    {
-        _gameOverUI.GetComponent<GameOverUI>().ShowMoney(money);
     }
 
     //OptionUI
