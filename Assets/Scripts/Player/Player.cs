@@ -284,7 +284,7 @@ public class Player : MonoBehaviour
 
     public void ShowOptionUI()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && GenericSingleton<UIManager>.Instance.IsKeyInfoUI == false)
         {
             GenericSingleton<UIManager>.Instance.OnOffOptionUI();
             if (!_isOpenOption)

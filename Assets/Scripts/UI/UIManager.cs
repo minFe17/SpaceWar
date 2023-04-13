@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     public CinemachineFreeLook FollowCam { get { return _followCam; } set { _followCam = value; } }
 
     bool _isOpen;
+    bool _isKeyInfoUI;
+    public bool IsKeyInfoUI { get { return _isKeyInfoUI; } set { _isKeyInfoUI = value; } }
 
     public void CreateUI()
     {

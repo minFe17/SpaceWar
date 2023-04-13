@@ -9,8 +9,9 @@ public class OptionUI : MonoBehaviour
 
     public void keyInfoButton()
     {
-        _keyInfoPanel.SetActive(true);
         this.gameObject.SetActive(false);
+        _keyInfoPanel.SetActive(true);
+        GenericSingleton<UIManager>.Instance.IsKeyInfoUI = true;
     }
 
     public void CloseButton()

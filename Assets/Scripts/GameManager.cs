@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         {
             _mapStage++;
             _levelStage = 1;
+            //GenericSingleton<EnemyManager>.Instance.WorldEnemyListManager = ;
         }
         else
         {

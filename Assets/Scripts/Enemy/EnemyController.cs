@@ -12,8 +12,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _maxEnemy;
 
     public List<Enemy> _enemyList = new List<Enemy>();
-    List<GameObject> _enemys = new List<GameObject>();
-
     DoorList _doorList;
     BoxCollider _ground;
 
@@ -38,40 +36,6 @@ public class EnemyController : MonoBehaviour
         _doorList = doorList;
         _basePos = _createPos + _ground.center;
         _size = _ground.size;
-    }
-
-    void AddEnemyList()
-    {
-        switch(GenericSingleton<GameManager>.Instance.MapStage)
-        {
-            case 1:
-                FirstWorldEnemy();
-                break;
-            case 2:
-                SecondWorldEnemy();
-                break;
-            case 3:
-                ThirdWorldEnemy();
-                break;
-        }
-    }
-
-    void FirstWorldEnemy()
-    {
-        for(int i=0; i<(int)EFirstWorldEnemyType.Max; i++)
-        {
-            _enemys.Add(Resources.Load($"Prefabs/Enemys/FirstWorld/{(EFirstWorldEnemyType)i}") as GameObject);
-        }
-    }
-
-    void SecondWorldEnemy()
-    {
-
-    }
-
-    void ThirdWorldEnemy()
-    {
-
     }
 
     void Update()
@@ -103,14 +67,12 @@ public class EnemyController : MonoBehaviour
         Vector3 spawnPos = GetRandomSpawnPosition();
 
         int ramdom = Random.Range(0, (int)EFirstWorldEnemyType.Max);
-        GameObject enemy = Instantiate(_enemys[ramdom], spawnPos, Quaternion.identity);
+        GameObject enemy = Instantiate(GenericSingleton<EnemyManager>.Instance.Enemys[ramdom], spawnPos, Quaternion.identity);
         enemy.GetComponent<Enemy>().Init(this);
     }
 
     IEnumerator SpawnEnemyRoutine()
     {
-        if (_enemys.Count == 0)
-            AddEnemyList();
         for (_waveIndex = 0; _waveIndex <= _wave; _waveIndex++)
         {
             yield return new WaitForSeconds(_spawnDelay);
@@ -138,12 +100,4 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(SpawnEnemyRoutine());
         }
     }
-}
-
-public enum EFirstWorldEnemyType
-{
-    Turret,
-    Scorpion,
-    DeliveryRobot,
-    Max,
 }
