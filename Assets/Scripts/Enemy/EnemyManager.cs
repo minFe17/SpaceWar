@@ -8,9 +8,6 @@ public class EnemyManager : MonoBehaviour
     Transform _target;
     public Transform Target { get { return _target; } set { _target = value; } }
 
-    //WorldEnemyListManager _worldEnemyListManager = new FirstWorld();
-    //public WorldEnemyListManager WorldEnemyListManager {  set { _worldEnemyListManager = value; } }
-
     List<WorldEnemyListManager> _worldList = new List<WorldEnemyListManager>();
 
     List<GameObject> _enemys = new List<GameObject>();
@@ -20,12 +17,26 @@ public class EnemyManager : MonoBehaviour
         {
             if (_enemys.Count == 0)
             {
-                if (_worldList.Count == 0)
-                    AddWorldList();
-                _worldList[GenericSingleton<GameManager>.Instance.MapStage - 1].AddEnemyList();
+                WorldEnemyList();
             }
             return _enemys;
         }
+        set
+        {
+            _enemys = value;
+        }
+    }
+
+    public void WorldEnemyList()
+    {
+        if (_worldList.Count == 0)
+            AddWorldList();
+        _worldList[GenericSingleton<GameManager>.Instance.MapStage - 1].AddEnemyList();
+    }
+
+    public void ClearWorldEnemy()
+    {
+        _enemys.Clear();
     }
 
     void AddWorldList()
@@ -34,6 +45,11 @@ public class EnemyManager : MonoBehaviour
         _worldList.Add(new SecondWorld());
         _worldList.Add(new ThirdWorld());
     }
+}
+
+public abstract class WorldEnemyListManager
+{
+    public abstract void AddEnemyList();
 }
 
 public enum EFirstWorldEnemyType

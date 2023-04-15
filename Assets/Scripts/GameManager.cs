@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         _mapStage = 1;
         _levelStage = 1;
         GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
+        GenericSingleton<EnemyManager>.Instance.WorldEnemyList();
     }
 
     void Update()
@@ -40,7 +41,8 @@ public class GameManager : MonoBehaviour
         {
             _mapStage++;
             _levelStage = 1;
-            //GenericSingleton<EnemyManager>.Instance.WorldEnemyListManager = ;
+            GenericSingleton<EnemyManager>.Instance.ClearWorldEnemy();
+            GenericSingleton<EnemyManager>.Instance.WorldEnemyList();
         }
         else
         {

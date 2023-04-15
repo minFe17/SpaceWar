@@ -66,9 +66,12 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 spawnPos = GetRandomSpawnPosition();
 
-        int ramdom = Random.Range(0, (int)EFirstWorldEnemyType.Max);
-        GameObject enemy = Instantiate(GenericSingleton<EnemyManager>.Instance.Enemys[ramdom], spawnPos, Quaternion.identity);
-        enemy.GetComponent<Enemy>().Init(this);
+        if (GenericSingleton<EnemyManager>.Instance.Enemys.Count > 0)
+        {
+            int ramdom = Random.Range(0, GenericSingleton<EnemyManager>.Instance.Enemys.Count);
+            GameObject enemy = Instantiate(GenericSingleton<EnemyManager>.Instance.Enemys[ramdom], spawnPos, Quaternion.identity);
+            enemy.GetComponent<Enemy>().Init(this);
+        }
     }
 
     IEnumerator SpawnEnemyRoutine()
