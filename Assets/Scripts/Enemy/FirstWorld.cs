@@ -7,8 +7,9 @@ public class FirstWorld : WorldEnemyListManager
     {
         for (int i = 0; i < (int)EFirstWorldEnemyType.Max; i++)
         {
-            GenericSingleton<EnemyManager>.Instance.Enemys.Add(Resources.Load($"Prefabs/Enemys/FirstWorld/{(EFirstWorldEnemyType)i}") as GameObject);
+            _worldEnemy.Add(Resources.Load($"Prefabs/Enemys/FirstWorld/{(EFirstWorldEnemyType)i}") as GameObject);
         }
+        GenericSingleton<EnemyManager>.Instance.Enemys = _worldEnemy;
     }
 }
 
@@ -18,8 +19,9 @@ public class SecondWorld : WorldEnemyListManager
     {
         for (int i = 0; i < (int)ESecondWorldEnemyType.Max; i++)
         {
-            GenericSingleton<EnemyManager>.Instance.Enemys.Add(Resources.Load($"Prefabs/Enemys/SecondWorld/{(ESecondWorldEnemyType)i}") as GameObject);
+            _worldEnemy.Add(Resources.Load($"Prefabs/Enemys/SecondWorld/{(ESecondWorldEnemyType)i}") as GameObject);
         }
+        GenericSingleton<EnemyManager>.Instance.Enemys = _worldEnemy;
     }
 }
 
@@ -29,7 +31,8 @@ public class ThirdWorld : WorldEnemyListManager
     {
         for (int i = 0; i < (int)EThirdWorldEnemyType.Max; i++)
         {
-            GenericSingleton<EnemyManager>.Instance.Enemys.Add(Resources.Load($"Prefabs/Enemys/ThirdWorld/{(EThirdWorldEnemyType)i}") as GameObject);
+            _worldEnemy.Add(Resources.Load($"Prefabs/Enemys/ThirdWorld/{(EThirdWorldEnemyType)i}") as GameObject);
         }
+        GenericSingleton<EnemyManager>.Instance.Enemys = _worldEnemy;
     }
 }

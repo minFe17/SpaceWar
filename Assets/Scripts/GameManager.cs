@@ -5,19 +5,18 @@ using Utils;
 public class GameManager : MonoBehaviour
 {
     // ΩÃ±€≈Ê
-    int _mapStage;
+    int _mapStage = 1;
     public int MapStage { get { return _mapStage; } }
-    int _levelStage;
+    int _levelStage = 1;
     int _killEnemy;
 
     float _playTime;
 
     void Start()
     {
-        _mapStage = 1;
-        _levelStage = 1;
         GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
-        GenericSingleton<EnemyManager>.Instance.WorldEnemyList();
+        if (_mapStage >= 1)
+            GenericSingleton<EnemyManager>.Instance.WorldEnemyList();
     }
 
     void Update()

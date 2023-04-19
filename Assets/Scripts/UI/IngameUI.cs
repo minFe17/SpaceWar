@@ -39,6 +39,8 @@ public class IngameUI : MonoBehaviour
 
     public void ShowStage(int mapStage, int levelStage)
     {
+        Debug.Log("map : " + mapStage);
+        Debug.Log("level" + levelStage);
         _stageText.text = $"{mapStage} - {levelStage}";
     }
 
