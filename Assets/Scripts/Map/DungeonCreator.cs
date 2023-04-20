@@ -33,8 +33,6 @@ public class DungeonCreator : MonoBehaviour
 
     List<Vector3Int> _possibleWallVerticalPosition;
     List<Vector3Int> _possibleWallHorizontalPosition;
-    List<Vector3Int> _possibleDoorVerticalPosition;
-    List<Vector3Int> _possibleDoorHorizontalPosition;
 
     PlayerSpawn _playerSpawn;
 

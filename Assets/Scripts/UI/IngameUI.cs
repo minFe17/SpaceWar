@@ -12,6 +12,8 @@ public class IngameUI : MonoBehaviour
     [SerializeField] TMP_Text _hpText;
 
     [SerializeField] TMP_Text _coinText;
+
+    [SerializeField] RawImage _miniMapImage;
     [SerializeField] TMP_Text _stageText;
 
     [SerializeField] TMP_Text _ammoText;
