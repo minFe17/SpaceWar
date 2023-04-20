@@ -1,38 +1,23 @@
 using UnityEngine;
 using Utils;
 
-public class Portal : MonoBehaviour
+public class Portal : EventRoom
 {
-    bool _inPlayer;
-
-    private void Update()
+    void Update()
     {
-        NextStage();
+        Event();
     }
 
-    void NextStage()
+    public override void OnEnter()
+    {
+        _message = "다음 스테이지";
+    }
+
+    public override void Event()
     {
         if (Input.GetKeyDown(KeyCode.F) && _inPlayer)
         {
             GenericSingleton<GameManager>.Instance.NextStage();
-            _inPlayer = false;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            GenericSingleton<UIManager>.Instance.PortalInfoKey.SetActive(true);
-            _inPlayer = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            GenericSingleton<UIManager>.Instance.PortalInfoKey.SetActive(false);
             _inPlayer = false;
         }
     }

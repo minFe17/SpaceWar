@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,8 +19,12 @@ public class UIManager : MonoBehaviour
 
     Player _player;
     public Player Player { get { return _player; } set { _player = value; } }
-    GameObject _portalInfoKey;
-    public GameObject PortalInfoKey { get { return _portalInfoKey; } set { _portalInfoKey = value; } }
+
+    GameObject _InfoKey;
+    public GameObject InfoKey { get { return _InfoKey; } set { _InfoKey = value; } }
+    Text _infoMessage;
+    public Text InfoMessage {  get { return _infoMessage; } set { _infoMessage = value; } }
+
     CinemachineFreeLook _followCam;
     public CinemachineFreeLook FollowCam { get { return _followCam; } set { _followCam = value; } }
 

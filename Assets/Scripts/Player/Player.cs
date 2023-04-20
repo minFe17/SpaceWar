@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 public class Player : MonoBehaviour
@@ -7,9 +8,11 @@ public class Player : MonoBehaviour
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _zoomCamera;
     [SerializeField] GameObject _model;
-    [SerializeField] GameObject _portalInfoKeyUI;
+    [SerializeField] GameObject _InfoKeyUI;
+    [SerializeField] Text _InfoMseeage;
 
     [SerializeField] int _maxHp;
+    public int MaxHp {  get { return _maxHp; } set { _maxHp = value; } }
     [SerializeField] int _maxAmmo;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _splintSpeed;
@@ -34,8 +37,10 @@ public class Player : MonoBehaviour
     float _speed;
 
     int _curHp;
+    public int CurHp { get { return _curHp; } set { _curHp = value; } }
     int _curAmmo;
     int _money = 0;
+    public int Money { get { return _money; }set { _money = value; } }
 
     bool _isJump;
     bool _isAiming;
@@ -55,7 +60,8 @@ public class Player : MonoBehaviour
         _curHp = _maxHp;
         GenericSingleton<UIManager>.Instance.CreateUI();
         GenericSingleton<UIManager>.Instance.Player = this;
-        GenericSingleton<UIManager>.Instance.PortalInfoKey = _portalInfoKeyUI;
+        GenericSingleton<UIManager>.Instance.InfoKey = _InfoKeyUI;
+        GenericSingleton<UIManager>.Instance.InfoMessage = _InfoMseeage;
         Init();
     }
 
