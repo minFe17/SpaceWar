@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
         GenericSingleton<UIManager>.Instance.IngameUI.ShowMoney(_money);
         GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo(_curAmmo, _maxAmmo);
         GenericSingleton<UIManager>.Instance.IngameUI.ShowShotMode(_shotMode);
+        GenericSingleton<GameManager>.Instance.StageUI();
     }
 
     void Update()

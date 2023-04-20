@@ -12,13 +12,6 @@ public class GameManager : MonoBehaviour
 
     float _playTime;
 
-    void Start()
-    {
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
-        if (_mapStage >= 1)
-            GenericSingleton<EnemyManager>.Instance.WorldEnemyList();
-    }
-
     void Update()
     {
         PlayTime();
@@ -49,7 +42,6 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene($"{(EWorldType)_mapStage}");
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
     }
 
     public void AddKillEnemy()
@@ -60,6 +52,12 @@ public class GameManager : MonoBehaviour
     void PlayTime()
     {
         _playTime += Time.deltaTime;
+    }
+
+    public void StageUI()
+    {
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
+
     }
 
     public void GameOver()
