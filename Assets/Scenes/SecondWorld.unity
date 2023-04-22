@@ -319,12 +319,12 @@ MonoBehaviour:
   _roomWidthMin: 50
   _roomLengthMin: 50
   _maxIterations: 20
-  _material: {fileID: 2100000, guid: fef46b4cbb7ff5641982fa83456015a7, type: 2}
-  _wallVertical: {fileID: 5492649358934495152, guid: 8c4600f76b32b5c48a82ec319a869416, type: 3}
-  _wallHorizontal: {fileID: 1781949669117437317, guid: 11601ae1f57292048b62717c60eb0dba, type: 3}
+  _material: {fileID: 2100000, guid: 5ca27f3da1ff93f439357e481e62dce1, type: 2}
+  _wallVertical: {fileID: 5492649358934495152, guid: 95cb85d35c0bf734e972fc36d1e8abe5, type: 3}
+  _wallHorizontal: {fileID: 1781949669117437317, guid: 1c91f8716c2205e45bd114f9bb365b1f, type: 3}
   _wallWidth: 3
-  _doorVertical: {fileID: 327954005906293864, guid: 2ddb0ccbd4c25f443a1d33d7e7808c04, type: 3}
-  _doorHorizontal: {fileID: 4264949078167020723, guid: 76279bc7243245c4bb62e2319f5c0375, type: 3}
+  _doorVertical: {fileID: 327954005906293864, guid: e97343d0d6310ac41b416f979bcf7928, type: 3}
+  _doorHorizontal: {fileID: 4264949078167020723, guid: d567e3e7541925d43a6b1f56018c49cf, type: 3}
   _doorWidth: 10
   _enemyController: {fileID: 1686840618348503979, guid: 3102b211582e9b44e93b1a60249ad692, type: 3}
   _enemyControllerOffset: 4
