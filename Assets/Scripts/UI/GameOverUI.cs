@@ -3,6 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -42,8 +43,9 @@ public class GameOverUI : MonoBehaviour
         _killEnemyText.text = string.Format("{0:D3}", killEnemy);
     }
 
-    public void ShowMoney(int money)
+    public void ShowMoney()
     {
+        int money = GenericSingleton<PlayerDataManager>.Instance.Money;
         _moneyText.text = string.Format("{0:D3}", money);
     }
 

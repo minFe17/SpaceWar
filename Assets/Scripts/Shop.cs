@@ -4,8 +4,6 @@ using Utils;
 
 public class Shop : MonoBehaviour
 {
-    List<PotionBase> _potions = new List<PotionBase>();
-    Player _player; //플레이어 받아와야함
     int _cost;
     bool _inPlayer;
 
@@ -21,29 +19,14 @@ public class Shop : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && _inPlayer)
         {
-            if(_player.Money >= _cost)
+            if(GenericSingleton<PlayerDataManager>.Instance.Money >= _cost)
             {
-                ApplyPotion();
-                _player.Money -= _cost;
+                GenericSingleton<PlayerDataManager>.Instance.Money -= _cost;
+                GenericSingleton<UIManager>.Instance.IngameUI.ShowMoney();
+                GenericSingleton<PotionManager>.Instance.ApplyPotion();
             }
             _inPlayer = false;
         }
-    }
-
-    void ApplyPotion()
-    {
-        if (_potions.Count == 0)
-            AddPotion();
-        int random = Random.Range(0, _potions.Count);
-        _potions[random].PotionEffect();
-    }
-
-    void AddPotion()
-    {
-        _potions.Add(new RecoveryPotion());
-        _potions.Add(new DamagePotion());
-        _potions.Add(new MaxHPIncrease());
-        _potions.Add(new MaxHPReduced());
     }
 
     void OnTriggerStay(Collider other)

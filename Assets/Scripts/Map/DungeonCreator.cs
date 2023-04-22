@@ -71,6 +71,10 @@ public class DungeonCreator : MonoBehaviour
             {
                 CreatePortal(createPos, room);
             }
+            else if (listOfRooms.Count / 2 == i)
+            {
+                CreateShop(createPos, room);
+            }
             else
             {
                 CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList);
@@ -88,6 +92,7 @@ public class DungeonCreator : MonoBehaviour
         {
             CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, doorList.gameObject, wallParent);
         }
+
     }
 
     GameObject CreateMesh(Vector2 bottomLeftCorner, Vector2 topRightCorner, int j)
@@ -152,13 +157,21 @@ public class DungeonCreator : MonoBehaviour
         temp.transform.position = createPos;
         _playerSpawn = temp.GetComponent<PlayerSpawn>();
         _playerSpawn.Spawn();
+        GenericSingleton<PlayerDataManager>.Instance.SettingPlayerData();
+    }
+
+    void CreateShop(Vector3 createPos, GameObject parent)
+    {
+        GameObject temp = Resources.Load("Prefabs/Shop") as GameObject;
+        GameObject shop = Instantiate(temp, parent.transform);
+        shop.transform.position = createPos;
     }
 
     void CreatePortal(Vector3 createPos, GameObject parent)
     {
-        GameObject portal = Resources.Load("Prefabs/Portal") as GameObject;
-        GameObject temp = Instantiate(portal, parent.transform);
-        temp.transform.position = createPos;
+        GameObject temp = Resources.Load("Prefabs/Portal") as GameObject;
+        GameObject portal = Instantiate(temp, parent.transform);
+        portal.transform.position = createPos;
     }
 
     void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent, DoorList doorList)

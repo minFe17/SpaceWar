@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 public class IngameUI : MonoBehaviour
 {
@@ -21,16 +22,19 @@ public class IngameUI : MonoBehaviour
     public List<GameObject> shotModeImageList = new List<GameObject>();
     [SerializeField] TMP_Text _shotModeText;
 
-    public void ShowHp(int curHp, int maxHp)
+    public void ShowHp()
     {
+        int curHp = GenericSingleton<PlayerDataManager>.Instance.CurHp;
+        int maxHp = GenericSingleton<PlayerDataManager>.Instance.MaxHp;
         _hpBar.fillAmount = (float)curHp / maxHp;
         if (curHp < 0)
             curHp = 0;
         _hpText.text = $"{curHp} / {maxHp}";
     }
 
-    public void ShowMoney(int money)
+    public void ShowMoney()
     {
+        int money = GenericSingleton<PlayerDataManager>.Instance.Money;
         String text;
         if (money < 100)
             text = string.Format("{0:D3}", money);
@@ -44,13 +48,16 @@ public class IngameUI : MonoBehaviour
         _stageText.text = $"{mapStage} - {levelStage}";
     }
 
-    public void ShowAmmo(int curAmmo, int maxAmmo)
+    public void ShowAmmo()
     {
+        int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
+        int maxAmmo = GenericSingleton<PlayerDataManager>.Instance.MaxAmmo;
         _ammoText.text = $"{curAmmo} / {maxAmmo}";
     }
 
-    public void ShowShotMode(EShotModeType shotMode)
+    public void ShowShotMode()
     {
+        EShotModeType shotMode = GenericSingleton<PlayerDataManager>.Instance.ShotMode;
         switch(shotMode)
         {
             case EShotModeType.Single:

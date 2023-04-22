@@ -47,11 +47,7 @@ public class EnemyManager : MonoBehaviour
     }
 }
 
-public abstract class WorldEnemyListManager
-{
-    protected List<GameObject> _worldEnemy = new List<GameObject>();
-    public abstract void AddEnemyList();
-}
+
 
 public enum EFirstWorldEnemyType
 {

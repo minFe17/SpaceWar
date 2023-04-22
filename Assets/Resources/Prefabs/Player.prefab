@@ -2920,7 +2920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6224945380578610088
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3169,10 +3169,6 @@ MonoBehaviour:
   _model: {fileID: 3766465801936989489}
   _InfoKeyUI: {fileID: 6224945380578610091}
   _InfoMseeage: {fileID: 3357039669930630183}
-  _maxHp: 10
-  _maxAmmo: 30
-  _moveSpeed: 5
-  _splintSpeed: 5
   _jumpPower: 7
   _rotateSpeed: 1
   _idleTime: 3

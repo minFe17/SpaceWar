@@ -11,11 +11,6 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _InfoKeyUI;
     [SerializeField] Text _InfoMseeage;
 
-    [SerializeField] int _maxHp;
-    public int MaxHp {  get { return _maxHp; } set { _maxHp = value; } }
-    [SerializeField] int _maxAmmo;
-    [SerializeField] float _moveSpeed;
-    [SerializeField] float _splintSpeed;
     [SerializeField] float _jumpPower;
     [SerializeField] float _rotateSpeed;
     [SerializeField] float _idleTime;
@@ -27,20 +22,12 @@ public class Player : MonoBehaviour
     Rigidbody _rigidbody;
     Transform _idleBulletPos;
 
-    EShotModeType _shotMode;
-
     Vector3 _move;
 
     float _mouseX;
     float _mouseY;
     float _idleTimer;
     float _speed;
-
-    int _curHp;
-    public int CurHp { get { return _curHp; } set { _curHp = value; } }
-    int _curAmmo;
-    int _money = 0;
-    public int Money { get { return _money; }set { _money = value; } }
 
     bool _isJump;
     bool _isAiming;
@@ -55,9 +42,6 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _bullet = Resources.Load("Prefabs/Bullet") as GameObject;
         Cursor.lockState = CursorLockMode.Locked;
-        _shotMode = EShotModeType.Single;
-        _curAmmo = _maxAmmo;
-        _curHp = _maxHp;
         GenericSingleton<UIManager>.Instance.CreateUI();
         GenericSingleton<UIManager>.Instance.Player = this;
         GenericSingleton<UIManager>.Instance.InfoKey = _InfoKeyUI;
@@ -69,10 +53,10 @@ public class Player : MonoBehaviour
     {
         _idleBulletPos = _bulletPos;
 
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowHp(_curHp, _maxHp);
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowMoney(_money);
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo(_curAmmo, _maxAmmo);
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowShotMode(_shotMode);
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowHp();
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowMoney();
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowShotMode();
         GenericSingleton<GameManager>.Instance.StageUI();
     }
 
@@ -100,7 +84,7 @@ public class Player : MonoBehaviour
         _animator.SetFloat("AxisX", x);
         _animator.SetFloat("AxisZ", z);
 
-        _move = new Vector3(x, 0, z).normalized * Time.deltaTime * _moveSpeed;
+        _move = new Vector3(x, 0, z).normalized * Time.deltaTime * GenericSingleton<PlayerDataManager>.Instance.MoveSpeed;
 
         if (_move != Vector3.zero)
         {
@@ -126,14 +110,14 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            _speed += Time.deltaTime * _splintSpeed;
+            _speed += Time.deltaTime * GenericSingleton<PlayerDataManager>.Instance.SplintSpeed;
             if (_speed > 1)
                 _speed = 1;
             transform.Translate(_move * _speed);
         }
         else
         {
-            _speed -= Time.deltaTime * _splintSpeed;
+            _speed -= Time.deltaTime * GenericSingleton<PlayerDataManager>.Instance.SplintSpeed;
             if (_speed < 0)
                 _speed = 0;
         }
@@ -195,7 +179,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton("Fire") && !_isShot && !_isDie)
         {
-            switch (_shotMode)
+            switch (GenericSingleton<PlayerDataManager>.Instance.ShotMode)
             {
                 case EShotModeType.Single:
                     StartCoroutine(SingleShotRoutine());
@@ -226,7 +210,8 @@ public class Player : MonoBehaviour
     {
         if (!_isDie && !_isReload)
         {
-            if (Input.GetKeyDown(KeyCode.R) || _curAmmo <= 0)
+            int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
+            if (Input.GetKeyDown(KeyCode.R) || curAmmo <= 0)
             {
                 _isReload = true;
                 _animator.SetTrigger("doReload");
@@ -237,25 +222,25 @@ public class Player : MonoBehaviour
 
     void ReloadAmmo()
     {
-        _curAmmo = _maxAmmo;
+        GenericSingleton<PlayerDataManager>.Instance.CurAmmo = GenericSingleton<PlayerDataManager>.Instance.MaxAmmo;
         _isReload = false;
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo(_curAmmo, _maxAmmo);
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
     }
 
     public void ChangeShotMode()
     {
-        if(!_isDie && !_isOpenOption)
+        if (!_isDie && !_isOpenOption)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                _shotMode = EShotModeType.Single;
+                GenericSingleton<PlayerDataManager>.Instance.ShotMode = EShotModeType.Single;
             else if (Input.GetKeyDown(KeyCode.Alpha2))
-                _shotMode = EShotModeType.Burst;
+                GenericSingleton<PlayerDataManager>.Instance.ShotMode = EShotModeType.Burst;
             else if (Input.GetKeyDown(KeyCode.Alpha3))
-                _shotMode = EShotModeType.Auto;
+                GenericSingleton<PlayerDataManager>.Instance.ShotMode = EShotModeType.Auto;
 
-            GenericSingleton<UIManager>.Instance.IngameUI.ShowShotMode(_shotMode);
+            GenericSingleton<UIManager>.Instance.IngameUI.ShowShotMode();
         }
-        
+
     }
 
     public void Turn()
@@ -285,13 +270,13 @@ public class Player : MonoBehaviour
 
     public void GetMoney(int money)
     {
-        _money += money;
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowMoney(_money);
+        GenericSingleton<PlayerDataManager>.Instance.Money += money;
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowMoney();
     }
 
     public void ShowOptionUI()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && GenericSingleton<UIManager>.Instance.IsKeyInfoUI == false)
+        if (Input.GetKeyDown(KeyCode.Escape) && GenericSingleton<UIManager>.Instance.IsKeyInfoUI == false)
         {
             GenericSingleton<UIManager>.Instance.OnOffOptionUI();
             if (!_isOpenOption)
@@ -319,10 +304,10 @@ public class Player : MonoBehaviour
         if (_isDie)
             return;
 
-        _curHp -= damage;
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowHp(_curHp, _maxHp);
+        GenericSingleton<PlayerDataManager>.Instance.CurHp -= damage;
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowHp();
 
-        if (_curHp <= 0)
+        if (GenericSingleton<PlayerDataManager>.Instance.CurHp <= 0)
         {
             _isDie = true;
             _animator.SetTrigger("doDie");
@@ -332,33 +317,35 @@ public class Player : MonoBehaviour
     void EndDie()
     {
         GenericSingleton<UIManager>.Instance.GameOverUI.gameObject.SetActive(true);
-        GenericSingleton<UIManager>.Instance.GameOverUI.ShowMoney(_money);
+        GenericSingleton<UIManager>.Instance.GameOverUI.ShowMoney();
         GenericSingleton<GameManager>.Instance.GameOver();
         Cursor.lockState = CursorLockMode.None;
     }
 
     IEnumerator SingleShotRoutine()
     {
-        if (_curAmmo > 0 && !_isReload)
+        int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
+        if (curAmmo > 0 && !_isReload)
         {
             _isShot = true;
             _animator.SetTrigger("doSingleShot");
             yield return new WaitForSeconds(0.3f);
             MakeBullet();
-            _curAmmo--;
-            GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo(_curAmmo, _maxAmmo);
+            GenericSingleton<PlayerDataManager>.Instance.CurAmmo--;
+            GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
             _animator.SetBool("isShotIdle", true);
             yield return new WaitForSeconds(_fireDelay);
             _isShot = false;
         }
 
-        if (_curAmmo <= 0)
+        if (GenericSingleton<PlayerDataManager>.Instance.CurAmmo <= 0)
             Reload();
     }
 
     IEnumerator BurstShotRoutine()
     {
-        if (_curAmmo > 0 && !_isReload)
+        int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
+        if (curAmmo > 0 && !_isReload)
         {
             _isShot = true;
             _animator.SetTrigger("doBurstShot");
@@ -366,36 +353,37 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             for (int i = 0; i < 3; i++)
             {
-                if (_curAmmo <= 0)
+                if (GenericSingleton<PlayerDataManager>.Instance.CurAmmo <= 0)
                 {
                     Reload();
                     break;
                 }
                 yield return new WaitForSeconds(0.1f);
                 MakeBullet();
-                _curAmmo--;
-                GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo(_curAmmo, _maxAmmo);
+                GenericSingleton<PlayerDataManager>.Instance.CurAmmo--;
+                GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
             }
             _animator.SetBool("isShotIdle", true);
             yield return new WaitForSeconds(_fireDelay);
             _isShot = false;
         }
 
-        if (_curAmmo <= 0)
+        if (GenericSingleton<PlayerDataManager>.Instance.CurAmmo <= 0)
             Reload();
     }
 
     IEnumerator AutoShotRoutine()
     {
-        if (_curAmmo > 0 && !_isReload)
+        int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
+        if (curAmmo > 0 && !_isReload)
         {
             _isShot = true;
-            if(!_animator.GetCurrentAnimatorStateInfo(1).IsName("Shoot_Autoshot"))
+            if (!_animator.GetCurrentAnimatorStateInfo(1).IsName("Shoot_Autoshot"))
                 _animator.SetTrigger("doAutoShot");
             yield return new WaitForSeconds(0.2f);
             MakeBullet();
-            _curAmmo--;
-            GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo(_curAmmo, _maxAmmo);
+            GenericSingleton<PlayerDataManager>.Instance.CurAmmo--;
+            GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
         }
         _isShot = false;
 
@@ -403,7 +391,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log(2);
         }
-        if (_curAmmo <= 0)
+        if (GenericSingleton<PlayerDataManager>.Instance.CurAmmo <= 0)
             Reload();
     }
 
