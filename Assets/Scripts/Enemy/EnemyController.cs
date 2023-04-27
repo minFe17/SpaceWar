@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +10,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _minEnemy;
     [SerializeField] int _maxEnemy;
 
-    public List<Enemy> _enemyList = new List<Enemy>();
+    List<Enemy> _enemyList = new List<Enemy>();
+    public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }
+
     DoorList _doorList;
     BoxCollider _ground;
 
@@ -96,7 +97,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player") && !_isClear)
         {
             GenericSingleton<GameManager>.Instance.Battle(_doorList);
             _ground.enabled = false;

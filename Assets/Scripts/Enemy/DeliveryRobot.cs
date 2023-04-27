@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
@@ -53,7 +52,7 @@ public class DeliveryRobot : MovableEnemy
     {
         MakeMoney();
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
-        _enemyController._enemyList.Remove(this);
+        _enemyController.EnemyList.Remove(this);
         Destroy(this.gameObject);
     }
 

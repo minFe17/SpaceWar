@@ -7,12 +7,12 @@ public class MaxHPReducedPotion : PotionBase
     {
         // 최대 Hp감소
         int MaxHPReducedAmount = Random.Range(1, 3);
-        if (GenericSingleton<PlayerDataManager>.Instance.MaxHp - MaxHPReducedAmount == 0)
-            MaxHPReducedAmount--;
-        GenericSingleton<PlayerDataManager>.Instance.MaxHp -= MaxHPReducedAmount;
-
-        if (GenericSingleton<PlayerDataManager>.Instance.CurHp > GenericSingleton<PlayerDataManager>.Instance.MaxHp)
-            GenericSingleton<PlayerDataManager>.Instance.CurHp = GenericSingleton<PlayerDataManager>.Instance.MaxHp;
+        int hp = GenericSingleton<PlayerDataManager>.Instance.MaxHp - MaxHPReducedAmount;
+        if (hp <= 0)
+            hp = 1;
+        GenericSingleton<PlayerDataManager>.Instance.MaxHp = hp;
+        if (GenericSingleton<PlayerDataManager>.Instance.CurHp > hp)
+            GenericSingleton<PlayerDataManager>.Instance.CurHp = hp;
         GenericSingleton<UIManager>.Instance.IngameUI.ShowHp();
     }
 }

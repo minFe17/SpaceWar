@@ -5,8 +5,8 @@ using Utils;
 
 public class Enemy : MonoBehaviour
 {
-    public int _maxHp;
-    public float _attackDelay;
+    [SerializeField] protected int _maxHp;
+    [SerializeField] protected float _attackDelay;
 
     protected EnemyController _enemyController;
     protected Transform _target;
@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     protected bool _isDie;
 
     protected List<GameObject> _coinList = new List<GameObject>();
-    // 나중에 코인을 리스트로 저장하기
 
     public virtual void Init(EnemyController enemyController)
     {
@@ -24,7 +23,7 @@ public class Enemy : MonoBehaviour
         _target = GenericSingleton<EnemyManager>.Instance.Target;
         _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
         _curHp = _maxHp;
-        _enemyController._enemyList.Add(this);
+        _enemyController.EnemyList.Add(this);
         AddCoinList();
     }
 
@@ -51,7 +50,7 @@ public class Enemy : MonoBehaviour
             MakeMoney();
             GenericSingleton<GameManager>.Instance.AddKillEnemy();
             Destroy(this.gameObject, 1f);
-            _enemyController._enemyList.Remove(this);
+            _enemyController.EnemyList.Remove(this);
         }
     }
 

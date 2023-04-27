@@ -6,7 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     // ½Ì±ÛÅæ
     Transform _target;
-    public Transform Target { get { return _target; } set { _target = value; } }
+    public Transform Target { get => _target; set => _target = value; }
 
     List<WorldEnemyListManager> _worldList = new List<WorldEnemyListManager>();
 
@@ -46,8 +46,6 @@ public class EnemyManager : MonoBehaviour
         _worldList.Add(new ThirdWorld());
     }
 }
-
-
 
 public enum EFirstWorldEnemyType
 {

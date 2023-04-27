@@ -1,10 +1,7 @@
 using UnityEngine;
-using Utils;
 
 public class MiniMapCam : MonoBehaviour
 {
-    RenderTexture _miniMap;
-    Camera _miniMapCam;
     Transform _player;
 
     public void Init(Transform player)

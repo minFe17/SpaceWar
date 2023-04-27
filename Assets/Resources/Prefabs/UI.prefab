@@ -4039,7 +4039,7 @@ MonoBehaviour:
   _miniMapImage: {fileID: 2276304894738330692}
   _stageText: {fileID: 1424901033487845563}
   _ammoText: {fileID: 1424901032349018216}
-  shotModeImageList:
+  _shotModeImageList:
   - {fileID: 1424901033252460387}
   - {fileID: 1424901033521748448}
   - {fileID: 1424901034076565533}

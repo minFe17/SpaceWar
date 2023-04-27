@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
@@ -31,7 +30,7 @@ public class Shop : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             GenericSingleton<UIManager>.Instance.InfoKey.SetActive(true);
             GenericSingleton<UIManager>.Instance.InfoMessage.text = $"수상한 물약 사기 : {_cost}";
@@ -41,7 +40,7 @@ public class Shop : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             GenericSingleton<UIManager>.Instance.InfoKey.SetActive(false);
             _inPlayer = false;

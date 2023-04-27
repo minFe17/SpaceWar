@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class DoorList : MonoBehaviour
 {
-    public List<Door> _doors = new List<Door>();
+    List<Door> _doors = new List<Door>();
+    public List<Door> Doors { get => _doors; }
 
     public void LockDoor()
     {

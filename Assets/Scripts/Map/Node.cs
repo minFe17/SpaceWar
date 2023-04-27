@@ -3,9 +3,8 @@ using UnityEngine;
 
 public abstract class Node
 {
-    List<Node> childrenNodeList;
-
-    public List<Node> ChildrenNodeList { get => childrenNodeList; }
+    List<Node> _childrenNodeList;
+    public List<Node> ChildrenNodeList { get => _childrenNodeList; }
 
     public bool Visted { get; set; }
 
@@ -18,10 +17,9 @@ public abstract class Node
 
     public int TreeLayerIndex { get; set; }
 
-    // Node »ý¼ºÀÚ
     public Node(Node parentNode)
     {
-        childrenNodeList = new List<Node>();
+        _childrenNodeList = new List<Node>();
         this.Parent = parentNode;
         if (parentNode != null)
         {
@@ -31,11 +29,11 @@ public abstract class Node
 
     public void AddChild(Node node)
     {
-        childrenNodeList.Add(node);
+        _childrenNodeList.Add(node);
     }
 
     public void RemoveChild(Node node)
     {
-        childrenNodeList.Remove(node);
+        _childrenNodeList.Remove(node);
     }
 }

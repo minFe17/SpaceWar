@@ -42,7 +42,7 @@ public class Turret : Enemy
             Invoke("Die", 1f);
             
             Destroy(this.gameObject, 2f);
-            _enemyController._enemyList.Remove(this);
+            _enemyController.EnemyList.Remove(this);
         }
     }
 

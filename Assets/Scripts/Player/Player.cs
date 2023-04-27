@@ -78,7 +78,6 @@ public class Player : MonoBehaviour
         if (_isDie)
             return;
 
-        //Walk
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         _animator.SetFloat("AxisX", x);
@@ -387,10 +386,6 @@ public class Player : MonoBehaviour
         }
         _isShot = false;
 
-        if (Input.GetButtonUp("Fire"))
-        {
-            Debug.Log(2);
-        }
         if (GenericSingleton<PlayerDataManager>.Instance.CurAmmo <= 0)
             Reload();
     }
@@ -407,7 +402,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
             _isJump = false;
     }
 }
@@ -416,5 +411,6 @@ public enum EShotModeType
 {
     Single,
     Burst,
-    Auto
+    Auto,
+    Max
 }

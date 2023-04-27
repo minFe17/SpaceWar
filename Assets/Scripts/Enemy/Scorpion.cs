@@ -51,7 +51,7 @@ public class Scorpion : MovableEnemy
     {
         MakeMoney();
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
-        _enemyController._enemyList.Remove(this);
+        _enemyController.EnemyList.Remove(this);
         Destroy(this.gameObject);
     }
 

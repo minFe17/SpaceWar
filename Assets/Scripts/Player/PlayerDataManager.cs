@@ -4,27 +4,27 @@ public class PlayerDataManager : MonoBehaviour
 {
     // ½Ì±ÛÅæ
     int _maxHp = 10;
-    public int MaxHp { get { return _maxHp; } set { _maxHp = value; } }
+    public int MaxHp { get => _maxHp; set => _maxHp = value;  }
     int _curHp;
-    public int CurHp { get { return _curHp; } set { _curHp = value; } }
+    public int CurHp { get => _curHp; set => _curHp = value;  }
 
     int _maxAmmo = 30;
-    public int MaxAmmo { get { return _maxAmmo; } set { _maxAmmo = value; } }
+    public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value;  }
     int _curAmmo;
-    public int CurAmmo { get { return _curAmmo; } set { _curAmmo = value; } }
+    public int CurAmmo { get => _curAmmo; set => _curAmmo = value; }
 
     float _moveSpeed = 5f;
-    public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
+    public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
     float _splintSpeed = 5f;
-    public float SplintSpeed {  get { return _splintSpeed; } }
+    public float SplintSpeed {  get => _splintSpeed;  }
 
     EShotModeType _shotMode;
-    public EShotModeType ShotMode { get { return _shotMode; } set { _shotMode = value; } }
+    public EShotModeType ShotMode { get => _shotMode; set => _shotMode = value;  }
     bool _unlockBurstMode;
     bool _unlockAutoMode;
 
     int _money = 30;
-    public int Money { get { return _money; } set { _money = value; } }
+    public int Money { get => _money; set => _money = value; }
 
     public void SettingPlayerData()
     {
@@ -35,6 +35,4 @@ public class PlayerDataManager : MonoBehaviour
         _shotMode = EShotModeType.Single;
 
     }
-
-
 }

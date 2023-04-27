@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
@@ -20,7 +19,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] TMP_Text _killEnemyText;
     [SerializeField] TMP_Text _moneyText;
 
-    public List<Transform[]> _wavePos = new List<Transform[]>();
+    List<Transform[]> _wavePos = new List<Transform[]>();
 
     Vector3 _dieWavePos;
 

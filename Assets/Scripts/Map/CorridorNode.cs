@@ -38,7 +38,6 @@ public class CorridorNode : Node
             default:
                 break;
         }
-
     }
 
     void ProcessRoomInRelationUpOrDown(Node structure1, Node structure2)
@@ -207,7 +206,7 @@ public class CorridorNode : Node
 
     float CalculateAngle(Vector2 middlePointStructure1Temp, Vector2 middlePointStructure2Temp)
     {
-        return Mathf.Atan2(middlePointStructure2Temp.y - middlePointStructure1Temp.y, 
+        return Mathf.Atan2(middlePointStructure2Temp.y - middlePointStructure1Temp.y,
                            middlePointStructure2Temp.x - middlePointStructure1Temp.x) * Mathf.Rad2Deg;
     }
 }

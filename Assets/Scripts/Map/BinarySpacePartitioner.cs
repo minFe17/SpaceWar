@@ -5,13 +5,10 @@ using Random = UnityEngine.Random;
 public class BinarySpacePartitioner
 {
     RoomNode _rootNode;
-
     public RoomNode RootNode { get => _rootNode; }
 
-    // BinarySpacePartitioner 생성자
     public BinarySpacePartitioner(int dungeonWidth, int dungeonLength)
     {
-        // RoomNode 생성자 호출
         _rootNode = new RoomNode(new Vector2Int(0, 0), new Vector2Int(dungeonWidth, dungeonLength), null, 0);
     }
 
@@ -74,8 +71,8 @@ public class BinarySpacePartitioner
     Line GetLineDividingSpace(Vector2Int bottomLeftAreaCorner, Vector2Int topRightAreaCorner, int roomWidthMin, int roomLengthMin)
     {
         EOrientation orientation;
-        bool isLengthStatus = (topRightAreaCorner.y - bottomLeftAreaCorner.y) >= 2 * roomWidthMin;  // 세로 길이가 더 크면 True
-        bool isWidthStatus = (topRightAreaCorner.x - bottomLeftAreaCorner.x) >= 2 * roomLengthMin;  // 가로 길이가 더 크면 True
+        bool isLengthStatus = (topRightAreaCorner.y - bottomLeftAreaCorner.y) >= 2 * roomWidthMin;  
+        bool isWidthStatus = (topRightAreaCorner.x - bottomLeftAreaCorner.x) >= 2 * roomLengthMin;
         if (isLengthStatus && isWidthStatus)
         {
             orientation = (EOrientation)(Random.Range(0, 2));

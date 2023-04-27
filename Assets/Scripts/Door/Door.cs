@@ -4,10 +4,10 @@ public class Door : MonoBehaviour
 {
     [SerializeField] GameObject _leftDoor;
     [SerializeField] GameObject _rightDoor;
-
-    [SerializeField] float _speed;
     [SerializeField] Transform _leftDoorArea;
     [SerializeField] Transform _rightDoorArea;
+
+    [SerializeField] float _speed;
 
     BoxCollider _collider;
     Vector3 _doorPos;
@@ -18,8 +18,8 @@ public class Door : MonoBehaviour
     {
         _collider = GetComponent<BoxCollider>();
         _doorPos = _leftDoor.transform.position;
-        if(gameObject.GetComponentInParent<DoorList>())
-            gameObject.GetComponentInParent<DoorList>()._doors.Add(this);
+        if (gameObject.GetComponentInParent<DoorList>())
+            gameObject.GetComponentInParent<DoorList>().Doors.Add(this);
     }
 
     void Update()
@@ -32,15 +32,15 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
             _isOpen = true;
-        else if (other.gameObject.tag == "Wall")
+        else if (other.gameObject.CompareTag("Wall"))
             Destroy(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
             _isOpen = false;
     }
 

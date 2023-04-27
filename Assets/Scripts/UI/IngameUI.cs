@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -19,7 +17,7 @@ public class IngameUI : MonoBehaviour
 
     [SerializeField] TMP_Text _ammoText;
 
-    public List<GameObject> shotModeImageList = new List<GameObject>();
+    [SerializeField] List<GameObject> _shotModeImageList = new List<GameObject>();
     [SerializeField] TMP_Text _shotModeText;
 
     public void ShowHp()
@@ -58,28 +56,13 @@ public class IngameUI : MonoBehaviour
     public void ShowShotMode()
     {
         EShotModeType shotMode = GenericSingleton<PlayerDataManager>.Instance.ShotMode;
-        switch(shotMode)
+        for (int i = 0; i < (int)EShotModeType.Max; i++)
         {
-            case EShotModeType.Single:
-                shotModeImageList[0].SetActive(true);
-                shotModeImageList[1].SetActive(false);
-                shotModeImageList[2].SetActive(false);
-                _shotModeText.text = "Single";
-                break;
-            case EShotModeType.Burst:
-                shotModeImageList[0].SetActive(false);
-                shotModeImageList[1].SetActive(true);
-                shotModeImageList[2].SetActive(false);
-                _shotModeText.text = "Burst";
-                break;
-            case EShotModeType.Auto:
-                shotModeImageList[0].SetActive(false);
-                shotModeImageList[1].SetActive(false);
-                shotModeImageList[2].SetActive(true);
-                _shotModeText.text = "Auto";
-                break;
+            if (i == (int)shotMode)
+                _shotModeImageList[i].SetActive(true);
+            else
+                _shotModeImageList[i].SetActive(false);
         }
+        _shotModeText.text = shotMode.ToString();
     }
-
-    
 }

@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 using Utils;
 
 public class DungeonCreator : MonoBehaviour
 {
-    public int _dungeonWidth;   // 맵 가로 길이
-    public int _dungeonLength;  // 맵 세로 길이
-    public int _roomWidthMin;   // 방 최소 가로 길이
-    public int _roomLengthMin;  // 방 최소 세로 길이
-    public int _maxIterations;  // 최대 반복?
+    public int _dungeonWidth;  
+    public int _dungeonLength; 
+    public int _roomWidthMin;   
+    public int _roomLengthMin;  
+    public int _maxIterations;  
     public Material _material;
 
     public GameObject _wallVertical;
@@ -23,12 +22,12 @@ public class DungeonCreator : MonoBehaviour
     public int _enemyControllerOffset;
 
     [Range(5, 15)]
-    public int _corridorWidth;  // 복도 넓이
-    [Range(0.0f, 0.3f)] //슬라이더 범위 지정
+    public int _corridorWidth;  
+    [Range(0.0f, 0.3f)] 
     public float _roomBottomCornerModifier;
-    [Range(0.7f, 1.0f)] //슬라이더 범위 지정
+    [Range(0.7f, 1.0f)] 
     public float _roomTopCornerModifier;
-    [Range(0, 10)]       //슬라이더 범위 지정
+    [Range(0, 10)]       
     public int _roomOffset;
 
     List<Vector3Int> _possibleWallVerticalPosition;
@@ -58,7 +57,7 @@ public class DungeonCreator : MonoBehaviour
 
         DoorList doorList = CreateDoorList(transform);
 
-        for (int i = 0; i < listOfRooms.Count; i++)     // 방 생성
+        for (int i = 0; i < listOfRooms.Count; i++)  
         {
             GameObject room = CreateMesh(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, i);
             Vector3 createPos = CalculateCreatePosition(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
@@ -81,14 +80,14 @@ public class DungeonCreator : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < listOfCorridors.Count; i++) // 복도 생성
+        for (int i = 0; i < listOfCorridors.Count; i++)
         {
             CreateMesh(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, i);
         }
 
         CreateWalls(wallParent);
 
-        for (int i = 0; i < listOfCorridors.Count; i++)  // 문 생성, 벽 생성 후 하기 위해서
+        for (int i = 0; i < listOfCorridors.Count; i++) 
         {
             CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, doorList.gameObject, wallParent);
         }
@@ -226,13 +225,13 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject doorParent, GameObject wallParent)
     {
-        if ((topRightCorner.x - bottomLeftCorner.x) < (topRightCorner.y - bottomLeftCorner.y))  // z축이 긴 경우
+        if ((topRightCorner.x - bottomLeftCorner.x) < (topRightCorner.y - bottomLeftCorner.y)) 
         {
             Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, bottomLeftCorner.y);
             Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, topRightCorner.y);
             CreateDoor(createBottomPos, createTopPos, _doorHorizontal, doorParent);
         }
-        else // x축이 긴 경우
+        else
         {
             Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, 0, (bottomLeftCorner.y + topRightCorner.y) / 2);
             Vector3 createRightPos = new Vector3(topRightCorner.x, 0, (bottomLeftCorner.y + topRightCorner.y) / 2);

@@ -4,15 +4,12 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] int _damage;
     [SerializeField] float _lifeTime;
+    [SerializeField] protected float _speed;
 
-    CapsuleCollider _collider;
     protected Rigidbody _rigidbody;
-
-    public float _speed;
 
     void Start()
     {
-        _collider = GetComponent<CapsuleCollider>();
         _rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -20,7 +17,6 @@ public class Bullet : MonoBehaviour
     {
         Invoke("Remove", _lifeTime);
     }
-
 
     public virtual void Move()
     {
@@ -34,10 +30,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
             other.gameObject.GetComponent<Enemy>().TakeDamage(_damage);
 
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
             other.gameObject.GetComponent<Player>().TakeDamage(_damage);
 
         Remove();

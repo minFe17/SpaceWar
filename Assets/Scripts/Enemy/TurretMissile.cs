@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretMissile : Bullet
 {
-
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();

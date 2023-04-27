@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     // ½Ì±ÛÅæ
     int _mapStage = 1;
-    public int MapStage { get { return _mapStage; } }
+    public int MapStage { get => _mapStage; }
     int _levelStage = 1;
     int _killEnemy;
 
