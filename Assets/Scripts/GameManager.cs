@@ -5,9 +5,12 @@ using Utils;
 public class GameManager : MonoBehaviour
 {
     // ½Ì±ÛÅæ
+    public GameObject Portal { get; set; }
+
     int _mapStage = 1;
     public int MapStage { get => _mapStage; }
     int _levelStage = 1;
+    public int LevelStage { get => _levelStage; }
     int _killEnemy;
 
     float _playTime;

@@ -54,6 +54,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public virtual void Die()
+    {
+        MakeMoney();
+        GenericSingleton<GameManager>.Instance.AddKillEnemy();
+        _enemyController.EnemyList.Remove(this);
+        Destroy(this.gameObject);
+    }
+
     protected void MakeMoney()
     {
         int random = Random.Range(0, _coinList.Count);

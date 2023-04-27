@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     int _waveIndex;
 
     bool _isClear;
+    bool _isBossRoom;
 
     void Awake()
     {
@@ -31,10 +32,11 @@ public class EnemyController : MonoBehaviour
         _wave = Random.Range(0, 2);
     }
 
-    public void Init(Vector3 createPos, DoorList doorList)
+    public void Init(Vector3 createPos, DoorList doorList, bool isBossRoom)
     {
         _createPos = createPos;
         _doorList = doorList;
+        _isBossRoom = isBossRoom;
         _basePos = _createPos + _ground.center;
         _size = _ground.size;
     }
@@ -75,6 +77,12 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void SpawnBoss()
+    {
+        GenericSingleton<GameManager>.Instance.Portal.SetActive(false);
+        // EWorldType을 사용해서 보스 리소스로드 하고 소환
+    }
+
     IEnumerator SpawnEnemyRoutine()
     {
         for (_waveIndex = 0; _waveIndex <= _wave; _waveIndex++)
@@ -101,7 +109,10 @@ public class EnemyController : MonoBehaviour
         {
             GenericSingleton<GameManager>.Instance.Battle(_doorList);
             _ground.enabled = false;
-            StartCoroutine(SpawnEnemyRoutine());
+            if (!_isBossRoom)
+                StartCoroutine(SpawnEnemyRoutine());
+            else
+                SpawnBoss();
         }
     }
 }

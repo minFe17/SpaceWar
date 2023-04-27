@@ -68,6 +68,8 @@ public class DungeonCreator : MonoBehaviour
             }
             else if (i == listOfRooms.Count - 1)
             {
+                if(GenericSingleton<GameManager>.Instance.LevelStage == 5)
+                    CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList, true);
                 CreatePortal(createPos, room);
             }
             else if (listOfRooms.Count / 2 == i)
@@ -76,7 +78,7 @@ public class DungeonCreator : MonoBehaviour
             }
             else
             {
-                CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList);
+                CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList, false);
             }
         }
 
@@ -161,7 +163,7 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateShop(Vector3 createPos, GameObject parent)
     {
-        GameObject temp = Resources.Load("Prefabs/Shop") as GameObject;
+        GameObject temp = Resources.Load("Prefabs/VendingMachine") as GameObject;
         GameObject shop = Instantiate(temp, parent.transform);
         shop.transform.position = createPos;
     }
@@ -170,10 +172,11 @@ public class DungeonCreator : MonoBehaviour
     {
         GameObject temp = Resources.Load("Prefabs/Portal") as GameObject;
         GameObject portal = Instantiate(temp, parent.transform);
+        GenericSingleton<GameManager>.Instance.Portal = portal;
         portal.transform.position = createPos;
     }
 
-    void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent, DoorList doorList)
+    void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent, DoorList doorList, bool isBossRoom)
     {
         Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
         Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
@@ -181,7 +184,7 @@ public class DungeonCreator : MonoBehaviour
         GameObject temp = Instantiate(_enemyController, parent.transform);
         temp.transform.position = createPos;
         temp.GetComponent<BoxCollider>().size = new Vector3((topRight.x - bottomLeft.x) - _enemyControllerOffset, 7, (topRight.z - bottomLeft.z) - _enemyControllerOffset);
-        temp.GetComponent<EnemyController>().Init(createPos, doorList);
+        temp.GetComponent<EnemyController>().Init(createPos, doorList, isBossRoom);
     }
 
     DoorList CreateDoorList(Transform parent)
