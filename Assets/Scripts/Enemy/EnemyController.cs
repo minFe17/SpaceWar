@@ -80,7 +80,10 @@ public class EnemyController : MonoBehaviour
     public void SpawnBoss()
     {
         GenericSingleton<GameManager>.Instance.Portal.SetActive(false);
-        // EWorldType을 사용해서 보스 리소스로드 하고 소환
+        EWorldType eWorld = (EWorldType)GenericSingleton<GameManager>.Instance.MapStage;
+        GameObject temp = Resources.Load($"Prefabs/Enemys/{eWorld}/Boss") as GameObject;
+        GameObject boss = Instantiate(temp);
+        boss.transform.position = _basePos;
     }
 
     IEnumerator SpawnEnemyRoutine()

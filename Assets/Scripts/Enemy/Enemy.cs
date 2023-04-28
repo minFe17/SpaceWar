@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected int _maxHp;
     [SerializeField] protected float _attackDelay;
@@ -67,10 +67,5 @@ public class Enemy : MonoBehaviour
         int random = Random.Range(0, _coinList.Count);
         GameObject coin = Instantiate(_coinList[random]);
         coin.transform.position = transform.position;
-    }
-
-    protected virtual IEnumerator AttackRoutine()
-    {
-        yield return null;
     }
 }

@@ -1,7 +1,7 @@
+using System.Collections;
 using UnityEngine;
-using Utils;
 
-public class MovableEnemy : Enemy
+public abstract class MovableEnemy : Enemy
 {
     [SerializeField] protected int _damage;
     [SerializeField] protected float _moveSpeed;
@@ -44,4 +44,6 @@ public class MovableEnemy : Enemy
         if (other.gameObject.CompareTag("Player"))
             _isMiss = true;
     }
+
+    protected abstract IEnumerator AttackRoutine();
 }

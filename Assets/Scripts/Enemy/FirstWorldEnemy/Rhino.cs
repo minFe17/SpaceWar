@@ -1,9 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rhino : MovableEnemy
 {
+    [SerializeField] GameObject _attackArea;
+
+    ERhinoAttackType _attackType;
+
+    public Player Player { get => _player; }
+    public int Damage { get => _damage; }
+
     void Update()
     {
         LookTarget();
@@ -33,7 +39,7 @@ public class Rhino : MovableEnemy
     public override void Die()
     {
         base.Die();
-        for(int i=0; i<_enemyController.EnemyList.Count; i++)
+        for (int i = 0; i < _enemyController.EnemyList.Count; i++)
         {
             _enemyController.EnemyList[i].Die();
         }
@@ -44,4 +50,42 @@ public class Rhino : MovableEnemy
         _isHitted = false;
         _animator.SetBool("isHit", false);
     }
+
+    protected override IEnumerator AttackRoutine()
+    {
+        _isAttack = true;
+        _animator.SetBool("isMove", false);
+
+        _attackType = (ERhinoAttackType)Random.Range(0, (int)ERhinoAttackType.Max);
+        yield return new WaitForSeconds(_attackDelay / 2);
+        _animator.SetBool($"is{_attackType}", true);
+    }
+
+    void Attack()
+    {
+        _attackArea.SetActive(true);
+    }
+
+    void Shout()
+    {
+        int random = Random.Range(1, 4);
+        for (int i = 0; i < random; i++)
+            _enemyController.SpawnEnemy();
+    }
+
+    void EndAttack()
+    {
+        _animator.SetBool($"is{_attackType}", false);
+        if (_attackArea.activeSelf == true)
+            _attackArea.SetActive(false);
+        _isAttack = false;
+    }
+}
+
+public enum ERhinoAttackType
+{
+    Attack,
+    Shout,
+    Rush,
+    Max
 }

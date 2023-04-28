@@ -53,7 +53,7 @@ public class Turret : Enemy
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
     }
 
-    protected override IEnumerator AttackRoutine()
+    IEnumerator AttackRoutine()
     {
         while (!_isDie)
         {
