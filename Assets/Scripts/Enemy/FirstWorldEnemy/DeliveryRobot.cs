@@ -27,11 +27,11 @@ public class DeliveryRobot : MovableEnemy
             _animator.SetBool("isMove", false);
             _animator.SetBool("isHit", true);
             _isHitted = true;
-            Invoke("Moveable", 1f);
+            Invoke("Movable", 1f);
         }
     }
 
-    void Moveable()
+    void Movable()
     {
         _isHitted = false;
         _animator.SetBool("isHit", false);

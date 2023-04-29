@@ -2,8 +2,14 @@ using System.Collections;
 using UnityEngine;
 using Utils;
 
-public class Scorpion : MovableEnemy
+public class Raptor : MovableEnemy
 {
+    void Start()
+    {
+        _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
     void Update()
     {
         LookTarget();
@@ -12,9 +18,8 @@ public class Scorpion : MovableEnemy
 
     public override void TakeDamage(int damage)
     {
-        if(_isDie)
+        if (_isDie)
             return;
-
         _curHp -= damage;
 
         if (_curHp <= 0)
@@ -24,9 +29,8 @@ public class Scorpion : MovableEnemy
         }
         else
         {
-            _animator.SetBool("isMove", false);
             _isHitted = true;
-            Invoke("Movable", 1f);
+            _animator.SetTrigger("doHit");
         }
     }
 

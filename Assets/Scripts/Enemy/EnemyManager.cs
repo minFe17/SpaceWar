@@ -57,6 +57,9 @@ public enum EFirstWorldEnemyType
 
 public enum ESecondWorldEnemyType
 {
+    Zombie,
+    Raptor,
+    Pachy,
     Max,
 }
 

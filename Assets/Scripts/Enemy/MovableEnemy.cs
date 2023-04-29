@@ -33,6 +33,11 @@ public abstract class MovableEnemy : Enemy
         }
     }
 
+    protected void Movable()
+    {
+        _isHitted = false;
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && !_isAttack)

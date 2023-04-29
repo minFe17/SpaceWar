@@ -20,6 +20,9 @@ public class IngameUI : MonoBehaviour
     [SerializeField] List<GameObject> _shotModeImageList = new List<GameObject>();
     [SerializeField] TMP_Text _shotModeText;
 
+    [SerializeField] GameObject _bossHpBarBase;
+    [SerializeField] Image _bossHpBar;
+
     public void ShowHp()
     {
         int curHp = GenericSingleton<PlayerDataManager>.Instance.CurHp;
@@ -64,5 +67,17 @@ public class IngameUI : MonoBehaviour
                 _shotModeImageList[i].SetActive(false);
         }
         _shotModeText.text = shotMode.ToString();
+    }
+
+    public void ShowBossHpBar(int curHp, int maxHp)
+    {
+        if (_bossHpBarBase.activeSelf == false)
+            _bossHpBarBase.SetActive(true);
+        _bossHpBar.fillAmount = (float)curHp / maxHp;
+    }
+
+    public void HideBossHpBar()
+    {
+        _bossHpBarBase.SetActive(false);
     }
 }

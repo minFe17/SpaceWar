@@ -2,14 +2,20 @@ using System.Collections;
 using UnityEngine;
 using Utils;
 
-public class Rhino : MovableEnemy
+public class Scavenger : MovableEnemy
 {
     [SerializeField] GameObject _attackArea;
 
-    ERhinoAttackType _attackType;
+    public int Damage { get { return _damage; } }
 
-    public Player Player { get => _player; }
-    public int Damage { get => _damage; }
+    EAttackType _attackType;
+    public EAttackType AttackType { get { return _attackType; } }
+
+    void Start()
+    {
+        _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -22,6 +28,26 @@ public class Rhino : MovableEnemy
         base.Init(enemyController);
         _attackArea.SetActive(false);
         GenericSingleton<UIManager>.Instance.IngameUI.ShowBossHpBar(_curHp, _maxHp);
+    }
+
+    public override void Move()
+    {
+        if (!_isDie && !_isAttack)
+        {
+            _animator.SetBool("isWalk", true);
+            transform.Translate(_move.normalized * Time.deltaTime * _moveSpeed, Space.World);
+        }
+    }
+
+    void OnAttackArea()
+    {
+        _attackArea.SetActive(true);
+    }
+
+    void OffAttackArea()
+    {
+        _attackArea.SetActive(false);
+        _isAttack = false;
     }
 
     public override void TakeDamage(int damage)
@@ -37,11 +63,13 @@ public class Rhino : MovableEnemy
         {
             _animator.SetTrigger("doDie");
             _isDie = true;
+
+
         }
         else
         {
-            _animator.SetTrigger("doHit");
             _isHitted = true;
+            _animator.SetTrigger("doHit");
         }
     }
 
@@ -57,40 +85,25 @@ public class Rhino : MovableEnemy
 
     protected override IEnumerator AttackRoutine()
     {
-        _isAttack = true;
-        _animator.SetBool("isMove", false);
-
-        _attackType = (ERhinoAttackType)Random.Range(0, (int)ERhinoAttackType.Max);
-        yield return new WaitForSeconds(_attackDelay);
-        _animator.SetBool($"is{_attackType}", true);
+        if (!_isAttack)
+        {
+            _isAttack = true;
+            RandomAttack();
+            yield return null;
+        }
     }
 
-    void Attack()
+    void RandomAttack()
     {
-        _attackArea.SetActive(true);
-    }
-
-    void Shout()
-    {
-        int random = Random.Range(1, 4);
-        for (int i = 0; i < random; i++)
-            _enemyController.SpawnEnemy();
-    }
-
-    void EndAttack()
-    {
-        _animator.SetBool($"is{_attackType}", false);
-        if (_attackArea.activeSelf == true)
-            _attackArea.SetActive(false);
-        _isAttack = false;
-        Invoke("MoveAgain", _attackDelay);
+        _attackType = (EAttackType)Random.Range(1, (int)EAttackType.Max);
+        _animator.SetTrigger($"do{_attackType}");
     }
 }
 
-public enum ERhinoAttackType
+public enum EAttackType
 {
-    Attack,
-    Shout,
-    Rush,
-    Max
+    None,
+    RightSlice,
+    BothHands,
+    Max,
 }
