@@ -5,39 +5,52 @@ using Utils;
 
 public class DungeonCreator : MonoBehaviour
 {
-    public int _dungeonWidth;  
-    public int _dungeonLength; 
-    public int _roomWidthMin;   
-    public int _roomLengthMin;  
-    public int _maxIterations;  
-    public Material _material;
+    [SerializeField] int _dungeonWidth;
+    [SerializeField] int _dungeonLength;
+    [SerializeField] int _roomWidthMin;
+    [SerializeField] int _roomLengthMin;
+    [SerializeField] int _maxIterations;
 
-    public GameObject _wallVertical;
-    public GameObject _wallHorizontal;
-    public int _wallWidth;
-    public GameObject _doorVertical;
-    public GameObject _doorHorizontal;
-    public int _doorWidth;
-    public GameObject _enemyController;
-    public int _enemyControllerOffset;
+    [SerializeField] int _wallWidth;
+    [SerializeField] int _doorWidth;
+    [SerializeField] int _enemyControllerOffset;
 
     [Range(5, 15)]
-    public int _corridorWidth;  
-    [Range(0.0f, 0.3f)] 
-    public float _roomBottomCornerModifier;
-    [Range(0.7f, 1.0f)] 
-    public float _roomTopCornerModifier;
-    [Range(0, 10)]       
-    public int _roomOffset;
+    [SerializeField] int _corridorWidth;  
+    [Range(0.0f, 0.3f)]
+    [SerializeField] float _roomBottomCornerModifier;
+    [Range(0.7f, 1.0f)]
+    [SerializeField] float _roomTopCornerModifier;
+    [Range(0, 10)]
+    [SerializeField] int _roomOffset;
 
     List<Vector3Int> _possibleWallVerticalPosition;
     List<Vector3Int> _possibleWallHorizontalPosition;
 
+    Material _material;
+
+    GameObject _wallHorizontal;
+    GameObject _wallVertical;
+    GameObject _doorVertical;
+    GameObject _doorHorizontal;
+
+    GameObject _enemyController;
     PlayerSpawn _playerSpawn;
 
     void Start()
     {
+        Init();
         CreateDungeon();
+    }
+
+    void Init()
+    {
+        _material = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/FloorMaterial") as Material;
+        _wallHorizontal = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/Wall/WallHorizontal") as GameObject;
+        _wallVertical = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/Wall/WallVertical") as GameObject;
+        _doorHorizontal = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/Door/DoorHorizontal") as GameObject;
+        _doorVertical = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/Door/DoorVertical") as GameObject;
+        _enemyController = Resources.Load($"Prefabs/EnemyController") as GameObject;
     }
 
     public void CreateDungeon()
