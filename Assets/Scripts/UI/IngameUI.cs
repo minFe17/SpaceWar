@@ -23,6 +23,13 @@ public class IngameUI : MonoBehaviour
     [SerializeField] GameObject _bossHpBarBase;
     [SerializeField] Image _bossHpBar;
 
+    [SerializeField] GameObject _miniBossHpBarBase;
+    [SerializeField] Image _firstMiniBossHpBar;
+    [SerializeField] Image _secondMiniBossHpBar;
+
+    MiniScavenger _firstMiniScavenger;
+    MiniScavenger _secondMiniScavenger;
+
     public void ShowHp()
     {
         int curHp = GenericSingleton<PlayerDataManager>.Instance.CurHp;
@@ -79,5 +86,29 @@ public class IngameUI : MonoBehaviour
     public void HideBossHpBar()
     {
         _bossHpBarBase.SetActive(false);
+    }
+
+    public void CreateMiniBossHpBar(GameObject firstMiniScavenger, GameObject secondMiniScavenger)
+    {
+        if (_firstMiniScavenger == null || _secondMiniScavenger == null)
+        {
+            _firstMiniScavenger = firstMiniScavenger.GetComponent<MiniScavenger>();
+            _secondMiniScavenger = secondMiniScavenger.GetComponent<MiniScavenger>();
+        }
+        ShowMiniBossHpBar();
+    }
+
+    public void ShowMiniBossHpBar()
+    {
+        if (_miniBossHpBarBase.activeSelf == false)
+            _miniBossHpBarBase.SetActive(true);
+
+        _firstMiniBossHpBar.fillAmount = (float)_firstMiniScavenger.CurHp / _firstMiniScavenger.MaxHp;
+        _secondMiniBossHpBar.fillAmount = (float)_secondMiniScavenger.CurHp / _firstMiniScavenger.MaxHp;
+    }
+
+    public void HideMiniBossHpBar()
+    {
+        _miniBossHpBarBase.SetActive(false);
     }
 }

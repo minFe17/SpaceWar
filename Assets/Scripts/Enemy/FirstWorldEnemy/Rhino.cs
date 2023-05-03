@@ -53,6 +53,7 @@ public class Rhino : MovableEnemy
         {
             _enemyController.EnemyList[i].Die();
         }
+        GenericSingleton<GameManager>.Instance.Portal.SetActive(true);
     }
 
     protected override IEnumerator AttackRoutine()
@@ -70,13 +71,6 @@ public class Rhino : MovableEnemy
         _attackArea.SetActive(true);
     }
 
-    void Shout()
-    {
-        int random = Random.Range(1, 4);
-        for (int i = 0; i < random; i++)
-            _enemyController.SpawnEnemy();
-    }
-
     void EndAttack()
     {
         _animator.SetBool($"is{_attackType}", false);
@@ -84,6 +78,13 @@ public class Rhino : MovableEnemy
             _attackArea.SetActive(false);
         _isAttack = false;
         Invoke("MoveAgain", _attackDelay);
+    }
+
+    void Shout()
+    {
+        int random = Random.Range(1, 4);
+        for (int i = 0; i < random; i++)
+            _enemyController.SpawnEnemy();
     }
 }
 
