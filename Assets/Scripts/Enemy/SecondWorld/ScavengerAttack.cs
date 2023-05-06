@@ -1,22 +1,19 @@
 using UnityEngine;
 
-public class ScavengerAttack : MonoBehaviour
+public class ScavengerAttack : AttackArea
 {
     [SerializeField] Scavenger _boss;
 
-    private void OnTriggerEnter(Collider other)
+    public override void HitPlayer()
     {
-        if (other.gameObject.CompareTag("Player"))
+        switch (_boss.AttackType)
         {
-            switch (_boss.AttackType)
-            {
-                case EAttackType.RightSlice:
-                    other.GetComponent<Player>().TakeDamage(_boss.Damage);
-                    break;
-                case EAttackType.BothHands:
-                    other.GetComponent<Player>().TakeDamage(_boss.Damage * 2);
-                    break;
-            }
+            case EAttackType.RightSlice:
+                _enemy.Player.TakeDamage(_enemy.Damage);
+                break;
+            case EAttackType.BothHands:
+                _enemy.Player.TakeDamage(_enemy.Damage * 2);
+                break;
         }
     }
 }

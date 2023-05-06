@@ -1,13 +1,8 @@
-using System.Collections;
 using UnityEngine;
 using Utils;
 
 public class Scavenger : MovableEnemy
 {
-    [SerializeField] protected GameObject _attackArea;
-
-    public int Damage { get { return _damage; } }
-
     EAttackType _attackType;
     public EAttackType AttackType { get { return _attackType; } }
 
@@ -81,26 +76,10 @@ public class Scavenger : MovableEnemy
         GenericSingleton<UIManager>.Instance.IngameUI.CreateMiniBossHpBar(firstMiniBoss, secondMiniBoss);
     }
 
-
-    protected override IEnumerator AttackRoutine()
+    protected override void ReadyAttack()
     {
-        if (!_isAttack)
-        {
-            _isAttack = true;
-            RandomAttack();
-            yield return null;
-        }
-    }
-
-    void OnAttackArea()
-    {
-        _attackArea.SetActive(true);
-    }
-
-    void OffAttackArea()
-    {
-        _attackArea.SetActive(false);
-        _isAttack = false;
+        _isAttack = true;
+        RandomAttack();
     }
 
     void Shout()

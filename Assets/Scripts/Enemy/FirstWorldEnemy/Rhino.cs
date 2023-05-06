@@ -4,12 +4,7 @@ using Utils;
 
 public class Rhino : MovableEnemy
 {
-    [SerializeField] GameObject _attackArea;
-
     ERhinoAttackType _attackType;
-
-    public Player Player { get => _player; }
-    public int Damage { get => _damage; }
 
     void Update()
     {
@@ -56,15 +51,15 @@ public class Rhino : MovableEnemy
         GenericSingleton<GameManager>.Instance.Portal.SetActive(true);
     }
 
-    protected override IEnumerator AttackRoutine()
-    {
-        _isAttack = true;
-        _animator.SetBool("isMove", false);
+    //protected override IEnumerator AttackRoutine()
+    //{
+    //    _isAttack = true;
+    //    _animator.SetBool("isMove", false);
 
-        _attackType = (ERhinoAttackType)Random.Range(0, (int)ERhinoAttackType.Max);
-        yield return new WaitForSeconds(_attackDelay);
-        _animator.SetBool($"is{_attackType}", true);
-    }
+    //    _attackType = (ERhinoAttackType)Random.Range(0, (int)ERhinoAttackType.Max);
+    //    yield return new WaitForSeconds(_attackDelay);
+    //    _animator.SetBool($"is{_attackType}", true);
+    //}
 
     void Attack()
     {

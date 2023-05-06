@@ -53,6 +53,7 @@ MonoBehaviour:
   _attackDelay: 0.7
   _damage: 1
   _moveSpeed: 3
+  _attackArea: {fileID: 8301216704425398334}
 --- !u!95 &1734458830461285799
 Animator:
   serializedVersion: 5
@@ -599,13 +600,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8301216704425823326}
+  - component: {fileID: 980242415843320285}
+  - component: {fileID: 7119548720174812620}
   m_Layer: 0
   m_Name: PA_WarriorTail5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8301216704425823326
 Transform:
   m_ObjectHideFlags: 0
@@ -621,6 +624,32 @@ Transform:
   m_Father: {fileID: 8301216704425823320}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &980242415843320285
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301216704425398334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30, y: 30, z: 150}
+  m_Center: {x: 0, y: 0, z: -50}
+--- !u!114 &7119548720174812620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301216704425398334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9696b67f3eeb64bac5ae3db7704237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 3011299888453374287}
 --- !u!1 &8301216704425398336
 GameObject:
   m_ObjectHideFlags: 0

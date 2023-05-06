@@ -544,13 +544,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4745635998310546799}
+  - component: {fileID: 3299990519087290626}
+  - component: {fileID: 57561957316911658}
   m_Layer: 6
   m_Name: Jaw_2_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4745635998310546799
 Transform:
   m_ObjectHideFlags: 0
@@ -566,6 +568,32 @@ Transform:
   m_Father: {fileID: 4745635998549142448}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3299990519087290626
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745635998310546798}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03, y: 0.03, z: 0.05}
+  m_Center: {x: 0, y: 0, z: 0.025}
+--- !u!114 &57561957316911658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4745635998310546798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c4f9f6385a66543a65f34bac388366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 4745636000298523817}
 --- !u!1 &4745635998352403339
 GameObject:
   m_ObjectHideFlags: 0
@@ -4225,6 +4253,7 @@ MonoBehaviour:
   _attackDelay: 0
   _damage: 0
   _moveSpeed: 0
+  _attackArea: {fileID: 4745635998310546798}
 --- !u!95 &4745636000298523816
 Animator:
   serializedVersion: 5

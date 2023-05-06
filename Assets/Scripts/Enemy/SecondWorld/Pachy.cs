@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using Utils;
 
 public class Pachy : MovableEnemy
 {
@@ -47,20 +45,20 @@ public class Pachy : MovableEnemy
         }
     }
 
-    protected override IEnumerator AttackRoutine()
-    {
-        _isAttack = true;
-        yield return new WaitForSeconds(_attackDelay / 2);
-        _animator.SetBool("isReady", true);
-        yield return new WaitForSeconds(1f);
-        _isRush = true;
+    //protected override IEnumerator AttackRoutine()
+    //{
+    //    _isAttack = true;
+    //    yield return new WaitForSeconds(_attackDelay / 2);
+    //    _animator.SetBool("isReady", true);
+    //    yield return new WaitForSeconds(1f);
+    //    _isRush = true;
 
-        yield return new WaitForSeconds(0.5f);
-        _animator.SetBool("isAttack", false);
-        _isRush = false;
-        yield return new WaitForSeconds(_attackDelay / 2);
-        _isAttack = false;
-    }
+    //    yield return new WaitForSeconds(0.5f);
+    //    _animator.SetBool("isAttack", false);
+    //    _isRush = false;
+    //    yield return new WaitForSeconds(_attackDelay / 2);
+    //    _isAttack = false;
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {

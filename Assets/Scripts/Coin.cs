@@ -34,7 +34,7 @@ public class Coin : MonoBehaviour
     void OnEffect()
     {
         _effect.SetActive(true);
-        Invoke("DestroyCoin()", 1f);
+        Invoke("DestroyCoin", 1f);
     }
 
     void DestroyCoin()

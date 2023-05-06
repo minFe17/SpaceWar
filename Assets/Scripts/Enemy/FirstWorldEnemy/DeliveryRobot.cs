@@ -1,7 +1,3 @@
-using System.Collections;
-using UnityEngine;
-using Utils;
-
 public class DeliveryRobot : MovableEnemy
 {
     void Update()
@@ -31,33 +27,9 @@ public class DeliveryRobot : MovableEnemy
         }
     }
 
-    void Movable()
+    protected override void Movable()
     {
         _isHitted = false;
         _animator.SetBool("isHit", false);
-    }
-
-    protected override IEnumerator AttackRoutine()
-    {
-        _isAttack = true;
-        _animator.SetBool("isMove", false);
-        yield return new WaitForSeconds(_attackDelay / 2);
-        _animator.SetBool("isAttack", true);
-        yield return new WaitForSeconds(0.3f);
-        if (!_isMiss)
-        {
-            _player.TakeDamage(_damage);
-            yield return new WaitForSeconds(0.5f);
-            _animator.SetBool("isAttack", false);
-            yield return new WaitForSeconds(_attackDelay / 2);
-        }
-        else
-        {
-            _animator.SetBool("isAttack", false);
-            yield return new WaitForSeconds(0.5f);
-            _isMiss = false;
-        }
-
-        _isAttack = false;
     }
 }

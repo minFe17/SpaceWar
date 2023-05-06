@@ -4,7 +4,7 @@ using Utils;
 
 public class Zombie : MovableEnemy
 {
-    
+    [SerializeField] GameObject _secondAttackArea;
 
     void Start()
     {
@@ -37,26 +37,16 @@ public class Zombie : MovableEnemy
         }
     }
 
-    protected override IEnumerator AttackRoutine()
+    protected override void Attack()
     {
-        _isAttack = true;
-        yield return new WaitForSeconds(_attackDelay / 2);
-        _animator.SetBool("isAttack", true);
-        yield return new WaitForSeconds(0.3f);
-        if (!_isMiss)
-        {
-            _player.TakeDamage(_damage);
-            yield return new WaitForSeconds(0.5f);
-            _animator.SetBool("isAttack", false);
-            yield return new WaitForSeconds(_attackDelay / 2);
-        }
-        else
-        {
-            _animator.SetBool("isAttack", false);
-            yield return new WaitForSeconds(0.5f);
-            _isMiss = false;
-        }
+        _attackArea.SetActive(true);
+        _secondAttackArea.SetActive(true);
+    }
 
+    protected override void EndAttack()
+    {
         _isAttack = false;
+        _attackArea.SetActive(false);
+        _secondAttackArea.SetActive(false);
     }
 }

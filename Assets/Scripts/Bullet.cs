@@ -11,10 +11,6 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-    }
-
-    void Update()
-    {
         Invoke("Remove", _lifeTime);
     }
 

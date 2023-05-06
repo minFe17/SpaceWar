@@ -599,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4321560399427372798
 Transform:
   m_ObjectHideFlags: 0
@@ -627,6 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48525524bfc50740b195e4aed49c3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemy: {fileID: -521279785105491617}
   _boss: {fileID: -521279785105491617}
 --- !u!65 &3349493921437266195
 BoxCollider:
@@ -827,7 +828,7 @@ MonoBehaviour:
   _attackDelay: 0
   _damage: 0
   _moveSpeed: 0
-  _attackArea: {fileID: 3349493921437266195}
+  _attackArea: {fileID: 3349493921437266194}
 --- !u!95 &3668376243138506110
 Animator:
   serializedVersion: 5

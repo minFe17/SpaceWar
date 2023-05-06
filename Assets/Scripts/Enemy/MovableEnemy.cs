@@ -1,10 +1,10 @@
-using System.Collections;
 using UnityEngine;
 
-public abstract class MovableEnemy : Enemy
+public class MovableEnemy : Enemy
 {
     [SerializeField] protected int _damage;
     [SerializeField] protected float _moveSpeed;
+    [SerializeField] protected GameObject _attackArea;
 
     protected Animator _animator;
     protected BoxCollider _collider;
@@ -14,7 +14,9 @@ public abstract class MovableEnemy : Enemy
 
     protected bool _isAttack;
     protected bool _isHitted;
-    protected bool _isMiss;
+
+    public Player Player { get => _player; }
+    public int Damage { get => _damage; }
 
     void Awake()
     {
@@ -33,7 +35,7 @@ public abstract class MovableEnemy : Enemy
         }
     }
 
-    protected void Movable()
+    protected virtual void Movable()
     {
         _isHitted = false;
     }
@@ -41,14 +43,23 @@ public abstract class MovableEnemy : Enemy
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && !_isAttack)
-            StartCoroutine(AttackRoutine());
+            ReadyAttack();
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void ReadyAttack()
     {
-        if (other.gameObject.CompareTag("Player"))
-            _isMiss = true;
+        _isAttack = true;
+        _animator.SetTrigger("doAttack");
     }
 
-    protected abstract IEnumerator AttackRoutine();
+    protected virtual void Attack()
+    {
+        _attackArea.SetActive(true);
+    }
+
+    protected virtual void EndAttack()
+    {
+        _isAttack = false;
+        _attackArea.SetActive(false);
+    }
 }
