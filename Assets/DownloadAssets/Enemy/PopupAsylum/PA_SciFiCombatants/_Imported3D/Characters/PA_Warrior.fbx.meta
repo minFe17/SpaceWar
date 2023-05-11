@@ -250,8 +250,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: Event Die has a time (0.833333) outside the clip's valid
-      range (0.000000..0.833333). It will never be fired
+    animationImportWarnings: Event EndAttack has a time (2.916667) outside the clip's
+      valid range (0.000000..2.916667). It will never be firedEvent Die has a time
+      (0.833333) outside the clip's valid range (0.000000..0.833333). It will never
+      be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -404,11 +406,18 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: Movable
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 0.96
     - serializedVersion: 16
       name: PA_WarriorIdle_Clip
       takeName: Take 001

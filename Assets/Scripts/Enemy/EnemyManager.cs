@@ -65,5 +65,9 @@ public enum ESecondWorldEnemyType
 
 public enum EThirdWorldEnemyType
 {
+    FireStone,
+    Bear,
+    Skeleton,
+    Golem,
     Max,
 }

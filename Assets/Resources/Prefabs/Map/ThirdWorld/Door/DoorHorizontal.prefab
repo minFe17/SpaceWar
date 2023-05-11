@@ -62,9 +62,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftDoor: {fileID: 8344872226413318883}
   _rightDoor: {fileID: 8344120162571962117}
-  _speed: 0.7
   _leftDoorArea: {fileID: 8343617049868012502}
   _rightDoorArea: {fileID: 8343617050202664363}
+  _speed: 0.7
 --- !u!54 &293496688913538603
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 590cc425744e4488580bcb847b1e0568, type: 2}
+  - {fileID: 2100000, guid: 15bc77e872865c4448dd84464fee4f25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -428,7 +428,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 590cc425744e4488580bcb847b1e0568, type: 2}
+  - {fileID: 2100000, guid: 15bc77e872865c4448dd84464fee4f25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -528,7 +528,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 590cc425744e4488580bcb847b1e0568, type: 2}
+  - {fileID: 2100000, guid: a3a7960474131d1449cd41d08669429f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -28,7 +28,8 @@ public class PlayerDataManager : MonoBehaviour
 
     public void SettingPlayerData()
     {
-        //데이터 읽어서 널이면 초기값
+        // 데이터 읽기
+        // 데이터가 널이면 초기화
         // 널이 아니면 데이터 세팅
         _curAmmo = _maxAmmo;
         _curHp = _maxHp;

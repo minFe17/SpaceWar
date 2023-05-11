@@ -9,10 +9,10 @@ public class ScavengerAttack : AttackArea
         switch (_boss.AttackType)
         {
             case EAttackType.RightSlice:
-                _enemy.Player.TakeDamage(_enemy.Damage);
+                _boss.Player.TakeDamage(_boss.Damage);
                 break;
             case EAttackType.BothHands:
-                _enemy.Player.TakeDamage(_enemy.Damage * 2);
+                _boss.Player.TakeDamage(_boss.Damage * 2);
                 break;
         }
     }

@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
             _levelStage++;
         }
 
+        // 특성 선택
+        // 데이터 쓰기
         SceneManager.LoadScene($"{(EWorldType)_mapStage}");
     }
 

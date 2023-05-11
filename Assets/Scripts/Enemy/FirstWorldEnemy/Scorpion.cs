@@ -1,7 +1,3 @@
-using System.Collections;
-using UnityEngine;
-using Utils;
-
 public class Scorpion : MovableEnemy
 {
     void Update()
@@ -26,7 +22,6 @@ public class Scorpion : MovableEnemy
         {
             _animator.SetBool("isMove", false);
             _isHitted = true;
-            Invoke("Movable", 1f);
         }
     }
 }

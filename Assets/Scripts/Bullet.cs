@@ -31,8 +31,7 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
             other.gameObject.GetComponent<Player>().TakeDamage(_damage);
-
+        
         Remove();
     }
-
 }

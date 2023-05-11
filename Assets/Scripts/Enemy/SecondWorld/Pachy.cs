@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Pachy : MovableEnemy
 {
-    bool _isRush;
-
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -14,7 +12,6 @@ public class Pachy : MovableEnemy
     {
         LookTarget();
         Move();
-        Rush();
     }
 
     public override void TakeDamage(int damage)
@@ -35,30 +32,21 @@ public class Pachy : MovableEnemy
         }
     }
 
-    public void Rush()
+    protected override void ReadyAttack()
     {
-        if (_isRush && !_isHitted && !_isDie)
-        {
-            _animator.SetBool("isReady", false);
-            _animator.SetBool("isAttack", true);
-            transform.Translate(_move.normalized * Time.deltaTime * _moveSpeed * 5, Space.World);
-        }
+        _animator.SetTrigger("doReady");
     }
 
-    //protected override IEnumerator AttackRoutine()
-    //{
-    //    _isAttack = true;
-    //    yield return new WaitForSeconds(_attackDelay / 2);
-    //    _animator.SetBool("isReady", true);
-    //    yield return new WaitForSeconds(1f);
-    //    _isRush = true;
+    protected override void Attack()
+    {
+        _isAttack = true;
+        _animator.SetTrigger("doAttack");
+    }
 
-    //    yield return new WaitForSeconds(0.5f);
-    //    _animator.SetBool("isAttack", false);
-    //    _isRush = false;
-    //    yield return new WaitForSeconds(_attackDelay / 2);
-    //    _isAttack = false;
-    //}
+    protected override void EndAttack()
+    {
+        _isAttack = false;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
