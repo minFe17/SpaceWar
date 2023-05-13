@@ -21,7 +21,6 @@ public class Scavenger : MovableEnemy
     public override void Init(EnemyController enemyController)
     {
         base.Init(enemyController);
-        _attackArea.SetActive(false);
         GenericSingleton<UIManager>.Instance.IngameUI.ShowBossHpBar(_curHp, _maxHp);
     }
 
@@ -88,8 +87,6 @@ public class Scavenger : MovableEnemy
         for (int i = 0; i < random; i++)
             _enemyController.SpawnEnemy();
         _moveSpeed += 0.3f;
-        _damage += 3;
-
     }
 
     void RandomAttack()

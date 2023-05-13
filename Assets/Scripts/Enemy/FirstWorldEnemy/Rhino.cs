@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using Utils;
 
@@ -15,7 +14,6 @@ public class Rhino : MovableEnemy
     public override void Init(EnemyController enemyController)
     {
         base.Init(enemyController);
-        _attackArea.SetActive(false);
         GenericSingleton<UIManager>.Instance.IngameUI.ShowBossHpBar(_curHp, _maxHp);
     }
 
@@ -51,28 +49,12 @@ public class Rhino : MovableEnemy
         GenericSingleton<GameManager>.Instance.Portal.SetActive(true);
     }
 
-    //protected override IEnumerator AttackRoutine()
-    //{
-    //    _isAttack = true;
-    //    _animator.SetBool("isMove", false);
-
-    //    _attackType = (ERhinoAttackType)Random.Range(0, (int)ERhinoAttackType.Max);
-    //    yield return new WaitForSeconds(_attackDelay);
-    //    _animator.SetBool($"is{_attackType}", true);
-    //}
-
-    void Attack()
-    {
-        _attackArea.SetActive(true);
-    }
-
-    void EndAttack()
+    protected override void EndAttack()
     {
         _animator.SetBool($"is{_attackType}", false);
         if (_attackArea.activeSelf == true)
             _attackArea.SetActive(false);
         _isAttack = false;
-        Invoke("MoveAgain", _attackDelay);
     }
 
     void Shout()
