@@ -8,10 +8,10 @@ public class PlayerDataManager : MonoBehaviour
     int _curHp;
     public int CurHp { get => _curHp; set => _curHp = value;  }
 
-    int _maxAmmo = 30;
-    public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value;  }
-    int _curAmmo;
-    public int CurAmmo { get => _curAmmo; set => _curAmmo = value; }
+    int _maxBullet = 30;
+    public int MaxBullet { get => _maxBullet; set => _maxBullet = value;  }
+    int _curBullet;
+    public int CurBullet { get => _curBullet; set => _curBullet = value; }
 
     float _moveSpeed = 5f;
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
@@ -31,7 +31,7 @@ public class PlayerDataManager : MonoBehaviour
         // 데이터 읽기
         // 데이터가 널이면 초기화
         // 널이 아니면 데이터 세팅
-        _curAmmo = _maxAmmo;
+        _curBullet = _maxBullet;
         _curHp = _maxHp;
         _shotMode = EShotModeType.Single;
 

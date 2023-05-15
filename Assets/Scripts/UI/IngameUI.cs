@@ -15,7 +15,7 @@ public class IngameUI : MonoBehaviour
     [SerializeField] RawImage _miniMapImage;
     [SerializeField] TMP_Text _stageText;
 
-    [SerializeField] TMP_Text _ammoText;
+    [SerializeField] TMP_Text _BulletText;
 
     [SerializeField] List<GameObject> _shotModeImageList = new List<GameObject>();
     [SerializeField] TMP_Text _shotModeText;
@@ -56,11 +56,11 @@ public class IngameUI : MonoBehaviour
         _stageText.text = $"{mapStage} - {levelStage}";
     }
 
-    public void ShowAmmo()
+    public void ShowBullet()
     {
-        int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
-        int maxAmmo = GenericSingleton<PlayerDataManager>.Instance.MaxAmmo;
-        _ammoText.text = $"{curAmmo} / {maxAmmo}";
+        int curBullet = GenericSingleton<PlayerDataManager>.Instance.CurBullet;
+        int maxBullet = GenericSingleton<PlayerDataManager>.Instance.MaxBullet;
+        _BulletText.text = $"{curBullet} / {maxBullet}";
     }
 
     public void ShowShotMode()

@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 
         GenericSingleton<UIManager>.Instance.IngameUI.ShowHp();
         GenericSingleton<UIManager>.Instance.IngameUI.ShowMoney();
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowBullet();
         GenericSingleton<UIManager>.Instance.IngameUI.ShowShotMode();
         GenericSingleton<GameManager>.Instance.StageUI();
     }
@@ -209,21 +209,21 @@ public class Player : MonoBehaviour
     {
         if (!_isDie && !_isReload)
         {
-            int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
-            if (Input.GetKeyDown(KeyCode.R) || curAmmo <= 0)
+            int curBullet = GenericSingleton<PlayerDataManager>.Instance.CurBullet;
+            if (Input.GetKeyDown(KeyCode.R) || curBullet <= 0)
             {
                 _isReload = true;
                 _animator.SetTrigger("doReload");
-                Invoke("ReloadAmmo", 2.5f);
+                Invoke("ReloadBullet", 2.5f);
             }
         }
     }
 
-    void ReloadAmmo()
+    void ReloadBullet()
     {
-        GenericSingleton<PlayerDataManager>.Instance.CurAmmo = GenericSingleton<PlayerDataManager>.Instance.MaxAmmo;
+        GenericSingleton<PlayerDataManager>.Instance.CurBullet = GenericSingleton<PlayerDataManager>.Instance.MaxBullet;
         _isReload = false;
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowBullet();
     }
 
     public void ChangeShotMode()
@@ -323,28 +323,28 @@ public class Player : MonoBehaviour
 
     IEnumerator SingleShotRoutine()
     {
-        int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
-        if (curAmmo > 0 && !_isReload)
+        int curBullet = GenericSingleton<PlayerDataManager>.Instance.CurBullet;
+        if (curBullet > 0 && !_isReload)
         {
             _isShot = true;
             _animator.SetTrigger("doSingleShot");
             yield return new WaitForSeconds(0.3f);
             MakeBullet();
-            GenericSingleton<PlayerDataManager>.Instance.CurAmmo--;
-            GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
+            GenericSingleton<PlayerDataManager>.Instance.CurBullet--;
+            GenericSingleton<UIManager>.Instance.IngameUI.ShowBullet();
             _animator.SetBool("isShotIdle", true);
             yield return new WaitForSeconds(_fireDelay);
             _isShot = false;
         }
 
-        if (GenericSingleton<PlayerDataManager>.Instance.CurAmmo <= 0)
+        if (GenericSingleton<PlayerDataManager>.Instance.CurBullet <= 0)
             Reload();
     }
 
     IEnumerator BurstShotRoutine()
     {
-        int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
-        if (curAmmo > 0 && !_isReload)
+        int curBullet = GenericSingleton<PlayerDataManager>.Instance.CurBullet;
+        if (curBullet > 0 && !_isReload)
         {
             _isShot = true;
             _animator.SetTrigger("doBurstShot");
@@ -352,41 +352,41 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             for (int i = 0; i < 3; i++)
             {
-                if (GenericSingleton<PlayerDataManager>.Instance.CurAmmo <= 0)
+                if (GenericSingleton<PlayerDataManager>.Instance.CurBullet <= 0)
                 {
                     Reload();
                     break;
                 }
                 yield return new WaitForSeconds(0.1f);
                 MakeBullet();
-                GenericSingleton<PlayerDataManager>.Instance.CurAmmo--;
-                GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
+                GenericSingleton<PlayerDataManager>.Instance.CurBullet--;
+                GenericSingleton<UIManager>.Instance.IngameUI.ShowBullet();
             }
             _animator.SetBool("isShotIdle", true);
             yield return new WaitForSeconds(_fireDelay);
             _isShot = false;
         }
 
-        if (GenericSingleton<PlayerDataManager>.Instance.CurAmmo <= 0)
+        if (GenericSingleton<PlayerDataManager>.Instance.CurBullet <= 0)
             Reload();
     }
 
     IEnumerator AutoShotRoutine()
     {
-        int curAmmo = GenericSingleton<PlayerDataManager>.Instance.CurAmmo;
-        if (curAmmo > 0 && !_isReload)
+        int curBullet = GenericSingleton<PlayerDataManager>.Instance.CurBullet;
+        if (curBullet > 0 && !_isReload)
         {
             _isShot = true;
             if (!_animator.GetCurrentAnimatorStateInfo(1).IsName("Shoot_Autoshot"))
                 _animator.SetTrigger("doAutoShot");
             yield return new WaitForSeconds(0.2f);
             MakeBullet();
-            GenericSingleton<PlayerDataManager>.Instance.CurAmmo--;
-            GenericSingleton<UIManager>.Instance.IngameUI.ShowAmmo();
+            GenericSingleton<PlayerDataManager>.Instance.CurBullet--;
+            GenericSingleton<UIManager>.Instance.IngameUI.ShowBullet();
         }
         _isShot = false;
 
-        if (GenericSingleton<PlayerDataManager>.Instance.CurAmmo <= 0)
+        if (GenericSingleton<PlayerDataManager>.Instance.CurBullet <= 0)
             Reload();
     }
 

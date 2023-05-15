@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
     public GameObject Portal { get; set; }
 
     int _mapStage = 1;
-    public int MapStage { get => _mapStage; }
     int _levelStage = 1;
-    public int LevelStage { get => _levelStage; }
     int _killEnemy;
-
     float _playTime;
+    bool _isAddPassive = true;
+
+    public int MapStage { get => _mapStage; }
+    public int LevelStage { get => _levelStage; }
 
     void Update()
     {
@@ -44,7 +45,14 @@ public class GameManager : MonoBehaviour
             _levelStage++;
         }
 
-        // 특성 선택
+        if (_isAddPassive == true)
+        {
+            _isAddPassive = false;
+            SelectPassive();
+        }
+        else
+            _isAddPassive = true;
+
         // 데이터 쓰기
         SceneManager.LoadScene($"{(EWorldType)_mapStage}");
     }
@@ -54,15 +62,23 @@ public class GameManager : MonoBehaviour
         _killEnemy++;
     }
 
+    public void StageUI()
+    {
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
+    }
+
     void PlayTime()
     {
         _playTime += Time.deltaTime;
     }
 
-    public void StageUI()
+    public void SelectPassive()
     {
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
-
+        // ui 띄우기
+        // 데이터 받아서 3가지 보여주기
+        // 선택할 때까지 씬이동 x
+        // 이름, 설명 가운데에 보이기
+        // 선택 후 ui 숨기고 씬 이동
     }
 
     public void GameOver()
