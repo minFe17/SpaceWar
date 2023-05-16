@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject AimPoint { get; set; }
     public GameOverUI GameOverUI { get; set; }
     public GameObject OptionUI { get; set; }
+    public SelectPassiveUI SelectPassiveUI { get; set; }
 
     public Player Player { get; set; }
 

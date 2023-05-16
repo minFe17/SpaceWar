@@ -51,10 +51,13 @@ public class GameManager : MonoBehaviour
             SelectPassive();
         }
         else
+        {
             _isAddPassive = true;
+            SceneManager.LoadScene($"{(EWorldType)_mapStage}");
+        }
 
         // 데이터 쓰기
-        SceneManager.LoadScene($"{(EWorldType)_mapStage}");
+
     }
 
     public void AddKillEnemy()
@@ -74,11 +77,21 @@ public class GameManager : MonoBehaviour
 
     public void SelectPassive()
     {
-        // ui 띄우기
-        // 데이터 받아서 3가지 보여주기
-        // 선택할 때까지 씬이동 x
-        // 이름, 설명 가운데에 보이기
-        // 선택 후 ui 숨기고 씬 이동
+        GenericSingleton<UIManager>.Instance.SelectPassiveUI.gameObject.SetActive(true);
+        for (int i = 0; i < 3; i++)
+        {
+            int random = Random.Range(0, (int)EPassiveType.Max);
+            foreach (stPassiveData data in GenericSingleton<CsvController>.Instance.PassiveData)
+            {
+                if (data.PASSIVE != (EPassiveType)random)
+                    continue;
+                if (GenericSingleton<PlayerDataManager>.Instance.Passive.ContainsKey(data.PASSIVE) == false)
+                {
+                    //GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = new
+                }
+
+            }
+        }
     }
 
     public void GameOver()

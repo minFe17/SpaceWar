@@ -6,6 +6,7 @@ public class MainUI : MonoBehaviour
     [SerializeField] GameObject _aimPoint;
     [SerializeField] GameOverUI _gameOverUI;
     [SerializeField] GameObject _optionUI;
+    [SerializeField] SelectPassiveUI _selectPassiveUI;
 
     public void Init(UIManager uiManager)
     {
@@ -13,5 +14,6 @@ public class MainUI : MonoBehaviour
         uiManager.AimPoint = _aimPoint;
         uiManager.GameOverUI = _gameOverUI;
         uiManager.OptionUI = _optionUI;
+        uiManager.SelectPassiveUI = _selectPassiveUI;
     }
 }

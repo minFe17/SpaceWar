@@ -8,15 +8,15 @@ public class CsvController : MonoBehaviour
     // 싱글톤
     // 게임데이터 파일 쓰기 함수
     // 게임데이터 파일 읽기 함수
-    List<stPassiveData> _passiveDatas = new List<stPassiveData>();
+    List<stPassiveData> _passiveData = new List<stPassiveData>();
 
-    public List<stPassiveData> PassiveDatas
+    public List<stPassiveData> PassiveData
     {
         get
         {
-            if (_passiveDatas == null)
+            if (_passiveData == null)
                 ReadPassiveData();
-            return _passiveDatas;
+            return _passiveData;
         }
     }
 
@@ -41,8 +41,8 @@ public class CsvController : MonoBehaviour
             var lineItem = data[i].Split(',');
             stPassiveData db;
             db.INDEX = int.Parse(lineItem[0]);
-            db.PASSIVENAME = (EPassiveType)Enum.Parse(typeof(EPassiveType), lineItem[1]);
-            _passiveDatas.Add(db);
+            db.PASSIVE = (EPassiveType)Enum.Parse(typeof(EPassiveType), lineItem[1]);
+            _passiveData.Add(db);
         }
     }
 }
@@ -50,7 +50,7 @@ public class CsvController : MonoBehaviour
 public struct stPassiveData
 {
     public int INDEX;
-    public EPassiveType PASSIVENAME;
+    public EPassiveType PASSIVE;
 }
 
 public enum EPassiveType
