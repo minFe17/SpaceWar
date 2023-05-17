@@ -55,7 +55,6 @@ public struct stPassiveData
 
 public enum EPassiveType
 {
-    None,
     HPUp,
     DamageUp,
     SpeedUp,

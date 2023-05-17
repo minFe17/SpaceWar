@@ -10,6 +10,7 @@ public class PlayerDataManager : MonoBehaviour
     int _curHp;
     int _maxBullet = 30;
     int _curBullet;
+    int _bulletDamage = 1;
     int _money = 30;
     float _moveSpeed = 5f;
     float _splintSpeed = 5f;
@@ -22,6 +23,7 @@ public class PlayerDataManager : MonoBehaviour
     public int CurHp { get => _curHp; set => _curHp = value; }
     public int MaxBullet { get => _maxBullet; set => _maxBullet = value; }
     public int CurBullet { get => _curBullet; set => _curBullet = value; }
+    public int BulletDamage {  get => _bulletDamage; set => _bulletDamage = value; }
     public int Money { get => _money; set => _money = value; }
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
     public float SplintSpeed { get => _splintSpeed; }

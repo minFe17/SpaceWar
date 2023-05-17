@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] int _damage;
+    [SerializeField] protected int _damage;
     [SerializeField] float _lifeTime;
     [SerializeField] protected float _speed;
 
@@ -31,7 +31,6 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
             other.gameObject.GetComponent<Player>().TakeDamage(_damage);
-        
         Remove();
     }
 }

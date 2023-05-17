@@ -87,9 +87,9 @@ public class GameManager : MonoBehaviour
                     continue;
                 if (GenericSingleton<PlayerDataManager>.Instance.Passive.ContainsKey(data.PASSIVE) == false)
                 {
-                    //GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = new
+                    GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = GenericSingleton<PassiveManager>.Instance.Passive[random];
+                    GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Init();
                 }
-
             }
         }
     }

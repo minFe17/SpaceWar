@@ -5,6 +5,6 @@ public class LobbyUI : MonoBehaviour
 {
     public void ClickButton()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("FirstWorld");
     }
 }

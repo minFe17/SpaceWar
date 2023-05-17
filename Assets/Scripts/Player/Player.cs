@@ -143,6 +143,7 @@ public class Player : MonoBehaviour
     public void AimingEnemy()
     {
         _isAiming = true;
+        _bulletPos.position = _zoomCamera.transform.position;
         GenericSingleton<UIManager>.Instance.AimPoint.SetActive(true);
         _animator.SetBool("isZoom", true);
         _mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
