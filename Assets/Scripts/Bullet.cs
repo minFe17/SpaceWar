@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 public class Bullet : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-            other.gameObject.GetComponent<Enemy>().TakeDamage(_damage);
+            other.gameObject.GetComponent<Enemy>().TakeDamage(GenericSingleton<PlayerDataManager>.Instance.BulletDamage);
 
         if (other.gameObject.CompareTag("Player"))
             other.gameObject.GetComponent<Player>().TakeDamage(_damage);

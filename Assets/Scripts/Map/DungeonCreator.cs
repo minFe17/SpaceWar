@@ -16,7 +16,7 @@ public class DungeonCreator : MonoBehaviour
     [SerializeField] int _enemyControllerOffset;
 
     [Range(5, 15)]
-    [SerializeField] int _corridorWidth;  
+    [SerializeField] int _corridorWidth;
     [Range(0.0f, 0.3f)]
     [SerializeField] float _roomBottomCornerModifier;
     [Range(0.7f, 1.0f)]
@@ -70,7 +70,7 @@ public class DungeonCreator : MonoBehaviour
 
         DoorList doorList = CreateDoorList(transform);
 
-        for (int i = 0; i < listOfRooms.Count; i++)  
+        for (int i = 0; i < listOfRooms.Count; i++)
         {
             GameObject room = CreateMesh(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, i);
             Vector3 createPos = CalculateCreatePosition(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
@@ -81,7 +81,7 @@ public class DungeonCreator : MonoBehaviour
             }
             else if (i == listOfRooms.Count - 1)
             {
-                if(GenericSingleton<GameManager>.Instance.LevelStage == 5)
+                if (GenericSingleton<GameManager>.Instance.LevelStage == 5)
                     CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList, true);
                 CreatePortal(createPos, room);
             }
@@ -102,7 +102,7 @@ public class DungeonCreator : MonoBehaviour
 
         CreateWalls(wallParent);
 
-        for (int i = 0; i < listOfCorridors.Count; i++) 
+        for (int i = 0; i < listOfCorridors.Count; i++)
         {
             CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, doorList.gameObject, wallParent);
         }
@@ -241,7 +241,7 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject doorParent, GameObject wallParent)
     {
-        if ((topRightCorner.x - bottomLeftCorner.x) < (topRightCorner.y - bottomLeftCorner.y)) 
+        if ((topRightCorner.x - bottomLeftCorner.x) < (topRightCorner.y - bottomLeftCorner.y))
         {
             Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, bottomLeftCorner.y);
             Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, topRightCorner.y);

@@ -9,7 +9,7 @@ public class BinarySpacePartitioner
 
     public BinarySpacePartitioner(int dungeonWidth, int dungeonLength)
     {
-        _rootNode = new RoomNode(new Vector2Int(0, 0), new Vector2Int(dungeonWidth, dungeonLength), null, 0);
+        _rootNode = new RoomNode(new Vector2Int(0, 0), new Vector2Int(dungeonWidth, dungeonLength), null, 0);   //최상위 룸노드 생성
     }
 
     public List<RoomNode> PrepareNodesCollection(int maxIterations, int roomWidthMin, int roomLengthMin)
@@ -18,14 +18,14 @@ public class BinarySpacePartitioner
         List<RoomNode> listToReturn = new List<RoomNode>();
         graph.Enqueue(_rootNode);
         listToReturn.Add(_rootNode);
-        int iterations = 0;
-        while (iterations < maxIterations && graph.Count > 0)
+        int iterations = 0; // 현재 방 개수
+        while (iterations < maxIterations && graph.Count > 0)   // 방 개수 < 최대 방개수 && 큐에 개수가 0이 아니면 실행
         {
-            iterations++;
-            RoomNode currentNode = graph.Dequeue();
-            if (currentNode.Width >= roomWidthMin * 2 || currentNode.Length >= roomLengthMin * 2)
+            iterations++;   // 현재 방 1개 추가
+            RoomNode currentNode = graph.Dequeue(); // 큐 안에 있는 룸노드 1개 꺼내서 currentNode에 저장
+            if (currentNode.Width >= roomWidthMin * 2 || currentNode.Length >= roomLengthMin * 2)   // currentNode가 방을 나눌 수 있으면 실행 
             {
-                SplitTheSpace(currentNode, listToReturn, roomWidthMin, roomLengthMin, graph);
+                SplitTheSpace(currentNode, listToReturn, roomWidthMin, roomLengthMin, graph); 
             }
         }
         return listToReturn;
@@ -71,19 +71,20 @@ public class BinarySpacePartitioner
     Line GetLineDividingSpace(Vector2Int bottomLeftAreaCorner, Vector2Int topRightAreaCorner, int roomWidthMin, int roomLengthMin)
     {
         EOrientation orientation;
-        bool isLengthStatus = (topRightAreaCorner.y - bottomLeftAreaCorner.y) >= 2 * roomWidthMin;  
-        bool isWidthStatus = (topRightAreaCorner.x - bottomLeftAreaCorner.x) >= 2 * roomLengthMin;
+        bool isWidthStatus = (topRightAreaCorner.x - bottomLeftAreaCorner.x) >= 2 * roomWidthMin;   // 가로길이 >= 2 * 방 최소 가로 길이
+        bool isLengthStatus = (topRightAreaCorner.y - bottomLeftAreaCorner.y) >= 2 * roomLengthMin; // 세로길이 >= 2 * 방 최소 세로 길이
+
         if (isLengthStatus && isWidthStatus)
         {
             orientation = (EOrientation)(Random.Range(0, 2));
         }
-        else if (isLengthStatus)
+        else if (isWidthStatus)
         {
-            orientation = EOrientation.Horizontal;
+            orientation = EOrientation.Vertical;    
         }
         else
         {
-            orientation = EOrientation.Vertical;
+            orientation = EOrientation.Horizontal;  
         }
         return new Line(orientation, GetCoordinatesFororientation(orientation, bottomLeftAreaCorner, topRightAreaCorner, roomWidthMin, roomLengthMin));
     }
@@ -91,14 +92,11 @@ public class BinarySpacePartitioner
     Vector2Int GetCoordinatesFororientation(EOrientation orientation, Vector2Int bottomLeftAreaCorner, Vector2Int topRightAreaCorner, int roomWidthMin, int roomLengthMin)
     {
         Vector2Int coordinates = Vector2Int.zero;
-        if (orientation == EOrientation.Horizontal)
-        {
-            coordinates = new Vector2Int(0, Random.Range((bottomLeftAreaCorner.y + roomLengthMin), (topRightAreaCorner.y - roomLengthMin)));
-        }
+        if (orientation == EOrientation.Vertical)
+            coordinates = new Vector2Int(Random.Range((bottomLeftAreaCorner.x + roomWidthMin), (topRightAreaCorner.x - roomWidthMin)), 0);  // 방을 양옆으로 나누기(x : 랜덤 y : 0)
         else
-        {
-            coordinates = new Vector2Int(Random.Range((bottomLeftAreaCorner.x + roomWidthMin), (topRightAreaCorner.x - roomWidthMin)), 0);
-        }
+            coordinates = new Vector2Int(0, Random.Range((bottomLeftAreaCorner.y + roomLengthMin), (topRightAreaCorner.y - roomLengthMin)));// 방을 위아래로 나누기(x : 0 y : 랜덤)
+
         return coordinates;
     }
 }

@@ -190,8 +190,8 @@ public class CorridorNode : Node
 
     ERelativePositionType CheckPositionStructure2AgainstStructure1()
     {
-        Vector2 middlePointStructure1Temp = ((Vector2)_structure1.TopRightAreaCorner + _structure1.BottomLeftAreaCorner) / 2;
-        Vector2 middlePointStructure2Temp = ((Vector2)_structure2.TopRightAreaCorner + _structure2.BottomLeftAreaCorner) / 2;
+        Vector2 middlePointStructure1Temp = ((Vector2)_structure1.TopRightAreaCorner + _structure1.BottomLeftAreaCorner) / 2;   // 첫번째 방 중심
+        Vector2 middlePointStructure2Temp = ((Vector2)_structure2.TopRightAreaCorner + _structure2.BottomLeftAreaCorner) / 2;   // 두번째 방 중심
         float angle = CalculateAngle(middlePointStructure1Temp, middlePointStructure2Temp);
 
         if ((angle < 45 && angle >= 0) || (angle > -45 && angle < 0))

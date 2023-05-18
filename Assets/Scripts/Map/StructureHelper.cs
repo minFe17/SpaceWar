@@ -36,16 +36,18 @@ public static class StructureHelper
 
     public static Vector2Int GenerateBottomLeftCornerBetween(Vector2Int boundaryLeftPoint, Vector2Int boundaryRightPoint, float pointModifier, int offset)
     {
+        // 왼쪽 아래 오프셋 주기
         int minX = boundaryLeftPoint.x + offset;
         int maxX = boundaryRightPoint.x - offset;
         int minY = boundaryLeftPoint.y + offset;
         int maxY = boundaryRightPoint.y - offset;
         return new Vector2Int(Random.Range(minX, (int)(minX + (maxX - minX) * pointModifier)),
-                              Random.Range(minY, (int)(minY + (minY - minY) * pointModifier)));
+                              Random.Range(minY, (int)(minY + (maxY - minY) * pointModifier)));
     }
 
     public static Vector2Int GenerateTopRightCornerBetween(Vector2Int boundaryLeftPoint, Vector2Int boundaryRightPoint, float pointModifier, int offset)
     {
+        // 오른쪽 위 오프셋 주기
         int minX = boundaryLeftPoint.x + offset;
         int maxX = boundaryRightPoint.x - offset;
         int minY = boundaryLeftPoint.y + offset;
