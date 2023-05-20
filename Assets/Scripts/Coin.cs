@@ -27,7 +27,7 @@ public class Coin : MonoBehaviour
     void PlayerGetCoin()
     {
         _isEat = true;
-        _player.GetMoney(_money);
+        _player.GetMoney(_money + GenericSingleton<PlayerDataManager>.Instance.BonusMoney);
         _animator.SetBool("isGetCoin", true);
     }
 

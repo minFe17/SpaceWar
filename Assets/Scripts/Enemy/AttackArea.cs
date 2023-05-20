@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 public class AttackArea : MonoBehaviour
 {
@@ -12,6 +13,6 @@ public class AttackArea : MonoBehaviour
 
     public virtual void HitPlayer()
     {
-        _enemy.Player.TakeDamage(_enemy.Damage);
+        GenericSingleton<PlayerDataManager>.Instance.Player.TakeDamage(_enemy.Damage);
     }
 }

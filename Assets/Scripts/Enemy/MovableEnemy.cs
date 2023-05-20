@@ -15,7 +15,6 @@ public class MovableEnemy : Enemy
     protected bool _isAttack;
     protected bool _isHitted;
 
-    public Player Player { get => _player; }
     public int Damage { get => _damage; }
 
     void Awake()

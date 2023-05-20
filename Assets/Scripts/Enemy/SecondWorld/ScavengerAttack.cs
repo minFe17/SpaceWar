@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 public class ScavengerAttack : AttackArea
 {
@@ -9,10 +10,10 @@ public class ScavengerAttack : AttackArea
         switch (_boss.AttackType)
         {
             case EAttackType.RightSlice:
-                _boss.Player.TakeDamage(_boss.Damage);
+                GenericSingleton<PlayerDataManager>.Instance.Player.TakeDamage(_boss.Damage);
                 break;
             case EAttackType.BothHands:
-                _boss.Player.TakeDamage(_boss.Damage * 2);
+                GenericSingleton<PlayerDataManager>.Instance.Player.TakeDamage(_boss.Damage * 2);
                 break;
         }
     }

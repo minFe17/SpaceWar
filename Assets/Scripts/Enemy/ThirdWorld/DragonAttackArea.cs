@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 public class DragonAttackArea : AttackArea
 {
@@ -9,10 +10,10 @@ public class DragonAttackArea : AttackArea
         switch (_dragon.AttackType)
         {
             case EDragonAttackType.BasicAttack:
-                _dragon.Player.TakeDamage(_dragon.Damage);
+                GenericSingleton<PlayerDataManager>.Instance.Player.TakeDamage(_dragon.Damage);
                 break;
             case EDragonAttackType.ClawAttack:
-                _dragon.Player.TakeDamage(_dragon.Damage * 3);
+                GenericSingleton<PlayerDataManager>.Instance.Player.TakeDamage(_dragon.Damage * 3);
                 break;
         }
     }

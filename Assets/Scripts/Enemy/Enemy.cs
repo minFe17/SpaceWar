@@ -20,7 +20,7 @@ public abstract class Enemy : MonoBehaviour
     {
         _enemyController = enemyController;
         _target = GenericSingleton<EnemyManager>.Instance.Target;
-        _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
+        _player = GenericSingleton<PlayerDataManager>.Instance.Player;
         _curHp = _maxHp;
         _enemyController.EnemyList.Add(this);
         AddCoinList();
@@ -57,6 +57,7 @@ public abstract class Enemy : MonoBehaviour
     {
         MakeMoney();
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
+        _player.Vampirism();
         _enemyController.EnemyList.Remove(this);
         Destroy(this.gameObject);
     }

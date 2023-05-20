@@ -51,6 +51,7 @@ public class Turret : Enemy
         _gun.localEulerAngles = new Vector3(60, _gun.eulerAngles.y, _gun.eulerAngles.z);
         MakeMoney();
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
+        _player.Vampirism();
     }
 
     IEnumerator AttackRoutine()

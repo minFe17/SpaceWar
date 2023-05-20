@@ -299,7 +299,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -70}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &183486497799631751
 CanvasRenderer:
@@ -342,7 +342,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC77C\uC815 \uD655\uB960\uB85C HP\uD68C\uBCF5"
+  m_Text: "\uBCF4\uC720\uD558\uACE0 \uC788\uB294 \uB3C8\uC774 50\uC744 \uB118\uC744
+    \uB54C\uB9C8\uB2E4 HP 1\uC529 \uC99D\uAC00"
 --- !u!1 &941148514550084841
 GameObject:
   m_ObjectHideFlags: 0
@@ -8498,7 +8499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa45976a00b72148beabad4651d4c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 7405106003638053980}
 --- !u!114 &1156876566713531714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10919,7 +10919,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7896418094704813817
 CanvasRenderer:
@@ -10975,9 +10975,9 @@ MonoBehaviour:
   - {fileID: 103990094484130253}
   - {fileID: 1492471747494494347}
   - {fileID: 1111708629036708545}
-  _passiveInfoPanel: {fileID: 0}
-  _passiveName: {fileID: 0}
-  _passiveInfo: {fileID: 0}
+  _passiveInfoPanel: {fileID: 2855190387876082927}
+  _passiveNameText: {fileID: 2850480222226069732}
+  _passiveInfoText: {fileID: 3911103515885638202}
 --- !u!1 &7528801437629851708
 GameObject:
   m_ObjectHideFlags: 0
@@ -11549,7 +11549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa45976a00b72148beabad4651d4c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 919843327065326525}
 --- !u!114 &1042336038825059807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12109,7 +12108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa45976a00b72148beabad4651d4c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 2753009969812115390}
 --- !u!114 &114000917241952054
 MonoBehaviour:
   m_ObjectHideFlags: 0

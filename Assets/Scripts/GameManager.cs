@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
@@ -5,14 +6,13 @@ using Utils;
 public class GameManager : MonoBehaviour
 {
     // ½Ì±ÛÅæ
-    public GameObject Portal { get; set; }
-
     int _mapStage = 1;
     int _levelStage = 1;
     int _killEnemy;
     float _playTime;
     bool _isAddPassive = true;
 
+    public GameObject Portal { get; set; }
     public int MapStage { get => _mapStage; }
     public int LevelStage { get => _levelStage; }
 
@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
         {
             _isAddPassive = false;
             SelectPassive();
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
@@ -78,19 +79,20 @@ public class GameManager : MonoBehaviour
     public void SelectPassive()
     {
         GenericSingleton<UIManager>.Instance.SelectPassiveUI.gameObject.SetActive(true);
+        List<int> passiveIndex = new List<int>();
         for (int i = 0; i < 3; i++)
         {
-            int random = Random.Range(0, (int)EPassiveType.Max);
-            foreach (stPassiveData data in GenericSingleton<CsvController>.Instance.PassiveData)
+            int random;
+
+            do
             {
-                if (data.PASSIVE != (EPassiveType)random)
-                    continue;
-                if (GenericSingleton<PlayerDataManager>.Instance.Passive.ContainsKey(data.PASSIVE) == false)
-                {
-                    GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = GenericSingleton<PassiveManager>.Instance.Passive[random];
-                    GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Init();
-                }
+                random = Random.Range(0, GenericSingleton<PassiveManager>.Instance.Passive.Count);
             }
+            while (passiveIndex.Contains(random));
+
+            passiveIndex.Add(random);
+            GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = GenericSingleton<PassiveManager>.Instance.Passive[random];
+            GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Init();
         }
     }
 
