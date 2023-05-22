@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 41854074}
   - component: {fileID: 41854073}
+  - component: {fileID: 41854075}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -217,50 +218,26 @@ Transform:
   m_Father: {fileID: 1223870235}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 112.007, y: 275.928, z: -635.782}
---- !u!1 &125801505
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 125801507}
-  - component: {fileID: 125801506}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &125801506
+--- !u!114 &41854075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125801505}
+  m_GameObject: {fileID: 41854072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad147a1a073b2d47ae45fb7b31a0b74, type: 3}
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &125801507
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125801505}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &213322740
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 290523008}
   - component: {fileID: 290523007}
+  - component: {fileID: 290523009}
   m_Layer: 0
   m_Name: Directional Light (2)
   m_TagString: Untagged
@@ -423,6 +401,26 @@ Transform:
   m_Father: {fileID: 1223870235}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &290523009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290523006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1223870234
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1524028050}
   - component: {fileID: 1524028049}
+  - component: {fileID: 1524028051}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -551,6 +550,26 @@ Transform:
   m_Father: {fileID: 1223870235}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1524028051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524028048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1865552116
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +604,7 @@ MonoBehaviour:
   _roomWidthMin: 50
   _roomLengthMin: 50
   _maxIterations: 20
-  _wallWidth: 3
+  _wallWidth: 6
   _doorWidth: 10
   _enemyControllerOffset: 4
   _corridorWidth: 10

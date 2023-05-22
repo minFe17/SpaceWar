@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 41854074}
   - component: {fileID: 41854073}
+  - component: {fileID: 41854075}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -217,6 +218,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 112.007, y: 275.928, z: -635.782}
+--- !u!114 &41854075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41854072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &213322740
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,14 +340,8 @@ MonoBehaviour:
   _roomWidthMin: 50
   _roomLengthMin: 50
   _maxIterations: 20
-  _material: {fileID: 2100000, guid: fef46b4cbb7ff5641982fa83456015a7, type: 2}
-  _wallVertical: {fileID: 5492649358934495152, guid: 8c4600f76b32b5c48a82ec319a869416, type: 3}
-  _wallHorizontal: {fileID: 1781949669117437317, guid: 11601ae1f57292048b62717c60eb0dba, type: 3}
-  _wallWidth: 3
-  _doorVertical: {fileID: 327954005906293864, guid: 2ddb0ccbd4c25f443a1d33d7e7808c04, type: 3}
-  _doorHorizontal: {fileID: 4264949078167020723, guid: 76279bc7243245c4bb62e2319f5c0375, type: 3}
+  _wallWidth: 6
   _doorWidth: 10
-  _enemyController: {fileID: 1686840618348503979, guid: 3102b211582e9b44e93b1a60249ad692, type: 3}
   _enemyControllerOffset: 4
   _corridorWidth: 10
   _roomBottomCornerModifier: 0.1

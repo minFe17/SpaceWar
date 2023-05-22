@@ -29,7 +29,8 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         _ground = GetComponent<BoxCollider>();
-        _wave = Random.Range(0, 2);
+        _wave = Random.Range(1, 3);
+        _isClear = false;
     }
 
     public void Init(Vector3 createPos, DoorList doorList, bool isBossRoom)
@@ -84,11 +85,12 @@ public class EnemyController : MonoBehaviour
         GameObject temp = Resources.Load($"Prefabs/Enemys/{eWorld}/Boss") as GameObject;
         GameObject boss = Instantiate(temp);
         boss.transform.position = _basePos;
+        boss.GetComponent<Enemy>().Init(this);
     }
 
     IEnumerator SpawnEnemyRoutine()
     {
-        for (_waveIndex = 0; _waveIndex <= _wave; _waveIndex++)
+        for (_waveIndex = 1; _waveIndex <= _wave; _waveIndex++)
         {
             yield return new WaitForSeconds(_spawnDelay);
             int enemyCount = Random.Range(_minEnemy, _maxEnemy);
@@ -110,6 +112,7 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !_isClear)
         {
+            Debug.Log(1);
             GenericSingleton<GameManager>.Instance.Battle(_doorList);
             _ground.enabled = false;
             if (!_isBossRoom)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 public class DungeonCreator : MonoBehaviour
@@ -45,11 +46,12 @@ public class DungeonCreator : MonoBehaviour
 
     void Init()
     {
-        _material = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/FloorMaterial") as Material;
-        _wallHorizontal = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/Wall/WallHorizontal") as GameObject;
-        _wallVertical = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/Wall/WallVertical") as GameObject;
-        _doorHorizontal = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/Door/DoorHorizontal") as GameObject;
-        _doorVertical = Resources.Load($"Prefabs/Map/{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}/Door/DoorVertical") as GameObject;
+        Scene scene = SceneManager.GetActiveScene();
+        _material = Resources.Load($"Prefabs/Map/{scene.name}/FloorMaterial") as Material;
+        _wallHorizontal = Resources.Load($"Prefabs/Map/{scene.name}/Wall/WallHorizontal") as GameObject;
+        _wallVertical = Resources.Load($"Prefabs/Map/{scene.name}/Wall/WallVertical") as GameObject;
+        _doorHorizontal = Resources.Load($"Prefabs/Map/{scene.name}/Door/DoorHorizontal") as GameObject;
+        _doorVertical = Resources.Load($"Prefabs/Map/{scene.name}/Door/DoorVertical") as GameObject;
         _enemyController = Resources.Load($"Prefabs/EnemyController") as GameObject;
     }
 

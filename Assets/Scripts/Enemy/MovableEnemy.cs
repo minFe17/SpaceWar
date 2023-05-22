@@ -7,7 +7,6 @@ public class MovableEnemy : Enemy
     [SerializeField] protected GameObject _attackArea;
 
     protected Animator _animator;
-    protected BoxCollider _collider;
     protected Rigidbody _rigidbody;
 
     protected Vector3 _move;
@@ -20,7 +19,6 @@ public class MovableEnemy : Enemy
     void Awake()
     {
         _animator = GetComponent<Animator>();
-        _collider = GetComponent<BoxCollider>();
         _rigidbody = GetComponent<Rigidbody>();
     }
 
