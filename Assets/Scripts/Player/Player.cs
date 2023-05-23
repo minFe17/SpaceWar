@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
 
     void Fire()
     {
-        if (Input.GetButton("Fire")/* && !_isShot */&& !_isDie)
+        if (Input.GetButton("Fire") && !_isDie)
         {
             switch (_playerDataManager.ShotMode)
             {
@@ -243,9 +243,9 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
                 _playerDataManager.ShotMode = EShotModeType.Single;
-            else if (Input.GetKeyDown(KeyCode.Alpha2)/* && _playerDataManager.UnlockBurstMode*/)
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && _playerDataManager.UnlockBurstMode)
                 _playerDataManager.ShotMode = EShotModeType.Burst;
-            else if (Input.GetKeyDown(KeyCode.Alpha3)/* && _playerDataManager.UnlockAutoMode*/)
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && _playerDataManager.UnlockAutoMode)
                 _playerDataManager.ShotMode = EShotModeType.Auto;
 
             _uiManager.IngameUI.ShowShotMode();

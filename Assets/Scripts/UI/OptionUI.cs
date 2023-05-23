@@ -19,4 +19,9 @@ public class OptionUI : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         GenericSingleton<UIManager>.Instance.Player.OptionUIState(false);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
