@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
 
     void Fire()
     {
-        if (Input.GetButton("Fire") && !_isShot && !_isDie)
+        if (Input.GetButton("Fire")/* && !_isShot */&& !_isDie)
         {
             switch (_playerDataManager.ShotMode)
             {
@@ -215,7 +215,6 @@ public class Player : MonoBehaviour
     void ShotIdle()
     {
         _animator.SetBool("isShotIdle", false);
-        _isShot = false;
     }
 
     void Reload()
@@ -353,7 +352,7 @@ public class Player : MonoBehaviour
 
     void StartSingleShot()
     {
-        if (_playerDataManager.CurBullet > 0 && !_isReload)
+        if (_playerDataManager.CurBullet > 0 && !_isReload && !_isShot)
         {
             _isShot = true;
             _animator.SetTrigger("doSingleShot");
@@ -379,6 +378,7 @@ public class Player : MonoBehaviour
         _animator.SetBool("isShotIdle", true);
         if (_playerDataManager.CurBullet <= 0)
             Reload();
+        _isShot = false;
     }
 
     void StartBurstShot()
@@ -402,9 +402,9 @@ public class Player : MonoBehaviour
 
     void EndAutoShot()
     {
+        _isShot = false;
         if (_playerDataManager.CurBullet <= 0)
             Reload();
-        _isShot = false;
     }
 
     IEnumerator JumpRoutine()
