@@ -90,7 +90,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator SpawnEnemyRoutine()
     {
-        for (_waveIndex = 1; _waveIndex <= _wave; _waveIndex++)
+        for (_waveIndex = 0; _waveIndex < _wave; _waveIndex++)
         {
             yield return new WaitForSeconds(_spawnDelay);
             int enemyCount = Random.Range(_minEnemy, _maxEnemy);
@@ -112,7 +112,6 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !_isClear)
         {
-            Debug.Log(1);
             GenericSingleton<GameManager>.Instance.Battle(_doorList);
             _ground.enabled = false;
             if (!_isBossRoom)

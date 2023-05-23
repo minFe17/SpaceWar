@@ -25,8 +25,8 @@ public class DungeonCreator : MonoBehaviour
     [Range(0, 10)]
     [SerializeField] int _roomOffset;
 
-    List<Vector3Int> _possibleWallVerticalPosition;
-    List<Vector3Int> _possibleWallHorizontalPosition;
+    List<Vector3Int> _possibleWallVerticalPosition = new List<Vector3Int>();
+    List<Vector3Int> _possibleWallHorizontalPosition = new List<Vector3Int>();
 
     Material _material;
 
@@ -60,16 +60,12 @@ public class DungeonCreator : MonoBehaviour
         DestroyAllChildren();
         DungeonGenerator generator = new DungeonGenerator(_dungeonWidth, _dungeonLength);
         var listOfRooms = generator.CalculateDungeon(_maxIterations, _roomWidthMin, _roomLengthMin,
-                                                      _roomBottomCornerModifier, _roomTopCornerModifier,
-                                                      _roomOffset);
+                                                      _roomBottomCornerModifier, _roomTopCornerModifier, _roomOffset);
 
         var listOfCorridors = generator.CalculateCorridors(_corridorWidth);
 
         GameObject wallParent = new GameObject("wallParent");
         wallParent.transform.parent = transform;
-        _possibleWallVerticalPosition = new List<Vector3Int>();
-        _possibleWallHorizontalPosition = new List<Vector3Int>();
-
         DoorList doorList = CreateDoorList(transform);
 
         for (int i = 0; i < listOfRooms.Count; i++)
@@ -133,36 +129,17 @@ public class DungeonCreator : MonoBehaviour
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        GameObject dungeonFloor = new GameObject("Mesh " + j, typeof(MeshFilter), typeof(MeshRenderer));
+        GameObject dungeonFloor = new GameObject("Mesh " + j, typeof(MeshFilter), typeof(MeshRenderer)) ;
         dungeonFloor.transform.position = Vector3.zero;
         dungeonFloor.transform.localScale = Vector3.one;
+        dungeonFloor.transform.parent = transform;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = _material;
         dungeonFloor.AddComponent<MeshCollider>();
         dungeonFloor.tag = "Ground";
-        dungeonFloor.transform.parent = transform;
 
-        for (int row = (int)bottomLeft.x; row < (int)bottomRight.x; row += _wallWidth)
-        {
-            var wallPosition = new Vector3(row, 0, bottomLeft.z);
-            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
-        }
-        for (int row = (int)topLeft.x; row < (int)topRightCorner.x; row += _wallWidth)
-        {
-            var wallPosition = new Vector3(row, 0, topRight.z);
-            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
-        }
+        CalculateWallPosition(bottomLeft, bottomRight, topLeft, topRight);
 
-        for (int col = (int)bottomLeft.z; col < (int)topLeft.z; col += _wallWidth)
-        {
-            var wallPosition = new Vector3(bottomLeft.x, 0, col);
-            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition);
-        }
-        for (int col = (int)bottomRight.z; col < (int)topRight.z; col += _wallWidth)
-        {
-            var wallPosition = new Vector3(bottomRight.x, 0, col);
-            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition);
-        }
         return dungeonFloor;
     }
 
@@ -208,6 +185,31 @@ public class DungeonCreator : MonoBehaviour
         temp.transform.parent = parent;
         temp.AddComponent<DoorList>();
         return temp.GetComponent<DoorList>();
+    }
+
+    void CalculateWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
+    {
+        for (int row = (int)bottomLeft.x; row < (int)bottomRight.x; row += _wallWidth)
+        {
+            var wallPosition = new Vector3(row, 0, bottomLeft.z);
+            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
+        }
+        for (int row = (int)topLeft.x; row < (int)topRight.x; row += _wallWidth)
+        {
+            var wallPosition = new Vector3(row, 0, topRight.z);
+            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
+        }
+
+        for (int col = (int)bottomLeft.z; col < (int)topLeft.z; col += _wallWidth)
+        {
+            var wallPosition = new Vector3(bottomLeft.x, 0, col);
+            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition);
+        }
+        for (int col = (int)bottomRight.z; col < (int)topRight.z; col += _wallWidth)
+        {
+            var wallPosition = new Vector3(bottomRight.x, 0, col);
+            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition);
+        }
     }
 
     void AddWallPositionToList(Vector3 wallPosition, List<Vector3Int> wallList)

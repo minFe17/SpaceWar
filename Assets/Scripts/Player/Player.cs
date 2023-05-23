@@ -193,13 +193,13 @@ public class Player : MonoBehaviour
             switch (_playerDataManager.ShotMode)
             {
                 case EShotModeType.Single:
-                    StartCoroutine(SingleShotRoutine());
+                    StartSingleShot();
                     break;
                 case EShotModeType.Burst:
-                    StartCoroutine(BurstShotRoutine());
+                    StartBurstShot();
                     break;
                 case EShotModeType.Auto:
-                    StartCoroutine(AutoShotRoutine());
+                    StartAutoShot();
                     break;
                 default:
                     break;
@@ -215,6 +215,7 @@ public class Player : MonoBehaviour
     void ShotIdle()
     {
         _animator.SetBool("isShotIdle", false);
+        _isShot = false;
     }
 
     void Reload()
@@ -226,7 +227,6 @@ public class Player : MonoBehaviour
             {
                 _isReload = true;
                 _animator.SetTrigger("doReload");
-                Invoke("ReloadBullet", 2.5f);
             }
         }
     }
@@ -244,9 +244,9 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
                 _playerDataManager.ShotMode = EShotModeType.Single;
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && _playerDataManager.UnlockBurstMode)
+            else if (Input.GetKeyDown(KeyCode.Alpha2)/* && _playerDataManager.UnlockBurstMode*/)
                 _playerDataManager.ShotMode = EShotModeType.Burst;
-            else if (Input.GetKeyDown(KeyCode.Alpha3) && _playerDataManager.UnlockAutoMode)
+            else if (Input.GetKeyDown(KeyCode.Alpha3)/* && _playerDataManager.UnlockAutoMode*/)
                 _playerDataManager.ShotMode = EShotModeType.Auto;
 
             _uiManager.IngameUI.ShowShotMode();
@@ -287,7 +287,7 @@ public class Player : MonoBehaviour
 
     void HPUpByMoney()
     {
-        if(_playerDataManager.HPUpByMoney && !_isDie)
+        if (_playerDataManager.HPUpByMoney && !_isDie)
         {
             _addMaxHP += (_playerDataManager.Money / 50) - _addMaxHP;
             _playerDataManager.MaxHp += _addMaxHP;
@@ -296,7 +296,7 @@ public class Player : MonoBehaviour
 
     public void Vampirism()
     {
-        if(!_isDie && _playerDataManager.Vampirism)
+        if (!_isDie && _playerDataManager.Vampirism)
         {
             int random = Random.Range(0, 3);
             _playerDataManager.CurHp += random;
@@ -351,75 +351,61 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    IEnumerator SingleShotRoutine()
+    void StartSingleShot()
     {
-        int curBullet = _playerDataManager.CurBullet;
-        if (curBullet > 0 && !_isReload)
+        if (_playerDataManager.CurBullet > 0 && !_isReload)
         {
             _isShot = true;
             _animator.SetTrigger("doSingleShot");
-            yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    void ShotBullet()
+    {
+        if (_playerDataManager.CurBullet <= 0)
+        {
+            Reload();
+        }
+        else
+        {
             MakeBullet();
             _playerDataManager.CurBullet--;
             _uiManager.IngameUI.ShowBullet();
-            _animator.SetBool("isShotIdle", true);
-            yield return new WaitForSeconds(_fireDelay);
-            _isShot = false;
         }
+    }
 
+    void EndShot()
+    {
+        _animator.SetBool("isShotIdle", true);
         if (_playerDataManager.CurBullet <= 0)
             Reload();
     }
 
-    IEnumerator BurstShotRoutine()
+    void StartBurstShot()
     {
-        int curBullet = _playerDataManager.CurBullet;
-        if (curBullet > 0 && !_isReload)
+        if (_playerDataManager.CurBullet > 0 && !_isReload && !_isShot)
         {
             _isShot = true;
             _animator.SetTrigger("doBurstShot");
-
-            yield return new WaitForSeconds(0.2f);
-            for (int i = 0; i < 3; i++)
-            {
-                if (_playerDataManager.CurBullet <= 0)
-                {
-                    Reload();
-                    break;
-                }
-                yield return new WaitForSeconds(0.1f);
-                MakeBullet();
-                _playerDataManager.CurBullet--;
-                _uiManager.IngameUI.ShowBullet();
-            }
-            _animator.SetBool("isShotIdle", true);
-            yield return new WaitForSeconds(_fireDelay);
-            _isShot = false;
         }
-
-        if (_playerDataManager.CurBullet <= 0)
-            Reload();
     }
 
-    IEnumerator AutoShotRoutine()
+    void StartAutoShot()
     {
-        int curBullet = _playerDataManager.CurBullet;
-        if (curBullet > 0 && !_isReload)
+        if (_playerDataManager.CurBullet > 0 && !_isReload)
         {
             _isShot = true;
             if (!_animator.GetCurrentAnimatorStateInfo(1).IsName("Shoot_Autoshot"))
                 _animator.SetTrigger("doAutoShot");
-            yield return new WaitForSeconds(0.2f);
-            MakeBullet();
-            _playerDataManager.CurBullet--;
-            _uiManager.IngameUI.ShowBullet();
         }
-        _isShot = false;
-
-        if (_playerDataManager.CurBullet <= 0)
-            Reload();
     }
 
+    void EndAutoShot()
+    {
+        if (_playerDataManager.CurBullet <= 0)
+            Reload();
+        _isShot = false;
+    }
 
     IEnumerator JumpRoutine()
     {
@@ -427,7 +413,6 @@ public class Player : MonoBehaviour
         _animator.SetTrigger("doJump");
         yield return new WaitForSeconds(0.1f);
         _rigidbody.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
-
     }
 
     private void OnCollisionEnter(Collision collision)
