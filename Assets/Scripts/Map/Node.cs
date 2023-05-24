@@ -6,8 +6,6 @@ public abstract class Node
     List<Node> _childrenNodeList;
     public List<Node> ChildrenNodeList { get => _childrenNodeList; }
 
-    public bool Visted { get; set; }
-
     public Vector2Int BottomLeftAreaCorner { get; set; }
     public Vector2Int BottomRightAreaCorner { get; set; }
     public Vector2Int TopLeftAreaCorner { get; set; }

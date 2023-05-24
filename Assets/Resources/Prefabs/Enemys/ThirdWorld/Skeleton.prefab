@@ -1416,6 +1416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2852451513792299223}
+  - component: {fileID: 3933760034284619245}
   m_Layer: 9
   m_Name: Bip01 Spine3
   m_TagString: Untagged
@@ -1438,6 +1439,19 @@ Transform:
   m_Father: {fileID: 2852057978772130675}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3933760034284619245
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848278045475580345}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: -6, y: 1, z: 1}
+  m_Center: {x: 1, y: 0, z: 0}
 --- !u!1 &2848285146519762507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,6 +1858,7 @@ MonoBehaviour:
   _damage: 0
   _moveSpeed: 0
   _attackArea: {fileID: 5379856207158569477}
+  _revivalCollider: {fileID: 2848278045475580345}
 --- !u!95 &6647671584607977318
 Animator:
   serializedVersion: 5
@@ -1857,7 +1872,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: ca85c0a682efcac4a825867e4ded87b9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

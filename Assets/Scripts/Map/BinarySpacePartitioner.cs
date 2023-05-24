@@ -25,7 +25,7 @@ public class BinarySpacePartitioner
             RoomNode currentNode = graph.Dequeue(); // 큐 안에 있는 룸노드 1개 꺼내서 currentNode에 저장
             if (currentNode.Width >= roomWidthMin * 2 || currentNode.Length >= roomLengthMin * 2)   // currentNode가 방을 나눌 수 있으면 실행 
             {
-                SplitTheSpace(currentNode, listToReturn, roomWidthMin, roomLengthMin, graph); 
+                SplitTheSpace(currentNode, listToReturn, roomWidthMin, roomLengthMin, graph);
             }
         }
         return listToReturn;
@@ -38,24 +38,26 @@ public class BinarySpacePartitioner
         RoomNode node2;
         if (line.Orientation == EOrientation.Horizontal)
         {
-            node1 = new RoomNode(currentNode.BottomLeftAreaCorner, 
-                                 new Vector2Int(currentNode.TopRightAreaCorner.x, line.Coordinates.y), 
-                                 currentNode, currentNode.TreeLayerIndex + 1);
+            node1 = new RoomNode(currentNode.BottomLeftAreaCorner,
+                                 new Vector2Int(currentNode.TopRightAreaCorner.x, line.Coordinates.y),
+                                 currentNode,
+                                 currentNode.TreeLayerIndex + 1);
 
-            node2 = new RoomNode(new Vector2Int(currentNode.BottomLeftAreaCorner.x, line.Coordinates.y), 
-                                 currentNode.TopRightAreaCorner, 
-                                 currentNode, currentNode.TreeLayerIndex + 1);
+            node2 = new RoomNode(new Vector2Int(currentNode.BottomLeftAreaCorner.x, line.Coordinates.y),
+                                 currentNode.TopRightAreaCorner,
+                                 currentNode,
+                                 currentNode.TreeLayerIndex + 1);
         }
         else
         {
-            node1 = new RoomNode(currentNode.BottomLeftAreaCorner, 
-                                 new Vector2Int(line.Coordinates.x, currentNode.TopRightAreaCorner.y), 
-                                 currentNode, 
+            node1 = new RoomNode(currentNode.BottomLeftAreaCorner,
+                                 new Vector2Int(line.Coordinates.x, currentNode.TopRightAreaCorner.y),
+                                 currentNode,
                                  currentNode.TreeLayerIndex + 1);
 
-            node2 = new RoomNode(new Vector2Int(line.Coordinates.x, currentNode.BottomLeftAreaCorner.y), 
-                                 currentNode.TopRightAreaCorner, 
-                                 currentNode, 
+            node2 = new RoomNode(new Vector2Int(line.Coordinates.x, currentNode.BottomLeftAreaCorner.y),
+                                 currentNode.TopRightAreaCorner,
+                                 currentNode,
                                  currentNode.TreeLayerIndex + 1);
         }
         AddNewNodeToCollections(listToReturn, graph, node1);
@@ -80,11 +82,11 @@ public class BinarySpacePartitioner
         }
         else if (isWidthStatus)
         {
-            orientation = EOrientation.Vertical;    
+            orientation = EOrientation.Vertical;
         }
         else
         {
-            orientation = EOrientation.Horizontal;  
+            orientation = EOrientation.Horizontal;
         }
         return new Line(orientation, GetCoordinatesFororientation(orientation, bottomLeftAreaCorner, topRightAreaCorner, roomWidthMin, roomLengthMin));
     }

@@ -8,6 +8,7 @@ public class HPUp : PassiveBase
         _image = Resources.Load<Sprite>("Prefabs/PassiveIcon/HPUp");
         _name = "HP 증가";
         _info = "최대 HP가 10 증가";
+        _index = 0;
     }
 
     public override void AddPassive()

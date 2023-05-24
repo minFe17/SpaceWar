@@ -8,6 +8,7 @@ public class DoubleHp : PassiveBase
         _image = Resources.Load<Sprite>("Prefabs/PassiveIcon/DoubleHp");
         _name = "Hp 두 배";
         _info = "현재 Hp가 두 배로 증가됩니다";
+        _index = 7;
     }
 
     public override void AddPassive()

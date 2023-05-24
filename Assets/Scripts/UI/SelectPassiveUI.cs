@@ -16,9 +16,10 @@ public class SelectPassiveUI : MonoBehaviour
     public void SelectedPassive(int buttonIndex)
     {
         _passiveButton[buttonIndex].Passive.AddPassive();
-
+        GenericSingleton<PlayerDataManager>.Instance.Passive.Add(_passiveButton[buttonIndex].Passive);
+        GenericSingleton<PassiveManager>.Instance.RemovePassive(_passiveButton[buttonIndex].Passive.Index);
+        
         gameObject.SetActive(false);
-        GenericSingleton<PassiveManager>.Instance.Passive.Remove(_passiveButton[buttonIndex].Passive);
         SceneManager.LoadScene($"{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}");
     }
 

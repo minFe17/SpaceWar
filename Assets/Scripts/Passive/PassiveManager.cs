@@ -28,4 +28,9 @@ public class PassiveManager : MonoBehaviour
         _passive.Add(new HPUpByMoney());
         _passive.Add(new Vampirism());
     }
+
+    public void RemovePassive(int index)
+    {
+        _passive.RemoveAt(index);
+    }
 }

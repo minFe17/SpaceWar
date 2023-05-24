@@ -8,6 +8,7 @@ public class UnlockAutoMode : PassiveBase
         _image = Resources.Load<Sprite>("Prefabs/PassiveIcon/UnlockAutoMode");
         _name = "연사 모드 해제";
         _info = "연사 모드가 해제됩니다";
+        _index = 5;
     }
 
     public override void AddPassive()

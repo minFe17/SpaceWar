@@ -1945,11 +1945,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8379917812435765122}
+  - component: {fileID: 7869661914999676172}
   - component: {fileID: 8379917812443157188}
   - component: {fileID: 6156588748844684706}
   - component: {fileID: 7665690641816128114}
   - component: {fileID: 9020285205145593232}
-  - component: {fileID: 7869661914999676172}
   m_Layer: 9
   m_Name: Boss
   m_TagString: Enemy
@@ -1979,6 +1979,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7869661914999676172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8379917812436041362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ff1e89f93057941940cd5e22f41dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 30
+  _attackDelay: 5
+  _damage: 5
+  _moveSpeed: 1
+  _attackArea: {fileID: 8379917812436024638}
 --- !u!95 &8379917812443157188
 Animator:
   serializedVersion: 5
@@ -2041,20 +2058,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 90
   m_CollisionDetection: 0
---- !u!114 &7869661914999676172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8379917812436041362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95ff1e89f93057941940cd5e22f41dc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHp: 30
-  _attackDelay: 5
-  _damage: 5
-  _moveSpeed: 1
-  _attackArea: {fileID: 8379917812436024638}

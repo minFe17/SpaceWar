@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Skeleton : MovableEnemy
 {
+    [SerializeField] GameObject _revivalCollider;
     bool _isRevival;
 
     void Start()
@@ -26,6 +27,7 @@ public class Skeleton : MovableEnemy
         if (_curHp <= 0)
         {
             _animator.SetTrigger("doDie");
+            _revivalCollider.SetActive(false);
             _isDie = true;
         }
         else
@@ -45,7 +47,9 @@ public class Skeleton : MovableEnemy
 
     void Revival()
     {
+        _isRevival = true;
         _isDie = false;
         _curHp = _maxHp;
+        _revivalCollider.SetActive(true);
     }
 }
