@@ -345,8 +345,10 @@ public class Player : MonoBehaviour
     void EndDie()
     {
         _uiManager.GameOverUI.gameObject.SetActive(true);
+        _uiManager.GameOverUI.ShowWave();
+        _uiManager.GameOverUI.ShowPlayTime();
+        _uiManager.GameOverUI.ShowKillEnemy();
         _uiManager.GameOverUI.ShowMoney();
-        _gameManager.GameOver();
         Cursor.lockState = CursorLockMode.None;
     }
 

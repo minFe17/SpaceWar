@@ -1,0 +1,2 @@
+MaxHp,CurHp,MaxBullet,CurBullet,BulletDamage,MoveSpeed,SplintSpeed,Money,BonusMoney,UnlockBurstMode,UnlockAutoMode,HPUpByMoney,Vampirism
+10,10,30,30,1,5,5,0,0,False,True,False,False

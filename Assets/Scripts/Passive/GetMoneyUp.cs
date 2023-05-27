@@ -13,6 +13,6 @@ public class GetMoneyUp : PassiveBase
 
     public override void AddPassive()
     {
-        GenericSingleton<PlayerDataManager>.Instance.BonusMoney = 7;
+        GenericSingleton<PlayerDataManager>.Instance.BonusMoney = 10;
     }
 }

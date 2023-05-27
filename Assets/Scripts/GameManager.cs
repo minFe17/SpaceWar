@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
@@ -13,12 +14,15 @@ public class GameManager : MonoBehaviour
     bool _isAddPassive = true;
 
     public GameObject Portal { get; set; }
-    public int MapStage { get => _mapStage; }
-    public int LevelStage { get => _levelStage; }
+    public int MapStage { get => _mapStage; set => _mapStage = value; }
+    public int LevelStage { get => _levelStage; set => _levelStage = value; }
+    public int KillEnemy { get => _killEnemy; set => _killEnemy = value; }
+    public float PlayTime { get => _playTime; set => _playTime = value;  }
+    public bool IsAddPassive { get => _isAddPassive; set => _isAddPassive = value;  }
 
     void Update()
     {
-        PlayTime();
+        AddPlayTime();
     }
 
     public void Battle(DoorList doorList)
@@ -54,11 +58,9 @@ public class GameManager : MonoBehaviour
         else
         {
             _isAddPassive = true;
+            GenericSingleton<CsvController>.Instance.WriteDataFile();
             SceneManager.LoadScene($"{(EWorldType)_mapStage}");
         }
-
-        // 데이터 쓰기
-
     }
 
     public void AddKillEnemy()
@@ -71,36 +73,31 @@ public class GameManager : MonoBehaviour
         GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
     }
 
-    void PlayTime()
+    void AddPlayTime()
     {
         _playTime += Time.deltaTime;
     }
 
     public void SelectPassive()
     {
+        List<PassiveBase> playerPassive = GenericSingleton<PlayerDataManager>.Instance.Passive;
+        List<PassiveBase> passiveList = GenericSingleton<PassiveManager>.Instance.Passive;
         GenericSingleton<UIManager>.Instance.SelectPassiveUI.gameObject.SetActive(true);
+
         List<int> passiveIndex = new List<int>();
         for (int i = 0; i < 3; i++)
         {
             int random;
-
             do
             {
-                random = Random.Range(0, GenericSingleton<PassiveManager>.Instance.Passive.Count);
+                random = Random.Range(0, passiveList.Count);
             }
-            while (passiveIndex.Contains(random));
+            while (passiveIndex.Contains(random) || playerPassive.Contains(passiveList[random]));
 
             passiveIndex.Add(random);
             GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = GenericSingleton<PassiveManager>.Instance.Passive[random];
             GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Init();
         }
-    }
-
-    public void GameOver()
-    {
-        GenericSingleton<UIManager>.Instance.GameOverUI.ShowPlayTime(_playTime);
-        GenericSingleton<UIManager>.Instance.GameOverUI.ShowKillEnemy(_killEnemy);
-        GenericSingleton<UIManager>.Instance.GameOverUI.ShowWave(_mapStage, _levelStage);
     }
 }
 

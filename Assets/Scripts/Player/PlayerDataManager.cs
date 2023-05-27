@@ -17,14 +17,14 @@ public class PlayerDataManager : MonoBehaviour
     public Player Player { get; set; }
 
     public int MaxHp { get => _maxHp; set => _maxHp = value; }
-    public int CurHp { get; set; }
     public int MaxBullet { get => _maxBullet; set => _maxBullet = value; }
-    public int CurBullet { get; set; }
     public int BulletDamage { get => _bulletDamage; set => _bulletDamage = value; }
-    public int Money { get; set; }
-    public int BonusMoney { get; set; }
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
     public float SplintSpeed { get => _splintSpeed; }
+    public int CurHp { get; set; }
+    public int CurBullet { get; set; }
+    public int Money { get; set; }
+    public int BonusMoney { get; set; }
 
     public bool UnlockBurstMode { get; set; }
     public bool UnlockAutoMode { get; set; }

@@ -30,15 +30,17 @@ public class GameOverUI : MonoBehaviour
         _wavePos.Add(_thirdMap);
     }
 
-    public void ShowPlayTime(float time)
+    public void ShowPlayTime()
     {
+        float time = GenericSingleton<GameManager>.Instance.PlayTime;
         int minute = (int)time / 60;
         int sec = (int)time % 60;
         _playTimeText.text = string.Format("{0:D2} : {1:D2}", minute, sec);
     }
 
-    public void ShowKillEnemy(int killEnemy)
+    public void ShowKillEnemy()
     {
+        int killEnemy = GenericSingleton<GameManager>.Instance.KillEnemy;
         _killEnemyText.text = string.Format("{0:D3}", killEnemy);
     }
 
@@ -48,8 +50,10 @@ public class GameOverUI : MonoBehaviour
         _moneyText.text = string.Format("{0:D3}", money);
     }
 
-    public void ShowWave(int mapStage, int levelStage)
+    public void ShowWave()
     {
+        int mapStage = GenericSingleton<GameManager>.Instance.MapStage;
+        int levelStage = GenericSingleton<GameManager>.Instance.LevelStage;
         _playerImage.position = _startPos.position;
         _dieWavePos = _wavePos[mapStage - 1][levelStage - 1].position;
         _dieWaveText.text = $"{mapStage} - {levelStage}";
@@ -57,7 +61,7 @@ public class GameOverUI : MonoBehaviour
 
     public void RegameButton()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("FirstWorld");
     }
 
     void Update()
