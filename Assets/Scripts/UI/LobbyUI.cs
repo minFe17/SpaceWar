@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utils;
 
 public class LobbyUI : MonoBehaviour
 {
@@ -17,15 +18,19 @@ public class LobbyUI : MonoBehaviour
         _buttonPanel.SetActive(false);
         _continueGameButton.interactable = false;
         _disabledColorAlpha = _continueGameButton.colors.disabledColor.a;
-        _continueGameText.color = new Color(0,0,0, _disabledColorAlpha);
+        _continueGameText.color = new Color(0, 0, 0, _disabledColorAlpha);
     }
 
     public void ClickButton()
     {
+        CsvController csvController = GenericSingleton<CsvController>.Instance;
         _clickText.SetActive(false);
         _buttonPanel.SetActive(true);
-        // 데이터 있으면 이어하기 버튼 활성화
-        // 없으면 비활성화
+        if (csvController.ReadDataFile())
+        {
+            _continueGameButton.interactable = true;
+            _continueGameText.color = new Color(0, 0, 0, 1);
+        }
     }
 
     public void NewGameButton()
@@ -35,7 +40,7 @@ public class LobbyUI : MonoBehaviour
 
     public void ContinueGameButton()
     {
-
+        SceneManager.LoadScene($"{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}");
     }
 
     public void ExitGameButton()

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -350,6 +351,11 @@ public class Player : MonoBehaviour
         _uiManager.GameOverUI.ShowKillEnemy();
         _uiManager.GameOverUI.ShowMoney();
         Cursor.lockState = CursorLockMode.None;
+
+        CsvController csvController = GenericSingleton<CsvController>.Instance;
+        File.Delete(csvController.PlayerDataFilePath);
+        File.Delete(csvController.GameDataFilePath);
+        File.Delete(csvController.PassiveDataFilePath);
     }
 
     void StartSingleShot()

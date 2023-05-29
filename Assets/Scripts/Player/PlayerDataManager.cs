@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class PlayerDataManager : MonoBehaviour
 {
     // 싱글톤
-    List<PassiveBase> _passive = new List<PassiveBase>();
+    List<string> _passive = new List<string>();
 
     int _maxHp = 10;
     int _maxBullet = 30;
@@ -12,7 +13,7 @@ public class PlayerDataManager : MonoBehaviour
     float _moveSpeed = 5f;
     float _splintSpeed = 5f;
 
-    public List<PassiveBase> Passive { get => _passive; set => _passive = value; }
+    public List<string> Passive { get => _passive; set => _passive = value; }
     public EShotModeType ShotMode { get; set; }
     public Player Player { get; set; }
 
@@ -20,7 +21,7 @@ public class PlayerDataManager : MonoBehaviour
     public int MaxBullet { get => _maxBullet; set => _maxBullet = value; }
     public int BulletDamage { get => _bulletDamage; set => _bulletDamage = value; }
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
-    public float SplintSpeed { get => _splintSpeed; }
+    public float SplintSpeed { get => _splintSpeed; set => _splintSpeed = value; }
     public int CurHp { get; set; }
     public int CurBullet { get; set; }
     public int Money { get; set; }
@@ -33,12 +34,15 @@ public class PlayerDataManager : MonoBehaviour
 
     public void SettingPlayerData()
     {
-        // 데이터 읽기
-        // 데이터가 널이면 초기화
-        // 널이 아니면 데이터 세팅
-        CurBullet = _maxBullet;
-        CurHp = _maxHp;
-        ShotMode = EShotModeType.Single;
-
+        CsvController csvController = GenericSingleton<CsvController>.Instance;
+        if (csvController.ReadDataFile())
+            return;
+        else
+        {
+            Debug.Log(1);
+            CurBullet = _maxBullet;
+            CurHp = _maxHp;
+            ShotMode = EShotModeType.Single;
+        }
     }
 }

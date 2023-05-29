@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using Utils;
 
@@ -10,34 +12,121 @@ public class CsvController : MonoBehaviour
     string _playerDataFilePath;
     string _gameDataFilePath;
     string _passiveDataFilePath;
+    
+    bool _nullDataFile;
 
-    public void ReadDataFile()
+    public string PlayerDataFilePath { get => _playerDataFilePath; }
+    public string GameDataFilePath {  get => _gameDataFilePath; }
+    public string PassiveDataFilePath {  get => _passiveDataFilePath; }
+
+    void DataFilePath()
     {
+        string playerDataFileName = "SavePlayerDataFile.csv";
+        _playerDataFilePath = Application.dataPath + "/Resources/Datas/" + playerDataFileName;
+
+        string gameDataFileName = "SaveGameDataFile.csv";
+        _gameDataFilePath = Application.dataPath + "/Resources/Datas/" + gameDataFileName;
+
+        string passiveDataFileName = "PassiveDataFile.csv";
+        _passiveDataFilePath = Application.dataPath + "/Resources/Datas/" + passiveDataFileName;
+    }
+
+    public bool ReadDataFile()
+    {
+        DataFilePath();
         ReadPlayerData();
         ReadGameData();
         ReadPassiveData();
+
+        if (_nullDataFile)
+            return false;
+        else
+            return true;
     }
 
-    public void WriteDataFile()
+    public bool WriteDataFile()
     {
+        DataFilePath();
         WirtePlayerData();
         WirteGameData();
         WirtePassiveData();
+
+        return true;
+    }
+
+    string[] BaseReadData(string dataFilePath)
+    {
+        if (File.Exists(dataFilePath) == false)
+        {
+            Debug.Log(dataFilePath);
+            _nullDataFile = true;
+            return null;
+        }
+        else
+        {
+            string source;
+            using (StreamReader sr = new StreamReader(dataFilePath))
+            {
+                string[] lines;
+                source = sr.ReadToEnd();
+                lines = Regex.Split(source, @"\r\n|\n\r|\n|\r");
+                string[] header = Regex.Split(lines[0], ",");
+                string[] value = Regex.Split(lines[1], ",");
+
+                return value;
+            }
+        }
     }
 
     void ReadPlayerData()
     {
-        
+        PlayerDataManager playerData = GenericSingleton<PlayerDataManager>.Instance;
+        string[] value = BaseReadData(_playerDataFilePath);
+        if (value == null)
+            return;
+
+        playerData.MaxHp = int.Parse(value[0]);
+        playerData.CurHp = int.Parse(value[1]);
+        playerData.ShotMode = (EShotModeType)Enum.Parse(typeof(EShotModeType), value[2]);
+        playerData.MaxBullet = int.Parse(value[3]);
+        playerData.CurBullet = int.Parse(value[4]);
+        playerData.BulletDamage = int.Parse(value[5]);
+        playerData.MoveSpeed = float.Parse(value[6]);
+        playerData.SplintSpeed = float.Parse(value[7]);
+        playerData.Money = int.Parse(value[8]);
+        playerData.BonusMoney = int.Parse(value[9]);
+        playerData.UnlockBurstMode = bool.Parse(value[10]);
+        playerData.UnlockAutoMode = bool.Parse(value[11]);
+        playerData.HPUpByMoney = bool.Parse(value[12]);
+        playerData.Vampirism = bool.Parse(value[13]);
     }
 
     void ReadGameData()
     {
+        GameManager gameData = GenericSingleton<GameManager>.Instance;
+        string[] value = BaseReadData(_gameDataFilePath);
+        if (value == null)
+            return;
 
+        gameData.MapStage = int.Parse(value[0]);
+        gameData.LevelStage = int.Parse(value[1]);
+        gameData.KillEnemy = int.Parse(value[2]);
+        gameData.PlayTime = float.Parse(value[3]);
+        gameData.IsAddPassive = bool.Parse(value[4]);
     }
 
     void ReadPassiveData()
     {
+        List<string> passive = GenericSingleton<PlayerDataManager>.Instance.Passive;
+        string[] value = BaseReadData(_passiveDataFilePath);
+        if (value == null)
+            return;
 
+        passive.Clear();
+        for (int i = 0; i < passive.Count; i++)
+        {
+            passive.Add(value[i]);
+        }
     }
 
     void BaseWriteData(List<string[]> lists, string dataFilePath)
@@ -50,8 +139,6 @@ public class CsvController : MonoBehaviour
         {
             stringBuilder.AppendLine(string.Join(delimiter, outputs[i]));
         }
-
-
         using (StreamWriter outStream = File.CreateText(dataFilePath))
             outStream.Write(stringBuilder);
     }
@@ -59,23 +146,18 @@ public class CsvController : MonoBehaviour
 
     void WirtePlayerData()
     {
-        string fileName = "SavePlayerDataFile.csv";
         List<string[]> lists = new List<string[]>();
-        _playerDataFilePath = Application.dataPath + "/Resources/Datas/" + fileName;
 
-        string[] datas = new string[] { "MaxHp", "CurHp","ShotMode", "MaxBullet", "CurBullet", "BulletDamage", "MoveSpeed", "SplintSpeed", "Money", "BonusMoney", "UnlockBurstMode", "UnlockAutoMode", "HPUpByMoney", "Vampirism" };
+        string[] datas = new string[] { "MaxHp", "CurHp", "ShotMode", "MaxBullet", "CurBullet", "BulletDamage", "MoveSpeed", "SplintSpeed", "Money", "BonusMoney", "UnlockBurstMode", "UnlockAutoMode", "HPUpByMoney", "Vampirism" };
         lists.Add(datas);
         lists.Add(PlayerDataToString());
 
         BaseWriteData(lists, _playerDataFilePath);
-
     }
 
     void WirteGameData()
     {
-        string fileName = "SaveGameDataFile.csv";
         List<string[]> lists = new List<string[]>();
-        _gameDataFilePath = Application.dataPath + "/Resources/Datas/" + fileName;
 
         string[] datas = new string[] { "MapStage", "LevelStage", "KillEnemy", "PlayTime", "IsAddPassive" };
         lists.Add(datas);
@@ -86,10 +168,8 @@ public class CsvController : MonoBehaviour
 
     void WirtePassiveData()
     {
-        List<PassiveBase> passiveData = GenericSingleton<PlayerDataManager>.Instance.Passive;
-        string fileName = "PassiveDataFile.csv";
+        List<string> passiveData = GenericSingleton<PlayerDataManager>.Instance.Passive;
         List<string[]> lists = new List<string[]>();
-        _passiveDataFilePath = Application.dataPath + "/Resources/Datas/" + fileName;
 
         string[] datas = new string[passiveData.Count];
         for (int i = 0; i < passiveData.Count; i++)
@@ -101,7 +181,7 @@ public class CsvController : MonoBehaviour
         string[] value = new string[passiveData.Count];
         for (int i = 0; i < passiveData.Count; i++)
         {
-            value[i] = passiveData[i].Name;
+            value[i] = passiveData[i];
         }
         lists.Add(value);
 

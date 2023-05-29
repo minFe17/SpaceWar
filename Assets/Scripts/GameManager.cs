@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
@@ -80,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void SelectPassive()
     {
-        List<PassiveBase> playerPassive = GenericSingleton<PlayerDataManager>.Instance.Passive;
+        List<string> playerPassive = GenericSingleton<PlayerDataManager>.Instance.Passive;
         List<PassiveBase> passiveList = GenericSingleton<PassiveManager>.Instance.Passive;
         GenericSingleton<UIManager>.Instance.SelectPassiveUI.gameObject.SetActive(true);
 
@@ -92,7 +91,7 @@ public class GameManager : MonoBehaviour
             {
                 random = Random.Range(0, passiveList.Count);
             }
-            while (passiveIndex.Contains(random) || playerPassive.Contains(passiveList[random]));
+            while (passiveIndex.Contains(random) || playerPassive.Contains(passiveList[random].Name));
 
             passiveIndex.Add(random);
             GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = GenericSingleton<PassiveManager>.Instance.Passive[random];
