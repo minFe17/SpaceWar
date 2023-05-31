@@ -9,59 +9,97 @@ using Utils;
 public class CsvController : MonoBehaviour
 {
     // ½Ì±ÛÅæ
+    bool _isWriting;
+
     string _playerDataFilePath;
     string _gameDataFilePath;
     string _passiveDataFilePath;
-    
-    bool _nullDataFile;
 
-    public string PlayerDataFilePath { get => _playerDataFilePath; }
-    public string GameDataFilePath {  get => _gameDataFilePath; }
-    public string PassiveDataFilePath {  get => _passiveDataFilePath; }
+    public bool IsWriting { get => _isWriting; set => _isWriting = value; }
 
-    void DataFilePath()
+    public string PlayerDataFilePath
     {
-        string playerDataFileName = "SavePlayerDataFile.csv";
-        _playerDataFilePath = Application.dataPath + "/Resources/Datas/" + playerDataFileName;
-
-        string gameDataFileName = "SaveGameDataFile.csv";
-        _gameDataFilePath = Application.dataPath + "/Resources/Datas/" + gameDataFileName;
-
-        string passiveDataFileName = "PassiveDataFile.csv";
-        _passiveDataFilePath = Application.dataPath + "/Resources/Datas/" + passiveDataFileName;
+        get
+        {
+            if (_playerDataFilePath == null)
+            {
+                string playerDataFileName = "SavePlayerDataFile.csv";
+                _playerDataFilePath = Application.dataPath + "/Resources/Datas/" + playerDataFileName;
+            }
+            return _playerDataFilePath;
+        }
     }
 
-    public bool ReadDataFile()
+    public string GameDataFilePath
     {
-        DataFilePath();
+        get
+        {
+            if (_gameDataFilePath == null)
+            {
+                string gameDataFileName = "SaveGameDataFile.csv";
+                _gameDataFilePath = Application.dataPath + "/Resources/Datas/" + gameDataFileName;
+            }
+            return _gameDataFilePath;
+        }
+    }
+
+    public string PassiveDataFilePath
+    {
+        get
+        {
+            if (_passiveDataFilePath == null)
+            {
+                string passiveDataFileName = "PassiveDataFile.csv";
+                _passiveDataFilePath = Application.dataPath + "/Resources/Datas/" + passiveDataFileName;
+            }
+            return _passiveDataFilePath;
+        }
+    }
+
+    public void ReadDataFile()
+    {
         ReadPlayerData();
         ReadGameData();
         ReadPassiveData();
-
-        if (_nullDataFile)
-            return false;
-        else
-            return true;
     }
 
-    public bool WriteDataFile()
+    public void WriteDataFile()
     {
-        DataFilePath();
+        _isWriting = true;
+        DestroyDataFile();
         WirtePlayerData();
         WirteGameData();
         WirtePassiveData();
 
+        _isWriting = false;
+    }
+
+    public bool CheckDataFile()
+    {
+        if (File.Exists(PlayerDataFilePath) == false)
+            return false;
+        if (File.Exists(GameDataFilePath) == false)
+            return false;
+        if (File.Exists(PassiveDataFilePath) == false)
+            return false;
+
         return true;
+    }
+
+    public void DestroyDataFile()
+    {
+        if (CheckDataFile())
+        {
+            File.Delete(PlayerDataFilePath);
+            File.Delete(GameDataFilePath);
+            File.Delete(PassiveDataFilePath);
+        }
     }
 
     string[] BaseReadData(string dataFilePath)
     {
-        if (File.Exists(dataFilePath) == false)
-        {
-            Debug.Log(dataFilePath);
-            _nullDataFile = true;
+        if (!CheckDataFile())
             return null;
-        }
         else
         {
             string source;
@@ -81,7 +119,7 @@ public class CsvController : MonoBehaviour
     void ReadPlayerData()
     {
         PlayerDataManager playerData = GenericSingleton<PlayerDataManager>.Instance;
-        string[] value = BaseReadData(_playerDataFilePath);
+        string[] value = BaseReadData(PlayerDataFilePath);
         if (value == null)
             return;
 
@@ -104,7 +142,7 @@ public class CsvController : MonoBehaviour
     void ReadGameData()
     {
         GameManager gameData = GenericSingleton<GameManager>.Instance;
-        string[] value = BaseReadData(_gameDataFilePath);
+        string[] value = BaseReadData(GameDataFilePath);
         if (value == null)
             return;
 
@@ -118,12 +156,12 @@ public class CsvController : MonoBehaviour
     void ReadPassiveData()
     {
         List<string> passive = GenericSingleton<PlayerDataManager>.Instance.Passive;
-        string[] value = BaseReadData(_passiveDataFilePath);
+        string[] value = BaseReadData(PassiveDataFilePath);
         if (value == null)
             return;
 
         passive.Clear();
-        for (int i = 0; i < passive.Count; i++)
+        for (int i = 0; i < value.Length; i++)
         {
             passive.Add(value[i]);
         }
@@ -152,7 +190,7 @@ public class CsvController : MonoBehaviour
         lists.Add(datas);
         lists.Add(PlayerDataToString());
 
-        BaseWriteData(lists, _playerDataFilePath);
+        BaseWriteData(lists, PlayerDataFilePath);
     }
 
     void WirteGameData()
@@ -163,7 +201,7 @@ public class CsvController : MonoBehaviour
         lists.Add(datas);
         lists.Add(GameDataToString());
 
-        BaseWriteData(lists, _gameDataFilePath);
+        BaseWriteData(lists, GameDataFilePath);
     }
 
     void WirtePassiveData()
@@ -185,7 +223,7 @@ public class CsvController : MonoBehaviour
         }
         lists.Add(value);
 
-        BaseWriteData(lists, _passiveDataFilePath);
+        BaseWriteData(lists, PassiveDataFilePath);
     }
 
     string[] PlayerDataToString()

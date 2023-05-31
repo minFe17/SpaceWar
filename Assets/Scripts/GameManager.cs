@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     int _killEnemy;
     float _playTime;
     bool _isAddPassive = true;
+    bool _isClear;
 
     public GameObject Portal { get; set; }
     public int MapStage { get => _mapStage; set => _mapStage = value; }
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public int KillEnemy { get => _killEnemy; set => _killEnemy = value; }
     public float PlayTime { get => _playTime; set => _playTime = value;  }
     public bool IsAddPassive { get => _isAddPassive; set => _isAddPassive = value;  }
+    public bool IsClear { get => _isClear; }
 
     void Update()
     {
@@ -36,6 +38,11 @@ public class GameManager : MonoBehaviour
 
     public void NextStage()
     {
+        if(_mapStage >= 3 && _levelStage >= 5)
+        {
+            GenericSingleton<PlayerDataManager>.Instance.Player.GameOver();
+            _isClear = true;
+        }
         if (_levelStage >= 5)
         {
             _mapStage++;
@@ -57,7 +64,13 @@ public class GameManager : MonoBehaviour
         else
         {
             _isAddPassive = true;
-            GenericSingleton<CsvController>.Instance.WriteDataFile();
+            CsvController csvController = GenericSingleton<CsvController>.Instance;
+            csvController.WriteDataFile();
+            while (csvController.IsWriting == true || csvController.CheckDataFile() == false)
+            {
+                if (csvController.IsWriting == false && csvController.CheckDataFile() == true)
+                    break;
+            }
             SceneManager.LoadScene($"{(EWorldType)_mapStage}");
         }
     }

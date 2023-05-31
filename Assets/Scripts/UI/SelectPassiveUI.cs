@@ -15,10 +15,18 @@ public class SelectPassiveUI : MonoBehaviour
 
     public void SelectedPassive(int buttonIndex)
     {
+        CsvController csvController = GenericSingleton<CsvController>.Instance;
+
         _passiveButton[buttonIndex].Passive.AddPassive();
         GenericSingleton<PlayerDataManager>.Instance.Passive.Add(_passiveButton[buttonIndex].Passive.Name);
         GenericSingleton<PassiveManager>.Instance.RemovePassive(_passiveButton[buttonIndex].Passive.Index);
-        GenericSingleton<CsvController>.Instance.WriteDataFile();
+        csvController.WriteDataFile();
+        while (csvController.IsWriting == true || csvController.CheckDataFile() == false)
+        {
+            if (csvController.IsWriting == false && csvController.CheckDataFile() == true)
+                break;
+        }
+
         gameObject.SetActive(false);
 
         SceneManager.LoadScene($"{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}");
@@ -26,7 +34,7 @@ public class SelectPassiveUI : MonoBehaviour
 
     public void ShowInfo(int buttonIndex)
     {
-        if(_passiveInfoPanel.activeSelf == false)
+        if (_passiveInfoPanel.activeSelf == false)
             _passiveInfoPanel.SetActive(true);
 
         _passiveNameText.text = _passiveButton[buttonIndex].Passive.Name;

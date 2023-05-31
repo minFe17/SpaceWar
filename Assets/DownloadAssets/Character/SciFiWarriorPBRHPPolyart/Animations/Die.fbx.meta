@@ -505,7 +505,7 @@ ModelImporter:
       curves: []
       events:
       - time: 1
-        functionName: EndDie
+        functionName: GameOver
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

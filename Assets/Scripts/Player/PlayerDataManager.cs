@@ -35,11 +35,10 @@ public class PlayerDataManager : MonoBehaviour
     public void SettingPlayerData()
     {
         CsvController csvController = GenericSingleton<CsvController>.Instance;
-        if (csvController.ReadDataFile())
-            return;
+        if (csvController.CheckDataFile())
+            csvController.ReadDataFile();
         else
         {
-            Debug.Log(1);
             CurBullet = _maxBullet;
             CurHp = _maxHp;
             ShotMode = EShotModeType.Single;

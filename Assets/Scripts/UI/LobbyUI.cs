@@ -26,7 +26,7 @@ public class LobbyUI : MonoBehaviour
         CsvController csvController = GenericSingleton<CsvController>.Instance;
         _clickText.SetActive(false);
         _buttonPanel.SetActive(true);
-        if (csvController.ReadDataFile())
+        if (csvController.CheckDataFile())
         {
             _continueGameButton.interactable = true;
             _continueGameText.color = new Color(0, 0, 0, 1);
@@ -35,6 +35,7 @@ public class LobbyUI : MonoBehaviour
 
     public void NewGameButton()
     {
+        GenericSingleton<CsvController>.Instance.DestroyDataFile();
         SceneManager.LoadScene("FirstWorld");
     }
 

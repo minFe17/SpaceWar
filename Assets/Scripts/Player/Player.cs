@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
 
     void Fire()
     {
-        if (Input.GetButton("Fire") && !_isDie)
+        if (Input.GetButton("Fire") && !_isDie && !_isOpenOption)
         {
             switch (_playerDataManager.ShotMode)
             {
@@ -343,7 +343,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void EndDie()
+    public void GameOver()
     {
         _uiManager.GameOverUI.gameObject.SetActive(true);
         _uiManager.GameOverUI.ShowWave();
@@ -352,10 +352,7 @@ public class Player : MonoBehaviour
         _uiManager.GameOverUI.ShowMoney();
         Cursor.lockState = CursorLockMode.None;
 
-        CsvController csvController = GenericSingleton<CsvController>.Instance;
-        File.Delete(csvController.PlayerDataFilePath);
-        File.Delete(csvController.GameDataFilePath);
-        File.Delete(csvController.PassiveDataFilePath);
+        GenericSingleton<CsvController>.Instance.DestroyDataFile();
     }
 
     void StartSingleShot()

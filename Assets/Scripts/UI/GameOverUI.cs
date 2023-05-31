@@ -14,6 +14,7 @@ public class GameOverUI : MonoBehaviour
 
     [SerializeField] Transform _playerImage;
     [SerializeField] TMP_Text _dieWaveText;
+    [SerializeField] GameObject _clearPanel;
 
     [SerializeField] TMP_Text _playTimeText;
     [SerializeField] TMP_Text _killEnemyText;
@@ -28,6 +29,12 @@ public class GameOverUI : MonoBehaviour
         _wavePos.Add(_firstMap);
         _wavePos.Add(_secondMap);
         _wavePos.Add(_thirdMap);
+        _clearPanel.SetActive(false);
+    }
+
+    void Update()
+    {
+        MovePlayerIcon();
     }
 
     public void ShowPlayTime()
@@ -62,11 +69,6 @@ public class GameOverUI : MonoBehaviour
     public void RegameButton()
     {
         SceneManager.LoadScene("FirstWorld");
-    }
-
-    void Update()
-    {
-        MovePlayerIcon();
     }
 
     void MovePlayerIcon()

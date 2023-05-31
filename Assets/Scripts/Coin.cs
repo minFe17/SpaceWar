@@ -18,17 +18,11 @@ public class Coin : MonoBehaviour
         _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && _isEat == false)
-            PlayerGetCoin();
-    }
-
     void PlayerGetCoin()
     {
         _isEat = true;
         _player.GetMoney(_money + GenericSingleton<PlayerDataManager>.Instance.BonusMoney);
-        _animator.SetBool("isGetCoin", true);
+        OnEffect();
     }
 
     void OnEffect()
@@ -40,5 +34,11 @@ public class Coin : MonoBehaviour
     void DestroyCoin()
     {
         Destroy(_parent);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && _isEat == false)
+            PlayerGetCoin();
     }
 }

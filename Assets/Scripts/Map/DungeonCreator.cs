@@ -183,8 +183,7 @@ public class DungeonCreator : MonoBehaviour
     {
         GameObject temp = new GameObject("DoorList");
         temp.transform.parent = parent;
-        temp.AddComponent<DoorList>();
-        return temp.GetComponent<DoorList>();
+        return temp.AddComponent<DoorList>();
     }
 
     void CalculateWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
