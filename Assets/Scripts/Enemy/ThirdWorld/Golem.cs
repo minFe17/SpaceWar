@@ -41,12 +41,14 @@ public class Golem : MovableEnemy
     {
         GameObject rock = Instantiate(_rockPrefab);
         rock.transform.position = _attackArea.transform.position;
-        rock.GetComponent<GolemRock>().enabled = false;
+        _rock = rock.GetComponent<GolemRock>();
+        _rock.OnHand(_attackArea);
     }
-    
+
     void ThrowRock()
     {
-        _rock.enabled = true;
+        _rock.Throw(_attackArea.transform);
+
     }
 
     protected override void EndAttack()

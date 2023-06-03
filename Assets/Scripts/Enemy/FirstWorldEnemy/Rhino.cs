@@ -49,9 +49,15 @@ public class Rhino : MovableEnemy
         GenericSingleton<GameManager>.Instance.Portal.SetActive(true);
     }
 
+    protected override void ReadyAttack()
+    {
+        _isAttack = true;
+        _attackType = (ERhinoAttackType)Random.Range(0, (int)ERhinoAttackType.Max);
+        _animator.SetTrigger($"do{_attackType}");
+    }
+
     protected override void EndAttack()
     {
-        _animator.SetBool($"is{_attackType}", false);
         if (_attackArea.activeSelf == true)
             _attackArea.SetActive(false);
         _isAttack = false;
@@ -69,6 +75,5 @@ public enum ERhinoAttackType
 {
     Attack,
     Shout,
-    Rush,
     Max
 }

@@ -8,6 +8,7 @@ public class MiniScavenger : Scavenger
     public int CurHp { get => _curHp; }
     public int MaxHp {  get => _maxHp; }
     public bool IsDie { get => _isDie; }
+    public bool OtherScavengerIsDie { get; set; }
 
     void Start()
     {
@@ -24,12 +25,16 @@ public class MiniScavenger : Scavenger
     public void Spawn(GameObject otherScavenger)
     {
         _otherScavenger = otherScavenger;
-        Init(_enemyController);
     }
 
     public override void Init(EnemyController enemyController)
     {
-        base.Init(enemyController);
+        _enemyController = enemyController;
+        _target = GenericSingleton<EnemyManager>.Instance.Target;
+        _player = GenericSingleton<PlayerDataManager>.Instance.Player;
+        _curHp = _maxHp;
+        _enemyController.EnemyList.Add(this);
+        AddCoinList();
         _attackArea.SetActive(false);
     }
 
@@ -56,8 +61,16 @@ public class MiniScavenger : Scavenger
 
     public override void Die()
     {
-        base.Die();
-        if(_otherScavenger.GetComponent<MiniScavenger>().IsDie == true)
+        if(OtherScavengerIsDie == false)
+            _otherScavenger.GetComponent<MiniScavenger>().OtherScavengerIsDie = _isDie;
+        
+        MakeMoney();
+        GenericSingleton<GameManager>.Instance.AddKillEnemy();
+        _player.Vampirism();
+        _enemyController.EnemyList.Remove(this);
+        Destroy(this.gameObject);
+
+        if (OtherScavengerIsDie == true)
         {
             GenericSingleton<UIManager>.Instance.IngameUI.HideMiniBossHpBar();
             for (int i = 0; i < _enemyController.EnemyList.Count; i++)
@@ -66,5 +79,7 @@ public class MiniScavenger : Scavenger
             }
             GenericSingleton<GameManager>.Instance.Portal.SetActive(true);
         }
+
+        
     }
 }

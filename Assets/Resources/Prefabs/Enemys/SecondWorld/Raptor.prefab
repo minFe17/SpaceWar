@@ -552,7 +552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4745635998310546799
 Transform:
   m_ObjectHideFlags: 0
@@ -579,8 +579,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.03, y: 0.03, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0.025}
+  m_Size: {x: 0.03, y: 0.05, z: 0.05}
+  m_Center: {x: 0, y: 0.025, z: 0.025}
 --- !u!114 &57561957316911658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4250,14 +4250,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e592328fdbe7d79449fbdc24cab95a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 3
-  _attackDelay: 3
-  _damage: 3
-  _moveSpeed: 3
+  _maxHp: 0
+  _attackDelay: 0
+  _damage: 0
+  _moveSpeed: 0
   _attackArea: {fileID: 4745635998310546798}
   _meshRenderer: {fileID: 4745635999766478512}
-  _s: {fileID: -6465566751694194690, guid: dbb1e7de04dcd634381f9081d7157204, type: 3}
-  _ma: {fileID: 6354308244804642884}
 --- !u!95 &4745636000298523816
 Animator:
   serializedVersion: 5

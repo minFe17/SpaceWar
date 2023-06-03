@@ -14,6 +14,17 @@ public class Pachy : MovableEnemy
         Move();
     }
 
+    public override void Move()
+    {
+        if (!_isDie && !_isHitted)
+        {
+            if(!_isAttack)
+                _animator.SetBool("isMove", true);
+            _move = _target.position - transform.position;
+            transform.Translate(_move.normalized * Time.deltaTime * _moveSpeed, Space.World);
+        }
+    }
+
     public override void TakeDamage(int damage)
     {
         if (_isDie)
@@ -34,18 +45,20 @@ public class Pachy : MovableEnemy
 
     protected override void ReadyAttack()
     {
+        _isAttack = true;
         _animator.SetTrigger("doReady");
     }
 
     protected override void Attack()
     {
-        _isAttack = true;
         _animator.SetTrigger("doAttack");
+        _moveSpeed *= 2f;
     }
 
     protected override void EndAttack()
     {
         _isAttack = false;
+        _moveSpeed /= 2f;
     }
 
     private void OnCollisionEnter(Collision collision)

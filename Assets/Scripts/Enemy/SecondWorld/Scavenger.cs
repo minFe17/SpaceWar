@@ -69,6 +69,8 @@ public class Scavenger : MovableEnemy
 
         firstMiniBoss.GetComponent<MiniScavenger>().Spawn(secondMiniBoss);
         secondMiniBoss.GetComponent<MiniScavenger>().Spawn(firstMiniBoss);
+        firstMiniBoss.GetComponent<MiniScavenger>().Init(_enemyController);
+        secondMiniBoss.GetComponent<MiniScavenger>().Init(_enemyController);
         firstMiniBoss.transform.position = new Vector3(transform.position.x - 10f, transform.position.y, transform.position.z);
         secondMiniBoss.transform.position = new Vector3(transform.position.x + 10f, transform.position.y, transform.position.z);
 
