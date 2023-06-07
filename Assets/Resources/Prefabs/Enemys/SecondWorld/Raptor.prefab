@@ -4250,10 +4250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e592328fdbe7d79449fbdc24cab95a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 0
-  _attackDelay: 0
-  _damage: 0
-  _moveSpeed: 0
+  _maxHp: 5
+  _attackDelay: 0.5
+  _damage: 1
+  _moveSpeed: 3
   _attackArea: {fileID: 4745635998310546798}
   _meshRenderer: {fileID: 4745635999766478512}
 --- !u!95 &4745636000298523816

@@ -2280,10 +2280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379154f8f4c0da74487e09194f2c9310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 0
-  _attackDelay: 0
-  _damage: 0
-  _moveSpeed: 0
+  _maxHp: 10
+  _attackDelay: 1.5
+  _damage: 3
+  _moveSpeed: 1.5
   _attackArea: {fileID: 4926436652229370228}
   _secondAttackArea: {fileID: 3662167022901089304}
 --- !u!95 &6954349052968721467

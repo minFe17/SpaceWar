@@ -824,10 +824,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abefce2a1ce34854db487e8dc3ada915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 1
-  _attackDelay: 1
-  _damage: 1
-  _moveSpeed: 1
+  _maxHp: 50
+  _attackDelay: 2
+  _damage: 5
+  _moveSpeed: 2
   _attackArea: {fileID: 3349493921437266194}
 --- !u!95 &3668376243138506110
 Animator:

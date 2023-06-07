@@ -137,7 +137,7 @@ MonoBehaviour:
   _maxHp: 10
   _attackDelay: 2
   _damage: 3
-  _moveSpeed: 3
+  _moveSpeed: 2
   _attackArea: {fileID: 6268242823713895018}
 --- !u!65 &321905576182080531
 BoxCollider:
