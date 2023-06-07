@@ -4,6 +4,7 @@ public class Scorpion : MovableEnemy
     {
         LookTarget();
         Move();
+        FreezePos();
     }
 
     public override void TakeDamage(int damage)

@@ -12,6 +12,7 @@ public class Pachy : MovableEnemy
     {
         LookTarget();
         Move();
+        FreezePos();
     }
 
     public override void Move()

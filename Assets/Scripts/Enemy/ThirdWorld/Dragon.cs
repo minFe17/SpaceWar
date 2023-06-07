@@ -16,6 +16,7 @@ public class Dragon : MovableEnemy
     {
         LookTarget();
         Move();
+        FreezePos();
     }
 
     public override void Init(EnemyController enemyController)

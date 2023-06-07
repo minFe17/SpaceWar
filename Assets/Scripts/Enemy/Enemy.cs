@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int _maxHp;
     [SerializeField] protected float _attackDelay;
 
+    protected Rigidbody _rigidbody;
     protected EnemyController _enemyController;
     protected Transform _target;
     protected Player _player;
@@ -15,6 +16,11 @@ public abstract class Enemy : MonoBehaviour
     protected bool _isDie;
 
     protected List<GameObject> _coinList = new List<GameObject>();
+
+    void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     public virtual void Init(EnemyController enemyController)
     {
@@ -51,6 +57,11 @@ public abstract class Enemy : MonoBehaviour
             Destroy(this.gameObject, 1f);
             _enemyController.EnemyList.Remove(this);
         }
+    }
+
+    protected void FreezePos()
+    {
+        _rigidbody.velocity = Vector3.zero;
     }
 
     public virtual void Die()

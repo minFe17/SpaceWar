@@ -21,6 +21,7 @@ public class Turret : Enemy
     void Update()
     {
         LookTarget();
+        FreezePos();
     }
 
     public override void LookTarget()

@@ -22,7 +22,7 @@ public class DungeonCreator : MonoBehaviour
     [SerializeField] float _roomBottomCornerModifier;
     [Range(0.7f, 1.0f)]
     [SerializeField] float _roomTopCornerModifier;
-    [Range(0, 10)]
+    [Range(6, 10)]
     [SerializeField] int _roomOffset;
 
     List<Vector3Int> _possibleWallVerticalPosition = new List<Vector3Int>();
@@ -214,11 +214,7 @@ public class DungeonCreator : MonoBehaviour
     void AddWallPositionToList(Vector3 wallPosition, List<Vector3Int> wallList)
     {
         Vector3Int point = Vector3Int.CeilToInt(wallPosition);
-        if (wallList.Contains(point))
-        {
-            wallList.Remove(point);
-        }
-        else
+        if (!wallList.Contains(point))
         {
             wallList.Add(point);
         }

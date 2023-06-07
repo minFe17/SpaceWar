@@ -15,6 +15,7 @@ public class Bear : MovableEnemy
     {
         LookTarget();
         Move();
+        FreezePos();
     }
 
     public override void TakeDamage(int damage)

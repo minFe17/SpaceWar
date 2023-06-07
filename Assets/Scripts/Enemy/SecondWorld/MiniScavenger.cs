@@ -20,6 +20,7 @@ public class MiniScavenger : Scavenger
     {
         LookTarget();
         Move();
+        FreezePos();
     }
 
     public void Spawn(GameObject otherScavenger)

@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
         Reload();
         ShowOptionUI();
         HPUpByMoney();
+        FreezePos();
     }
 
     void Move()
@@ -353,6 +354,11 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
 
         GenericSingleton<CsvController>.Instance.DestroyDataFile();
+    }
+
+    void FreezePos()
+    {
+        _rigidbody.velocity = Vector3.zero;
     }
 
     void StartSingleShot()

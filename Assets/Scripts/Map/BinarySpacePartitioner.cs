@@ -18,12 +18,12 @@ public class BinarySpacePartitioner
         List<RoomNode> listToReturn = new List<RoomNode>();
         graph.Enqueue(_rootNode);
         listToReturn.Add(_rootNode);
-        int iterations = 0; // 현재 방 개수
-        while (iterations < maxIterations && graph.Count > 0)   // 방 개수 < 최대 방개수 && 큐에 개수가 0이 아니면 실행
+        int iterations = 0;
+        while (iterations < maxIterations && graph.Count > 0)
         {
-            iterations++;   // 현재 방 1개 추가
-            RoomNode currentNode = graph.Dequeue(); // 큐 안에 있는 룸노드 1개 꺼내서 currentNode에 저장
-            if (currentNode.Width >= roomWidthMin * 2 || currentNode.Length >= roomLengthMin * 2)   // currentNode가 방을 나눌 수 있으면 실행 
+            iterations++;
+            RoomNode currentNode = graph.Dequeue();
+            if (currentNode.Width >= roomWidthMin * 2 || currentNode.Length >= roomLengthMin * 2)
             {
                 SplitTheSpace(currentNode, listToReturn, roomWidthMin, roomLengthMin, graph);
             }

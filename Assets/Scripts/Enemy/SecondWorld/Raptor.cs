@@ -18,6 +18,7 @@ public class Raptor : MovableEnemy
     {
         LookTarget();
         Move();
+        FreezePos();
     }
 
     public override void Move()

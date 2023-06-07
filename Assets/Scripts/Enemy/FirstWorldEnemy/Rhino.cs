@@ -9,6 +9,7 @@ public class Rhino : MovableEnemy
     {
         LookTarget();
         Move();
+        FreezePos();
     }
 
     public override void Init(EnemyController enemyController)
