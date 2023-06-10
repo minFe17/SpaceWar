@@ -9,7 +9,6 @@ TagManager:
   - Door
   - Enemy
   - Portal
-  - Breath
   layers:
   - Default
   - TransparentFX
