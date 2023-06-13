@@ -6,12 +6,6 @@ public class Scavenger : MovableEnemy
     EAttackType _attackType;
     public EAttackType AttackType { get { return _attackType; } }
 
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         LookTarget();

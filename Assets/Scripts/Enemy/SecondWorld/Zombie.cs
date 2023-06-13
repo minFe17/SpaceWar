@@ -6,12 +6,6 @@ public class Zombie : MovableEnemy
 {
     [SerializeField] GameObject _secondAttackArea;
 
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         LookTarget();

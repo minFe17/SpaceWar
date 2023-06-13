@@ -10,12 +10,6 @@ public class Dragon : MovableEnemy
 
     public EDragonAttackType AttackType { get => _dragonAttackType; }
 
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         LookTarget();

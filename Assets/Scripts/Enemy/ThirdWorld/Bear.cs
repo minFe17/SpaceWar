@@ -5,12 +5,6 @@ public class Bear : MovableEnemy
     EBearAttackType _bearAttackType;
     public EBearAttackType BearAttackType { get => _bearAttackType; }
 
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         LookTarget();

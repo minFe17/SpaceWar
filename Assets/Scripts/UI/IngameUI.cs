@@ -9,6 +9,7 @@ public class IngameUI : MonoBehaviour
 {
     [SerializeField] Image _hpBar;
     [SerializeField] TMP_Text _hpText;
+    [SerializeField] Text _vendingMachineResultText;
 
     [SerializeField] TMP_Text _coinText;
 
@@ -38,6 +39,13 @@ public class IngameUI : MonoBehaviour
         if (curHp < 0)
             curHp = 0;
         _hpText.text = $"{curHp} / {maxHp}";
+    }
+
+    public void ShowVendingMachineResult(string result)
+    {
+        _vendingMachineResultText.gameObject.SetActive(true);
+        _vendingMachineResultText.text = result;
+        _vendingMachineResultText.GetComponent<VendingMachineResult>().Init();
     }
 
     public void ShowMoney()

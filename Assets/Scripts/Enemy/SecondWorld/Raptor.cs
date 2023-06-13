@@ -10,8 +10,6 @@ public class Raptor : MovableEnemy
     {
         _raptor = Resources.Load("Material/Raptor") as Material;
         _cloaking = Resources.Load("Material/Cloaking") as Material;
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()

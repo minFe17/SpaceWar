@@ -10,12 +10,6 @@ public class MiniScavenger : Scavenger
     public bool IsDie { get => _isDie; }
     public bool OtherScavengerIsDie { get; set; }
 
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         LookTarget();

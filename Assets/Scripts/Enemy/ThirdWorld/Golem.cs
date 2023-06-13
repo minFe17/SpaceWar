@@ -5,13 +5,6 @@ public class Golem : MovableEnemy
     GameObject _rockPrefab;
     GolemRock _rock;
 
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
-        _rockPrefab = Resources.Load("Prefabs/Enemys/ThirdWorld/Rock") as GameObject;
-    }
-
     void Update()
     {
         LookTarget();

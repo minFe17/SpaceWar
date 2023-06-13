@@ -2,12 +2,6 @@ using UnityEngine;
 
 public class Pachy : MovableEnemy
 {
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         LookTarget();

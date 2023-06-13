@@ -17,11 +17,6 @@ public abstract class Enemy : MonoBehaviour
 
     protected List<GameObject> _coinList = new List<GameObject>();
 
-    void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     public virtual void Init(EnemyController enemyController)
     {
         _enemyController = enemyController;
@@ -30,6 +25,7 @@ public abstract class Enemy : MonoBehaviour
         _curHp = _maxHp;
         _enemyController.EnemyList.Add(this);
         AddCoinList();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     protected void AddCoinList()
@@ -61,7 +57,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected void FreezePos()
     {
-        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
     }
 
     public virtual void Die()

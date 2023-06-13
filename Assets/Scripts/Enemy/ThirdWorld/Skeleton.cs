@@ -5,12 +5,6 @@ public class Skeleton : MovableEnemy
     [SerializeField] GameObject _revivalCollider;
     bool _isRevival;
 
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         LookTarget();
