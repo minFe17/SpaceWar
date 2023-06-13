@@ -1,9 +1,13 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using Utils;
 
 public class Dragon : MovableEnemy
 {
+    [SerializeField] GameObject _breath;
+
     EDragonAttackType _dragonAttackType;
+
     public EDragonAttackType AttackType { get => _dragonAttackType; }
 
     void Start()
@@ -71,6 +75,23 @@ public class Dragon : MovableEnemy
         _isAttack = false;
     }
 
+    void BreathAttack()
+    {
+        _breath.SetActive(true);
+        _breath.GetComponent<Breath>().Init(_player, this);
+    }
+
+    public void EndBreath()
+    {
+        _animator.SetBool("isEndBreathAttack", true);
+    }
+
+    void EndBreathAttack()
+    {
+        _breath.SetActive(false);
+        _animator.SetBool("isEndBreathAttack", false);
+    }
+
     void Shout()
     {
         int random = Random.Range(1, 4);
@@ -84,6 +105,7 @@ public enum EDragonAttackType
 {
     BasicAttack,
     ClawAttack,
+    BreathAttack,
     Shout,
     Max,
 }
