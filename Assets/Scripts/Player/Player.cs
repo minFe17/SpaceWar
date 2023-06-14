@@ -352,7 +352,6 @@ public class Player : MonoBehaviour
         _uiManager.GameOverUI.ShowKillEnemy();
         _uiManager.GameOverUI.ShowMoney();
         Cursor.lockState = CursorLockMode.None;
-
         GenericSingleton<CsvController>.Instance.DestroyDataFile();
     }
 

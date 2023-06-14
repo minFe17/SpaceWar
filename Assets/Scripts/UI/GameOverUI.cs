@@ -29,7 +29,6 @@ public class GameOverUI : MonoBehaviour
         _wavePos.Add(_firstMap);
         _wavePos.Add(_secondMap);
         _wavePos.Add(_thirdMap);
-        _clearPanel.SetActive(false);
     }
 
     void Update()
@@ -59,11 +58,20 @@ public class GameOverUI : MonoBehaviour
 
     public void ShowWave()
     {
-        int mapStage = GenericSingleton<GameManager>.Instance.MapStage;
-        int levelStage = GenericSingleton<GameManager>.Instance.LevelStage;
+        GameManager gameManager = GenericSingleton<GameManager>.Instance;
+        int mapStage = gameManager.MapStage;
+        int levelStage = gameManager.LevelStage;
         _playerImage.position = _startPos.position;
         _dieWavePos = _wavePos[mapStage - 1][levelStage - 1].position;
-        _dieWaveText.text = $"{mapStage} - {levelStage}";
+        if(!gameManager.IsClear)
+        {
+            _dieWaveText.text = $"{mapStage} - {levelStage}";
+        }
+        else
+        {
+            _dieWaveText.gameObject.SetActive(false);
+            _clearPanel.SetActive(true);
+        }
     }
 
     public void RegameButton()
