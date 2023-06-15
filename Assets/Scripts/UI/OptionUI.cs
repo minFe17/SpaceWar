@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 public class OptionUI : MonoBehaviour
@@ -23,5 +24,10 @@ public class OptionUI : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void LobbyButton()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 }

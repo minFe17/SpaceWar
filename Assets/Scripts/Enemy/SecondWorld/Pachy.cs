@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Pachy : MovableEnemy
 {
+    bool _isReady;
+
     void Update()
     {
         LookTarget();
@@ -11,7 +13,7 @@ public class Pachy : MovableEnemy
 
     public override void Move()
     {
-        if (!_isDie && !_isHitted)
+        if (!_isDie && !_isHitted && !_isReady)
         {
             if(!_isAttack)
                 _animator.SetBool("isMove", true);
@@ -40,12 +42,16 @@ public class Pachy : MovableEnemy
 
     protected override void ReadyAttack()
     {
-        _isAttack = true;
         _animator.SetTrigger("doReady");
+        _isReady = true;
     }
 
     protected override void Attack()
     {
+        if (_isDie)
+            return;
+        _isReady = false;
+        _isAttack = true;
         _animator.SetTrigger("doAttack");
         _moveSpeed *= 2f;
     }

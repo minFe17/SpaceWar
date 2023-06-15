@@ -8295,7 +8295,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8547447640929005942}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 195661637605779606}
+        m_TargetAssemblyTypeName: OptionUI, Assembly-CSharp
+        m_MethodName: LobbyButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4743624803163086489
 GameObject:
   m_ObjectHideFlags: 0
