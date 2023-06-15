@@ -18,7 +18,7 @@ public class DoorList : MonoBehaviour
     {
         for (int i = 0; i < _doors.Count; i++)
         {
-            _doors[i].enabled = true;
+            _doors[i].Unlock();
         }
     }
 }

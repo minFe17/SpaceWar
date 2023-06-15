@@ -63,4 +63,9 @@ public class Door : MonoBehaviour
         _leftDoor.transform.position = _doorPos;
         _rightDoor.transform.position = _doorPos;
     }
+
+    public void Unlock()
+    {
+        _collider.enabled = true;
+    }
 }
