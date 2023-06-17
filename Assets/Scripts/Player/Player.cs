@@ -346,6 +346,9 @@ public class Player : MonoBehaviour
 
     public void GameOver()
     {
+        if (_uiManager.AimPoint.activeSelf == true)
+            _uiManager.AimPoint.SetActive(false);
+
         _uiManager.GameOverUI.gameObject.SetActive(true);
         _uiManager.GameOverUI.ShowWave();
         _uiManager.GameOverUI.ShowPlayTime();
@@ -429,6 +432,14 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
             _isJump = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("DeadZone"))
+        {
+            GameOver();
+        }
     }
 }
 

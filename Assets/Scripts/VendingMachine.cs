@@ -5,6 +5,7 @@ public class VendingMachine: MonoBehaviour
 {
     int _cost;
     bool _inPlayer;
+    bool _isBuy;
 
     void Update()
     {
@@ -16,13 +17,14 @@ public class VendingMachine: MonoBehaviour
         if(_cost == 0)
             _cost = Random.Range(10, 30);
 
-        if (Input.GetKeyDown(KeyCode.F) && _inPlayer)
+        if (Input.GetKeyDown(KeyCode.F) && _inPlayer && !_isBuy)
         {
             if(GenericSingleton<PlayerDataManager>.Instance.Money >= _cost)
             {
                 GenericSingleton<PlayerDataManager>.Instance.Money -= _cost;
                 GenericSingleton<UIManager>.Instance.IngameUI.ShowMoney();
                 GenericSingleton<PotionManager>.Instance.ApplyPotion();
+                _isBuy = true;
             }
             _inPlayer = false;
         }

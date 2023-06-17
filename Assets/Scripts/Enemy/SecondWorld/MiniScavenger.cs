@@ -74,7 +74,5 @@ public class MiniScavenger : Scavenger
             }
             GenericSingleton<GameManager>.Instance.Portal.SetActive(true);
         }
-
-        
     }
 }

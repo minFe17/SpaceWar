@@ -49,7 +49,6 @@ public abstract class Enemy : MonoBehaviour
         {
             _isDie = true;
             MakeMoney();
-            GenericSingleton<GameManager>.Instance.AddKillEnemy();
             Destroy(this.gameObject, 1f);
             _enemyController.EnemyList.Remove(this);
         }
@@ -74,5 +73,14 @@ public abstract class Enemy : MonoBehaviour
         int random = Random.Range(0, _coinList.Count);
         GameObject coin = Instantiate(_coinList[random]);
         coin.transform.position = transform.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("DeadZone"))
+        {
+            _enemyController.EnemyList.Remove(this);
+            Destroy(this.gameObject);
+        }
     }
 }

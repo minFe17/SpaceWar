@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Enemy
   - Portal
+  - DeadZone
   layers:
   - Default
   - TransparentFX

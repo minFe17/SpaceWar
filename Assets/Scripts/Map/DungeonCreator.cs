@@ -58,6 +58,7 @@ public class DungeonCreator : MonoBehaviour
     public void CreateDungeon()
     {
         DestroyAllChildren();
+        CreateDeadZone();
         DungeonGenerator generator = new DungeonGenerator(_dungeonWidth, _dungeonLength);
         var listOfRooms = generator.CalculateDungeon(_maxIterations, _roomWidthMin, _roomLengthMin,
                                                       _roomBottomCornerModifier, _roomTopCornerModifier, _roomOffset);
@@ -66,7 +67,7 @@ public class DungeonCreator : MonoBehaviour
 
         GameObject wallParent = new GameObject("wallParent");
         wallParent.transform.parent = transform;
-        DoorList doorList = CreateDoorList(transform);
+        DoorList doorList = CreateDoorList();
 
         for (int i = 0; i < listOfRooms.Count; i++)
         {
@@ -129,7 +130,7 @@ public class DungeonCreator : MonoBehaviour
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        GameObject dungeonFloor = new GameObject("Mesh " + j, typeof(MeshFilter), typeof(MeshRenderer)) ;
+        GameObject dungeonFloor = new GameObject("Mesh " + j, typeof(MeshFilter), typeof(MeshRenderer));
         dungeonFloor.transform.position = Vector3.zero;
         dungeonFloor.transform.localScale = Vector3.one;
         dungeonFloor.transform.parent = transform;
@@ -179,10 +180,10 @@ public class DungeonCreator : MonoBehaviour
         temp.GetComponent<EnemyController>().Init(createPos, doorList, isBossRoom);
     }
 
-    DoorList CreateDoorList(Transform parent)
+    DoorList CreateDoorList()
     {
         GameObject temp = new GameObject("DoorList");
-        temp.transform.parent = parent;
+        temp.transform.parent = transform;
         return temp.AddComponent<DoorList>();
     }
 
@@ -265,6 +266,14 @@ public class DungeonCreator : MonoBehaviour
         Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
         Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
         return (bottomLeft + topRight) / 2;
+    }
+
+    void CreateDeadZone()
+    {
+        GameObject deadZone = Resources.Load("Prefabs/DeadZone") as GameObject;
+        GameObject temp = Instantiate(deadZone, transform);
+        temp.transform.position = new Vector3(_dungeonWidth / 2, -10, _dungeonLength / 2);
+        temp.transform.localScale = new Vector3(_dungeonWidth + 50, 1, _dungeonLength + 50);
     }
 
     void DestroyAllChildren()
