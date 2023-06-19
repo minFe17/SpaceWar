@@ -236,21 +236,21 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateWall(GameObject wallParent, Vector3Int wallPosition, GameObject wallPrefab)
     {
-        Instantiate(wallPrefab, wallPosition, Quaternion.identity, wallParent.transform);
+        GameObject temp = Instantiate(wallPrefab, wallPosition, Quaternion.identity, wallParent.transform);
     }
 
     void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject doorParent, GameObject wallParent)
     {
         if ((topRightCorner.x - bottomLeftCorner.x) < (topRightCorner.y - bottomLeftCorner.y))
         {
-            Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, bottomLeftCorner.y);
-            Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0, topRightCorner.y);
+            Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0.1f, bottomLeftCorner.y);
+            Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0.1f, topRightCorner.y);
             CreateDoor(createBottomPos, createTopPos, _doorHorizontal, doorParent);
         }
         else
         {
-            Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, 0, (bottomLeftCorner.y + topRightCorner.y) / 2);
-            Vector3 createRightPos = new Vector3(topRightCorner.x, 0, (bottomLeftCorner.y + topRightCorner.y) / 2);
+            Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, 0.1f, (bottomLeftCorner.y + topRightCorner.y) / 2);
+            Vector3 createRightPos = new Vector3(topRightCorner.x, 0.1f, (bottomLeftCorner.y + topRightCorner.y) / 2);
             CreateDoor(createLeftPos, createRightPos, _doorVertical, doorParent);
         }
     }

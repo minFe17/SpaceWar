@@ -491,7 +491,7 @@ MonoBehaviour:
   _wallWidth: 6
   _doorWidth: 10
   _enemyControllerOffset: 4
-  _corridorWidth: 10
+  _corridorWidth: 12
   _roomBottomCornerModifier: 0.1
   _roomTopCornerModifier: 0.9
   _roomOffset: 7

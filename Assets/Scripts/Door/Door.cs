@@ -30,19 +30,7 @@ public class Door : MonoBehaviour
             Close();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-            _isOpen = true;
-        else if (other.gameObject.CompareTag("Wall"))
-            Destroy(other.gameObject);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-            _isOpen = false;
-    }
+   
 
     public void Open()
     {
@@ -67,5 +55,19 @@ public class Door : MonoBehaviour
     public void Unlock()
     {
         _collider.enabled = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+            _isOpen = true;
+        else if (other.gameObject.CompareTag("Wall"))
+            Destroy(other.transform.parent.gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+            _isOpen = false;
     }
 }

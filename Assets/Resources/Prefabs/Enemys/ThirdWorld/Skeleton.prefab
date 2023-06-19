@@ -1856,7 +1856,7 @@ MonoBehaviour:
   _maxHp: 10
   _attackDelay: 1
   _damage: 5
-  _moveSpeed: 2
+  _moveSpeed: 3
   _attackArea: {fileID: 5379856207158569477}
   _revivalCollider: {fileID: 2848278045475580345}
 --- !u!95 &6647671584607977318

@@ -5,6 +5,11 @@ public class Golem : MovableEnemy
     GameObject _rockPrefab;
     GolemRock _rock;
 
+    void Start()
+    {
+        _rockPrefab = Resources.Load("Prefabs/Enemys/ThirdWorld/Rock") as GameObject;
+    }
+
     void Update()
     {
         LookTarget();

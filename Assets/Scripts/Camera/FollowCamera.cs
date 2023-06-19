@@ -12,4 +12,16 @@ public class FollowCamera : MonoBehaviour
         _followCam.LookAt = target;
         GenericSingleton<UIManager>.Instance.FollowCam = _followCam;
     }
+
+    void Update()
+    {
+        CameraFOV();
+    }
+
+    public void CameraFOV()
+    {
+        _followCam.m_Lens.FieldOfView = _followCam.m_YAxis.Value * 60 + 30;
+        if (_followCam.m_Lens.FieldOfView > 60f)
+            _followCam.m_Lens.FieldOfView = 60f;
+    }
 }

@@ -5,11 +5,6 @@ public class GolemRock : Bullet
     GameObject _golemHand;
     bool _isThrow;
 
-    void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         Move();
@@ -20,6 +15,7 @@ public class GolemRock : Bullet
         if (_isThrow == true)
         {
             transform.Translate(Vector3.up * _speed * Time.deltaTime);
+            transform.Translate(Vector3.right * (_speed / 2) * Time.deltaTime);
         }
         else
         {

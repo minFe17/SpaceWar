@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class TurretMissile : Bullet
 {
-    void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         Move();
