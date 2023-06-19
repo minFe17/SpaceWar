@@ -64,8 +64,13 @@ public abstract class Enemy : MonoBehaviour
         MakeMoney();
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
         _player.Vampirism();
-        _enemyController.EnemyList.Remove(this);
+        RemoveEnemy();
+    }
+
+    public void RemoveEnemy()
+    {
         Destroy(this.gameObject);
+        _enemyController.EnemyList.Remove(this);
     }
 
     protected void MakeMoney()
@@ -78,9 +83,6 @@ public abstract class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("DeadZone"))
-        {
-            _enemyController.EnemyList.Remove(this);
-            Destroy(this.gameObject);
-        }
+            RemoveEnemy();
     }
 }

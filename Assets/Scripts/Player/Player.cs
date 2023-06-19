@@ -1,5 +1,4 @@
 using System.Collections;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -41,6 +40,8 @@ public class Player : MonoBehaviour
     bool _isReload;
     bool _isOpenOption;
     bool _isDie;
+
+    public EnemyController EnemyController { get; set; }
 
     void Start()
     {
@@ -356,6 +357,14 @@ public class Player : MonoBehaviour
         _uiManager.GameOverUI.ShowMoney();
         Cursor.lockState = CursorLockMode.None;
         GenericSingleton<CsvController>.Instance.DestroyDataFile();
+
+        if (EnemyController.EnemyList.Count != 0)
+        {
+            for (int i = EnemyController.EnemyList.Count - 1; i >= 0; i--)
+            {
+                EnemyController.EnemyList[i].RemoveEnemy();
+            }
+        }
     }
 
     void FreezePos()
@@ -436,7 +445,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("DeadZone"))
+        if (other.gameObject.CompareTag("DeadZone"))
         {
             GameOver();
         }

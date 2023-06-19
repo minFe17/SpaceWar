@@ -112,6 +112,7 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !_isClear)
         {
+            other.gameObject.GetComponent<Player>().EnemyController = this;
             GenericSingleton<GameManager>.Instance.Battle(_doorList);
             _ground.enabled = false;
             if (!_isBossRoom)
