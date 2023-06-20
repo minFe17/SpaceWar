@@ -1,4 +1,5 @@
-﻿using Utils;
+﻿using UnityEngine;
+using Utils;
 
 public class DamagePotion : PotionBase
 {
@@ -22,5 +23,7 @@ public class DamagePotion : PotionBase
 
         GenericSingleton<UIManager>.Instance.IngameUI.ShowHp();
         GenericSingleton<UIManager>.Instance.IngameUI.ShowVendingMachineResult($"현재 HP -{damageAmount} 감소");
+        AudioClip damageSound = Resources.Load("Prefabs/SoundClip/PotionDamage") as AudioClip;
+        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(damageSound);
     }
 }

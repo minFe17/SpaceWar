@@ -1,4 +1,5 @@
-﻿using Utils;
+﻿using UnityEngine;
+using Utils;
 
 public class RecoveryPotion : PotionBase
 {
@@ -18,5 +19,7 @@ public class RecoveryPotion : PotionBase
 
         GenericSingleton<UIManager>.Instance.IngameUI.ShowHp();
         GenericSingleton<UIManager>.Instance.IngameUI.ShowVendingMachineResult($"현재 HP +{recoveryAmount} 회복");
+        AudioClip healSound = Resources.Load("Prefabs/SoundClip/PotionHeal") as AudioClip;
+        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(healSound);
     }
 }

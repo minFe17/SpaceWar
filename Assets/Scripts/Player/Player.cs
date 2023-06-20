@@ -19,11 +19,14 @@ public class Player : MonoBehaviour
     PlayerDataManager _playerDataManager;
     UIManager _uiManager;
     GameManager _gameManager;
+    SoundController _soundController;
 
     GameObject _bullet;
     Animator _animator;
     Rigidbody _rigidbody;
     Transform _idleBulletPos;
+
+    AudioClip _shotSound;
 
     Vector3 _move;
 
@@ -48,17 +51,15 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
-        _uiManager = GenericSingleton<UIManager>.Instance;
         _gameManager = GenericSingleton<GameManager>.Instance;
-
+        _soundController = GenericSingleton<SoundManager>.Instance.SoundController;
         _bullet = Resources.Load("Prefabs/Bullet") as GameObject;
         Cursor.lockState = CursorLockMode.Locked;
         _playerDataManager.Player = this;
-        _uiManager.CreateUI();
-        _uiManager.Player = this;
-        _uiManager.InfoKey = _InfoKeyUI;
-        _uiManager.InfoMessage = _InfoMseeage;
+        
+        SettingUI();
         Init();
+        SettingSound();
     }
 
     void Init()
@@ -70,6 +71,20 @@ public class Player : MonoBehaviour
         _uiManager.IngameUI.ShowBullet();
         _uiManager.IngameUI.ShowShotMode();
         _gameManager.StageUI();
+    }
+
+    void SettingSound()
+    {
+        _shotSound = Resources.Load("Prefabs/SoundClip/Shot") as AudioClip;
+    }
+
+    void SettingUI()
+    {
+        _uiManager = GenericSingleton<UIManager>.Instance;
+        _uiManager.CreateUI();
+        _uiManager.Player = this;
+        _uiManager.InfoKey = _InfoKeyUI;
+        _uiManager.InfoMessage = _InfoMseeage;
     }
 
     void Update()
@@ -310,6 +325,8 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && _uiManager.IsKeyInfoUI == false)
         {
             _uiManager.OnOffOptionUI();
+            AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
+            GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
             if (!_isOpenOption)
             {
                 Time.timeScale = 0;
@@ -392,6 +409,7 @@ public class Player : MonoBehaviour
             MakeBullet();
             _playerDataManager.CurBullet--;
             _uiManager.IngameUI.ShowBullet();
+            _soundController.PlaySFXAudio(_shotSound);
         }
     }
 

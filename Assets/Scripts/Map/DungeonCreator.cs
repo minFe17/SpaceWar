@@ -27,6 +27,7 @@ public class DungeonCreator : MonoBehaviour
 
     List<Vector3Int> _possibleWallVerticalPosition = new List<Vector3Int>();
     List<Vector3Int> _possibleWallHorizontalPosition = new List<Vector3Int>();
+    List<GameObject> _obstacles = new List<GameObject>();
 
     Material _material;
 
@@ -73,6 +74,7 @@ public class DungeonCreator : MonoBehaviour
         {
             GameObject room = CreateMesh(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, i);
             Vector3 createPos = CalculateCreatePosition(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
+            CreateObstacle(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
 
             if (i == 0)
             {
@@ -142,6 +144,11 @@ public class DungeonCreator : MonoBehaviour
         CalculateWallPosition(bottomLeft, bottomRight, topLeft, topRight);
 
         return dungeonFloor;
+    }
+
+    void CreateObstacle(Vector2 bottomLeftCorner, Vector2 topRightCorner)
+    {
+
     }
 
     void CreatePlayerSpawnPos(Vector3 createPos, GameObject parent)

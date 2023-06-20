@@ -43,5 +43,7 @@ public class PlayerDataManager : MonoBehaviour
             CurHp = _maxHp;
             ShotMode = EShotModeType.Single;
         }
+        AudioClip bgm = Resources.Load("Prefabs/SoundClip/BGM") as AudioClip;
+        GenericSingleton<SoundManager>.Instance.SoundController.StartBGM(bgm);
     }
 }

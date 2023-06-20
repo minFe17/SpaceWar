@@ -19,5 +19,7 @@ public class MaxHPReducedPotion : PotionBase
 
         GenericSingleton<UIManager>.Instance.IngameUI.ShowHp();
         GenericSingleton<UIManager>.Instance.IngameUI.ShowVendingMachineResult($"최대 HP -{MaxHPReducedAmount} 감소");
+        AudioClip damageSound = Resources.Load("Prefabs/SoundClip/PotionDamage") as AudioClip;
+        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(damageSound);
     }
 }

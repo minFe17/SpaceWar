@@ -77,6 +77,8 @@ public class GameOverUI : MonoBehaviour
     public void RegameButton()
     {
         SceneManager.LoadScene("FirstWorld");
+        AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
+        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
     }
 
     void MovePlayerIcon()

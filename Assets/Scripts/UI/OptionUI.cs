@@ -11,6 +11,8 @@ public class OptionUI : MonoBehaviour
         this.gameObject.SetActive(false);
         _keyInfoPanel.SetActive(true);
         GenericSingleton<UIManager>.Instance.IsKeyInfoUI = true;
+        AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
+        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
     }
 
     public void CloseButton()
@@ -19,15 +21,17 @@ public class OptionUI : MonoBehaviour
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         GenericSingleton<UIManager>.Instance.Player.OptionUIState(false);
-    }
-
-    public void ExitGame()
-    {
-        Application.Quit();
+        AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
+        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
     }
 
     public void LobbyButton()
     {
         SceneManager.LoadScene("Lobby");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
