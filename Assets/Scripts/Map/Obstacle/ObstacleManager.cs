@@ -37,5 +37,6 @@ public class ObstacleManager : MonoBehaviour
     void AddWorldList()
     {
         _worldList.Add(new FirstWorldObstacleList());
+        _worldList.Add(new SecondWorldObstacleList());
     }
 }

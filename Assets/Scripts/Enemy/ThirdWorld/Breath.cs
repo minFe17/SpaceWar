@@ -32,7 +32,6 @@ public class Breath : MonoBehaviour
             _base.EndBreath();
             _curBreathTime = 0f;
         }
-
     }
 
     private void OnTriggerStay(Collider other)
