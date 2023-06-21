@@ -1,14 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
-using Utils;
 
-public class SecondWorld : WorldEnemyListManager
+public class SecondWorld : WorldEnemyListBase
 {
-    public override void AddEnemyList()
+    public override List<GameObject> AddEnemyList()
     {
         for (int i = 0; i < (int)ESecondWorldEnemyType.Max; i++)
         {
             _worldEnemy.Add(Resources.Load($"Prefabs/Enemys/SecondWorld/{(ESecondWorldEnemyType)i}") as GameObject);
         }
-        GenericSingleton<EnemyManager>.Instance.Enemys = _worldEnemy;
+        return _worldEnemy;
     }
 }

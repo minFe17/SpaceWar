@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
+using Random = UnityEngine.Random;
 
 public class DungeonCreator : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class DungeonCreator : MonoBehaviour
     [SerializeField] int _doorWidth;
     [SerializeField] int _enemyControllerOffset;
 
+    [SerializeField] int _minObstacle;
+    [SerializeField] int _maxObstacle;
+
     [Range(5, 15)]
     [SerializeField] int _corridorWidth;
     [Range(0.0f, 0.3f)]
@@ -27,7 +31,6 @@ public class DungeonCreator : MonoBehaviour
 
     List<Vector3Int> _possibleWallVerticalPosition = new List<Vector3Int>();
     List<Vector3Int> _possibleWallHorizontalPosition = new List<Vector3Int>();
-    List<GameObject> _obstacles = new List<GameObject>();
 
     Material _material;
 
@@ -56,7 +59,7 @@ public class DungeonCreator : MonoBehaviour
         _enemyController = Resources.Load($"Prefabs/EnemyController") as GameObject;
     }
 
-    public void CreateDungeon()
+    void CreateDungeon()
     {
         DestroyAllChildren();
         CreateDeadZone();
@@ -74,7 +77,6 @@ public class DungeonCreator : MonoBehaviour
         {
             GameObject room = CreateMesh(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, i);
             Vector3 createPos = CalculateCreatePosition(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
-            CreateObstacle(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
 
             if (i == 0)
             {
@@ -83,7 +85,10 @@ public class DungeonCreator : MonoBehaviour
             else if (i == listOfRooms.Count - 1)
             {
                 if (GenericSingleton<GameManager>.Instance.LevelStage == 5)
+                {
                     CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList, true);
+                    CreateObstacle(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room.transform);
+                }
                 CreatePortal(createPos, room);
             }
             else if (listOfRooms.Count / 2 == i)
@@ -93,6 +98,7 @@ public class DungeonCreator : MonoBehaviour
             else
             {
                 CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList, false);
+                CreateObstacle(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room.transform);
             }
         }
 
@@ -146,9 +152,17 @@ public class DungeonCreator : MonoBehaviour
         return dungeonFloor;
     }
 
-    void CreateObstacle(Vector2 bottomLeftCorner, Vector2 topRightCorner)
+    void CreateObstacle(Vector2 bottomLeftCorner, Vector2 topRightCorner, Transform parent)
     {
-
+        List<GameObject> obstacle = GenericSingleton<ObstacleManager>.Instance.Obstacle;
+        int obstacleCount = Random.Range(_minObstacle, _maxObstacle);
+        for (int i = 0; i < obstacleCount; i++)
+        {
+            int index = Random.Range(0, (int)EFirstWorldObstacleType.Max);
+            GameObject temp = obstacle[index];
+            Vector3 position = new Vector3(Random.Range(bottomLeftCorner.x + 10, topRightCorner.x - 10), 0, Random.Range(bottomLeftCorner.y + 10, topRightCorner.y - 10));
+            Instantiate(temp, position, Quaternion.identity, parent);
+        }
     }
 
     void CreatePlayerSpawnPos(Vector3 createPos, GameObject parent)

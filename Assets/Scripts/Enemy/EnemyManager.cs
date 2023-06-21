@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     Transform _target;
     public Transform Target { get => _target; set => _target = value; }
 
-    List<WorldEnemyListManager> _worldList = new List<WorldEnemyListManager>();
+    List<WorldEnemyListBase> _worldList = new List<WorldEnemyListBase>();
 
     List<GameObject> _enemys = new List<GameObject>();
     public List<GameObject> Enemys
@@ -22,10 +22,6 @@ public class EnemyManager : MonoBehaviour
             }
             return _enemys;
         }
-        set
-        {
-            _enemys = value;
-        }
     }
 
     public void WorldEnemyList()
@@ -34,7 +30,7 @@ public class EnemyManager : MonoBehaviour
             AddWorldList();
         Scene scene = SceneManager.GetActiveScene();
         int stage = (int)(EWorldType)Enum.Parse(typeof(EWorldType), scene.name) - 1;
-        _worldList[stage].AddEnemyList();
+        _enemys = _worldList[stage].AddEnemyList();
     }
 
     public void ClearWorldEnemy()
