@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Portal
   - DeadZone
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - MiniMapPlayer
   - Coin
   - Portal
-  - 
+  - Obstacle
   - 
   - 
   - 

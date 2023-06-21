@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using Utils;
 
@@ -15,6 +16,7 @@ public class PlayerSpawn : MonoBehaviour
         _player.transform.position = transform.position;
         SpawnCamera();
         GenericSingleton<EnemyManager>.Instance.Target = _player.transform;
+        _player.GetComponent<Player>().FollowCam = _followCam.GetComponent<CinemachineFreeLook>();
     }
 
     public void SpawnCamera()

@@ -11,10 +11,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _maxEnemy;
 
     List<Enemy> _enemyList = new List<Enemy>();
-    public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }
 
     DoorList _doorList;
     BoxCollider _ground;
+    Player _player;
 
     Vector3 _createPos;
     Vector3 _basePos;
@@ -25,6 +25,8 @@ public class EnemyController : MonoBehaviour
 
     bool _isClear;
     bool _isBossRoom;
+
+    public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }
 
     void Awake()
     {
@@ -88,10 +90,18 @@ public class EnemyController : MonoBehaviour
         boss.GetComponent<Enemy>().Init(this);
     }
 
+    public void StopSpawnEnemy()
+    {
+        StopCoroutine(SpawnEnemyRoutine());
+    }
+
     IEnumerator SpawnEnemyRoutine()
     {
         for (_waveIndex = 0; _waveIndex < _wave; _waveIndex++)
         {
+            if (_player.IsDie == true)
+                break;
+
             yield return new WaitForSeconds(_spawnDelay);
             int enemyCount = Random.Range(_minEnemy, _maxEnemy);
             for (int j = 0; j <= enemyCount; j++)
@@ -112,7 +122,8 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !_isClear)
         {
-            other.gameObject.GetComponent<Player>().EnemyController = this;
+            _player = other.gameObject.GetComponent<Player>();
+            _player.EnemyController = this;
             GenericSingleton<GameManager>.Instance.Battle(_doorList);
             _ground.enabled = false;
             if (!_isBossRoom)

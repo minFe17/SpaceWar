@@ -19,11 +19,7 @@ public class UIManager : MonoBehaviour
     public GameObject InfoKey { get; set; }
     public Text InfoMessage {  get; set; }
 
-    public CinemachineFreeLook FollowCam { get; set; }
-
     public bool IsKeyInfoUI { get; set; }
-
-    bool _isOpen;
 
     public void CreateUI()
     {
@@ -39,10 +35,8 @@ public class UIManager : MonoBehaviour
         Destroy(_ui);
     }
 
-    public void OnOffOptionUI()
+    public void OnOffOptionUI(bool isOpen)
     {
-        _isOpen = (OptionUI.activeSelf == false);
-        FollowCam.enabled = !_isOpen;
-        OptionUI.SetActive(_isOpen);
+        OptionUI.SetActive(isOpen);
     }
 }

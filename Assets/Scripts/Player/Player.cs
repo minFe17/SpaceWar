@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,6 +46,8 @@ public class Player : MonoBehaviour
     bool _isDie;
 
     public EnemyController EnemyController { get; set; }
+    public CinemachineFreeLook FollowCam { get; set; }
+    public bool IsDie { get => _isDie; }
 
     void Start()
     {
@@ -56,7 +59,7 @@ public class Player : MonoBehaviour
         _bullet = Resources.Load("Prefabs/Bullet") as GameObject;
         Cursor.lockState = CursorLockMode.Locked;
         _playerDataManager.Player = this;
-        
+
         SettingUI();
         Init();
         SettingSound();
@@ -158,12 +161,10 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButton(1))
             {
-                _zoomCamera.SetActive(true);
                 AimingEnemy();
             }
             if (Input.GetMouseButtonUp(1))
             {
-                _zoomCamera.SetActive(false);
                 StopAimingEnemy();
             }
         }
@@ -172,6 +173,7 @@ public class Player : MonoBehaviour
     void AimingEnemy()
     {
         _isAiming = true;
+        _zoomCamera.SetActive(true);
         _bulletPos.position = _zoomCamera.transform.position;
         _uiManager.AimPoint.SetActive(true);
         _animator.SetBool("isZoom", true);
@@ -184,6 +186,7 @@ public class Player : MonoBehaviour
     void StopAimingEnemy()
     {
         _isAiming = false;
+        _zoomCamera.SetActive(false);
         _uiManager.AimPoint.SetActive(false);
         Invoke("EndZoom", 0.1f);
         _bulletPos = _idleBulletPos;
@@ -273,7 +276,7 @@ public class Player : MonoBehaviour
 
     void Turn()
     {
-        if (!_isAiming && !_isOpenOption)
+        if (!_isAiming && !_isOpenOption && !_isDie)
         {
             _mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
 
@@ -324,7 +327,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && _uiManager.IsKeyInfoUI == false)
         {
-            _uiManager.OnOffOptionUI();
+            if (_isAiming == true)
+                StopAimingEnemy();
+
+            _uiManager.OnOffOptionUI(!_isOpenOption);
             AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
             GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
             if (!_isOpenOption)
@@ -332,12 +338,14 @@ public class Player : MonoBehaviour
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
                 _isOpenOption = true;
+                FollowCam.enabled = false;
             }
             else
             {
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
                 _isOpenOption = false;
+                FollowCam.enabled = true;
             }
         }
     }
@@ -359,14 +367,13 @@ public class Player : MonoBehaviour
         {
             _isDie = true;
             _animator.SetTrigger("doDie");
+            if (_isAiming == true)
+                StopAimingEnemy();
         }
     }
 
     public void GameOver()
     {
-        if (_uiManager.AimPoint.activeSelf == true)
-            _uiManager.AimPoint.SetActive(false);
-
         _uiManager.GameOverUI.gameObject.SetActive(true);
         _uiManager.GameOverUI.ShowWave();
         _uiManager.GameOverUI.ShowPlayTime();
@@ -382,6 +389,8 @@ public class Player : MonoBehaviour
                 EnemyController.EnemyList[i].RemoveEnemy();
             }
         }
+
+        FollowCam.enabled = false;
     }
 
     void FreezePos()
