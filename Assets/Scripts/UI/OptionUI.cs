@@ -20,7 +20,7 @@ public class OptionUI : MonoBehaviour
         GenericSingleton<UIManager>.Instance.OnOffOptionUI(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
-        GenericSingleton<UIManager>.Instance.Player.OptionUIState(false);
+        GenericSingleton<UIManager>.Instance.Player.    OptionUIState(false);
         AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
         GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
     }

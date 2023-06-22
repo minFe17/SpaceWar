@@ -353,6 +353,7 @@ public class Player : MonoBehaviour
     public void OptionUIState(bool isOpenOtion)
     {
         _isOpenOption = isOpenOtion;
+        FollowCam.enabled = true;
     }
 
     public void TakeDamage(int damage)

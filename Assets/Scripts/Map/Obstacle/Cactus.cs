@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Cactus : MonoBehaviour
 {
-    float _coolTime;
+    float _coolTime = 1f;
 
     void Update()
     {
@@ -21,6 +21,14 @@ public class Cactus : MonoBehaviour
         {
             collision.gameObject.GetComponent<Player>().TakeDamage(1);
             _coolTime = 0;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player") && _coolTime >= 1f)
+        {
+            _coolTime = 1f;
         }
     }
 }
