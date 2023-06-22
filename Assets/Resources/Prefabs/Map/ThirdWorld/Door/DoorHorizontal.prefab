@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2547061010318362004}
   - component: {fileID: 5647185734270719159}
   - component: {fileID: 293496688913538603}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: DoorHorizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8341795524658039059}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Door
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8343617049868012502}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LeftDoorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8343617050202664363}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: RightDoorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8342083109347358785}
   - component: {fileID: 8296349483072417015}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Collisions_03
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 8340418509697472675}
   - component: {fileID: 8331246439386970023}
   - component: {fileID: 8299530713629737359}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: _Door_Right
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8342076276523657407}
   - component: {fileID: 8299448889107179223}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Collisions_02
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 8340619810876238207}
   - component: {fileID: 8329638873084417493}
   - component: {fileID: 8296193491509818735}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: _Door_Left
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 8348291388803636043}
   - component: {fileID: 8336995939518726127}
   - component: {fileID: 8331311496429955051}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Wall_Door_02
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8342206811763340167}
   - component: {fileID: 8296541792073889101}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Collisions_01
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8348193576688026867}
   - component: {fileID: 8295669983514070333}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Collisions_04
   m_TagString: Ground
   m_Icon: {fileID: 0}

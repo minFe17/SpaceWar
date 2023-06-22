@@ -27,10 +27,10 @@ TagManager:
   - Coin
   - Portal
   - Obstacle
-  - 
-  - 
-  - 
-  - 
+  - ClearRoom
+  - CanWalkCorridor
+  - CanGoRoom
+  - Door
   - 
   - 
   - 

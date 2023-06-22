@@ -81,6 +81,8 @@ public class DungeonCreator : MonoBehaviour
             if (i == 0)
             {
                 CreatePlayerSpawnPos(createPos, room);
+                room.AddComponent<ClearRoom>();
+                room.layer = LayerMask.NameToLayer("ClearRoom");
             }
             else if (i == listOfRooms.Count - 1)
             {
@@ -144,7 +146,8 @@ public class DungeonCreator : MonoBehaviour
         dungeonFloor.transform.parent = transform;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = _material;
-        dungeonFloor.AddComponent<MeshCollider>();
+        dungeonFloor.AddComponent<BoxCollider>();
+        dungeonFloor.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         dungeonFloor.tag = "Ground";
 
         CalculateWallPosition(bottomLeft, bottomRight, topLeft, topRight);

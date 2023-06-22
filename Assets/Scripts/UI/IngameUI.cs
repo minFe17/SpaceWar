@@ -13,7 +13,6 @@ public class IngameUI : MonoBehaviour
 
     [SerializeField] TMP_Text _coinText;
 
-    [SerializeField] RawImage _miniMapImage;
     [SerializeField] TMP_Text _stageText;
 
     [SerializeField] TMP_Text _BulletText;
@@ -27,6 +26,8 @@ public class IngameUI : MonoBehaviour
     [SerializeField] GameObject _miniBossHpBarBase;
     [SerializeField] Image _firstMiniBossHpBar;
     [SerializeField] Image _secondMiniBossHpBar;
+
+    [SerializeField] GameObject _mapPanel;
 
     MiniScavenger _firstMiniScavenger;
     MiniScavenger _secondMiniScavenger;
@@ -57,6 +58,17 @@ public class IngameUI : MonoBehaviour
         else
             text = String.Format("{0:#,0}", money);
         _coinText.text = text;
+    }
+
+    public void ShowMap()
+    {
+        if (_mapPanel.activeSelf == false)
+            _mapPanel.SetActive(true);
+    }
+
+    public void HideMap()
+    {
+        _mapPanel.SetActive(false);
     }
 
     public void ShowStage(int mapStage, int levelStage)

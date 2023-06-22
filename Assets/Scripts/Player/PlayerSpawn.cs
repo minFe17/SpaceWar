@@ -8,6 +8,7 @@ public class PlayerSpawn : MonoBehaviour
     GameObject _mainCamera;
     GameObject _followCam;
     GameObject _miniMapCam;
+    GameObject _mapCamera;
     
     public void Spawn()
     {
@@ -29,6 +30,8 @@ public class PlayerSpawn : MonoBehaviour
         GameObject miniMapCam = Resources.Load("Prefabs/Camera/MiniMapCam") as GameObject;
         _miniMapCam = Instantiate(miniMapCam);
         _miniMapCam.GetComponent<MiniMapCam>().Init(_player.transform);
+        GameObject mapCamera = Resources.Load("Prefabs/Camera/MapCamera") as GameObject;
+        _mapCamera = Instantiate(mapCamera);
     }
     
     public void DestroyPlayer()

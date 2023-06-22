@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
         Move();
         Sprint();
         Turn();
+        OpenMap();
         Jump();
         Zoom();
         Fire();
@@ -286,6 +287,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OpenMap()
+    {
+        if (!_isAiming && !_isDie && !_isOpenOption)
+        {
+            if (Input.GetKey(KeyCode.Tab))
+                _uiManager.IngameUI.ShowMap();
+            else if (Input.GetKeyUp(KeyCode.Tab))
+                _uiManager.IngameUI.HideMap();
+        }
+        else
+            _uiManager.IngameUI.HideMap();
+    }
+
     void Jump()
     {
         if (Input.GetButtonDown("Jump") && !_isJump && !_isDie)
@@ -383,14 +397,16 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         GenericSingleton<CsvController>.Instance.DestroyDataFile();
 
-        if (EnemyController.EnemyList.Count != 0)
+        if(EnemyController != null)
         {
-            for (int i = EnemyController.EnemyList.Count - 1; i >= 0; i--)
+            if (EnemyController.EnemyList.Count != 0)
             {
-                EnemyController.EnemyList[i].RemoveEnemy();
+                for (int i = EnemyController.EnemyList.Count - 1; i >= 0; i--)
+                {
+                    EnemyController.EnemyList[i].RemoveEnemy();
+                }
             }
         }
-
         FollowCam.enabled = false;
     }
 
@@ -475,6 +491,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DeadZone"))
         {
+            _isDie = true;
             GameOver();
         }
     }

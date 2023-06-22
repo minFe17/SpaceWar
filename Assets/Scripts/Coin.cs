@@ -28,6 +28,7 @@ public class Coin : MonoBehaviour
     void OnEffect()
     {
         _effect.SetActive(true);
+        _effect.transform.position = transform.position;
         Invoke("DestroyCoin", 1f);
     }
 
