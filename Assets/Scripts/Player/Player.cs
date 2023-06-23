@@ -1,5 +1,6 @@
 using Cinemachine;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -90,10 +91,14 @@ public class Player : MonoBehaviour
         _uiManager.InfoMessage = _InfoMseeage;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         Move();
         Sprint();
+    }
+
+    void Update()
+    {
         Turn();
         OpenMap();
         Jump();
@@ -103,7 +108,6 @@ public class Player : MonoBehaviour
         Reload();
         ShowOptionUI();
         HPUpByMoney();
-        FreezePos();
     }
 
     void Move()
@@ -116,13 +120,13 @@ public class Player : MonoBehaviour
         _animator.SetFloat("AxisX", x);
         _animator.SetFloat("AxisZ", z);
 
-        _move = new Vector3(x, 0, z).normalized * Time.deltaTime * _playerDataManager.MoveSpeed;
-
-        if (_move != Vector3.zero)
+        _move = (transform.forward * z + transform.right * x).normalized * _playerDataManager.MoveSpeed;
+        _move.y = _rigidbody.velocity.y;
+        if (_move.magnitude > 1f)
         {
             _idleTimer = 0f;
             _animator.SetBool("isMove", true);
-            transform.Translate(_move);
+            _rigidbody.velocity = _move;
         }
         else
         {
@@ -143,9 +147,9 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             _speed += Time.deltaTime * _playerDataManager.SplintSpeed;
-            if (_speed > 1)
-                _speed = 1;
-            transform.Translate(_move * _speed);
+            if (_speed > 2)
+                _speed = 2;
+            _rigidbody.velocity = new Vector3(_move.x * _speed, _rigidbody.velocity.y, _move.z * _speed);
         }
         else
         {
@@ -397,7 +401,7 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         GenericSingleton<CsvController>.Instance.DestroyDataFile();
 
-        if(EnemyController != null)
+        if (EnemyController != null)
         {
             if (EnemyController.EnemyList.Count != 0)
             {
@@ -408,11 +412,6 @@ public class Player : MonoBehaviour
             }
         }
         FollowCam.enabled = false;
-    }
-
-    void FreezePos()
-    {
-        _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
     }
 
     void StartSingleShot()
@@ -484,7 +483,16 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
+        {
             _isJump = false;
+            if (collision.gameObject.layer != LayerMask.NameToLayer("Room"))
+                collision.gameObject.layer = LayerMask.NameToLayer("Room");
+            if(collision.gameObject.GetComponentInChildren<EventRoom>())
+            {
+                if (collision.gameObject.GetComponent<ClearRoom>() == null)
+                    collision.gameObject.AddComponent<ClearRoom>();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

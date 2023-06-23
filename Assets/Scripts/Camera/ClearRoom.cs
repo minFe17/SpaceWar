@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class ClearRoom : MonoBehaviour
 {
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        if (collision.gameObject.CompareTag("Ground") && collision.gameObject.layer != LayerMask.NameToLayer("CanWalkCorridor"))
+        if(other.gameObject.CompareTag("Ground") && other.gameObject.layer != LayerMask.NameToLayer("CanWalkCorridor"))
         {
-            collision.gameObject.layer = LayerMask.NameToLayer("CanWalkCorridor");
-            collision.gameObject.AddComponent<CanWalkCorridor>();
+            other.gameObject.layer = LayerMask.NameToLayer("Corridor");
         }
     }
 }

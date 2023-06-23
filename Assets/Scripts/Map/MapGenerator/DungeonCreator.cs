@@ -82,7 +82,6 @@ public class DungeonCreator : MonoBehaviour
             {
                 CreatePlayerSpawnPos(createPos, room);
                 room.AddComponent<ClearRoom>();
-                room.layer = LayerMask.NameToLayer("ClearRoom");
             }
             else if (i == listOfRooms.Count - 1)
             {
@@ -147,7 +146,9 @@ public class DungeonCreator : MonoBehaviour
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = _material;
         dungeonFloor.AddComponent<BoxCollider>();
+        dungeonFloor.AddComponent<BoxCollider>().isTrigger = true;
         dungeonFloor.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        dungeonFloor.GetComponent<Rigidbody>().isKinematic = true;
         dungeonFloor.tag = "Ground";
 
         CalculateWallPosition(bottomLeft, bottomRight, topLeft, topRight);
@@ -267,14 +268,14 @@ public class DungeonCreator : MonoBehaviour
     {
         if ((topRightCorner.x - bottomLeftCorner.x) < (topRightCorner.y - bottomLeftCorner.y))
         {
-            Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0.1f, bottomLeftCorner.y);
-            Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, 0.1f, topRightCorner.y);
+            Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, -0.2f, bottomLeftCorner.y);
+            Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, -0.2f, topRightCorner.y);
             CreateDoor(createBottomPos, createTopPos, _doorHorizontal, doorParent);
         }
         else
         {
-            Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, 0.1f, (bottomLeftCorner.y + topRightCorner.y) / 2);
-            Vector3 createRightPos = new Vector3(topRightCorner.x, 0.1f, (bottomLeftCorner.y + topRightCorner.y) / 2);
+            Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
+            Vector3 createRightPos = new Vector3(topRightCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
             CreateDoor(createLeftPos, createRightPos, _doorVertical, doorParent);
         }
     }

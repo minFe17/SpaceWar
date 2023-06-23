@@ -1,13 +1,24 @@
 using UnityEngine;
 using Utils;
 
-public class VendingMachine: MonoBehaviour
+public class VendingMachine: EventRoom
 {
     int _cost;
-    bool _inPlayer;
     bool _isBuy;
 
     void Update()
+    {
+        Event();
+    }
+
+    public override void OnEnter()
+    {
+        GenericSingleton<UIManager>.Instance.InfoKey.SetActive(true);
+        GenericSingleton<UIManager>.Instance.InfoMessage.text = $"수상한 물약 사기 : {_cost}";
+        _inPlayer = true;
+    }
+
+    public override void Event()
     {
         BuyPotion();
     }
@@ -27,16 +38,6 @@ public class VendingMachine: MonoBehaviour
                 _isBuy = true;
             }
             _inPlayer = false;
-        }
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            GenericSingleton<UIManager>.Instance.InfoKey.SetActive(true);
-            GenericSingleton<UIManager>.Instance.InfoMessage.text = $"수상한 물약 사기 : {_cost}";
-            _inPlayer = true;
         }
     }
 

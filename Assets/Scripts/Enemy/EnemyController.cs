@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
@@ -54,6 +55,8 @@ public class EnemyController : MonoBehaviour
         if (_waveIndex == _wave && _enemyList.Count == 0)
         {
             _isClear = true;
+            if(transform.parent.GetComponent<ClearRoom>() == null)
+                transform.parent.AddComponent<ClearRoom>();
             GenericSingleton<GameManager>.Instance.Clear(_doorList);
         }
     }
