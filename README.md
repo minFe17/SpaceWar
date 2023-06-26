@@ -1,2 +1,2 @@
 # SpaceWar
-Space War PlayFile URL : https://github.com/minFe17/SpaceWarPlayFile
+SpaceWar PlayFile URL : https://github.com/minFe17/SpaceWarPlayFile
