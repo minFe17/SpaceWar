@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class FireStone : MovableEnemy
 {
     void Update()

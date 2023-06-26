@@ -1,4 +1,3 @@
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +19,7 @@ public class UIManager : MonoBehaviour
     public Text InfoMessage {  get; set; }
 
     public bool IsKeyInfoUI { get; set; }
+    public bool IsSoundOption {  get; set; }
 
     public void CreateUI()
     {

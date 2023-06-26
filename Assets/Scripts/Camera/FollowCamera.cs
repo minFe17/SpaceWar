@@ -1,6 +1,5 @@
 using UnityEngine;
 using Cinemachine;
-using Utils;
 
 public class FollowCamera : MonoBehaviour
 {

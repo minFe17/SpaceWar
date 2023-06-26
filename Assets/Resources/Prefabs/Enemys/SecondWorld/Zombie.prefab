@@ -2282,7 +2282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 10
   _attackDelay: 1.5
-  _damage: 3
+  _damage: 2
   _moveSpeed: 1.5
   _attackArea: {fileID: 4926436652229370228}
   _secondAttackArea: {fileID: 3662167022901089304}
@@ -2306,6 +2306,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &6954349052968721464
 BoxCollider:
   m_ObjectHideFlags: 0

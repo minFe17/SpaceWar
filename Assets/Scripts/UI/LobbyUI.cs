@@ -9,6 +9,7 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] GameObject _buttonPanel;
     [SerializeField] Button _continueGameButton;
     [SerializeField] Text _continueGameText;
+    [SerializeField] GameObject _soundOption;
 
     AudioClip _lobbySound;
     float _disabledColorAlpha;
@@ -21,6 +22,7 @@ public class LobbyUI : MonoBehaviour
         _disabledColorAlpha = _continueGameButton.colors.disabledColor.a;
         _continueGameText.color = new Color(0, 0, 0, _disabledColorAlpha);
         _lobbySound = Resources.Load("Prefabs/SoundClip/Lobby") as AudioClip;
+        GenericSingleton<SoundManager>.Instance.Init();
         GenericSingleton<SoundManager>.Instance.SoundController.StartBGM(_lobbySound);
     }
 
@@ -49,8 +51,17 @@ public class LobbyUI : MonoBehaviour
         SceneManager.LoadScene($"{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}");
     }
 
+    public void OpenSoundOption()
+    {
+        _buttonPanel.SetActive(false);
+        _soundOption.SetActive(true);
+        AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
+        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
+    }
+
     public void ExitGameButton()
     {
+        GenericSingleton<SoundCsv>.Instance.WriteSound();
         Application.Quit();
     }
 }

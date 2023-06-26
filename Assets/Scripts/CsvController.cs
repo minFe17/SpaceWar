@@ -24,7 +24,7 @@ public class CsvController : MonoBehaviour
             if (_playerDataFilePath == null)
             {
                 string playerDataFileName = "SavePlayerDataFile.csv";
-                _playerDataFilePath = Application.dataPath + "/Resources/Datas/" + playerDataFileName;
+                _playerDataFilePath = Application.persistentDataPath + playerDataFileName;
             }
             return _playerDataFilePath;
         }
@@ -37,7 +37,7 @@ public class CsvController : MonoBehaviour
             if (_gameDataFilePath == null)
             {
                 string gameDataFileName = "SaveGameDataFile.csv";
-                _gameDataFilePath = Application.dataPath + "/Resources/Datas/" + gameDataFileName;
+                _gameDataFilePath = Application.persistentDataPath + gameDataFileName;
             }
             return _gameDataFilePath;
         }
@@ -50,7 +50,7 @@ public class CsvController : MonoBehaviour
             if (_passiveDataFilePath == null)
             {
                 string passiveDataFileName = "PassiveDataFile.csv";
-                _passiveDataFilePath = Application.dataPath + "/Resources/Datas/" + passiveDataFileName;
+                _passiveDataFilePath = Application.persistentDataPath + passiveDataFileName;
             }
             return _passiveDataFilePath;
         }

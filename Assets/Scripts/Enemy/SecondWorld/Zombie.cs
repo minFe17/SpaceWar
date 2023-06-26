@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using Utils;
 
 public class Zombie : MovableEnemy
 {

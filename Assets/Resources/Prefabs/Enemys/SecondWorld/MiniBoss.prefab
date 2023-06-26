@@ -832,6 +832,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8386464982777334229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,7 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 25
   _attackDelay: 2
-  _damage: 25
+  _damage: 3
   _moveSpeed: 2
   _attackArea: {fileID: 3349493921437266194}
 --- !u!65 &3668376243138506111

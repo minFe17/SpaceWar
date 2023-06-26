@@ -1,6 +1,5 @@
 using Cinemachine;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -29,6 +28,7 @@ public class Player : MonoBehaviour
     Transform _idleBulletPos;
 
     AudioClip _shotSound;
+    AudioClip _dieSound;
 
     Vector3 _move;
 
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
 
         SettingUI();
         Init();
-        SettingSound();
+        SettingAudio();
     }
 
     void Init()
@@ -77,9 +77,10 @@ public class Player : MonoBehaviour
         _gameManager.StageUI();
     }
 
-    void SettingSound()
+    void SettingAudio()
     {
         _shotSound = Resources.Load("Prefabs/SoundClip/Shot") as AudioClip;
+        _dieSound = Resources.Load("Prefabs/SoundClip/Die") as AudioClip;
     }
 
     void SettingUI()
@@ -343,7 +344,7 @@ public class Player : MonoBehaviour
 
     public void ShowOptionUI()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && _uiManager.IsKeyInfoUI == false)
+        if (Input.GetKeyDown(KeyCode.Escape) && !_uiManager.IsKeyInfoUI && !_uiManager.IsSoundOption)
         {
             if (_isAiming == true)
                 StopAimingEnemy();
@@ -400,6 +401,7 @@ public class Player : MonoBehaviour
         _uiManager.GameOverUI.ShowMoney();
         Cursor.lockState = CursorLockMode.None;
         GenericSingleton<CsvController>.Instance.DestroyDataFile();
+        _soundController.PlaySFXAudio(_dieSound);
 
         if (EnemyController != null)
         {

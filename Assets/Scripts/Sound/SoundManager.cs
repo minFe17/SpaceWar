@@ -1,13 +1,13 @@
 using UnityEngine;
+using Utils;
 
 public class SoundManager : MonoBehaviour
 {
     // 싱글톤
     SoundController _soundController;
-    float _bgmSound = 0.5f;
-    float _sfxSound = 0.5f;
-    // 파일 쓴게 없으면 0.5f
-    // 있으면 파일 읽은 값 사용
+    float _bgmSound;
+    float _sfxSound;
+    
     public float BgmSound { get { return _bgmSound; } set { _bgmSound = value; } }
     public float SFXSound { get { return _sfxSound; } set { _sfxSound = value; } }
 
@@ -22,6 +22,20 @@ public class SoundManager : MonoBehaviour
                 _soundController = soundController.GetComponent<SoundController>();
             }
             return _soundController;
+        }
+    }
+
+    public void Init()
+    {
+        CheckCsvFile();
+    }
+
+    void CheckCsvFile()
+    {
+        if(!GenericSingleton<SoundCsv>.Instance.ReadSound())
+        {
+            _bgmSound = 0.5f;
+            _sfxSound = 0.5f;
         }
     }
 }
