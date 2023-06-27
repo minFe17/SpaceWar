@@ -145,7 +145,7 @@ public class DungeonCreator : MonoBehaviour
         dungeonFloor.transform.parent = transform;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = _material;
-        dungeonFloor.AddComponent<BoxCollider>();
+        dungeonFloor.AddComponent<MeshCollider>();
         dungeonFloor.AddComponent<BoxCollider>().isTrigger = true;
         dungeonFloor.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         dungeonFloor.GetComponent<Rigidbody>().isKinematic = true;

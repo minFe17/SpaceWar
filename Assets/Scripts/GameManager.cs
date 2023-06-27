@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     int _killEnemy;
     float _playTime;
     bool _isAddPassive = true;
-    bool _isClear;
 
     public GameObject Portal { get; set; }
     public int MapStage { get => _mapStage; set => _mapStage = value; }
@@ -19,7 +18,7 @@ public class GameManager : MonoBehaviour
     public int KillEnemy { get => _killEnemy; set => _killEnemy = value; }
     public float PlayTime { get => _playTime; set => _playTime = value;  }
     public bool IsAddPassive { get => _isAddPassive; set => _isAddPassive = value;  }
-    public bool IsClear { get => _isClear; }
+    public bool IsClear { get; private set; }
 
     void Update()
     {
@@ -41,7 +40,7 @@ public class GameManager : MonoBehaviour
         if(_mapStage >= 3 && _levelStage >= 5)
         {
             GenericSingleton<PlayerDataManager>.Instance.Player.GameOver();
-            _isClear = true;
+            IsClear = true;
         }
         if (_levelStage >= 5)
         {
@@ -112,6 +111,16 @@ public class GameManager : MonoBehaviour
             GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = GenericSingleton<PassiveManager>.Instance.Passive[random];
             GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Init();
         }
+    }
+
+    public void ResetData()
+    {
+        MapStage = 1;
+        LevelStage = 1;
+        KillEnemy = 0;
+        PlayTime = 0f;
+        IsAddPassive = true;
+        IsClear = false;
     }
 }
 

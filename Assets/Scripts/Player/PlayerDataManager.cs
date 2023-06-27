@@ -7,25 +7,19 @@ public class PlayerDataManager : MonoBehaviour
     // ΩÃ±€≈Ê
     List<string> _passive = new List<string>();
 
-    int _maxHp = 10;
-    int _maxBullet = 30;
-    int _bulletDamage = 1;
-    float _moveSpeed = 5f;
-    float _splintSpeed = 5f;
-
     public List<string> Passive { get => _passive; set => _passive = value; }
     public EShotModeType ShotMode { get; set; }
     public Player Player { get; set; }
 
-    public int MaxHp { get => _maxHp; set => _maxHp = value; }
-    public int MaxBullet { get => _maxBullet; set => _maxBullet = value; }
-    public int BulletDamage { get => _bulletDamage; set => _bulletDamage = value; }
-    public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
-    public float SplintSpeed { get => _splintSpeed; set => _splintSpeed = value; }
+    public int MaxHp { get; set; }
     public int CurHp { get; set; }
+    public int MaxBullet { get; set; }
     public int CurBullet { get; set; }
+    public int BulletDamage { get; set; }
     public int Money { get; set; }
     public int BonusMoney { get; set; }
+    public float MoveSpeed { get; set; }
+    public float SplintSpeed { get; set; }
 
     public bool UnlockBurstMode { get; set; }
     public bool UnlockAutoMode { get; set; }
@@ -36,14 +30,35 @@ public class PlayerDataManager : MonoBehaviour
     {
         CsvController csvController = GenericSingleton<CsvController>.Instance;
         if (csvController.CheckDataFile())
+        {
             csvController.ReadDataFile();
+        }
         else
         {
-            CurBullet = _maxBullet;
-            CurHp = _maxHp;
-            ShotMode = EShotModeType.Single;
+            ResetData();
         }
         AudioClip bgm = Resources.Load("Prefabs/SoundClip/BGM") as AudioClip;
         GenericSingleton<SoundManager>.Instance.SoundController.StartBGM(bgm);
+    }
+
+    void ResetData()
+    {
+        if (_passive.Count != 0)
+            _passive.Clear();
+        MaxHp = 10;
+        CurHp = MaxHp;
+        MaxBullet = 30;
+        CurBullet = MaxBullet;
+        BulletDamage = 1;
+        Money = 0;
+        BonusMoney= 0;
+        MoveSpeed = 5f;
+        SplintSpeed = 5f;
+        ShotMode = EShotModeType.Single;
+        UnlockBurstMode = false;
+        UnlockAutoMode = false;
+        HPUpByMoney = false;
+        Vampirism = false;
+        GenericSingleton<GameManager>.Instance.ResetData();
     }
 }
