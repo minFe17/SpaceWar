@@ -6,18 +6,12 @@ using Utils;
 public class GameManager : MonoBehaviour
 {
     // ½Ì±ÛÅæ
-    int _mapStage = 1;
-    int _levelStage = 1;
-    int _killEnemy;
-    float _playTime;
-    bool _isAddPassive = true;
-
     public GameObject Portal { get; set; }
-    public int MapStage { get => _mapStage; set => _mapStage = value; }
-    public int LevelStage { get => _levelStage; set => _levelStage = value; }
-    public int KillEnemy { get => _killEnemy; set => _killEnemy = value; }
-    public float PlayTime { get => _playTime; set => _playTime = value;  }
-    public bool IsAddPassive { get => _isAddPassive; set => _isAddPassive = value;  }
+    public int MapStage { get; set; }
+    public int LevelStage { get; set; }
+    public int KillEnemy { get; set; }
+    public float PlayTime { get; set;  }
+    public bool IsAddPassive { get; set;  }
     public bool IsClear { get; private set; }
 
     void Update()
@@ -37,15 +31,15 @@ public class GameManager : MonoBehaviour
 
     public void NextStage()
     {
-        if(_mapStage >= 3 && _levelStage >= 5)
+        if(MapStage >= 3 && LevelStage >= 5)
         {
             GenericSingleton<PlayerDataManager>.Instance.Player.GameOver();
             IsClear = true;
         }
-        if (_levelStage >= 5)
+        if (LevelStage >= 5)
         {
-            _mapStage++;
-            _levelStage = 1;
+            MapStage++;
+            LevelStage = 1;
             GenericSingleton<EnemyManager>.Instance.ClearWorldEnemy();
             GenericSingleton<EnemyManager>.Instance.WorldEnemyList();
             GenericSingleton<ObstacleManager>.Instance.ClearWorldObstacleList();
@@ -53,18 +47,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            _levelStage++;
+            LevelStage++;
         }
 
-        if (_isAddPassive == true)
+        if (IsAddPassive == true)
         {
-            _isAddPassive = false;
+            IsAddPassive = false;
             SelectPassive();
             Cursor.lockState = CursorLockMode.None;
         }
         else
         {
-            _isAddPassive = true;
+            IsAddPassive = true;
             CsvController csvController = GenericSingleton<CsvController>.Instance;
             csvController.WriteDataFile();
             while (csvController.IsWriting == true || csvController.CheckDataFile() == false)
@@ -72,23 +66,23 @@ public class GameManager : MonoBehaviour
                 if (csvController.IsWriting == false && csvController.CheckDataFile() == true)
                     break;
             }
-            SceneManager.LoadScene($"{(EWorldType)_mapStage}");
+            SceneManager.LoadScene($"{(EWorldType)MapStage}");
         }
     }
 
     public void AddKillEnemy()
     {
-        _killEnemy++;
+        KillEnemy++;
     }
 
     public void StageUI()
     {
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowStage(_mapStage, _levelStage);
+        GenericSingleton<UIManager>.Instance.IngameUI.ShowStage();
     }
 
     void AddPlayTime()
     {
-        _playTime += Time.deltaTime;
+        PlayTime += Time.deltaTime;
     }
 
     public void SelectPassive()

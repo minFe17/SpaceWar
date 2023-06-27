@@ -71,8 +71,10 @@ public class IngameUI : MonoBehaviour
         _mapPanel.SetActive(false);
     }
 
-    public void ShowStage(int mapStage, int levelStage)
+    public void ShowStage()
     {
+        int mapStage = GenericSingleton<GameManager>.Instance.MapStage;
+        int levelStage = GenericSingleton<GameManager>.Instance.LevelStage;
         _stageText.text = $"{mapStage} - {levelStage}";
     }
 

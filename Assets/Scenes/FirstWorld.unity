@@ -487,7 +487,7 @@ MonoBehaviour:
   _dungeonLength: 250
   _roomWidthMin: 50
   _roomLengthMin: 50
-  _maxIterations: 20
+  _maxIterations: 13
   _wallWidth: 6
   _doorWidth: 10
   _enemyControllerOffset: 4

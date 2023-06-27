@@ -18,8 +18,8 @@ public class FollowCamera : MonoBehaviour
 
     public void CameraFOV()
     {
-        _followCam.m_Lens.FieldOfView = _followCam.m_YAxis.Value * 60 + 30;
-        if (_followCam.m_Lens.FieldOfView > 60f)
-            _followCam.m_Lens.FieldOfView = 60f;
+        _followCam.m_Lens.FieldOfView = _followCam.m_YAxis.Value * 30 + 60;
+        if (_followCam.m_Lens.FieldOfView < 90f)
+            _followCam.m_Lens.FieldOfView = 90f;
     }
 }
