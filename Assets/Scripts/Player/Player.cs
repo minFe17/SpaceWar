@@ -462,7 +462,7 @@ public class Player : MonoBehaviour
         if (_playerDataManager.CurBullet > 0 && !_isReload)
         {
             _isShot = true;
-            if (!_animator.GetCurrentAnimatorStateInfo(1).IsName("Shoot_Autoshot"))
+            //if (!_animator.GetCurrentAnimatorStateInfo(1).IsName("Shoot_Autoshot"))
                 _animator.SetTrigger("doAutoShot");
         }
     }
