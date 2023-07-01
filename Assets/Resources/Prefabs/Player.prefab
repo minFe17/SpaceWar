@@ -3198,7 +3198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a73dd0a30a7474881b8aa6dd1c3b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPos: {fileID: 6224945380842809370}
+  _idleBulletPos: {fileID: 6224945380842809370}
   _zoomCamera: {fileID: 6224945380283946659}
   _model: {fileID: 3766465801936989489}
   _InfoKeyUI: {fileID: 6224945380578610091}

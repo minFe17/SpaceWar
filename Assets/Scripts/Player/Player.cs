@@ -6,9 +6,8 @@ using Utils;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] Transform _bulletPos;
+    [SerializeField] Transform _idleBulletPos;
     [SerializeField] GameObject _zoomCamera;
-    [SerializeField] GameObject _model;
     [SerializeField] GameObject _InfoKeyUI;
     [SerializeField] Text _InfoMseeage;
 
@@ -25,7 +24,7 @@ public class Player : MonoBehaviour
     GameObject _bullet;
     Animator _animator;
     Rigidbody _rigidbody;
-    Transform _idleBulletPos;
+    Transform _bulletPos;
 
     AudioClip _shotSound;
     AudioClip _dieSound;
@@ -52,6 +51,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        _bulletPos = _idleBulletPos;
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
@@ -68,7 +68,6 @@ public class Player : MonoBehaviour
 
     void Init()
     {
-        _idleBulletPos = _bulletPos;
 
         _uiManager.IngameUI.ShowHp();
         _uiManager.IngameUI.ShowMoney();
@@ -186,7 +185,6 @@ public class Player : MonoBehaviour
         _mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
         _mouseY += Input.GetAxis("Mouse Y") * _rotateSpeed;
         Rotate(_mouseY);
-        transform.eulerAngles = new Vector3(0, _mouseX, 0);
     }
 
     void StopAimingEnemy()
@@ -198,6 +196,7 @@ public class Player : MonoBehaviour
         _bulletPos = _idleBulletPos;
         _mouseY = 0;
         Rotate(_mouseY);
+        FollowCam.m_XAxis.Value = transform.eulerAngles.y;
     }
 
     void EndZoom()
@@ -208,7 +207,7 @@ public class Player : MonoBehaviour
     void Rotate(float y)
     {
         Vector3 rotate = new Vector3(-y, _mouseX, 0);
-        _model.transform.eulerAngles = rotate;
+        transform.eulerAngles = rotate;
         _zoomCamera.transform.eulerAngles = rotate;
         _bulletPos.transform.eulerAngles = rotate;
     }
@@ -289,6 +288,7 @@ public class Player : MonoBehaviour
             Vector3 rotate = new Vector3(0, _mouseX, 0);
             transform.eulerAngles = rotate;
             _bulletPos.eulerAngles = rotate;
+            FollowCam.m_XAxis.Value = rotate.y;
         }
     }
 

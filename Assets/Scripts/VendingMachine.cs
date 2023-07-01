@@ -13,9 +13,7 @@ public class VendingMachine: EventRoom
 
     public override void OnEnter()
     {
-        GenericSingleton<UIManager>.Instance.InfoKey.SetActive(true);
-        GenericSingleton<UIManager>.Instance.InfoMessage.text = $"수상한 물약 사기 : {_cost}";
-        _inPlayer = true;
+        _message = $"수상한 물약 사기 : {_cost}";
     }
 
     public override void Event()
