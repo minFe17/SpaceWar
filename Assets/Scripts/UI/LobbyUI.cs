@@ -42,12 +42,14 @@ public class LobbyUI : MonoBehaviour
 
     public void NewGameButton()
     {
+        Time.timeScale = 1f;
         GenericSingleton<CsvController>.Instance.DestroyDataFile();
         SceneManager.LoadScene("FirstWorld");
     }
 
     public void ContinueGameButton()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene($"{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}");
     }
 
