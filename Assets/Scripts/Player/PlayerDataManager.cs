@@ -56,7 +56,7 @@ public class PlayerDataManager : MonoBehaviour
         SplintSpeed = 5f;
         ShotMode = EShotModeType.Single;
         UnlockBurstMode = false;
-        UnlockAutoMode = true;
+        UnlockAutoMode = false;
         HPUpByMoney = false;
         Vampirism = false;
         GenericSingleton<GameManager>.Instance.ResetData();
