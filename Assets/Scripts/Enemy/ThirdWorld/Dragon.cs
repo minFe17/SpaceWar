@@ -22,6 +22,16 @@ public class Dragon : MovableEnemy
         GenericSingleton<UIManager>.Instance.IngameUI.ShowBossHpBar(_curHp, _maxHp);
     }
 
+    public override void Move()
+    {
+        if (!_isDie && !_isAttack)
+        {
+            _animator.SetBool("isWalk", true);
+            _move = _target.position - transform.position;
+            transform.Translate(_move.normalized * Time.deltaTime * _moveSpeed, Space.World);
+        }
+    }
+
     public override void TakeDamage(int damage)
     {
         if(_isDie)

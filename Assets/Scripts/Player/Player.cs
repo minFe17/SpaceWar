@@ -462,8 +462,7 @@ public class Player : MonoBehaviour
         if (_playerDataManager.CurBullet > 0 && !_isReload)
         {
             _isShot = true;
-            //if (!_animator.GetCurrentAnimatorStateInfo(1).IsName("Shoot_Autoshot"))
-                _animator.SetTrigger("doAutoShot");
+            _animator.SetTrigger("doAutoShot");
         }
     }
 
@@ -489,7 +488,7 @@ public class Player : MonoBehaviour
             _isJump = false;
             if (collision.gameObject.layer != LayerMask.NameToLayer("Room"))
                 collision.gameObject.layer = LayerMask.NameToLayer("Room");
-            if(collision.gameObject.GetComponentInChildren<EventRoom>())
+            if (collision.gameObject.GetComponentInChildren<EventRoom>())
             {
                 if (collision.gameObject.GetComponent<ClearRoom>() == null)
                     collision.gameObject.AddComponent<ClearRoom>();

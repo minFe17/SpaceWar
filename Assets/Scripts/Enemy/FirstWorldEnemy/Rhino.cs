@@ -18,6 +18,16 @@ public class Rhino : MovableEnemy
         GenericSingleton<UIManager>.Instance.IngameUI.ShowBossHpBar(_curHp, _maxHp);
     }
 
+    public override void Move()
+    {
+        if (!_isAttack && !_isDie)
+        {
+            _animator.SetBool("isMove", true);
+            _move = _target.position - transform.position;
+            transform.Translate(_move.normalized * Time.deltaTime * _moveSpeed, Space.World);
+        }
+    }
+
     public override void TakeDamage(int damage)
     {
         if (_isDie)

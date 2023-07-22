@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class EnemyManager : MonoBehaviour
         if (_worldList.Count == 0)
             AddWorldList();
         Scene scene = SceneManager.GetActiveScene();
-        int stage = (int)(EWorldType)Enum.Parse(typeof(EWorldType), scene.name) - 1;
+        int stage = GenericSingleton<GameManager>.Instance.MapStage - 1;
         _enemys = _worldList[stage].AddEnemyList();
     }
 

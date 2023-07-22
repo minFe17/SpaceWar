@@ -1062,6 +1062,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8379917812435995806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,7 +1967,7 @@ Transform:
   m_GameObject: {fileID: 8379917812436041362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8379917812435766088}
@@ -1994,7 +1995,7 @@ MonoBehaviour:
   _maxHp: 30
   _attackDelay: 5
   _damage: 5
-  _moveSpeed: 1
+  _moveSpeed: 2
   _attackArea: {fileID: 8379917812436024638}
 --- !u!95 &8379917812443157188
 Animator:
@@ -2016,6 +2017,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &6156588748844684706
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -31,6 +31,7 @@ public class MiniScavenger : Scavenger
         _enemyController.EnemyList.Add(this);
         AddCoinList();
         _attackArea.SetActive(false);
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     public override void TakeDamage(int damage)

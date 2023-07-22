@@ -24,6 +24,7 @@ public class Scavenger : MovableEnemy
         if (!_isDie && !_isAttack)
         {
             _animator.SetBool("isWalk", true);
+            _move = _target.position - transform.position;
             transform.Translate(_move.normalized * Time.deltaTime * _moveSpeed, Space.World);
         }
     }

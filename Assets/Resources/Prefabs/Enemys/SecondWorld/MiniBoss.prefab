@@ -801,7 +801,7 @@ Transform:
   m_GameObject: {fileID: 4153269303714576329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5334025969278059723}
@@ -848,7 +848,7 @@ MonoBehaviour:
   _maxHp: 25
   _attackDelay: 2
   _damage: 3
-  _moveSpeed: 2
+  _moveSpeed: 3
   _attackArea: {fileID: 3349493921437266194}
 --- !u!65 &3668376243138506111
 BoxCollider:

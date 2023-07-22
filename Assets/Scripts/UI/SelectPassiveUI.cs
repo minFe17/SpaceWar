@@ -19,7 +19,7 @@ public class SelectPassiveUI : MonoBehaviour
 
         _passiveButton[buttonIndex].Passive.AddPassive();
         GenericSingleton<PlayerDataManager>.Instance.Passive.Add(_passiveButton[buttonIndex].Passive.Name);
-        GenericSingleton<PassiveManager>.Instance.RemovePassive(_passiveButton[buttonIndex].Passive.Index);
+        GenericSingleton<PassiveManager>.Instance.RemovePassive(_passiveButton[buttonIndex].Passive);
         csvController.WriteDataFile();
         while (csvController.IsWriting == true || csvController.CheckDataFile() == false)
         {

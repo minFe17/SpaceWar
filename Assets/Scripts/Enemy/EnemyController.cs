@@ -61,16 +61,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public Vector3 GetRandomSpawnPosition()
-    {
-        float posX = _basePos.x + Random.Range(-_size.x / 2f, _size.x / 2f);
-        float posZ = _basePos.z + Random.Range(-_size.z / 2f, _size.z / 2f);
-
-        Vector3 spawnPos = new Vector3(posX, _basePos.y, posZ);
-
-        return spawnPos;
-    }
-
     public void SpawnEnemy()
     {
         Vector3 spawnPos = GetRandomSpawnPosition();
@@ -81,6 +71,16 @@ public class EnemyController : MonoBehaviour
             GameObject enemy = Instantiate(GenericSingleton<EnemyManager>.Instance.Enemys[ramdom], spawnPos, Quaternion.identity);
             enemy.GetComponent<Enemy>().Init(this);
         }
+    }
+
+    public Vector3 GetRandomSpawnPosition()
+    {
+        float posX = _basePos.x + Random.Range(-_size.x / 2f, _size.x / 2f);
+        float posZ = _basePos.z + Random.Range(-_size.z / 2f, _size.z / 2f);
+
+        Vector3 spawnPos = new Vector3(posX, _basePos.y, posZ);
+
+        return spawnPos;
     }
 
     public void SpawnBoss()
