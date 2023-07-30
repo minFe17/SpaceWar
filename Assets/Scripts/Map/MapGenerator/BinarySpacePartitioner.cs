@@ -95,9 +95,9 @@ public class BinarySpacePartitioner
     {
         Vector2Int coordinates = Vector2Int.zero;
         if (orientation == EOrientation.Vertical)
-            coordinates = new Vector2Int(Random.Range((bottomLeftAreaCorner.x + roomWidthMin), (topRightAreaCorner.x - roomWidthMin)), 0);  // 방을 양옆으로 나누기(x : 랜덤 y : 0)
+            coordinates = new Vector2Int(Random.Range((bottomLeftAreaCorner.x + roomWidthMin), (topRightAreaCorner.x - roomWidthMin)), 0);      // 방을 양옆으로 나누기(x : 랜덤 y : 0)
         else
-            coordinates = new Vector2Int(0, Random.Range((bottomLeftAreaCorner.y + roomLengthMin), (topRightAreaCorner.y - roomLengthMin)));// 방을 위아래로 나누기(x : 0 y : 랜덤)
+            coordinates = new Vector2Int(0, Random.Range((bottomLeftAreaCorner.y + roomLengthMin), (topRightAreaCorner.y - roomLengthMin)));    // 방을 위아래로 나누기(x : 0 y : 랜덤)
 
         return coordinates;
     }

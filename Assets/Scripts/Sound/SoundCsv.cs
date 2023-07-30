@@ -15,8 +15,8 @@ public class SoundCsv : MonoBehaviour
         {
             if (_soundDataFilePath == null)
             {
-                string passiveDataFileName = "SoundDataFile.csv";
-                _soundDataFilePath = Application.persistentDataPath + passiveDataFileName;
+                string soundDataFIleName = "SoundDataFile.csv";
+                _soundDataFilePath = Application.persistentDataPath + soundDataFIleName;
             }
             return _soundDataFilePath;
         }
