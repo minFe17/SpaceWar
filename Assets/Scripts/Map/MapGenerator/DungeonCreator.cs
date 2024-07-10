@@ -104,17 +104,12 @@ public class DungeonCreator : MonoBehaviour
         }
 
         for (int i = 0; i < listOfCorridors.Count; i++)
-        {
             CreateMesh(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, i);
-        }
 
         CreateWalls(wallParent);
 
         for (int i = 0; i < listOfCorridors.Count; i++)
-        {
             CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, doorList.gameObject, wallParent);
-        }
-
     }
 
     GameObject CreateMesh(Vector2 bottomLeftCorner, Vector2 topRightCorner, int j)
@@ -241,22 +236,16 @@ public class DungeonCreator : MonoBehaviour
     {
         Vector3Int point = Vector3Int.CeilToInt(wallPosition);
         if (!wallList.Contains(point))
-        {
             wallList.Add(point);
-        }
     }
 
     void CreateWalls(GameObject wallParent)
     {
         foreach (var wallPosition in _possibleWallHorizontalPosition)
-        {
             CreateWall(wallParent, wallPosition, _wallHorizontal);
-        }
 
         foreach (var wallPosition in _possibleWallVerticalPosition)
-        {
             CreateWall(wallParent, wallPosition, _wallVertical);
-        }
     }
 
     void CreateWall(GameObject wallParent, Vector3Int wallPosition, GameObject wallPrefab)

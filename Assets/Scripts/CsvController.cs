@@ -125,7 +125,7 @@ public class CsvController : MonoBehaviour
 
         playerData.MaxHp = int.Parse(value[0]);
         playerData.CurHp = int.Parse(value[1]);
-        playerData.ShotMode = (EShotModeType)Enum.Parse(typeof(EShotModeType), value[2]);
+        playerData.ShootMode = (EShootModeType)Enum.Parse(typeof(EShootModeType), value[2]);
         playerData.MaxBullet = int.Parse(value[3]);
         playerData.CurBullet = int.Parse(value[4]);
         playerData.BulletDamage = int.Parse(value[5]);
@@ -186,7 +186,7 @@ public class CsvController : MonoBehaviour
     {
         List<string[]> lists = new List<string[]>();
 
-        string[] datas = new string[] { "MaxHp", "CurHp", "ShotMode", "MaxBullet", "CurBullet", "BulletDamage", "MoveSpeed", "SplintSpeed", "Money", "BonusMoney", "UnlockBurstMode", "UnlockAutoMode", "HPUpByMoney", "Vampirism" };
+        string[] datas = new string[] { "MaxHp", "CurHp", "ShootMode", "MaxBullet", "CurBullet", "BulletDamage", "MoveSpeed", "SplintSpeed", "Money", "BonusMoney", "UnlockBurstMode", "UnlockAutoMode", "HPUpByMoney", "Vampirism" };
         lists.Add(datas);
         lists.Add(PlayerDataToString());
 
@@ -229,21 +229,23 @@ public class CsvController : MonoBehaviour
     string[] PlayerDataToString()
     {
         PlayerDataManager data = GenericSingleton<PlayerDataManager>.Instance;
-        List<string> value = new List<string>();
-        value.Add(data.MaxHp.ToString());
-        value.Add(data.CurHp.ToString());
-        value.Add(data.ShotMode.ToString());
-        value.Add(data.MaxBullet.ToString());
-        value.Add(data.CurBullet.ToString());
-        value.Add(data.BulletDamage.ToString());
-        value.Add(data.MoveSpeed.ToString());
-        value.Add(data.SplintSpeed.ToString());
-        value.Add(data.Money.ToString());
-        value.Add(data.BonusMoney.ToString());
-        value.Add(data.UnlockBurstMode.ToString());
-        value.Add(data.UnlockAutoMode.ToString());
-        value.Add(data.HPUpByMoney.ToString());
-        value.Add(data.Vampirism.ToString());
+        List<string> value = new List<string>
+        {
+            data.MaxHp.ToString(),
+            data.CurHp.ToString(),
+            data.ShootMode.ToString(),
+            data.MaxBullet.ToString(),
+            data.CurBullet.ToString(),
+            data.BulletDamage.ToString(),
+            data.MoveSpeed.ToString(),
+            data.SplintSpeed.ToString(),
+            data.Money.ToString(),
+            data.BonusMoney.ToString(),
+            data.UnlockBurstMode.ToString(),
+            data.UnlockAutoMode.ToString(),
+            data.HPUpByMoney.ToString(),
+            data.Vampirism.ToString()
+        };
 
         return value.ToArray();
     }
@@ -251,12 +253,14 @@ public class CsvController : MonoBehaviour
     string[] GameDataToString()
     {
         GameManager data = GenericSingleton<GameManager>.Instance;
-        List<string> value = new List<string>();
-        value.Add(data.MapStage.ToString());
-        value.Add(data.LevelStage.ToString());
-        value.Add(data.KillEnemy.ToString());
-        value.Add(data.PlayTime.ToString());
-        value.Add(data.IsAddPassive.ToString());
+        List<string> value = new List<string>
+        {
+            data.MapStage.ToString(),
+            data.LevelStage.ToString(),
+            data.KillEnemy.ToString(),
+            data.PlayTime.ToString(),
+            data.IsAddPassive.ToString()
+        };
 
         return value.ToArray();
     }

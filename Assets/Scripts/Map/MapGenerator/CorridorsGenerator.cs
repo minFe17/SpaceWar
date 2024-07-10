@@ -11,9 +11,8 @@ public class CorridorsGenerator
         {
             var node = structuresToCheck.Dequeue();
             if (node.ChildrenNodeList.Count == 0)
-            {
                 continue;
-            }
+
             CorridorNode corridor = new CorridorNode(node.ChildrenNodeList[0], node.ChildrenNodeList[1], corridorWidth);
             corridorList.Add(corridor);
         }

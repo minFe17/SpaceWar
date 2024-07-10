@@ -50,9 +50,7 @@ public class CorridorNode : Node
         var sortedBottomStructure = bottomStructureChildren.OrderByDescending(child => child.TopRightAreaCorner.y).ToList();
 
         if (sortedBottomStructure.Count == 1)
-        {
             bottomStructure = bottomStructureChildren[0];
-        }
         else
         {
             int maxY = sortedBottomStructure[0].TopRightAreaCorner.y;
@@ -121,9 +119,7 @@ public class CorridorNode : Node
         var sortedLeftStructure = leftStructureChildren.OrderByDescending(child => child.TopRightAreaCorner.x).ToList();
 
         if (sortedLeftStructure.Count == 1)
-        {
             leftStructure = leftStructureChildren[0];
-        }
         else
         {
             int maxX = sortedLeftStructure[0].TopRightAreaCorner.x;
@@ -203,12 +199,4 @@ public class CorridorNode : Node
         return Mathf.Atan2(middlePointStructure2Temp.y - middlePointStructure1Temp.y,
                            middlePointStructure2Temp.x - middlePointStructure1Temp.x) * Mathf.Rad2Deg;
     }
-}
-
-public enum ERelativePositionType
-{
-    Up,
-    Down,
-    Left,
-    Right
 }

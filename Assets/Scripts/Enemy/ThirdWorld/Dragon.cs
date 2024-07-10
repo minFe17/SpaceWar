@@ -103,12 +103,3 @@ public class Dragon : MovableEnemy
         _damage += 3;
     }
 }
-
-public enum EDragonAttackType
-{
-    BasicAttack,
-    ClawAttack,
-    BreathAttack,
-    Shout,
-    Max,
-}

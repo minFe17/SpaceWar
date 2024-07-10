@@ -60,17 +60,23 @@ public class Scavenger : MovableEnemy
     void SplitBoss()
     {
         GameObject temp = Resources.Load("Prefabs/Enemys/SecondWorld/MiniBoss") as GameObject;
-        GameObject firstMiniBoss = Instantiate(temp);
-        GameObject secondMiniBoss = Instantiate(temp);
+        MiniScavenger firstMiniBoss = Instantiate(temp).GetComponent<MiniScavenger>();
+        MiniScavenger secondMiniBoss = Instantiate(temp).GetComponent<MiniScavenger>();
 
-        firstMiniBoss.GetComponent<MiniScavenger>().Spawn(secondMiniBoss);
-        secondMiniBoss.GetComponent<MiniScavenger>().Spawn(firstMiniBoss);
-        firstMiniBoss.GetComponent<MiniScavenger>().Init(_enemyController);
-        secondMiniBoss.GetComponent<MiniScavenger>().Init(_enemyController);
-        firstMiniBoss.transform.position = new Vector3(transform.position.x - 10f, transform.position.y, transform.position.z);
-        secondMiniBoss.transform.position = new Vector3(transform.position.x + 10f, transform.position.y, transform.position.z);
+        Vector3 firstBossPos = new Vector3(transform.position.x - 10f, transform.position.y, transform.position.z);
+        Vector3 secondBossPos = new Vector3(transform.position.x + 10f, transform.position.y, transform.position.z);
+
+        InitSplitBoss(firstMiniBoss, secondMiniBoss, firstBossPos);
+        InitSplitBoss(secondMiniBoss, firstMiniBoss, secondBossPos);
 
         GenericSingleton<UIManager>.Instance.IngameUI.CreateMiniBossHpBar(firstMiniBoss, secondMiniBoss);
+    }
+
+    void InitSplitBoss(MiniScavenger miniBoss, MiniScavenger otherBoss, Vector3 pos)
+    {
+        miniBoss.Spawn(otherBoss.gameObject);
+        miniBoss.Init(_enemyController);
+        miniBoss.transform.position = pos;
     }
 
     protected override void ReadyAttack()
@@ -92,13 +98,4 @@ public class Scavenger : MovableEnemy
         _attackType = (EAttackType)Random.Range(1, (int)EAttackType.Max);
         _animator.SetTrigger($"do{_attackType}");
     }
-}
-
-public enum EAttackType
-{
-    None,
-    RightSlice,
-    BothHands,
-    Shout,
-    Max,
 }

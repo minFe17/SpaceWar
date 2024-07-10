@@ -7,14 +7,12 @@ public class Coin : MonoBehaviour
     [SerializeField] int _money;
     [SerializeField] GameObject _effect;
 
-    Animator _animator;
     Player _player;
 
     bool _isEat;
 
     void Start()
     {
-        _animator = GetComponent<Animator>();
         _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
     }
 

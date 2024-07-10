@@ -81,10 +81,3 @@ public class Rhino : MovableEnemy
             _enemyController.SpawnEnemy();
     }
 }
-
-public enum ERhinoAttackType
-{
-    Attack,
-    Shout,
-    Max
-}

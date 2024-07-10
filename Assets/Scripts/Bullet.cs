@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
     }
 
-    public void Remove()
+    void Remove()
     {
         Destroy(this.gameObject);
     }

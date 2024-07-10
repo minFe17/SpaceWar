@@ -17,8 +17,8 @@ public class IngameUI : MonoBehaviour
 
     [SerializeField] TMP_Text _BulletText;
 
-    [SerializeField] List<GameObject> _shotModeImageList = new List<GameObject>();
-    [SerializeField] TMP_Text _shotModeText;
+    [SerializeField] List<GameObject> _shootModeImageList = new List<GameObject>();
+    [SerializeField] TMP_Text _shootModeText;
 
     [SerializeField] GameObject _bossHpBarBase;
     [SerializeField] Image _bossHpBar;
@@ -85,17 +85,17 @@ public class IngameUI : MonoBehaviour
         _BulletText.text = $"{curBullet} / {maxBullet}";
     }
 
-    public void ShowShotMode()
+    public void ShowShootMode()
     {
-        EShotModeType shotMode = GenericSingleton<PlayerDataManager>.Instance.ShotMode;
-        for (int i = 0; i < (int)EShotModeType.Max; i++)
+        EShootModeType shootMode = GenericSingleton<PlayerDataManager>.Instance.ShootMode;
+        for (int i = 0; i < (int)EShootModeType.Max; i++)
         {
-            if (i == (int)shotMode)
-                _shotModeImageList[i].SetActive(true);
+            if (i == (int)shootMode)
+                _shootModeImageList[i].SetActive(true);
             else
-                _shotModeImageList[i].SetActive(false);
+                _shootModeImageList[i].SetActive(false);
         }
-        _shotModeText.text = shotMode.ToString();
+        _shootModeText.text = shootMode.ToString();
     }
 
     public void ShowBossHpBar(int curHp, int maxHp)
@@ -110,12 +110,12 @@ public class IngameUI : MonoBehaviour
         _bossHpBarBase.SetActive(false);
     }
 
-    public void CreateMiniBossHpBar(GameObject firstMiniScavenger, GameObject secondMiniScavenger)
+    public void CreateMiniBossHpBar(MiniScavenger firstMiniScavenger, MiniScavenger secondMiniScavenger)
     {
         if (_firstMiniScavenger == null || _secondMiniScavenger == null)
         {
-            _firstMiniScavenger = firstMiniScavenger.GetComponent<MiniScavenger>();
-            _secondMiniScavenger = secondMiniScavenger.GetComponent<MiniScavenger>();
+            _firstMiniScavenger = firstMiniScavenger;
+            _secondMiniScavenger = secondMiniScavenger;
         }
         ShowMiniBossHpBar();
     }

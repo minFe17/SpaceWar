@@ -28,5 +28,4 @@ public abstract class EventRoom : MonoBehaviour
             _inPlayer = false;
         }
     }
-
 }

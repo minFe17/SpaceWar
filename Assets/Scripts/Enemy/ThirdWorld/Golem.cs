@@ -47,7 +47,6 @@ public class Golem : MovableEnemy
     void ThrowRock()
     {
         _rock.Throw(_attackArea.transform);
-
     }
 
     protected override void EndAttack()

@@ -117,11 +117,3 @@ public class GameManager : MonoBehaviour
         IsClear = false;
     }
 }
-
-public enum EWorldType
-{
-    None,
-    FirstWorld,
-    SecondWorld,
-    ThirdWorld,
-}

@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     Rigidbody _rigidbody;
     Transform _bulletPos;
 
-    AudioClip _shotSound;
+    AudioClip _shootSound;
     AudioClip _dieSound;
 
     Vector3 _move;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
     bool _isJump;
     bool _isAiming;
-    bool _isShot;
+    bool _isShoot;
     bool _isReload;
     bool _isOpenOption;
     bool _isDie;
@@ -72,13 +72,13 @@ public class Player : MonoBehaviour
         _uiManager.IngameUI.ShowHp();
         _uiManager.IngameUI.ShowMoney();
         _uiManager.IngameUI.ShowBullet();
-        _uiManager.IngameUI.ShowShotMode();
+        _uiManager.IngameUI.ShowShootMode();
         _gameManager.StageUI();
     }
 
     void SettingAudio()
     {
-        _shotSound = Resources.Load("Prefabs/SoundClip/Shot") as AudioClip;
+        _shootSound = Resources.Load("Prefabs/SoundClip/Shoot") as AudioClip;
         _dieSound = Resources.Load("Prefabs/SoundClip/Die") as AudioClip;
     }
 
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         Jump();
         Zoom();
         Fire();
-        ChangeShotMode();
+        ChangeShootMode();
         Reload();
         ShowOptionUI();
         HPUpByMoney();
@@ -129,9 +129,7 @@ public class Player : MonoBehaviour
             _rigidbody.velocity = _move;
         }
         else
-        {
             IdleTimer();
-        }
     }
 
     void IdleTimer()
@@ -165,13 +163,10 @@ public class Player : MonoBehaviour
         if (!_isDie && !_isOpenOption)
         {
             if (Input.GetMouseButton(1))
-            {
                 AimingEnemy();
-            }
+
             if (Input.GetMouseButtonUp(1))
-            {
                 StopAimingEnemy();
-            }
         }
     }
 
@@ -216,16 +211,16 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton("Fire") && !_isDie && !_isOpenOption)
         {
-            switch (_playerDataManager.ShotMode)
+            switch (_playerDataManager.ShootMode)
             {
-                case EShotModeType.Single:
-                    StartSingleShot();
+                case EShootModeType.Single:
+                    StartSingleShoot();
                     break;
-                case EShotModeType.Burst:
-                    StartBurstShot();
+                case EShootModeType.Burst:
+                    StartBurstShoot();
                     break;
-                case EShotModeType.Auto:
-                    StartAutoShot();
+                case EShootModeType.Auto:
+                    StartAutoShoot();
                     break;
                 default:
                     break;
@@ -233,14 +228,14 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButtonUp("Fire"))
         {
-            _animator.SetBool("isShotIdle", true);
-            Invoke("ShotIdle", 0.5f);
+            _animator.SetBool("isShootIdle", true);
+            Invoke("ShootIdle", 0.5f);
         }
     }
 
-    void ShotIdle()
+    void ShootIdle()
     {
-        _animator.SetBool("isShotIdle", false);
+        _animator.SetBool("isShootIdle", false);
     }
 
     void Reload()
@@ -263,18 +258,18 @@ public class Player : MonoBehaviour
         _uiManager.IngameUI.ShowBullet();
     }
 
-    void ChangeShotMode()
+    void ChangeShootMode()
     {
         if (!_isDie && !_isOpenOption)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                _playerDataManager.ShotMode = EShotModeType.Single;
+                _playerDataManager.ShootMode = EShootModeType.Single;
             else if (Input.GetKeyDown(KeyCode.Alpha2) && _playerDataManager.UnlockBurstMode)
-                _playerDataManager.ShotMode = EShotModeType.Burst;
+                _playerDataManager.ShootMode = EShootModeType.Burst;
             else if (Input.GetKeyDown(KeyCode.Alpha3) && _playerDataManager.UnlockAutoMode)
-                _playerDataManager.ShotMode = EShotModeType.Auto;
+                _playerDataManager.ShootMode = EShootModeType.Auto;
 
-            _uiManager.IngameUI.ShowShotMode();
+            _uiManager.IngameUI.ShowShootMode();
         }
 
     }
@@ -416,59 +411,57 @@ public class Player : MonoBehaviour
         FollowCam.enabled = false;
     }
 
-    void StartSingleShot()
+    void StartSingleShoot()
     {
-        if (_playerDataManager.CurBullet > 0 && !_isReload && !_isShot)
+        if (_playerDataManager.CurBullet > 0 && !_isReload && !_isShoot)
         {
-            _isShot = true;
-            _animator.SetTrigger("doSingleShot");
+            _isShoot = true;
+            _animator.SetTrigger("doSingleShoot");
         }
     }
 
-    void ShotBullet()
+    void ShootBullet()
     {
         if (_playerDataManager.CurBullet <= 0)
-        {
             Reload();
-        }
         else
         {
             MakeBullet();
             _playerDataManager.CurBullet--;
             _uiManager.IngameUI.ShowBullet();
-            _soundController.PlaySFXAudio(_shotSound);
+            _soundController.PlaySFXAudio(_shootSound);
         }
     }
 
-    void EndShot()
+    void EndShoot()
     {
-        _animator.SetBool("isShotIdle", true);
+        _animator.SetBool("isShootIdle", true);
         if (_playerDataManager.CurBullet <= 0)
             Reload();
-        _isShot = false;
+        _isShoot = false;
     }
 
-    void StartBurstShot()
+    void StartBurstShoot()
     {
-        if (_playerDataManager.CurBullet > 0 && !_isReload && !_isShot)
+        if (_playerDataManager.CurBullet > 0 && !_isReload && !_isShoot)
         {
-            _isShot = true;
-            _animator.SetTrigger("doBurstShot");
+            _isShoot = true;
+            _animator.SetTrigger("doBurstShoot");
         }
     }
 
-    void StartAutoShot()
+    void StartAutoShoot()
     {
         if (_playerDataManager.CurBullet > 0 && !_isReload)
         {
-            _isShot = true;
-            _animator.SetTrigger("doAutoShot");
+            _isShoot = true;
+            _animator.SetTrigger("doAutoShoot");
         }
     }
 
-    void EndAutoShot()
+    void EndAutoShoot()
     {
-        _isShot = false;
+        _isShoot = false;
         if (_playerDataManager.CurBullet <= 0)
             Reload();
     }
@@ -504,12 +497,4 @@ public class Player : MonoBehaviour
             GameOver();
         }
     }
-}
-
-public enum EShotModeType
-{
-    Single,
-    Burst,
-    Auto,
-    Max
 }

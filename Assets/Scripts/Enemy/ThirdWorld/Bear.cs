@@ -38,10 +38,3 @@ public class Bear : MovableEnemy
         _animator.SetTrigger($"do{_bearAttackType}");
     }
 }
-
-public enum EBearAttackType
-{
-    RightPunch,
-    Tap,
-    Max,
-}

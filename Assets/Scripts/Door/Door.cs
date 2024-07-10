@@ -30,8 +30,6 @@ public class Door : MonoBehaviour
             Close();
     }
 
-   
-
     public void Open()
     {
         _leftDoor.transform.Translate((_leftDoorArea.position - _leftDoor.transform.position) * Time.deltaTime * _speed, Space.World);

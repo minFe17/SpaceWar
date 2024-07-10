@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Utils;
 
 public class EnemyManager : MonoBehaviour
@@ -29,7 +27,6 @@ public class EnemyManager : MonoBehaviour
     {
         if (_worldList.Count == 0)
             AddWorldList();
-        Scene scene = SceneManager.GetActiveScene();
         int stage = GenericSingleton<GameManager>.Instance.MapStage - 1;
         _enemys = _worldList[stage].AddEnemyList();
     }
@@ -45,29 +42,4 @@ public class EnemyManager : MonoBehaviour
         _worldList.Add(new SecondWorld());
         _worldList.Add(new ThirdWorld());
     }
-}
-
-public enum EFirstWorldEnemyType
-{
-    Turret,
-    Scorpion,
-    DeliveryRobot,
-    Max,
-}
-
-public enum ESecondWorldEnemyType
-{
-    Zombie,
-    Raptor,
-    Pachy,
-    Max,
-}
-
-public enum EThirdWorldEnemyType
-{
-    FireStone,
-    Bear,
-    Skeleton,
-    Golem,
-    Max,
 }

@@ -18,11 +18,9 @@ public abstract class Node
     public Node(Node parentNode)
     {
         _childrenNodeList = new List<Node>();
-        this.Parent = parentNode;
+        Parent = parentNode;
         if (parentNode != null)
-        {
             parentNode.AddChild(this);
-        }
     }
 
     public void AddChild(Node node)

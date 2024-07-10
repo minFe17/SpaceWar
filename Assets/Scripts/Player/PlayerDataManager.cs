@@ -8,7 +8,7 @@ public class PlayerDataManager : MonoBehaviour
     List<string> _passive = new List<string>();
 
     public List<string> Passive { get => _passive; set => _passive = value; }
-    public EShotModeType ShotMode { get; set; }
+    public EShootModeType ShootMode { get; set; }
     public Player Player { get; set; }
 
     public int MaxHp { get; set; }
@@ -54,7 +54,7 @@ public class PlayerDataManager : MonoBehaviour
         BonusMoney= 0;
         MoveSpeed = 5f;
         SplintSpeed = 5f;
-        ShotMode = EShotModeType.Single;
+        ShootMode = EShootModeType.Single;
         UnlockBurstMode = false;
         UnlockAutoMode = false;
         HPUpByMoney = false;
