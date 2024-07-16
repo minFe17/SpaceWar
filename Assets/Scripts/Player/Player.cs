@@ -19,15 +19,12 @@ public class Player : MonoBehaviour
     PlayerDataManager _playerDataManager;
     UIManager _uiManager;
     GameManager _gameManager;
-    SoundController _soundController;
+    AudioClipManager _audioManager;
 
     GameObject _bullet;
     Animator _animator;
     Rigidbody _rigidbody;
     Transform _bulletPos;
-
-    AudioClip _shootSound;
-    AudioClip _dieSound;
 
     Vector3 _move;
 
@@ -56,30 +53,22 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
         _gameManager = GenericSingleton<GameManager>.Instance;
-        _soundController = GenericSingleton<SoundManager>.Instance.SoundController;
+        _audioManager = GenericSingleton<AudioClipManager>.Instance;
         _bullet = Resources.Load("Prefabs/Bullet") as GameObject;
         Cursor.lockState = CursorLockMode.Locked;
         _playerDataManager.Player = this;
 
         SettingUI();
         Init();
-        SettingAudio();
     }
 
     void Init()
     {
-
         _uiManager.IngameUI.ShowHp();
         _uiManager.IngameUI.ShowMoney();
         _uiManager.IngameUI.ShowBullet();
         _uiManager.IngameUI.ShowShootMode();
         _gameManager.StageUI();
-    }
-
-    void SettingAudio()
-    {
-        _shootSound = Resources.Load("Prefabs/SoundClip/Shoot") as AudioClip;
-        _dieSound = Resources.Load("Prefabs/SoundClip/Die") as AudioClip;
     }
 
     void SettingUI()
@@ -345,8 +334,7 @@ public class Player : MonoBehaviour
                 StopAimingEnemy();
 
             _uiManager.OnOffOptionUI(!_isOpenOption);
-            AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
-            GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
+            _audioManager.PlaySFX(ESFXAudioType.Button);
             if (!_isOpenOption)
             {
                 Time.timeScale = 0;
@@ -390,13 +378,10 @@ public class Player : MonoBehaviour
     public void GameOver()
     {
         _uiManager.GameOverUI.gameObject.SetActive(true);
-        _uiManager.GameOverUI.ShowWave();
-        _uiManager.GameOverUI.ShowPlayTime();
-        _uiManager.GameOverUI.ShowKillEnemy();
-        _uiManager.GameOverUI.ShowMoney();
+        _uiManager.GameOverUI.GameOver();
         Cursor.lockState = CursorLockMode.None;
         GenericSingleton<CsvController>.Instance.DestroyDataFile();
-        _soundController.PlaySFXAudio(_dieSound);
+        _audioManager.PlaySFX(ESFXAudioType.Die);
 
         if (EnemyController != null)
         {
@@ -429,7 +414,7 @@ public class Player : MonoBehaviour
             MakeBullet();
             _playerDataManager.CurBullet--;
             _uiManager.IngameUI.ShowBullet();
-            _soundController.PlaySFXAudio(_shootSound);
+            _audioManager.PlaySFX(ESFXAudioType.Shoot);
         }
     }
 

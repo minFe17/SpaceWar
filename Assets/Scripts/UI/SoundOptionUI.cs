@@ -11,11 +11,13 @@ public class SoundOptionUI : MonoBehaviour
 
     SoundManager _soundManager;
     SoundController _soundController;
+    AudioClipManager _audioClipManager;
 
     void Awake()
     {
         _soundManager = GenericSingleton<SoundManager>.Instance;
         _soundController = _soundManager.SoundController;
+        _audioClipManager = GenericSingleton<AudioClipManager>.Instance;
 
         _bgmSlider.value = _soundManager.BgmSound;
         _sfxSlider.value = _soundManager.SFXSound;
@@ -33,8 +35,7 @@ public class SoundOptionUI : MonoBehaviour
 
     public void CloseButton()
     {
-        AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
-        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
+        _audioClipManager.PlaySFX(ESFXAudioType.Button);
         GenericSingleton<SoundCsv>.Instance.WriteSound();
         this.gameObject.SetActive(false);
         _parent.SetActive(true);

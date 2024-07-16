@@ -1694,7 +1694,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 512634143}
         m_TargetAssemblyTypeName: LobbyUI, Assembly-CSharp
-        m_MethodName: ClickButton
+        m_MethodName: ClickLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

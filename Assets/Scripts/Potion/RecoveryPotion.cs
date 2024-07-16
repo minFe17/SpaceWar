@@ -1,12 +1,9 @@
-﻿using UnityEngine;
-using Utils;
-
-public class RecoveryPotion : PotionBase
+﻿public class RecoveryPotion : PotionBase
 {
     public override void PotionEffect()
     {
-        int maxHp = GenericSingleton<PlayerDataManager>.Instance.MaxHp;
-        int curHp = GenericSingleton<PlayerDataManager>.Instance.CurHp;
+        int maxHp = _playerDataManager.MaxHp;
+        int curHp = _playerDataManager.CurHp;
         int recoveryAmount = maxHp / 3;
         int hp = curHp + recoveryAmount;
 
@@ -15,11 +12,10 @@ public class RecoveryPotion : PotionBase
             recoveryAmount = maxHp - curHp;
             hp = maxHp;
         }
-        GenericSingleton<PlayerDataManager>.Instance.CurHp = hp;
+        _playerDataManager.CurHp = hp;
 
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowHp();
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowVendingMachineResult($"현재 HP +{recoveryAmount} 회복");
-        AudioClip healSound = Resources.Load("Prefabs/SoundClip/PotionHeal") as AudioClip;
-        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(healSound);
+        _uiManager.IngameUI.ShowHp();
+        _uiManager.IngameUI.ShowVendingMachineResult($"현재 HP +{recoveryAmount} 회복");
+        _audiolipManager.PlaySFX(ESFXAudioType.Heal);
     }
 }

@@ -11,8 +11,7 @@ public class KeyInfoUI : MonoBehaviour
 
     public void CloseButton()
     {
-        AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
-        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
+        GenericSingleton<AudioClipManager>.Instance.PlaySFX(ESFXAudioType.Button);
         this.gameObject.SetActive(false);
         GenericSingleton<UIManager>.Instance.OptionUI.SetActive(true);
         GenericSingleton<UIManager>.Instance.IsKeyInfoUI = false;

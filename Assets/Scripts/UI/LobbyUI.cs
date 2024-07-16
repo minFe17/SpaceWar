@@ -11,7 +11,7 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] Text _continueGameText;
     [SerializeField] GameObject _soundOption;
 
-    AudioClip _lobbySound;
+    AudioClipManager _auidoClipManager;
     float _disabledColorAlpha;
 
     void Start()
@@ -21,15 +21,15 @@ public class LobbyUI : MonoBehaviour
         _continueGameButton.interactable = false;
         _disabledColorAlpha = _continueGameButton.colors.disabledColor.a;
         _continueGameText.color = new Color(0, 0, 0, _disabledColorAlpha);
-        _lobbySound = Resources.Load("Prefabs/SoundClip/Lobby") as AudioClip;
         GenericSingleton<SoundManager>.Instance.Init();
-        GenericSingleton<SoundManager>.Instance.SoundController.StartBGM(_lobbySound);
+        _auidoClipManager = GenericSingleton<AudioClipManager>.Instance;
+        _auidoClipManager.Init();
+        _auidoClipManager.PlayBGM(EBGMAudioType.Lobby);
     }
 
-    public void ClickButton()
+    public void ClickLobby()
     {
-        AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
-        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
+        _auidoClipManager.PlaySFX(ESFXAudioType.Button);
         CsvController csvController = GenericSingleton<CsvController>.Instance;
         _clickText.SetActive(false);
         _buttonPanel.SetActive(true);
@@ -57,8 +57,7 @@ public class LobbyUI : MonoBehaviour
     {
         _buttonPanel.SetActive(false);
         _soundOption.SetActive(true);
-        AudioClip uiButtonSound = Resources.Load("Prefabs/SoundClip/UIButton") as AudioClip;
-        GenericSingleton<SoundManager>.Instance.SoundController.PlaySFXAudio(uiButtonSound);
+        _auidoClipManager.PlaySFX(ESFXAudioType.Button);
     }
 
     public void ExitGameButton()

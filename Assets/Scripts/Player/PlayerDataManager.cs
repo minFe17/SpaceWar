@@ -37,8 +37,7 @@ public class PlayerDataManager : MonoBehaviour
         {
             ResetData();
         }
-        AudioClip bgm = Resources.Load("Prefabs/SoundClip/BGM") as AudioClip;
-        GenericSingleton<SoundManager>.Instance.SoundController.StartBGM(bgm);
+        GenericSingleton<AudioClipManager>.Instance.PlayBGM(EBGMAudioType.BGM);
     }
 
     void ResetData()
