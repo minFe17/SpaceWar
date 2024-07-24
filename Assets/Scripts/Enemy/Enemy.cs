@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
@@ -7,31 +6,28 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int _maxHp;
     [SerializeField] protected float _attackDelay;
 
-    protected Rigidbody _rigidbody;
     protected EnemyController _enemyController;
+    protected Rigidbody _rigidbody;
+    protected CoinManager _coinManager;
     protected Transform _target;
     protected Player _player;
 
     protected int _curHp;
     protected bool _isDie;
 
-    protected List<GameObject> _coinList = new List<GameObject>();
+    public int CurHp { get => _curHp; }
+    public int MaxHp { get => _maxHp; }
 
     public virtual void Init(EnemyController enemyController)
     {
+        _curHp = _maxHp;
         _enemyController = enemyController;
+        _enemyController.EnemyList.Add(this);
+
+        _rigidbody = GetComponent<Rigidbody>();
+        _coinManager = GenericSingleton<CoinManager>.Instance;
         _target = GenericSingleton<EnemyManager>.Instance.Target;
         _player = GenericSingleton<PlayerDataManager>.Instance.Player;
-        _curHp = _maxHp;
-        _enemyController.EnemyList.Add(this);
-        AddCoinList();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
-    protected void AddCoinList()
-    {
-        _coinList.Add(Resources.Load("Prefabs/Coins/GoldCoin") as GameObject);
-        _coinList.Add(Resources.Load("Prefabs/Coins/SilverCoin") as GameObject);
     }
 
     public virtual void LookTarget()
@@ -48,7 +44,7 @@ public abstract class Enemy : MonoBehaviour
         if (_curHp <= 0)
         {
             _isDie = true;
-            MakeMoney();
+            _coinManager.MakeCoin(transform.position);
             Destroy(this.gameObject, 1f);
             _enemyController.EnemyList.Remove(this);
         }
@@ -61,7 +57,7 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
-        MakeMoney();
+        _coinManager.MakeCoin(transform.position);
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
         _player.Vampirism();
         RemoveEnemy();
@@ -73,16 +69,9 @@ public abstract class Enemy : MonoBehaviour
         _enemyController.EnemyList.Remove(this);
     }
 
-    protected void MakeMoney()
-    {
-        int random = Random.Range(0, _coinList.Count);
-        GameObject coin = Instantiate(_coinList[random]);
-        coin.transform.position = transform.position;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("DeadZone"))
+        if (other.gameObject.CompareTag("DeadZone"))
             RemoveEnemy();
     }
 }

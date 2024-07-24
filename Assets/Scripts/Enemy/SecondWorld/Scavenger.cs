@@ -4,6 +4,7 @@ using Utils;
 public class Scavenger : MovableEnemy
 {
     EAttackType _attackType;
+
     public EAttackType AttackType { get { return _attackType; } }
 
     void Update()
@@ -11,12 +12,6 @@ public class Scavenger : MovableEnemy
         LookTarget();
         Move();
         FreezePos();
-    }
-
-    public override void Init(EnemyController enemyController)
-    {
-        base.Init(enemyController);
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowBossHpBar(_curHp, _maxHp);
     }
 
     public override void Move()

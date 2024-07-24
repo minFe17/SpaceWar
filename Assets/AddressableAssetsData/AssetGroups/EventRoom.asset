@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: EventRoom
+  m_EditorClassIdentifier: 
+  m_GroupName: EventRoom
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b415d4d21ed1f3c488f805ec429f20e9
+  m_SerializeEntries:
+  - m_GUID: c6855325cc1ea014b8b78ec2eb2b84d9
+    m_Address: VendingMachine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bb3a04833a0980b4ba8a0af433c65286
+    m_Address: Portal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9986345a85cf2c34c9a1ba8a37c4bd4a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9da51be72d1084a4e923fa2cea5361a9, type: 2}
+    - {fileID: 11400000, guid: 4b2cdc31e36ca044f99565c68a835a41, type: 2}

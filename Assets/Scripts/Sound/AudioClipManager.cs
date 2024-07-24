@@ -6,8 +6,8 @@ public class AudioClipManager : MonoBehaviour
 {
     // ╫л╠шео
     SoundController _soundController;
+    AudioClip _bgmAudio;
     List<AudioClip> _sfxAudio = new List<AudioClip>();
-    List<AudioClip> _bgmAudio = new List<AudioClip>();
 
     public void Init()
     {
@@ -24,8 +24,7 @@ public class AudioClipManager : MonoBehaviour
 
     void SetBGMAudio()
     {
-        for (int i = 0; i < (int)EBGMAudioType.Max; i++)
-            _bgmAudio.Add(Resources.Load($"Prefabs/SoundClip/{(EBGMAudioType)i}") as AudioClip);
+        //_bgmAudio = 
     }
 
     public void PlaySFX(ESFXAudioType audioType)
@@ -35,6 +34,6 @@ public class AudioClipManager : MonoBehaviour
 
     public void PlayBGM(EBGMAudioType audioType)
     {
-        _soundController.StartBGM(_bgmAudio[(int)audioType]);
+        _soundController.StartBGM(_bgmAudio);
     }
 }

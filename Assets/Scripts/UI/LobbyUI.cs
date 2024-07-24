@@ -16,6 +16,7 @@ public class LobbyUI : MonoBehaviour
 
     void Start()
     {
+        LoadAsset();
         _clickText.SetActive(true);
         _buttonPanel.SetActive(false);
         _continueGameButton.interactable = false;
@@ -23,8 +24,11 @@ public class LobbyUI : MonoBehaviour
         _continueGameText.color = new Color(0, 0, 0, _disabledColorAlpha);
         GenericSingleton<SoundManager>.Instance.Init();
         _auidoClipManager = GenericSingleton<AudioClipManager>.Instance;
-        _auidoClipManager.Init();
-        _auidoClipManager.PlayBGM(EBGMAudioType.Lobby);
+    }
+
+    async void LoadAsset()
+    {
+        await GenericSingleton<AssetManager>.Instance.LoadAsset();
     }
 
     public void ClickLobby()

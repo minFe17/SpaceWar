@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -32,14 +31,8 @@ public class DungeonCreator : MonoBehaviour
     List<Vector3Int> _possibleWallVerticalPosition = new List<Vector3Int>();
     List<Vector3Int> _possibleWallHorizontalPosition = new List<Vector3Int>();
 
-    Material _material;
+    MapAssetManager _mapAssetManager;
 
-    GameObject _wallHorizontal;
-    GameObject _wallVertical;
-    GameObject _doorVertical;
-    GameObject _doorHorizontal;
-
-    GameObject _enemyController;
     PlayerSpawn _playerSpawn;
 
     void Start()
@@ -50,13 +43,8 @@ public class DungeonCreator : MonoBehaviour
 
     void Init()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        _material = Resources.Load($"Prefabs/Map/{scene.name}/FloorMaterial") as Material;
-        _wallHorizontal = Resources.Load($"Prefabs/Map/{scene.name}/Wall/WallHorizontal") as GameObject;
-        _wallVertical = Resources.Load($"Prefabs/Map/{scene.name}/Wall/WallVertical") as GameObject;
-        _doorHorizontal = Resources.Load($"Prefabs/Map/{scene.name}/Door/DoorHorizontal") as GameObject;
-        _doorVertical = Resources.Load($"Prefabs/Map/{scene.name}/Door/DoorVertical") as GameObject;
-        _enemyController = Resources.Load($"Prefabs/EnemyController") as GameObject;
+        if (_mapAssetManager == null)
+            _mapAssetManager = GenericSingleton<MapAssetManager>.Instance;
     }
 
     void CreateDungeon()
@@ -139,7 +127,7 @@ public class DungeonCreator : MonoBehaviour
         dungeonFloor.transform.localScale = Vector3.one;
         dungeonFloor.transform.parent = transform;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
-        dungeonFloor.GetComponent<MeshRenderer>().material = _material;
+        dungeonFloor.GetComponent<MeshRenderer>().material = _mapAssetManager.FloorMaterial;
         dungeonFloor.AddComponent<MeshCollider>();
         dungeonFloor.AddComponent<BoxCollider>().isTrigger = true;
         dungeonFloor.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -166,8 +154,7 @@ public class DungeonCreator : MonoBehaviour
 
     void CreatePlayerSpawnPos(Vector3 createPos, GameObject parent)
     {
-        GameObject playerSpawnPos = Resources.Load("Prefabs/PlayerSpawnPos") as GameObject;
-        GameObject temp = Instantiate(playerSpawnPos, parent.transform);
+        GameObject temp = Instantiate(_mapAssetManager.PlayerSpawnPos, parent.transform);
         temp.transform.position = createPos;
         _playerSpawn = temp.GetComponent<PlayerSpawn>();
         _playerSpawn.Spawn();
@@ -176,14 +163,16 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateShop(Vector3 createPos, GameObject parent)
     {
-        GameObject temp = Resources.Load("Prefabs/VendingMachine") as GameObject;
+        GameObject temp;
+        _mapAssetManager.EventRooms.TryGetValue(EEventRoomType.VendingMachine, out temp);
         GameObject shop = Instantiate(temp, parent.transform);
         shop.transform.position = createPos;
     }
 
     void CreatePortal(Vector3 createPos, GameObject parent)
     {
-        GameObject temp = Resources.Load("Prefabs/Portal") as GameObject;
+        GameObject temp;
+        _mapAssetManager.EventRooms.TryGetValue(EEventRoomType.VendingMachine, out temp);
         GameObject portal = Instantiate(temp, parent.transform);
         GenericSingleton<GameManager>.Instance.Portal = portal;
         portal.transform.position = createPos;
@@ -194,7 +183,7 @@ public class DungeonCreator : MonoBehaviour
         Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
         Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
         Vector3 createPos = CalculateCreatePosition(bottomLeftCorner, topRightCorner);
-        GameObject temp = Instantiate(_enemyController, parent.transform);
+        GameObject temp = Instantiate(_mapAssetManager.EnemyController, parent.transform);
         temp.transform.position = createPos;
         temp.GetComponent<BoxCollider>().size = new Vector3((topRight.x - bottomLeft.x) - _enemyControllerOffset, 7, (topRight.z - bottomLeft.z) - _enemyControllerOffset);
         temp.GetComponent<EnemyController>().Init(createPos, doorList, isBossRoom);
@@ -242,10 +231,10 @@ public class DungeonCreator : MonoBehaviour
     void CreateWalls(GameObject wallParent)
     {
         foreach (var wallPosition in _possibleWallHorizontalPosition)
-            CreateWall(wallParent, wallPosition, _wallHorizontal);
+            CreateWall(wallParent, wallPosition, _mapAssetManager.HorizontalWall);
 
         foreach (var wallPosition in _possibleWallVerticalPosition)
-            CreateWall(wallParent, wallPosition, _wallVertical);
+            CreateWall(wallParent, wallPosition, _mapAssetManager.VerticalWall);
     }
 
     void CreateWall(GameObject wallParent, Vector3Int wallPosition, GameObject wallPrefab)
@@ -259,13 +248,13 @@ public class DungeonCreator : MonoBehaviour
         {
             Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, -0.2f, bottomLeftCorner.y);
             Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, -0.2f, topRightCorner.y);
-            CreateDoor(createBottomPos, createTopPos, _doorHorizontal, doorParent);
+            CreateDoor(createBottomPos, createTopPos, _mapAssetManager.HorizontalDoor, doorParent);
         }
         else
         {
             Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
             Vector3 createRightPos = new Vector3(topRightCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
-            CreateDoor(createLeftPos, createRightPos, _doorVertical, doorParent);
+            CreateDoor(createLeftPos, createRightPos, _mapAssetManager.VerticalDoor, doorParent);
         }
     }
 
@@ -284,8 +273,7 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateDeadZone()
     {
-        GameObject deadZone = Resources.Load("Prefabs/DeadZone") as GameObject;
-        GameObject temp = Instantiate(deadZone, transform);
+        GameObject temp = Instantiate(_mapAssetManager.DeadZone, transform);
         temp.transform.position = new Vector3(_dungeonWidth / 2, -10, _dungeonLength / 2);
         temp.transform.localScale = new Vector3(_dungeonWidth + 50, 1, _dungeonLength + 50);
     }

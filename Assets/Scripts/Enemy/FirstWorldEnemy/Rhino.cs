@@ -12,12 +12,6 @@ public class Rhino : MovableEnemy
         FreezePos();
     }
 
-    public override void Init(EnemyController enemyController)
-    {
-        base.Init(enemyController);
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowBossHpBar(_curHp, _maxHp);
-    }
-
     public override void Move()
     {
         if (!_isAttack && !_isDie)

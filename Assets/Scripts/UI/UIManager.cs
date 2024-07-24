@@ -1,10 +1,13 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 public class UIManager : MonoBehaviour
 {
     // ΩÃ±€≈Ê
     GameObject _ui;
+    GameObject _uiPrefab;
     MainUI _mainUI;
 
     public IngameUI IngameUI { get; set; }
@@ -21,10 +24,17 @@ public class UIManager : MonoBehaviour
     public bool IsKeyInfoUI { get; set; }
     public bool IsSoundOption {  get; set; }
 
+    public async Task LoadAsset()
+    {
+        if (_uiPrefab != null)
+            return;
+        AddressableManager addressableManager = GenericSingleton<AddressableManager>.Instance;
+        _uiPrefab = await addressableManager.GetAddressableAsset<GameObject>("UI");
+    }
+
     public void CreateUI()
     {
-        GameObject ui = Resources.Load("Prefabs/UI") as GameObject;
-        _ui = Instantiate(ui);
+        _ui = Instantiate(_uiPrefab);
 
         _mainUI = _ui.GetComponent<MainUI>();
         _mainUI.Init(this);

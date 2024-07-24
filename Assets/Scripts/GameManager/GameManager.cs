@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         doorList.UnlockDoor();
     }
 
-    public void NextStage()
+    public async void NextStage()
     {
         if(MapStage >= 3 && LevelStage >= 5)
         {
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         }
         if (LevelStage >= 5)
         {
-            MapStage++;
+            await GenericSingleton<WorldManager>.Instance.NextWorld();
             LevelStage = 1;
             GenericSingleton<EnemyManager>.Instance.ClearWorldEnemy();
             GenericSingleton<EnemyManager>.Instance.WorldEnemyList();
@@ -115,5 +115,6 @@ public class GameManager : MonoBehaviour
         PlayTime = 0f;
         IsAddPassive = true;
         IsClear = false;
+        GenericSingleton<WorldManager>.Instance.WorldType = EWorldType.FirstWorld;
     }
 }

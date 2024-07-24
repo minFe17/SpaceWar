@@ -50,7 +50,7 @@ public class Turret : Enemy
     public override void Die()
     {
         _gun.localEulerAngles = new Vector3(60, _gun.eulerAngles.y, _gun.eulerAngles.z);
-        MakeMoney();
+        _coinManager.MakeCoin(transform.position);
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
         _player.Vampirism();
     }

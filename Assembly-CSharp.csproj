@@ -69,11 +69,11 @@
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\TurretMissile.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\DungeonGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\ObstacleListBase.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\ObstacleListBase.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\Passive\HPUp.cs" />
-    <Compile Include="Assets\Scripts\VendingMachine.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\Cactus.cs" />
+    <Compile Include="Assets\Scripts\Map\EventRoom\Child\VendingMachine.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\Cactus.cs" />
     <Compile Include="Assets\Scripts\Enemy\AttackArea.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRPachycephalasaurus\Scripts\Bonehead_BodyEffects.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
@@ -83,7 +83,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\Line.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\GolemRock.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\SecondWorldObstacleList.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\Child\SecondWorldObstacleList.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\ZombieAttackArea.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Breath.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\FireStone.cs" />
@@ -99,7 +99,7 @@
     <Compile Include="Assets\Scripts\Door\DoorList.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\FireStoneAttakcArea.cs" />
     <Compile Include="Assets\Scripts\UI\KeyInfoUI.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\Enum\ESecondWorldObstacleType.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\Enum\ESecondWorldObstacleType.cs" />
     <Compile Include="Assets\Scripts\Passive\PassiveManager.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\Node.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\ScavengerAttack.cs" />
@@ -114,7 +114,7 @@
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Scavenger.cs" />
     <Compile Include="Assets\Scripts\CsvController.cs" />
     <Compile Include="Assets\Scripts\UI\VendingMachineResult.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\Fire.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\Fire.cs" />
     <Compile Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorld.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\ESecondWorldEnemyType.cs" />
@@ -132,26 +132,27 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorNode.cs" />
     <Compile Include="Assets\Scripts\Passive\GetMoneyUp.cs" />
     <Compile Include="Assets\Scripts\Passive\SpeedUp.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\Enum\EThirdWorldObstacleType.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\Enum\EThirdWorldObstacleType.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorsGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Rhino.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Turret.cs" />
     <Compile Include="Assets\Bullet Casing\Scripts\Sound.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\ThirdWorldObstacleList.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\Child\ThirdWorldObstacleList.cs" />
     <Compile Include="Assets\UI button pack 2\Scene\CreateObj.cs" />
     <Compile Include="Assets\Scripts\Potion\PotionManager.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\ObstacleManager.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\ObstacleManager.cs" />
     <Compile Include="Assets\Scripts\UI\SoundOptionUI.cs" />
     <Compile Include="Assets\Bullet Casing\Scripts\FP_Shooting.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Enum\ERhinoAttackType.cs" />
     <Compile Include="Assets\Scripts\Camera\ClearRoom.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\FirstWorldObstacleList.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\Child\FirstWorldObstacleList.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\BlendShapeTrigger.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EFirstWorldEnemyType.cs" />
     <Compile Include="Assets\Scripts\UI\MainUI.cs" />
     <Compile Include="Assets\Scripts\Potion\MaxHPIncreasePotion.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\RaptorSoundEffects.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EThirdWorldEnemyType.cs" />
+    <Compile Include="Assets\Scripts\Coin\CoinManager.cs" />
     <Compile Include="Assets\Scripts\Potion\MaxHPReducedPotion.cs" />
     <Compile Include="Assets\Scripts\Camera\MiniMapCam.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\DragonAttackArea.cs" />
@@ -159,11 +160,11 @@
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Enum\EAttackType.cs" />
     <Compile Include="Assets\Scripts\GameManager\Enum\EWorldType.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Zombie.cs" />
-    <Compile Include="Assets\Scripts\Coin.cs" />
+    <Compile Include="Assets\Scripts\Coin\Coin.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRPachycephalasaurus\Scripts\BoneheadSoundEffects.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\MiniScavenger.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSpawn.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\Enum\EFirstWorldObstacleType.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\Enum\EFirstWorldObstacleType.cs" />
     <Compile Include="Assets\Scripts\Passive\DamageUp.cs" />
     <Compile Include="Assets\Scripts\UI\SelectPassiveUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\SkeletonAttackArea.cs" />
@@ -174,7 +175,7 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Golem.cs" />
     <Compile Include="Assets\Scripts\Sound\Enum\ESFXAudioType.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\Enum\ERelativePositionType.cs" />
-    <Compile Include="Assets\Scripts\EventRoom.cs" />
+    <Compile Include="Assets\Scripts\Map\EventRoom\EventRoom.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Scripts\UI\IngameUI.cs" />
@@ -185,10 +186,16 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Dragon.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\BearAttackArea.cs" />
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\Addressable\AddressableManager.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundCsv.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
-    <Compile Include="Assets\Scripts\Portal.cs" />
+    <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
+    <Compile Include="Assets\Scripts\Addressable\AssetManager.cs" />
+    <Compile Include="Assets\Scripts\Map\MapAssetManager.cs" />
+    <Compile Include="Assets\Scripts\GameManager\WorldManager.cs" />
+    <Compile Include="Assets\Scripts\Map\EventRoom\Enum\EEventRoomType.cs" />
+    <Compile Include="Assets\Scripts\Obstacle\ObstacleAssetManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
@@ -862,8 +869,14 @@
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
     <Reference Include="PsdPlugin">
       <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
@@ -880,11 +893,11 @@
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
@@ -912,6 +925,9 @@
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
@@ -967,6 +983,9 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
@@ -1006,8 +1025,14 @@
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>

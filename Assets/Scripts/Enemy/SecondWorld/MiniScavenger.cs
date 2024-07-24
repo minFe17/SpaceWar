@@ -5,8 +5,6 @@ public class MiniScavenger : Scavenger
 {
     GameObject _otherScavenger;
 
-    public int CurHp { get => _curHp; }
-    public int MaxHp {  get => _maxHp; }
     public bool IsDie { get => _isDie; }
     public bool OtherScavengerIsDie { get; set; }
 
@@ -24,14 +22,8 @@ public class MiniScavenger : Scavenger
 
     public override void Init(EnemyController enemyController)
     {
-        _enemyController = enemyController;
-        _target = GenericSingleton<EnemyManager>.Instance.Target;
-        _player = GenericSingleton<PlayerDataManager>.Instance.Player;
-        _curHp = _maxHp;
-        _enemyController.EnemyList.Add(this);
-        AddCoinList();
+        base.Init(enemyController);
         _attackArea.SetActive(false);
-        _rigidbody = GetComponent<Rigidbody>();
     }
 
     public override void TakeDamage(int damage)
@@ -59,8 +51,8 @@ public class MiniScavenger : Scavenger
     {
         if(OtherScavengerIsDie == false)
             _otherScavenger.GetComponent<MiniScavenger>().OtherScavengerIsDie = _isDie;
-        
-        MakeMoney();
+
+        _coinManager.MakeCoin(transform.position);
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
         _player.Vampirism();
         _enemyController.EnemyList.Remove(this);

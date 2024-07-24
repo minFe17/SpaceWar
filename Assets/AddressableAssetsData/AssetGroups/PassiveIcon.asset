@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: PassiveIcon
+  m_EditorClassIdentifier: 
+  m_GroupName: PassiveIcon
+  m_Data:
+    m_SerializedData: []
+  m_GUID: cb59e79b725b6da43be8ebfa4b204485
+  m_SerializeEntries:
+  - m_GUID: 575ccdd6a94e8404c80f3dad5c9020b7
+    m_Address: BulletUp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fc4ff711e8fc435438b72b6b8fbadc9c
+    m_Address: DamageUp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1e115221175b68f49aed5d9beb429c64
+    m_Address: DamageUpByMoney
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d4d5392c736c1b49b15bbfd9be6fe4b
+    m_Address: DoubleHP
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bf1df01caaa0af84fb793ea07283b976
+    m_Address: GetMoneyUP
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 09ffc2e31958907499bf966afeab93db
+    m_Address: HPUp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 23fa6831d3970164c947f23eef8a963a
+    m_Address: HPUpByMoney
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d2002bb37d4a364489d9a55354f35a01
+    m_Address: SpeedUp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cea864dbe1ffdcf41aedd5203f365346
+    m_Address: UnlockAutoMode
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 08c2ec4275e483b439b8661c51f980c6
+    m_Address: UnlockBurstMode
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 580bda229cac7284783e41e390b02451
+    m_Address: Vampirism
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9986345a85cf2c34c9a1ba8a37c4bd4a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 58f88c5f0603b274e9d5e425f35a5bfc, type: 2}
+    - {fileID: 11400000, guid: cf36dbb846aef70479af5c55d914ddd8, type: 2}

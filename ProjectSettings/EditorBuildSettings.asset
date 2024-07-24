@@ -17,4 +17,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ThirdWorld.unity
     guid: 19099251befc46a48acf76b282713367
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 34df18e2c2a679d4089d79638fbd5045, type: 2}

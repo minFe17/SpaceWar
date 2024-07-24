@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _minEnemy;
     [SerializeField] int _maxEnemy;
 
+    UIManager _uiManager;
     List<Enemy> _enemyList = new List<Enemy>();
 
     DoorList _doorList;
@@ -43,6 +44,7 @@ public class EnemyController : MonoBehaviour
         _isBossRoom = isBossRoom;
         _basePos = _createPos + _ground.center;
         _size = _ground.size;
+        _uiManager = GenericSingleton<UIManager>.Instance;
     }
 
     void Update()
@@ -86,11 +88,14 @@ public class EnemyController : MonoBehaviour
     public void SpawnBoss()
     {
         GenericSingleton<GameManager>.Instance.Portal.SetActive(false);
-        EWorldType eWorld = (EWorldType)GenericSingleton<GameManager>.Instance.MapStage;
+        EWorldType eWorld = GenericSingleton<WorldManager>.Instance.WorldType;
         GameObject temp = Resources.Load($"Prefabs/Enemys/{eWorld}/Boss") as GameObject;
-        GameObject boss = Instantiate(temp);
-        boss.transform.position = _basePos;
-        boss.GetComponent<Enemy>().Init(this);
+
+        GameObject bossGameObject = Instantiate(temp);
+        bossGameObject.transform.position = _basePos;
+        Enemy boss = bossGameObject.GetComponent<Enemy>();
+        boss.Init(this);
+        _uiManager.IngameUI.ShowBossHpBar(boss.CurHp, boss.MaxHp);
     }
 
     public void StopSpawnEnemy()
