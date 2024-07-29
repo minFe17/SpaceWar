@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class ThirdWorldObstacleList : ObstacleListBase
+public class ThirdWorldObstacleList : IObstacleList
 {
-    public override async void AddObstacle(ObstacleAssetManager obstacleAssetManager, AddressableManager addressableManager)
+    async void IObstacleList.AddObstacle(ObstacleAssetManager obstacleAssetManager, AddressableManager addressableManager)
     {
         for (int i = 0; i < (int)EThirdWorldObstacleType.Max; i++)
         {
