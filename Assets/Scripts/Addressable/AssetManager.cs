@@ -11,11 +11,17 @@ public class AssetManager : MonoBehaviour
         await LoadPlayerAsset();
         await LoadCameraAsset();
         LoadCoinAsset();
+        LoadPassiveAsset();
     }
 
     void LoadCoinAsset()
     {
         GenericSingleton<CoinManager>.Instance.Init();
+    }
+
+    void LoadPassiveAsset()
+    {
+        GenericSingleton<PassiveSpriteManager>.Instance.LoadAsset();
     }
 
     async Task LoadUIAsset()

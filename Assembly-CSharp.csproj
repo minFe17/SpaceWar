@@ -59,9 +59,9 @@
     <Compile Include="Assets\amusedART\StoneMonster\Script\Animation_Test.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\LobbyUI.cs" />
-    <Compile Include="Assets\Scripts\Passive\UnlockBurstMode.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\UnlockBurstMode.cs" />
     <Compile Include="Assets\Scripts\Sound\Enum\EBGMAudioType.cs" />
-    <Compile Include="Assets\Scripts\Passive\BulletUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\BulletUp.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerDataManager.cs" />
     <Compile Include="Assets\Scripts\Map\MapAssetManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Raptor.cs" />
@@ -72,7 +72,7 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld.cs" />
     <Compile Include="Assets\Scripts\Obstacle\Interface\IObstacleList.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
-    <Compile Include="Assets\Scripts\Passive\HPUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\HpUp.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\VendingMachine.cs" />
     <Compile Include="Assets\Scripts\Obstacle\Cactus.cs" />
     <Compile Include="Assets\Scripts\Enemy\AttackArea.cs" />
@@ -95,8 +95,9 @@
     <Compile Include="Assets\Scripts\Addressable\AssetManager.cs" />
     <Compile Include="Assets\DownloadAssets\Map\DungeonModules\Scripts\DoorAOpen.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Enum\EDragonAttackType.cs" />
-    <Compile Include="Assets\Scripts\Passive\Vampirism.cs" />
-    <Compile Include="Assets\Scripts\Passive\HPUpByMoney.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAssetManager.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Vampirism.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\HpUpByMoney.cs" />
     <Compile Include="Assets\Scripts\GameManager\WorldManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Door\DoorList.cs" />
@@ -133,8 +134,8 @@
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Scorpion.cs" />
     <Compile Include="Assets\Scripts\Passive\PassiveBase.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorNode.cs" />
-    <Compile Include="Assets\Scripts\Passive\GetMoneyUp.cs" />
-    <Compile Include="Assets\Scripts\Passive\SpeedUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\GetMoneyUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\SpeedUp.cs" />
     <Compile Include="Assets\Scripts\Obstacle\Enum\EThirdWorldObstacleType.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorsGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Rhino.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Assets\Scripts\Enemy\Enum\EFirstWorldEnemyType.cs" />
     <Compile Include="Assets\Scripts\UI\MainUI.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Enum\EEventRoomType.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraAssetManager.cs" />
     <Compile Include="Assets\Scripts\Potion\MaxHPIncreasePotion.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\RaptorSoundEffects.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EThirdWorldEnemyType.cs" />
@@ -168,11 +170,11 @@
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\MiniScavenger.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSpawn.cs" />
     <Compile Include="Assets\Scripts\Obstacle\Enum\EFirstWorldObstacleType.cs" />
-    <Compile Include="Assets\Scripts\Passive\DamageUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\DamageUp.cs" />
     <Compile Include="Assets\Scripts\UI\SelectPassiveUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\SkeletonAttackArea.cs" />
-    <Compile Include="Assets\Scripts\Passive\DoubleHp.cs" />
-    <Compile Include="Assets\Scripts\Passive\UnlockAutoMode.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\DoubleHp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\UnlockAutoMode.cs" />
     <Compile Include="Assets\Scripts\UI\PassiveButton.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Enum\EBearAttackType.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Golem.cs" />
@@ -195,8 +197,7 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraAssetManager.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerAssetManager.cs" />
+    <Compile Include="Assets\Scripts\Passive\PassiveSpriteManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

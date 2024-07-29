@@ -17,7 +17,7 @@ public class PassiveManager : MonoBehaviour
 
     void AddPassive()
     {
-        _passive.Add(new HPUp());
+        _passive.Add(new HpUp());
         _passive.Add(new DamageUp());
         _passive.Add(new SpeedUp());
         _passive.Add(new BulletUp());
@@ -25,7 +25,7 @@ public class PassiveManager : MonoBehaviour
         _passive.Add(new UnlockAutoMode());
         _passive.Add(new GetMoneyUp());
         _passive.Add(new DoubleHp());
-        _passive.Add(new HPUpByMoney());
+        _passive.Add(new HpUpByMoney());
         _passive.Add(new Vampirism());
     }
 
