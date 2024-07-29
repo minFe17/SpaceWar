@@ -14,7 +14,7 @@ public class MiniMapCam : MonoBehaviour
         Move();
     }
 
-    public void Move()
+    void Move()
     {
         Vector3 miniMapCamPosition = new Vector3(_player.position.x, transform.position.y, _player.position.z);
         transform.position = miniMapCamPosition;

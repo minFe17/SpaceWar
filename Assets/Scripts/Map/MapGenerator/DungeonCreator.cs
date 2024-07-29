@@ -141,12 +141,12 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateObstacle(Vector2 bottomLeftCorner, Vector2 topRightCorner, Transform parent)
     {
-        List<GameObject> obstacle = GenericSingleton<ObstacleManager>.Instance.Obstacle;
+        List<GameObject> obstacles = GenericSingleton<ObstacleAssetManager>.Instance.Obstacles;
         int obstacleCount = Random.Range(_minObstacle, _maxObstacle);
         for (int i = 0; i < obstacleCount; i++)
         {
-            int index = Random.Range(0, (int)EFirstWorldObstacleType.Max);
-            GameObject temp = obstacle[index];
+            int index = Random.Range(0, obstacles.Count);
+            GameObject temp = obstacles[index];
             Vector3 position = new Vector3(Random.Range(bottomLeftCorner.x + 10, topRightCorner.x - 10), 0, Random.Range(bottomLeftCorner.y + 10, topRightCorner.y - 10));
             Instantiate(temp, position, Quaternion.identity, parent);
         }

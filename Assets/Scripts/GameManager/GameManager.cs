@@ -42,8 +42,6 @@ public class GameManager : MonoBehaviour
             LevelStage = 1;
             GenericSingleton<EnemyManager>.Instance.ClearWorldEnemy();
             GenericSingleton<EnemyManager>.Instance.WorldEnemyList();
-            GenericSingleton<ObstacleManager>.Instance.ClearWorldObstacleList();
-            GenericSingleton<ObstacleManager>.Instance.WorldObstacleList();
         }
         else
         {
