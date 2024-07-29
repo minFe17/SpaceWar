@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using Utils;
 
@@ -11,10 +12,11 @@ public class CameraAssetManager : MonoBehaviour
     public GameObject MiniMapCamera { get; set; }
     public GameObject MapCamera { get; set; }
 
-    public async void LoadAsset()
+    public async Task LoadAsset()
     {
         if (_addressableManager == null)
             _addressableManager = GenericSingleton<AddressableManager>.Instance;
+
         MainCamera = await _addressableManager.GetAddressableAsset<GameObject>("Main Camera");
         FollowCamera = await _addressableManager.GetAddressableAsset<GameObject>("Follow Camera");
         MiniMapCamera = await _addressableManager.GetAddressableAsset<GameObject>("MiniMap Camera");

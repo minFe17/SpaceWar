@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetData()
+    public async void ResetData()
     {
         MapStage = 1;
         LevelStage = 1;
@@ -113,6 +113,6 @@ public class GameManager : MonoBehaviour
         PlayTime = 0f;
         IsAddPassive = true;
         IsClear = false;
-        GenericSingleton<WorldManager>.Instance.WorldType = EWorldType.FirstWorld;
+        await GenericSingleton<WorldManager>.Instance.ResetWorld();
     }
 }

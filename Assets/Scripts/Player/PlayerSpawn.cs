@@ -10,11 +10,15 @@ public class PlayerSpawn : MonoBehaviour
     GameObject _miniMapCam;
     GameObject _mapCamera;
 
+    PlayerAssetManager _playerAssetManager;
     CameraAssetManager _cameraAssetManager;
 
     public void Spawn()
     {
-        GameObject player = Resources.Load("Prefabs/Player") as GameObject;
+        if(_playerAssetManager == null)
+            _playerAssetManager = GenericSingleton<PlayerAssetManager>.Instance;
+
+        GameObject player = _playerAssetManager.Player;
         _player = Instantiate(player);
         _player.transform.position = transform.position;
         SpawnCamera();

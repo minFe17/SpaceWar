@@ -8,6 +8,8 @@ public class AssetManager : MonoBehaviour
     public async Task LoadAsset()
     {
         await LoadUIAsset();
+        await LoadPlayerAsset();
+        await LoadCameraAsset();
         LoadCoinAsset();
     }
 
@@ -21,12 +23,15 @@ public class AssetManager : MonoBehaviour
         await GenericSingleton<UIManager>.Instance.LoadAsset();
     }
 
-    //async Task MapAsset()
-    //{
-    //    // ¸Ê
-    //    // Àå¾Ö¹°, 
-    //    // Enemy, 
-    //}
+    async Task LoadCameraAsset()
+    {
+        await GenericSingleton<CameraAssetManager>.Instance.LoadAsset();
+    }
+
+    async Task LoadPlayerAsset()
+    {
+        await GenericSingleton<PlayerAssetManager>.Instance.LoadAsset();
+    }
 
     //async Task SoundAsset()
     //{

@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
         _gameManager = GenericSingleton<GameManager>.Instance;
         _audioManager = GenericSingleton<AudioClipManager>.Instance;
-        _bullet = Resources.Load("Prefabs/Bullet") as GameObject;
+        _bullet = GenericSingleton<PlayerAssetManager>.Instance.Bullet;
         Cursor.lockState = CursorLockMode.Locked;
         _playerDataManager.Player = this;
 

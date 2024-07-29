@@ -5,20 +5,26 @@ using Utils;
 public class WorldManager : MonoBehaviour
 {
     // 싱글턴
-    EWorldType _worldType;
     public EWorldType WorldType { get; set; }
+
+    public async Task ResetWorld()
+    {
+        ReleaseAsset();
+        WorldType = EWorldType.FirstWorld;
+        await LoadAsset();
+    }
 
     public async Task NextWorld()
     {
         ReleaseAsset();
-        _worldType++;
+        WorldType++;
         await LoadAsset();
     }
 
     async Task LoadAsset()
     {
-        await GenericSingleton<MapAssetManager>.Instance.LoadAsset(_worldType);
-        GenericSingleton<ObstacleAssetManager>.Instance.LoadAsset(_worldType);
+        await GenericSingleton<MapAssetManager>.Instance.LoadAsset(WorldType);
+        GenericSingleton<ObstacleAssetManager>.Instance.LoadAsset(WorldType);
         // 몬스터
     }
 
