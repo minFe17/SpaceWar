@@ -1,14 +1,54 @@
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class SecondWorld : WorldEnemyListBase
+public class SecondWorld : IWorldEnemyListBase
 {
-    public override List<GameObject> AddEnemyList()
+    EnemyManager _enemyManager;
+    AddressableManager _addressableManager;
+
+    async Task IWorldEnemyListBase.AddEnemyList(EnemyManager enemyManager, AddressableManager addressableManager)
+    {
+        _enemyManager = enemyManager;
+        _addressableManager = addressableManager;
+
+        if (enemyManager.Enemys.Count != 0)
+            return;
+
+        await LoadEnemy();
+        await LoadRaptorMaterial();
+    }
+
+    void IWorldEnemyListBase.ReleaseAsset()
+    {
+        if (_enemyManager.MiniBoss != null)
+            _addressableManager.Release(_enemyManager.MiniBoss);
+        if (_enemyManager.RaptorMaterials.Count != 0)
+            ReleaseRaptorMaterial();
+    }
+
+    async Task LoadEnemy()
     {
         for (int i = 0; i < (int)ESecondWorldEnemyType.Max; i++)
         {
-            _worldEnemy.Add(Resources.Load($"Prefabs/Enemys/SecondWorld/{(ESecondWorldEnemyType)i}") as GameObject);
+            GameObject temp = await _addressableManager.GetAddressableAsset<GameObject>($"SecondWorld/{(ESecondWorldEnemyType)i}");
+            _enemyManager.Enemys.Add(temp);
         }
-        return _worldEnemy;
+        _enemyManager.Boss = await _addressableManager.GetAddressableAsset<GameObject>("SecondWorld/Scavenger");
+        _enemyManager.MiniBoss = await _addressableManager.GetAddressableAsset<GameObject>("SecondWorld/MiniScavenger");
+    }
+
+    async Task LoadRaptorMaterial()
+    {
+        for (int i = 0; i < (int)ERaptorMaterialType.Max; i++)
+        {
+            Material temp = await _addressableManager.GetAddressableAsset<Material>($"{(ERaptorMaterialType)i}");
+            _enemyManager.RaptorMaterials.Add(temp);
+        }
+    }
+
+    void ReleaseRaptorMaterial()
+    {
+        for (int i = 0; i < _enemyManager.RaptorMaterials.Count; i++)
+            _addressableManager.Release(_enemyManager.RaptorMaterials[i]);
     }
 }

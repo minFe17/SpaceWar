@@ -3,14 +3,6 @@ using UnityEngine;
 public class Raptor : MovableEnemy
 {
     [SerializeField] SkinnedMeshRenderer _meshRenderer;
-    Material _raptor;
-    Material _cloaking;
-
-    void Start()
-    {
-        _raptor = Resources.Load("Material/Raptor") as Material;
-        _cloaking = Resources.Load("Material/Cloaking") as Material;
-    }
 
     void Update()
     {
@@ -26,7 +18,7 @@ public class Raptor : MovableEnemy
             _animator.SetBool("isMove", true);
             _move = _target.position - transform.position;
             transform.Translate(_move.normalized * Time.deltaTime * _moveSpeed, Space.World);
-            _meshRenderer.material = _cloaking;
+            _meshRenderer.material = _enemyManager.RaptorMaterials[(int)ERaptorMaterialType.Cloaking];
         }
     }
 
@@ -35,7 +27,7 @@ public class Raptor : MovableEnemy
         if (_isDie)
             return;
         _curHp -= damage;
-        _meshRenderer.material = _raptor;
+        _meshRenderer.material = _enemyManager.RaptorMaterials[(int)ERaptorMaterialType.Raptor];
         if (_curHp <= 0)
         {
             _animator.SetTrigger("doDie");
@@ -51,6 +43,6 @@ public class Raptor : MovableEnemy
     protected override void ReadyAttack()
     {
         base.ReadyAttack();
-        _meshRenderer.material = _raptor;
+        _meshRenderer.material = _enemyManager.RaptorMaterials[(int)ERaptorMaterialType.Raptor];
     }
 }

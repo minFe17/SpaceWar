@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ObstacleAssetManager : MonoBehaviour
@@ -16,16 +17,18 @@ public class ObstacleAssetManager : MonoBehaviour
         _worldList.Add(new ThirdWorldObstacleList());
     }
 
-    public void LoadAsset(EWorldType worldType)
+    public async Task LoadAsset(EWorldType worldType)
     {
         if (_worldList == null)
             AddWorldList();
-        _worldList[(int)worldType].AddObstacle(this, _addressableManager);
+        await _worldList[(int)worldType].AddObstacle(this, _addressableManager);
     }
 
 
     public void ReleaseAsset()
     {
+        if (Obstacles.Count == 0)
+            return;
         for (int i = 0; i < Obstacles.Count; i++)
             _addressableManager.Release(Obstacles[i]);
     }

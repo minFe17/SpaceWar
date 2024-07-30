@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _maxEnemy;
 
     UIManager _uiManager;
+    EnemyManager _enemyManager;
     List<Enemy> _enemyList = new List<Enemy>();
 
     DoorList _doorList;
@@ -32,6 +33,7 @@ public class EnemyController : MonoBehaviour
 
     void Awake()
     {
+        _enemyManager = GenericSingleton<EnemyManager>.Instance;
         _ground = GetComponent<BoxCollider>();
         _wave = Random.Range(1, 3);
         _isClear = false;
@@ -89,9 +91,8 @@ public class EnemyController : MonoBehaviour
     {
         GenericSingleton<GameManager>.Instance.Portal.SetActive(false);
         EWorldType eWorld = GenericSingleton<WorldManager>.Instance.WorldType;
-        GameObject temp = Resources.Load($"Prefabs/Enemys/{eWorld}/Boss") as GameObject;
 
-        GameObject bossGameObject = Instantiate(temp);
+        GameObject bossGameObject = Instantiate(_enemyManager.Boss);
         bossGameObject.transform.position = _basePos;
         Enemy boss = bossGameObject.GetComponent<Enemy>();
         boss.Init(this);

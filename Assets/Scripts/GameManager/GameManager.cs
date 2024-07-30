@@ -40,8 +40,6 @@ public class GameManager : MonoBehaviour
         {
             await GenericSingleton<WorldManager>.Instance.NextWorld();
             LevelStage = 1;
-            GenericSingleton<EnemyManager>.Instance.ClearWorldEnemy();
-            GenericSingleton<EnemyManager>.Instance.WorldEnemyList();
         }
         else
         {

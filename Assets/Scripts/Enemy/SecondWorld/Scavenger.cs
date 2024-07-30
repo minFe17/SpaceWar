@@ -54,7 +54,7 @@ public class Scavenger : MovableEnemy
 
     void SplitBoss()
     {
-        GameObject temp = Resources.Load("Prefabs/Enemys/SecondWorld/MiniBoss") as GameObject;
+        GameObject temp = _enemyManager.MiniBoss;
         MiniScavenger firstMiniBoss = Instantiate(temp).GetComponent<MiniScavenger>();
         MiniScavenger secondMiniBoss = Instantiate(temp).GetComponent<MiniScavenger>();
 

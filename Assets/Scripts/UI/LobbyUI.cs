@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,9 +15,9 @@ public class LobbyUI : MonoBehaviour
     AudioClipManager _auidoClipManager;
     float _disabledColorAlpha;
 
-    void Start()
+    async void Start()
     {
-        LoadAsset();
+        await LoadAsset();
         _clickText.SetActive(true);
         _buttonPanel.SetActive(false);
         _continueGameButton.interactable = false;
@@ -26,7 +27,7 @@ public class LobbyUI : MonoBehaviour
         _auidoClipManager = GenericSingleton<AudioClipManager>.Instance;
     }
 
-    async void LoadAsset()
+    async Task LoadAsset()
     {
         await GenericSingleton<AssetManager>.Instance.LoadAsset();
     }

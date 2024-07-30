@@ -20,8 +20,7 @@ public class SoundManager : MonoBehaviour
         {
             if (_soundController == null)
             {
-                GameObject temp = Resources.Load("Prefabs/SoundController") as GameObject;
-                GameObject soundController = Instantiate(temp);
+                GameObject soundController = Instantiate(_soundControllerPrefab);
                 _soundController = soundController.GetComponent<SoundController>();
             }
             return _soundController;

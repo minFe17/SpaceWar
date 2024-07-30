@@ -2,13 +2,7 @@ using UnityEngine;
 
 public class Golem : MovableEnemy
 {
-    GameObject _rockPrefab;
     GolemRock _rock;
-
-    void Start()
-    {
-        _rockPrefab = Resources.Load("Prefabs/Enemys/ThirdWorld/Rock") as GameObject;
-    }
 
     void Update()
     {
@@ -38,7 +32,7 @@ public class Golem : MovableEnemy
 
     protected override void Attack()
     {
-        GameObject rock = Instantiate(_rockPrefab);
+        GameObject rock = Instantiate(_enemyManager.Rock);
         rock.transform.position = _attackArea.transform.position;
         _rock = rock.GetComponent<GolemRock>();
         _rock.OnHand(_attackArea);

@@ -1,8 +1,9 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class FirstWorldObstacleList : IObstacleList
 {
-    async void IObstacleList.AddObstacle(ObstacleAssetManager obstacleAssetManager, AddressableManager addressableManager)
+    async Task IObstacleList.AddObstacle(ObstacleAssetManager obstacleAssetManager, AddressableManager addressableManager)
     {
         for (int i = 0; i < (int)EFirstWorldObstacleType.Max; i++)
         {

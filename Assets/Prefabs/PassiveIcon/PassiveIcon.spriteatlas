@@ -74,15 +74,15 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - DamageUp
   - DamageUpByMoney
-  - HPUpByMoney
+  - HpUpByMoney
   - Vampirism
   - UnlockBurstMode
-  - DoubleHP
+  - DoubleHp
   - SpeedUp
-  - HPUp
+  - HpUp
   - BulletUp
   - UnlockAutoMode
-  - GetMoneyUP
+  - GetMoneyUp
   m_RenderDataMap: {}
   m_Tag: PassiveIcon
   m_IsVariant: 0

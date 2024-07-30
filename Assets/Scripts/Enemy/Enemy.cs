@@ -8,6 +8,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected EnemyController _enemyController;
     protected Rigidbody _rigidbody;
+    protected EnemyManager _enemyManager;
     protected CoinManager _coinManager;
     protected Transform _target;
     protected Player _player;
@@ -25,7 +26,9 @@ public abstract class Enemy : MonoBehaviour
         _enemyController.EnemyList.Add(this);
 
         _rigidbody = GetComponent<Rigidbody>();
+        _enemyManager = GenericSingleton<EnemyManager>.Instance;
         _coinManager = GenericSingleton<CoinManager>.Instance;
+
         _target = GenericSingleton<EnemyManager>.Instance.Target;
         _player = GenericSingleton<PlayerDataManager>.Instance.Player;
     }

@@ -14,7 +14,7 @@ public class Turret : Enemy
     public override void Init(EnemyController enemyController)
     {
         base.Init(enemyController);
-        _bullet = Resources.Load("Prefabs/Enemys/FirstWorld/Missile") as GameObject;
+        _bullet = _enemyManager.Missile;
         StartCoroutine(AttackRoutine());
     }
 
@@ -41,7 +41,7 @@ public class Turret : Enemy
             _isDie = true;
             _dieEffect.SetActive(true);
             Invoke("Die", 1f);
-            
+
             Destroy(this.gameObject, 2f);
             _enemyController.EnemyList.Remove(this);
         }

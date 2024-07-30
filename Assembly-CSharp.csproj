@@ -129,7 +129,7 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Sound\AudioClipManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\DeliveryRobotAttackArea.cs" />
-    <Compile Include="Assets\Scripts\Enemy\WorldEnemyListBase.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Interface\IWorldEnemyListBase.cs" />
     <Compile Include="Assets\Scripts\Potion\PotionBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Scorpion.cs" />
     <Compile Include="Assets\Scripts\Passive\PassiveBase.cs" />
@@ -198,6 +198,7 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
+    <Compile Include="Assets\Scripts\Enemy\SecondWorld\Enum\ERaptorMaterialType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

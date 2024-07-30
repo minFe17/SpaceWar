@@ -18,21 +18,22 @@ public class WorldManager : MonoBehaviour
     {
         ReleaseAsset();
         WorldType++;
+        if (WorldType == EWorldType.Max)
+            return;
         await LoadAsset();
     }
 
     async Task LoadAsset()
     {
         await GenericSingleton<MapAssetManager>.Instance.LoadAsset(WorldType);
-        GenericSingleton<ObstacleAssetManager>.Instance.LoadAsset(WorldType);
-        // 몬스터
+        await GenericSingleton<EnemyManager>.Instance.LoadAsset(WorldType);
+        await GenericSingleton<ObstacleAssetManager>.Instance.LoadAsset(WorldType);
     }
 
     void ReleaseAsset()
     {
         GenericSingleton<MapAssetManager>.Instance.ReleaseAsset();
+        GenericSingleton<EnemyManager>.Instance.ReleaseAsset(WorldType);
         GenericSingleton<ObstacleAssetManager>.Instance.ReleaseAsset();
-        // 몬스터
-
     }
 }

@@ -1,39 +1,34 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Utils;
+using static UnityEngine.Animations.AimConstraint;
 
 public class EnemyManager : MonoBehaviour
 {
     // ΩÃ±€≈Ê
+    List<IWorldEnemyListBase> _worldList = new List<IWorldEnemyListBase>();
+
+    AddressableManager _addressableManager;
     Transform _target;
+
     public Transform Target { get => _target; set => _target = value; }
+    public List<GameObject> Enemys { get; }
+    public List<Material> RaptorMaterials { get; }
 
-    List<WorldEnemyListBase> _worldList = new List<WorldEnemyListBase>();
+    public GameObject Boss { get; set; }
+    public GameObject MiniBoss { get; set; }
+    public GameObject Missile { get; set; }
+    public GameObject Rock { get; set; }
 
-    List<GameObject> _enemys = new List<GameObject>();
-    public List<GameObject> Enemys
+    public async Task LoadAsset(EWorldType worldType)
     {
-        get
-        {
-            if (_enemys.Count == 0)
-            {
-                WorldEnemyList();
-            }
-            return _enemys;
-        }
-    }
+        if (_addressableManager == null)
+            _addressableManager = GenericSingleton<AddressableManager>.Instance;
 
-    public void WorldEnemyList()
-    {
         if (_worldList.Count == 0)
             AddWorldList();
-        int stage = GenericSingleton<GameManager>.Instance.MapStage - 1;
-        _enemys = _worldList[stage].AddEnemyList();
-    }
-
-    public void ClearWorldEnemy()
-    {
-        _enemys.Clear();
+        await _worldList[(int)worldType].AddEnemyList(this, _addressableManager);
     }
 
     void AddWorldList()
@@ -41,5 +36,18 @@ public class EnemyManager : MonoBehaviour
         _worldList.Add(new FirstWorld());
         _worldList.Add(new SecondWorld());
         _worldList.Add(new ThirdWorld());
+    }
+
+    public void ReleaseAsset(EWorldType worldType)
+    {
+        if (Enemys.Count == 0)
+            return;
+
+        Enemys.Clear();
+        for (int i = 0; i < Enemys.Count; i++)
+            _addressableManager.Release(Enemys[i]);
+
+        _addressableManager.Release(Boss);
+        _worldList[(int)worldType].ReleaseAsset();
     }
 }

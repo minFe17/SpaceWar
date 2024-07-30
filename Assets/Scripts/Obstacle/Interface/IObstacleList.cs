@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
+
 interface IObstacleList
 {
-    void AddObstacle(ObstacleAssetManager obstacleAssetManager, AddressableManager addressableManager);
+    Task AddObstacle(ObstacleAssetManager obstacleAssetManager, AddressableManager addressableManager);
 }
