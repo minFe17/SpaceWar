@@ -7,7 +7,7 @@ public class PassiveSpriteManager : MonoBehaviour
     // ╫л╠шео
     AddressableManager _addressableManager;
 
-    public SpriteAtlas PassiveIconAtlas { get; set; }
+    public SpriteAtlas PassiveIconAtlas { get; private set; }
 
     public async void LoadAsset()
     {

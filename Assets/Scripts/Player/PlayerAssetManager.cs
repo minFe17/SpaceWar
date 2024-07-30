@@ -7,8 +7,8 @@ public class PlayerAssetManager : MonoBehaviour
     // ╫л╠шео
     AddressableManager _addressableMaanger;
 
-    public GameObject Player { get; set; }
-    public GameObject Bullet { get; set; }
+    public GameObject Player { get; private set; }
+    public GameObject Bullet { get; private set; }
 
     public async Task LoadAsset()
     {

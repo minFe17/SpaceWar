@@ -10,15 +10,15 @@ public class MapAssetManager : MonoBehaviour
 
     public Dictionary<EEventRoomType, GameObject> EventRooms { get; }
 
-    public GameObject PlayerSpawnPos { get; set; }
-    public GameObject EnemyController { get; set; }
-    public GameObject DeadZone { get; set; }
+    public GameObject PlayerSpawnPos { get; private set; }
+    public GameObject EnemyController { get; private set; }
+    public GameObject DeadZone { get; private set; }
 
-    public Material FloorMaterial { get; set; }
-    public GameObject HorizontalDoor { get; set; }
-    public GameObject VerticalDoor { get; set; }
-    public GameObject HorizontalWall { get; set; }
-    public GameObject VerticalWall { get; set; }
+    public Material FloorMaterial { get; private set; }
+    public GameObject HorizontalDoor { get; private set; }
+    public GameObject VerticalDoor { get; private set; }
+    public GameObject HorizontalWall { get; private set; }
+    public GameObject VerticalWall { get; private set; }
 
     async void LoadEventRoomAsset()
     {

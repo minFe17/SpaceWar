@@ -7,7 +7,7 @@ public class ObstacleAssetManager : MonoBehaviour
     AddressableManager _addressableManager;
 
     List<IObstacleList> _worldList;
-    public List<GameObject> Obstacles { get; set; }
+    public List<GameObject> Obstacles { get; }
 
     void AddWorldList()
     {

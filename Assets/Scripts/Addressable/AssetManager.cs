@@ -10,6 +10,7 @@ public class AssetManager : MonoBehaviour
         await LoadUIAsset();
         await LoadPlayerAsset();
         await LoadCameraAsset();
+        await LoadSoundAsset();
         LoadCoinAsset();
         LoadPassiveAsset();
     }
@@ -39,8 +40,9 @@ public class AssetManager : MonoBehaviour
         await GenericSingleton<PlayerAssetManager>.Instance.LoadAsset();
     }
 
-    //async Task SoundAsset()
-    //{
-    //    // »ç¿îµå
-    //}
+    async Task LoadSoundAsset()
+    {
+        await GenericSingleton<SoundManager>.Instance.LoadAsset();
+        await GenericSingleton<AudioClipManager>.Instance.LoadAsset();
+    }
 }

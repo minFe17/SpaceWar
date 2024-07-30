@@ -7,10 +7,10 @@ public class CameraAssetManager : MonoBehaviour
     // ╫л╠шео
     AddressableManager _addressableManager;
 
-    public GameObject MainCamera { get; set; }
-    public GameObject FollowCamera { get; set; }
-    public GameObject MiniMapCamera { get; set; }
-    public GameObject MapCamera { get; set; }
+    public GameObject MainCamera { get; private set; }
+    public GameObject FollowCamera { get; private set; }
+    public GameObject MiniMapCamera { get; private set; }
+    public GameObject MapCamera { get; private set; }
 
     public async Task LoadAsset()
     {
