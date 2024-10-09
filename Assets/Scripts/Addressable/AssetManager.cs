@@ -11,6 +11,7 @@ public class AssetManager : MonoBehaviour
         await LoadCameraAsset();
         await LoadSoundAsset();
         await LoadUIAsset();
+        await LoadWorldAsset();
         LoadCoinAsset();
         LoadPassiveAsset();
     }
@@ -34,6 +35,11 @@ public class AssetManager : MonoBehaviour
     async Task LoadUIAsset()
     {
         await GenericSingleton<UIManager>.Instance.LoadAsset();
+    }
+
+    async Task LoadWorldAsset()
+    {
+        await GenericSingleton<WorldManager>.Instance.ResetWorld();
     }
 
     void LoadCoinAsset()

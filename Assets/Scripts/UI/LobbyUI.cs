@@ -13,17 +13,26 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] GameObject _soundOption;
 
     AudioClipManager _auidoClipManager;
+
+    Animator _animator;
     float _disabledColorAlpha;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+        _animator.SetBool("isLoad", false);
+    }
 
     async void Start()
     {
         await LoadAsset();
+        _animator.SetBool("isLoad", true);
         _clickText.SetActive(true);
         _buttonPanel.SetActive(false);
+        GenericSingleton<SoundManager>.Instance.Init();
         _continueGameButton.interactable = false;
         _disabledColorAlpha = _continueGameButton.colors.disabledColor.a;
         _continueGameText.color = new Color(0, 0, 0, _disabledColorAlpha);
-        GenericSingleton<SoundManager>.Instance.Init();
         _auidoClipManager = GenericSingleton<AudioClipManager>.Instance;
     }
 

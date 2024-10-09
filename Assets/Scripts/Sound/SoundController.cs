@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class SoundController : MonoBehaviour
 {
-    [SerializeField] AudioSource _bgm;
-    [SerializeField] List<AudioSource> _sfxAudio;
+    [SerializeField] protected AudioSource _bgm;
+    [SerializeField] protected List<AudioSource> _sfxAudio;
 
     int _index;
 

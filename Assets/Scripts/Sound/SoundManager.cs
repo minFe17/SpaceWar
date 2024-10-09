@@ -25,6 +25,11 @@ public class SoundManager : MonoBehaviour
             }
             return _soundController;
         }
+
+        set
+        {
+            _soundController = value;
+        }
     }
 
     public async Task LoadAsset()

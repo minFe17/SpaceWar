@@ -8,7 +8,8 @@ public class ObstacleAssetManager : MonoBehaviour
     AddressableManager _addressableManager;
 
     List<IObstacleList> _worldList;
-    public List<GameObject> Obstacles { get; }
+    List<GameObject> _obstacles = new List<GameObject>();
+    public List<GameObject> Obstacles { get => _obstacles; }
 
     void AddWorldList()
     {
@@ -26,10 +27,10 @@ public class ObstacleAssetManager : MonoBehaviour
 
 
     public void ReleaseAsset()
-    {
-        if (Obstacles.Count == 0)
+    {   
+        if (_obstacles.Count == 0)
             return;
-        for (int i = 0; i < Obstacles.Count; i++)
-            _addressableManager.Release(Obstacles[i]);
+        for (int i = 0; i < _obstacles.Count; i++)
+            _addressableManager.Release(_obstacles[i]);
     }
 }

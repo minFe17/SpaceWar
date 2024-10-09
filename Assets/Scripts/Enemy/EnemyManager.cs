@@ -2,18 +2,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using Utils;
-using static UnityEngine.Animations.AimConstraint;
 
 public class EnemyManager : MonoBehaviour
 {
     // ΩÃ±€≈Ê
     List<IWorldEnemyListBase> _worldList = new List<IWorldEnemyListBase>();
+    List<GameObject> _enemys = new List<GameObject>();
 
     AddressableManager _addressableManager;
     Transform _target;
 
     public Transform Target { get => _target; set => _target = value; }
-    public List<GameObject> Enemys { get; }
+    public List<GameObject> Enemys { get => _enemys; }
     public List<Material> RaptorMaterials { get; }
 
     public GameObject Boss { get; set; }
@@ -40,12 +40,12 @@ public class EnemyManager : MonoBehaviour
 
     public void ReleaseAsset(EWorldType worldType)
     {
-        if (Enemys.Count == 0)
+        if (_enemys.Count == 0)
             return;
 
-        Enemys.Clear();
-        for (int i = 0; i < Enemys.Count; i++)
-            _addressableManager.Release(Enemys[i]);
+        _enemys.Clear();
+        for (int i = 0; i < _enemys.Count; i++)
+            _addressableManager.Release(_enemys[i]);
 
         _addressableManager.Release(Boss);
         _worldList[(int)worldType].ReleaseAsset();

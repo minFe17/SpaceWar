@@ -13,7 +13,7 @@ public class AudioClipManager : MonoBehaviour
 
     public void Init()
     {
-        _soundController = GenericSingleton<SoundManager>.Instance.SoundController;
+        CreateSoundController();
     }
 
     public async Task LoadAsset()
@@ -22,6 +22,12 @@ public class AudioClipManager : MonoBehaviour
             _addressableManaegr = GenericSingleton<AddressableManager>.Instance;
         SetBGMAudio();
         await SetSFXAudio();
+    }
+
+    void CreateSoundController()
+    {
+        if (_soundController == null)
+            _soundController = GenericSingleton<SoundManager>.Instance.SoundController;
     }
 
     async void SetBGMAudio()
@@ -41,11 +47,13 @@ public class AudioClipManager : MonoBehaviour
 
     public void PlaySFX(ESFXAudioType audioType)
     {
+        CreateSoundController();
         _soundController.PlaySFXAudio(_sfxAudio[(int)audioType]);
     }
 
     public void PlayBGM(EBGMAudioType audioType)
     {
+        CreateSoundController();
         _soundController.StartBGM(_bgmAudio);
     }
 }

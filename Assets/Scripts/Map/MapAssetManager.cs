@@ -7,8 +7,9 @@ public class MapAssetManager : MonoBehaviour
 {
     // ╫л╠шео
     AddressableManager _addressableManager;
+    Dictionary<EEventRoomType, GameObject> _eventRoom = new Dictionary<EEventRoomType, GameObject>();
 
-    public Dictionary<EEventRoomType, GameObject> EventRooms { get; }
+    public Dictionary<EEventRoomType, GameObject> EventRooms { get => _eventRoom; }
 
     public GameObject PlayerSpawnPos { get; private set; }
     public GameObject EnemyController { get; private set; }
@@ -22,13 +23,14 @@ public class MapAssetManager : MonoBehaviour
 
     async void LoadEventRoomAsset()
     {
-        if (EventRooms.Count != 0)
+
+        if (_eventRoom.Count != 0)
             return;
 
         for (int i = 0; i < (int)EEventRoomType.Max; i++)
         {
             GameObject eventRoom = await _addressableManager.GetAddressableAsset<GameObject>($"{(EEventRoomType)i}");
-            EventRooms.Add((EEventRoomType)i, eventRoom);
+            _eventRoom.Add((EEventRoomType)i, eventRoom);
         }
     }
 

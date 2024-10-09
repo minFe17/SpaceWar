@@ -158,6 +158,7 @@
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\RaptorSoundEffects.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EThirdWorldEnemyType.cs" />
     <Compile Include="Assets\Scripts\Coin\CoinManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\SecondWorld\Enum\ERaptorMaterialType.cs" />
     <Compile Include="Assets\Scripts\Potion\MaxHPReducedPotion.cs" />
     <Compile Include="Assets\Scripts\Camera\MiniMapCam.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\DragonAttackArea.cs" />
@@ -198,7 +199,7 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Enemy\SecondWorld\Enum\ERaptorMaterialType.cs" />
+    <Compile Include="Assets\Scripts\Lobby\LobbySoundController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
