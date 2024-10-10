@@ -7,7 +7,7 @@ public class ThirdWorldObstacleList : IObstacleList
     {
         for (int i = 0; i < (int)EThirdWorldObstacleType.Max; i++)
         {
-            GameObject temp = await addressableManager.GetAddressableAsset<GameObject>($"ThirdWorld/{(EThirdWorldObstacleType)i}");
+            GameObject temp = await addressableManager.GetAddressableAsset<GameObject>($"ThirdWorld/{(EThirdWorldObstacleType)i}.prefab");
             obstacleAssetManager.Obstacles.Add(temp);
         }
     }

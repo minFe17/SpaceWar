@@ -57,11 +57,11 @@ public class MapAssetManager : MonoBehaviour
 
     async Task LoadMapAsset(EWorldType worldType)
     {
-        FloorMaterial = await _addressableManager.GetAddressableAsset<Material>($"{worldType}/FloorMaterial");
-        HorizontalDoor = await _addressableManager.GetAddressableAsset<GameObject>($"{worldType}/HorizontalDoor");
-        VerticalDoor = await _addressableManager.GetAddressableAsset<GameObject>($"{worldType}/VerticalDoor");
-        HorizontalWall = await _addressableManager.GetAddressableAsset<GameObject>($"{worldType}/HorizontalWall");
-        VerticalWall = await _addressableManager.GetAddressableAsset<GameObject>($"{worldType}/VerticalWall");
+        FloorMaterial = await _addressableManager.GetAddressableAsset<Material>($"{worldType}/FloorMaterial.mat");
+        HorizontalDoor = await _addressableManager.GetAddressableAsset<GameObject>($"{worldType}/HorizontalDoor.prefab");
+        VerticalDoor = await _addressableManager.GetAddressableAsset<GameObject>($"{worldType}/VerticalDoor.prefab");
+        HorizontalWall = await _addressableManager.GetAddressableAsset<GameObject>($"{worldType}/HorizontalWall.prefab");
+        VerticalWall = await _addressableManager.GetAddressableAsset<GameObject>($"{worldType}/VerticalWall.prefab");
     }
 
     public async Task LoadAsset(EWorldType worldType)

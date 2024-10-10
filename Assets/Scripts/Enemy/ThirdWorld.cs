@@ -28,14 +28,14 @@ public class ThirdWorld : IWorldEnemyListBase
     {
         for (int i = 0; i < (int)EThirdWorldEnemyType.Max; i++)
         {
-            GameObject temp = await _addressableManager.GetAddressableAsset<GameObject>($"ThirdWorld/{(EThirdWorldEnemyType)i}");
+            GameObject temp = await _addressableManager.GetAddressableAsset<GameObject>($"ThirdWorld/{(EThirdWorldEnemyType)i}.prefab");
             _enemyManager.Enemys.Add(temp);
         }
-        _enemyManager.Boss = await _addressableManager.GetAddressableAsset<GameObject>("ThirdWorld/Dragon");
+        _enemyManager.Boss = await _addressableManager.GetAddressableAsset<GameObject>("ThirdWorld/Dragon.prefab");
     }
 
     async Task LoadRock()
     {
-        _enemyManager.Missile = await _addressableManager.GetAddressableAsset<GameObject>("ThirdWorld/Rock");
+        _enemyManager.Missile = await _addressableManager.GetAddressableAsset<GameObject>("ThirdWorld/Rock.prefab");
     }
 }

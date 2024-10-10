@@ -7,7 +7,7 @@ public class SecondWorldObstacleList : IObstacleList
     {
         for (int i = 0; i < (int)ESecondWorldObstacleType.Max; i++)
         {
-            GameObject temp = await addressableManager.GetAddressableAsset<GameObject>($"SecondWorld/{(ESecondWorldObstacleType)i}");
+            GameObject temp = await addressableManager.GetAddressableAsset<GameObject>($"SecondWorld/{(ESecondWorldObstacleType)i}.prefab");
             obstacleAssetManager.Obstacles.Add(temp);
         }
     }

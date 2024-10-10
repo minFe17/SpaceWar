@@ -30,18 +30,18 @@ public class SecondWorld : IWorldEnemyListBase
     {
         for (int i = 0; i < (int)ESecondWorldEnemyType.Max; i++)
         {
-            GameObject temp = await _addressableManager.GetAddressableAsset<GameObject>($"SecondWorld/{(ESecondWorldEnemyType)i}");
+            GameObject temp = await _addressableManager.GetAddressableAsset<GameObject>($"SecondWorld/{(ESecondWorldEnemyType)i}.prefab");
             _enemyManager.Enemys.Add(temp);
         }
-        _enemyManager.Boss = await _addressableManager.GetAddressableAsset<GameObject>("SecondWorld/Scavenger");
-        _enemyManager.MiniBoss = await _addressableManager.GetAddressableAsset<GameObject>("SecondWorld/MiniScavenger");
+        _enemyManager.Boss = await _addressableManager.GetAddressableAsset<GameObject>("SecondWorld/Scavenger.prefab");
+        _enemyManager.MiniBoss = await _addressableManager.GetAddressableAsset<GameObject>("SecondWorld/MiniScavenger.prefab");
     }
 
     async Task LoadRaptorMaterial()
     {
         for (int i = 0; i < (int)ERaptorMaterialType.Max; i++)
         {
-            Material temp = await _addressableManager.GetAddressableAsset<Material>($"{(ERaptorMaterialType)i}");
+            Material temp = await _addressableManager.GetAddressableAsset<Material>($"{(ERaptorMaterialType)i}.prefab");
             _enemyManager.RaptorMaterials.Add(temp);
         }
     }

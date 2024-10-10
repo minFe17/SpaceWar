@@ -28,14 +28,14 @@ public class FirstWorld : IWorldEnemyListBase
     {
         for (int i = 0; i < (int)EFirstWorldEnemyType.Max; i++)
         {
-            GameObject temp = await _addressableManager.GetAddressableAsset<GameObject>($"FirstWorld/{(EFirstWorldEnemyType)i}");
+            GameObject temp = await _addressableManager.GetAddressableAsset<GameObject>($"FirstWorld/{(EFirstWorldEnemyType)i}.prefab");
             _enemyManager.Enemys.Add(temp);
         }
-        _enemyManager.Boss = await _addressableManager.GetAddressableAsset<GameObject>("FirstWorld/Rhino");
+        _enemyManager.Boss = await _addressableManager.GetAddressableAsset<GameObject>("FirstWorld/Rhino.prefab");
     }
 
     async Task LoadMissile()
     {
-        _enemyManager.Missile = await _addressableManager.GetAddressableAsset<GameObject>("FirstWorld/Missile");
+        _enemyManager.Missile = await _addressableManager.GetAddressableAsset<GameObject>("FirstWorld/Missile.prefab");
     }
 }

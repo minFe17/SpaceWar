@@ -4997,8 +4997,11 @@ MonoBehaviour:
   _coinText: {fileID: 1424901034272024583}
   _stageText: {fileID: 1424901033487845563}
   _BulletText: {fileID: 1424901032349018216}
-  _shootModeImageList: []
-  _shootModeText: {fileID: 0}
+  _shootModeImageList:
+  - {fileID: 1424901033252460387}
+  - {fileID: 1424901033521748448}
+  - {fileID: 1424901034076565533}
+  _shootModeText: {fileID: 1424901033818505557}
   _bossHpBarBase: {fileID: 4743624803163086489}
   _bossHpBar: {fileID: 1610385086911566112}
   _miniBossHpBarBase: {fileID: 2509142940927977181}

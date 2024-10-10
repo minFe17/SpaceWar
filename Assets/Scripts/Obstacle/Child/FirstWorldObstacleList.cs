@@ -7,7 +7,7 @@ public class FirstWorldObstacleList : IObstacleList
     {
         for (int i = 0; i < (int)EFirstWorldObstacleType.Max; i++)
         {
-            GameObject temp = await addressableManager.GetAddressableAsset<GameObject>($"FirstWorld/{(EFirstWorldObstacleType)i}");
+            GameObject temp = await addressableManager.GetAddressableAsset<GameObject>($"FirstWorld/{(EFirstWorldObstacleType)i}.prefab");
             obstacleAssetManager.Obstacles.Add(temp);
         }
     }
