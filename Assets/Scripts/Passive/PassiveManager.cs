@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PassiveManager : MonoBehaviour
 {
-    // ΩÃ±€≈Ê
+    // ΩÃ±€≈œ
     List<PassiveBase> _passive = new List<PassiveBase>();
     public List<PassiveBase> Passive 
     { 

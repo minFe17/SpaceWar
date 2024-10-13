@@ -5,7 +5,7 @@ using Utils;
 
 public class UIManager : MonoBehaviour
 {
-    // ΩÃ±€≈Ê
+    // ΩÃ±€≈œ
     GameObject _ui;
     GameObject _uiPrefab;
     MainUI _mainUI;

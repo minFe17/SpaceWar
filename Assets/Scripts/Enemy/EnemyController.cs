@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     EnemyManager _enemyManager;
     List<Enemy> _enemyList = new List<Enemy>();
 
-    DoorList _doorList;
+    DoorManager _doorManager;
     BoxCollider _ground;
     Player _player;
 
@@ -34,15 +34,15 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         _enemyManager = GenericSingleton<EnemyManager>.Instance;
+        _doorManager = GenericSingleton<DoorManager>.Instance;
         _ground = GetComponent<BoxCollider>();
         _wave = Random.Range(1, 3);
         _isClear = false;
     }
 
-    public void Init(Vector3 createPos, DoorList doorList, bool isBossRoom)
+    public void Init(Vector3 createPos, bool isBossRoom)
     {
         _createPos = createPos;
-        _doorList = doorList;
         _isBossRoom = isBossRoom;
         _basePos = _createPos + _ground.center;
         _size = _ground.size;
@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour
             _isClear = true;
             if(transform.parent.GetComponent<ClearRoom>() == null)
                 transform.parent.AddComponent<ClearRoom>();
-            GenericSingleton<GameManager>.Instance.Clear(_doorList);
+            _doorManager.UnlockDoor();
         }
     }
 
@@ -133,7 +133,7 @@ public class EnemyController : MonoBehaviour
         {
             _player = other.gameObject.GetComponent<Player>();
             _player.EnemyController = this;
-            GenericSingleton<GameManager>.Instance.Battle(_doorList);
+            _doorManager.LockDoor();
             _ground.enabled = false;
             if (!_isBossRoom)
                 StartCoroutine(SpawnEnemyRoutine());

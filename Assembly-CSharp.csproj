@@ -100,7 +100,7 @@
     <Compile Include="Assets\Scripts\Passive\Child\HpUpByMoney.cs" />
     <Compile Include="Assets\Scripts\GameManager\WorldManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Door\DoorList.cs" />
+    <Compile Include="Assets\Scripts\Door\DoorManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\FireStoneAttakcArea.cs" />
     <Compile Include="Assets\Scripts\UI\KeyInfoUI.cs" />
     <Compile Include="Assets\Scripts\Obstacle\Enum\ESecondWorldObstacleType.cs" />

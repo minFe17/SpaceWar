@@ -59,7 +59,6 @@ public class DungeonCreator : MonoBehaviour
 
         GameObject wallParent = new GameObject("wallParent");
         wallParent.transform.parent = transform;
-        DoorList doorList = CreateDoorList();
 
         for (int i = 0; i < listOfRooms.Count; i++)
         {
@@ -75,7 +74,7 @@ public class DungeonCreator : MonoBehaviour
             {
                 if (GenericSingleton<GameManager>.Instance.LevelStage == 5)
                 {
-                    CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList, true);
+                    CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, true);
                     CreateObstacle(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room.transform);
                 }
                 CreatePortal(createPos, room);
@@ -86,7 +85,7 @@ public class DungeonCreator : MonoBehaviour
             }
             else
             {
-                CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, doorList, false);
+                CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, false);
                 CreateObstacle(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room.transform);
             }
         }
@@ -97,7 +96,7 @@ public class DungeonCreator : MonoBehaviour
         CreateWalls(wallParent);
 
         for (int i = 0; i < listOfCorridors.Count; i++)
-            CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, doorList.gameObject, wallParent);
+            CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner);
     }
 
     GameObject CreateMesh(Vector2 bottomLeftCorner, Vector2 topRightCorner, int j)
@@ -178,7 +177,7 @@ public class DungeonCreator : MonoBehaviour
         portal.transform.position = createPos;
     }
 
-    void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent, DoorList doorList, bool isBossRoom)
+    void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent, bool isBossRoom)
     {
         Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
         Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
@@ -186,14 +185,7 @@ public class DungeonCreator : MonoBehaviour
         GameObject temp = Instantiate(_mapAssetManager.EnemyController, parent.transform);
         temp.transform.position = createPos;
         temp.GetComponent<BoxCollider>().size = new Vector3((topRight.x - bottomLeft.x) - _enemyControllerOffset, 7, (topRight.z - bottomLeft.z) - _enemyControllerOffset);
-        temp.GetComponent<EnemyController>().Init(createPos, doorList, isBossRoom);
-    }
-
-    DoorList CreateDoorList()
-    {
-        GameObject temp = new GameObject("DoorList");
-        temp.transform.parent = transform;
-        return temp.AddComponent<DoorList>();
+        temp.GetComponent<EnemyController>().Init(createPos, isBossRoom);
     }
 
     void CalculateWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
@@ -242,26 +234,26 @@ public class DungeonCreator : MonoBehaviour
         GameObject temp = Instantiate(wallPrefab, wallPosition, Quaternion.identity, wallParent.transform);
     }
 
-    void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject doorParent, GameObject wallParent)
+    void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner)
     {
         if ((topRightCorner.x - bottomLeftCorner.x) < (topRightCorner.y - bottomLeftCorner.y))
         {
             Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, -0.2f, bottomLeftCorner.y);
             Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, -0.2f, topRightCorner.y);
-            CreateDoor(createBottomPos, createTopPos, _mapAssetManager.HorizontalDoor, doorParent);
+            CreateDoor(createBottomPos, createTopPos, _mapAssetManager.HorizontalDoor);
         }
         else
         {
             Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
             Vector3 createRightPos = new Vector3(topRightCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
-            CreateDoor(createLeftPos, createRightPos, _mapAssetManager.VerticalDoor, doorParent);
+            CreateDoor(createLeftPos, createRightPos, _mapAssetManager.VerticalDoor);
         }
     }
 
-    void CreateDoor(Vector3 doorPos1, Vector3 doorPos2, GameObject doorPrefab, GameObject doorParent)
+    void CreateDoor(Vector3 doorPos1, Vector3 doorPos2, GameObject doorPrefab)
     {
-        GameObject firstDoor = Instantiate(doorPrefab, doorPos1, Quaternion.identity, doorParent.transform);
-        GameObject secondDoor = Instantiate(doorPrefab, doorPos2, Quaternion.identity, doorParent.transform);
+        GameObject firstDoor = Instantiate(doorPrefab, doorPos1, Quaternion.identity, transform);
+        GameObject secondDoor = Instantiate(doorPrefab, doorPos2, Quaternion.identity, transform);
     }
 
     Vector3 CalculateCreatePosition(Vector2 bottomLeftCorner, Vector2 topRightCorner)

@@ -4,7 +4,7 @@ using Utils;
 
 public class SoundManager : MonoBehaviour
 {
-    // ΩÃ±€≈Ê
+    // ΩÃ±€≈œ
     SoundController _soundController;
     GameObject _soundControllerPrefab;
     AddressableManager _addressableManager;

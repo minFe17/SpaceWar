@@ -5,7 +5,7 @@ using Utils;
 
 public class GameManager : MonoBehaviour
 {
-    // ΩÃ±€≈Ê
+    // ΩÃ±€≈œ
     public GameObject Portal { get; set; }
     public int MapStage { get; set; }
     public int LevelStage { get; set; }
@@ -17,16 +17,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         AddPlayTime();
-    }
-
-    public void Battle(DoorList doorList)
-    {
-        doorList.LockDoor();
-    }
-
-    public void Clear(DoorList doorList)
-    {
-        doorList.UnlockDoor();
     }
 
     public async void NextStage()

@@ -4,7 +4,7 @@ using Utils;
 
 public class PlayerDataManager : MonoBehaviour
 {
-    // ΩÃ±€≈Ê
+    // ΩÃ±€≈œ
     List<string> _passive = new List<string>();
 
     public List<string> Passive { get => _passive; set => _passive = value; }

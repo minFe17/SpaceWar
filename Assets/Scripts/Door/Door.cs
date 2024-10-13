@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 public class Door : MonoBehaviour
 {
@@ -18,8 +19,7 @@ public class Door : MonoBehaviour
     {
         _collider = GetComponent<BoxCollider>();
         _doorPos = _leftDoor.transform.position;
-        if (gameObject.GetComponentInParent<DoorList>())
-            gameObject.GetComponentInParent<DoorList>().Doors.Add(this);
+        GenericSingleton<DoorManager>.Instance.Doors.Add(this);
     }
 
     void Update()

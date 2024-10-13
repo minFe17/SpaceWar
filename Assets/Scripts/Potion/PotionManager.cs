@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PotionManager : MonoBehaviour
 {
-    // ΩÃ±€≈Ê
+    // ΩÃ±€≈œ
     List<PotionBase> _potions = new List<PotionBase>();
 
     public void ApplyPotion()

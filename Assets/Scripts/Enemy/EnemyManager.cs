@@ -5,7 +5,7 @@ using Utils;
 
 public class EnemyManager : MonoBehaviour
 {
-    // ΩÃ±€≈Ê
+    // ΩÃ±€≈œ
     List<IWorldEnemyListBase> _worldList = new List<IWorldEnemyListBase>();
     List<GameObject> _enemys = new List<GameObject>();
 

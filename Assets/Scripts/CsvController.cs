@@ -8,7 +8,7 @@ using Utils;
 
 public class CsvController : MonoBehaviour
 {
-    // ΩÃ±€≈Ê
+    // ΩÃ±€≈œ
     bool _isWriting;
 
     string _playerDataFilePath;
