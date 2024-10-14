@@ -1,7 +1,12 @@
-using Utils;
+using UnityEngine;
 
-public class HpUpByMoney : PassiveBase
+public class HpUpByMoney : PassiveBase, IPassive
 {
+    int IPassive.Index { get => _index; }
+    string IPassive.Name { get => _name; }
+    string IPassive.Info { get => _info; }
+    Sprite IPassive.Image { get => _image; }
+
     public override void Init()
     {
         base.Init();
@@ -11,8 +16,8 @@ public class HpUpByMoney : PassiveBase
         _index = 8;
     }
 
-    public override void AddPassive()
+    void IPassive.AddPassive()
     {
-        GenericSingleton<PlayerDataManager>.Instance.HPUpByMoney = true;
+        _playerDataManager.HPUpByMoney = true;
     }
 }

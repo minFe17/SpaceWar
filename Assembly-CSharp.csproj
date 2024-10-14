@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\Line.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\GolemRock.cs" />
+    <Compile Include="Assets\Scripts\Potion\Interface\IPotion.cs" />
     <Compile Include="Assets\Scripts\Obstacle\Child\SecondWorldObstacleList.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\ZombieAttackArea.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Breath.cs" />
@@ -200,7 +201,7 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Potion\Interface\IPotion.cs" />
+    <Compile Include="Assets\Scripts\Passive\Interface\IPassive.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

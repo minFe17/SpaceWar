@@ -1,7 +1,12 @@
-using Utils;
+using UnityEngine;
 
-public class Vampirism : PassiveBase
+public class Vampirism : PassiveBase, IPassive
 {
+    int IPassive.Index { get => _index; }
+    string IPassive.Name { get => _name; }
+    string IPassive.Info { get => _info; }
+    Sprite IPassive.Image { get => _image; }
+
     public override void Init()
     {
         base.Init();
@@ -11,8 +16,8 @@ public class Vampirism : PassiveBase
         _index = 9;
     }
 
-    public override void AddPassive()
+    void IPassive.AddPassive()
     {
-        GenericSingleton<PlayerDataManager>.Instance.Vampirism = true;
+        _playerDataManager.Vampirism = true;
     }
 }

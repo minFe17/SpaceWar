@@ -1,7 +1,14 @@
-using Utils;
+using UnityEngine;
 
-public class SpeedUp : PassiveBase
+public class SpeedUp : PassiveBase, IPassive
 {
+    float _moveSpeed = 3f;
+
+    int IPassive.Index { get => _index; }
+    string IPassive.Name { get => _name; }
+    string IPassive.Info { get => _info; }
+    Sprite IPassive.Image { get => _image; }
+
     public override void Init()
     {
         base.Init();
@@ -11,8 +18,8 @@ public class SpeedUp : PassiveBase
         _index = 2;
     }
 
-    public override void AddPassive()
+    void IPassive.AddPassive()
     {
-        GenericSingleton<PlayerDataManager>.Instance.MoveSpeed += 3f;
+        _playerDataManager.MoveSpeed += _moveSpeed;
     }
 }

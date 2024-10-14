@@ -1,7 +1,14 @@
-using Utils;
+using UnityEngine;
 
-public class DamageUp : PassiveBase
+public class DamageUp : PassiveBase, IPassive
 {
+    int _bulletDamage = 3;
+
+    int IPassive.Index { get => _index; }
+    string IPassive.Name { get => _name; }
+    string IPassive.Info { get => _info; }
+    Sprite IPassive.Image { get => _image; }
+
     public override void Init()
     {
         base.Init();
@@ -11,8 +18,8 @@ public class DamageUp : PassiveBase
         _index = 1;
     }
 
-    public override void AddPassive()
+    void IPassive.AddPassive()
     {
-        GenericSingleton<PlayerDataManager>.Instance.BulletDamage += 3;
+        _playerDataManager.BulletDamage += _bulletDamage;
     }
 }

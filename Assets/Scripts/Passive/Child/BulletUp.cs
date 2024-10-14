@@ -1,7 +1,14 @@
-using Utils;
+using UnityEngine;
 
-public class BulletUp : PassiveBase
+public class BulletUp : PassiveBase, IPassive
 {
+    int _bulletUp = 30;
+
+    int IPassive.Index { get => _index; }
+    string IPassive.Name { get => _name; }
+    string IPassive.Info { get => _info; }
+    Sprite IPassive.Image { get => _image; }
+
     public override void Init()
     {
         base.Init();
@@ -11,9 +18,9 @@ public class BulletUp : PassiveBase
         _index = 3;
     }
 
-    public override void AddPassive()
+    void IPassive.AddPassive()
     {
-        GenericSingleton<PlayerDataManager>.Instance.MaxBullet += 30;
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowBullet();
+        _playerDataManager.MaxBullet += _bulletUp;
+        _uiManager.IngameUI.ShowBullet();
     }
 }

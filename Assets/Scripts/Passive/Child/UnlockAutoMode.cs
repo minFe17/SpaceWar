@@ -1,7 +1,12 @@
-using Utils;
+using UnityEngine;
 
-public class UnlockAutoMode : PassiveBase
+public class UnlockAutoMode : PassiveBase, IPassive
 {
+    int IPassive.Index { get => _index; }
+    string IPassive.Name { get => _name; }
+    string IPassive.Info { get => _info; }
+    Sprite IPassive.Image { get => _image; }
+
     public override void Init()
     {
         base.Init();
@@ -11,8 +16,8 @@ public class UnlockAutoMode : PassiveBase
         _index = 5;
     }
 
-    public override void AddPassive()
+    void IPassive.AddPassive()
     {
-        GenericSingleton<PlayerDataManager>.Instance.UnlockAutoMode = true;
+        _playerDataManager.UnlockAutoMode = true;
     }
 }

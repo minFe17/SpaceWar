@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public class PassiveButton : MonoBehaviour
 {
     Image _image;
-    PassiveBase _passive;
+    IPassive _passive;
 
-    public PassiveBase Passive { get => _passive; set => _passive = value; }
+    public IPassive Passive { get => _passive; set => _passive = value; }
 
     public void Init()
     {

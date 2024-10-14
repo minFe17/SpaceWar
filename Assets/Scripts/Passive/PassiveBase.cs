@@ -8,16 +8,14 @@ public abstract class PassiveBase : MonoBehaviour
     protected string _info;
     protected int _index;
 
+    protected PlayerDataManager _playerDataManager;
+    protected UIManager _uiManager;
     protected PassiveSpriteManager _passiveSpriteManager;
-
-    public Sprite Image { get => _image; }
-    public string Name { get => _name; }
-    public string Info { get => _info; }
-    public int Index {  get => _index; }
 
     public virtual void Init()
     {
+        _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
+        _uiManager = GenericSingleton<UIManager>.Instance;
         _passiveSpriteManager = GenericSingleton<PassiveSpriteManager>.Instance;
     }
-    public abstract void AddPassive();
 }

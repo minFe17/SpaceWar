@@ -4,8 +4,8 @@ using UnityEngine;
 public class PassiveManager : MonoBehaviour
 {
     // ╫л╠шео
-    List<PassiveBase> _passive = new List<PassiveBase>();
-    public List<PassiveBase> Passive 
+    List<IPassive> _passive = new List<IPassive>();
+    public List<IPassive> Passive 
     { 
         get
         {
@@ -29,7 +29,7 @@ public class PassiveManager : MonoBehaviour
         _passive.Add(new Vampirism());
     }
 
-    public void RemovePassive(PassiveBase passive)
+    public void RemovePassive(IPassive passive)
     {
         _passive.Remove(passive);
     }

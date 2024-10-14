@@ -1,7 +1,14 @@
-using Utils;
+using UnityEngine;
 
-public class HpUp : PassiveBase
+public class HpUp : PassiveBase, IPassive
 {
+    int _hpAmount = 10;
+
+    int IPassive.Index { get => _index; }
+    string IPassive.Name { get => _name; }
+    string IPassive.Info { get => _info; }
+    Sprite IPassive.Image { get => _image; }
+
     public override void Init()
     {
         base.Init();
@@ -11,10 +18,10 @@ public class HpUp : PassiveBase
         _index = 0;
     }
 
-    public override void AddPassive()
+    void IPassive.AddPassive()
     {
-        GenericSingleton<PlayerDataManager>.Instance.MaxHp += 10;
-        GenericSingleton<PlayerDataManager>.Instance.CurHp += 10;
-        GenericSingleton<UIManager>.Instance.IngameUI.ShowHp();
+        _playerDataManager.MaxHp += _hpAmount;
+        _playerDataManager.CurHp += _hpAmount;
+        _uiManager.IngameUI.ShowHp();
     }
 }

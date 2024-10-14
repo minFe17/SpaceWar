@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     public void SelectPassive()
     {
         List<string> playerPassive = GenericSingleton<PlayerDataManager>.Instance.Passive;
-        List<PassiveBase> passiveList = GenericSingleton<PassiveManager>.Instance.Passive;
+        List<IPassive> passiveList = GenericSingleton<PassiveManager>.Instance.Passive;
         GenericSingleton<UIManager>.Instance.SelectPassiveUI.gameObject.SetActive(true);
 
         List<int> passiveIndex = new List<int>();

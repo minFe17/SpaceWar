@@ -1,7 +1,14 @@
-using Utils;
+using UnityEngine;
 
-public class GetMoneyUp : PassiveBase
+public class GetMoneyUp : PassiveBase, IPassive
 {
+    int _bonusMoney = 10;
+
+    int IPassive.Index { get => _index; }
+    string IPassive.Name { get => _name; }
+    string IPassive.Info { get => _info; }
+    Sprite IPassive.Image { get => _image; }
+
     public override void Init()
     {
         base.Init();
@@ -11,8 +18,8 @@ public class GetMoneyUp : PassiveBase
         _index = 6;
     }
 
-    public override void AddPassive()
+    void IPassive.AddPassive()
     {
-        GenericSingleton<PlayerDataManager>.Instance.BonusMoney = 10;
+        _playerDataManager.BonusMoney = _bonusMoney;
     }
 }
