@@ -1,6 +1,6 @@
 using Utils;
 
-public abstract class PotionBase
+public class PotionBase
 {
     protected AudioClipManager _audiolipManager;
     protected UIManager _uiManager;
@@ -12,6 +12,4 @@ public abstract class PotionBase
         _uiManager = GenericSingleton<UIManager>.Instance;
         _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
     }
-
-    public abstract void PotionEffect();
 }

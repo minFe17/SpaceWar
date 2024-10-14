@@ -89,7 +89,7 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Breath.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\FireStone.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\DeliveryRobot.cs" />
-    <Compile Include="Assets\Scripts\Potion\RecoveryPotion.cs" />
+    <Compile Include="Assets\Scripts\Potion\Child\RecoveryPotion.cs" />
     <Compile Include="Assets\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Addressable\AssetManager.cs" />
@@ -155,12 +155,12 @@
     <Compile Include="Assets\Scripts\UI\MainUI.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Enum\EEventRoomType.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraAssetManager.cs" />
-    <Compile Include="Assets\Scripts\Potion\MaxHPIncreasePotion.cs" />
+    <Compile Include="Assets\Scripts\Potion\Child\MaxHPIncreasePotion.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\RaptorSoundEffects.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EThirdWorldEnemyType.cs" />
     <Compile Include="Assets\Scripts\Coin\CoinManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Enum\ERaptorMaterialType.cs" />
-    <Compile Include="Assets\Scripts\Potion\MaxHPReducedPotion.cs" />
+    <Compile Include="Assets\Scripts\Potion\Child\MaxHPReducedPotion.cs" />
     <Compile Include="Assets\Scripts\Camera\MiniMapCam.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\DragonAttackArea.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\RhinoAttackArea.cs" />
@@ -190,7 +190,7 @@
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\RaptorAttackarea.cs" />
     <Compile Include="Assets\Scripts\Enemy\MovableEnemy.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\RoomNode.cs" />
-    <Compile Include="Assets\Scripts\Potion\DamagePotion.cs" />
+    <Compile Include="Assets\Scripts\Potion\Child\DamagePotion.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Dragon.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\BearAttackArea.cs" />
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
@@ -200,6 +200,7 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
+    <Compile Include="Assets\Scripts\Potion\Interface\IPotion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

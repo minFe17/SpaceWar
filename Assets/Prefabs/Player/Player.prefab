@@ -3200,7 +3200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _idleBulletPos: {fileID: 6224945380842809370}
   _zoomCamera: {fileID: 6224945380283946659}
-  _model: {fileID: 3766465801936989489}
   _InfoKeyUI: {fileID: 6224945380578610091}
   _InfoMseeage: {fileID: 3357039669930630183}
   _jumpPower: 7

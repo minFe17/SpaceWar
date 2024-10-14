@@ -4,7 +4,7 @@ using UnityEngine;
 public class PotionManager : MonoBehaviour
 {
     // ╫л╠шео
-    List<PotionBase> _potions = new List<PotionBase>();
+    List<IPotion> _potions = new List<IPotion>();
 
     public void ApplyPotion()
     {
