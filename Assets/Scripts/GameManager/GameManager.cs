@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
             {
                 random = Random.Range(0, passiveList.Count);
             }
-            while (passiveIndex.Contains(random) || playerPassive.Contains(passiveList[random].Name));
+            while (passiveIndex.Contains(random) || playerPassive.Contains(passiveList[random].PassiveData.Name));
 
             passiveIndex.Add(random);
             GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = GenericSingleton<PassiveManager>.Instance.Passive[random];

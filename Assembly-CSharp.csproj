@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\UI\LobbyUI.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\UnlockBurstMode.cs" />
     <Compile Include="Assets\Scripts\Sound\Enum\EBGMAudioType.cs" />
+    <Compile Include="Assets\Scripts\Passive\Struct\PassiveData.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\BulletUp.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerDataManager.cs" />
     <Compile Include="Assets\Scripts\Map\MapAssetManager.cs" />
@@ -117,7 +118,7 @@
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\Turn_Move.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Scavenger.cs" />
-    <Compile Include="Assets\Scripts\CsvController.cs" />
+    <Compile Include="Assets\Scripts\Csv\CsvController.cs" />
     <Compile Include="Assets\Scripts\UI\VendingMachineResult.cs" />
     <Compile Include="Assets\Scripts\Obstacle\Fire.cs" />
     <Compile Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
@@ -189,7 +190,10 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Scripts\UI\IngameUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\RaptorAttackarea.cs" />
+    <Compile Include="Assets\Scripts\Csv\CsvManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\MovableEnemy.cs" />
+    <Compile Include="Assets\Scripts\Csv\WriteData.cs" />
+    <Compile Include="Assets\Scripts\Csv\ReadData.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\RoomNode.cs" />
     <Compile Include="Assets\Scripts\Potion\Child\DamagePotion.cs" />
     <Compile Include="Assets\Scripts\Passive\Interface\IPassive.cs" />

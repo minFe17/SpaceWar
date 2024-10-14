@@ -3,19 +3,23 @@ using Utils;
 
 public abstract class PassiveBase : MonoBehaviour
 {
-    protected Sprite _image;
-    protected string _name;
-    protected string _info;
-    protected int _index;
-
+    protected PassiveData _passiveData;
     protected PlayerDataManager _playerDataManager;
     protected UIManager _uiManager;
     protected PassiveSpriteManager _passiveSpriteManager;
 
-    public virtual void Init()
+    void Init()
     {
         _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
         _uiManager = GenericSingleton<UIManager>.Instance;
         _passiveSpriteManager = GenericSingleton<PassiveSpriteManager>.Instance;
+    }
+
+    protected void SetPassiveData(PassiveData passiveData)
+    {
+        Init();
+        _passiveData = passiveData;
+        string imageName = _passiveData.ImageName;
+        _passiveData.Image = _passiveSpriteManager.PassiveIconAtlas.GetSprite(imageName);
     }
 }

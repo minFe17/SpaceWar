@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.U2D;
 using Utils;
@@ -9,7 +10,7 @@ public class PassiveSpriteManager : MonoBehaviour
 
     public SpriteAtlas PassiveIconAtlas { get; private set; }
 
-    public async void LoadAsset()
+    public async Task LoadAsset()
     {
         if (_addressableManager == null)
             _addressableManager = GenericSingleton<AddressableManager>.Instance;

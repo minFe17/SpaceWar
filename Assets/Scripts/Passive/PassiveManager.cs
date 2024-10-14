@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using Utils;
 
 public class PassiveManager : MonoBehaviour
 {
     // ╫л╠шео
+    CsvManager _csvManager;
     List<IPassive> _passive = new List<IPassive>();
     public List<IPassive> Passive 
     { 
@@ -27,6 +30,19 @@ public class PassiveManager : MonoBehaviour
         _passive.Add(new DoubleHp());
         _passive.Add(new HpUpByMoney());
         _passive.Add(new Vampirism());
+    }
+
+    async Task ReadData()
+    {
+        if (_csvManager == null)
+            _csvManager = GenericSingleton<CsvManager>.Instance;
+        await _csvManager.ReadPassiveData();
+    }
+
+    public async Task Init()
+    {
+        AddPassive();
+        await ReadData();
     }
 
     public void RemovePassive(IPassive passive)

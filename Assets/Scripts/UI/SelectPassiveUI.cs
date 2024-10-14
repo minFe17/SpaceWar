@@ -18,7 +18,7 @@ public class SelectPassiveUI : MonoBehaviour
         CsvController csvController = GenericSingleton<CsvController>.Instance;
 
         _passiveButton[buttonIndex].Passive.AddPassive();
-        GenericSingleton<PlayerDataManager>.Instance.Passive.Add(_passiveButton[buttonIndex].Passive.Name);
+        GenericSingleton<PlayerDataManager>.Instance.Passive.Add(_passiveButton[buttonIndex].Passive.PassiveData.Name);
         GenericSingleton<PassiveManager>.Instance.RemovePassive(_passiveButton[buttonIndex].Passive);
         csvController.WriteDataFile();
         while (csvController.IsWriting == true || csvController.CheckDataFile() == false)
@@ -37,7 +37,7 @@ public class SelectPassiveUI : MonoBehaviour
         if (_passiveInfoPanel.activeSelf == false)
             _passiveInfoPanel.SetActive(true);
 
-        _passiveNameText.text = _passiveButton[buttonIndex].Passive.Name;
-        _passiveInfoText.text = _passiveButton[buttonIndex].Passive.Info;
+        _passiveNameText.text = _passiveButton[buttonIndex].Passive.PassiveData.Name;
+        _passiveInfoText.text = _passiveButton[buttonIndex].Passive.PassiveData.Info;
     }
 }

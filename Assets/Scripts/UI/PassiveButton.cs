@@ -11,7 +11,6 @@ public class PassiveButton : MonoBehaviour
     public void Init()
     {
         _image = GetComponent<Image>();
-        _passive.Init();
-        _image.sprite = _passive.Image;
+        _image.sprite = _passive.PassiveData.Image;
     }
 }

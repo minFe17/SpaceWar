@@ -171,7 +171,7 @@ public class DungeonCreator : MonoBehaviour
     void CreatePortal(Vector3 createPos, GameObject parent)
     {
         GameObject temp;
-        _mapAssetManager.EventRooms.TryGetValue(EEventRoomType.VendingMachine, out temp);
+        _mapAssetManager.EventRooms.TryGetValue(EEventRoomType.Portal, out temp);
         GameObject portal = Instantiate(temp, parent.transform);
         GenericSingleton<GameManager>.Instance.Portal = portal;
         portal.transform.position = createPos;

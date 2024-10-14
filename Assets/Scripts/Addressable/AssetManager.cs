@@ -12,8 +12,8 @@ public class AssetManager : MonoBehaviour
         await LoadSoundAsset();
         await LoadUIAsset();
         await LoadWorldAsset();
+        await LoadPassiveAsset();
         LoadCoinAsset();
-        LoadPassiveAsset();
     }
     
     async Task LoadCameraAsset()
@@ -42,13 +42,14 @@ public class AssetManager : MonoBehaviour
         await GenericSingleton<WorldManager>.Instance.ResetWorld();
     }
 
+    async Task LoadPassiveAsset()
+    {
+        await GenericSingleton<PassiveSpriteManager>.Instance.LoadAsset();
+        await GenericSingleton<PassiveManager>.Instance.Init();
+    }
+
     void LoadCoinAsset()
     {
         GenericSingleton<CoinManager>.Instance.Init();
-    }
-
-    void LoadPassiveAsset()
-    {
-        GenericSingleton<PassiveSpriteManager>.Instance.LoadAsset();
     }
 }
