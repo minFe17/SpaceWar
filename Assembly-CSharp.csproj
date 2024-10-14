@@ -192,6 +192,7 @@
     <Compile Include="Assets\Scripts\Enemy\MovableEnemy.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\RoomNode.cs" />
     <Compile Include="Assets\Scripts\Potion\Child\DamagePotion.cs" />
+    <Compile Include="Assets\Scripts\Passive\Interface\IPassive.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Dragon.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\BearAttackArea.cs" />
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
@@ -201,7 +202,6 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Passive\Interface\IPassive.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
