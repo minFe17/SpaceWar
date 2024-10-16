@@ -44,10 +44,10 @@ public class LobbyUI : MonoBehaviour
     public void ClickLobby()
     {
         _auidoClipManager.PlaySFX(ESFXAudioType.Button);
-        CsvController csvController = GenericSingleton<CsvController>.Instance;
+        CsvManager csvManager = GenericSingleton<CsvManager>.Instance;
         _clickText.SetActive(false);
         _buttonPanel.SetActive(true);
-        if (csvController.CheckDataFile())
+        if (csvManager.CheckDataFiles())
         {
             _continueGameButton.interactable = true;
             _continueGameText.color = new Color(0, 0, 0, 1);
@@ -57,7 +57,7 @@ public class LobbyUI : MonoBehaviour
     public void NewGameButton()
     {
         Time.timeScale = 1f;
-        GenericSingleton<CsvController>.Instance.DestroyDataFile();
+        GenericSingleton<CsvManager>.Instance.DestroyDataFiles();
         SceneManager.LoadScene("FirstWorld");
     }
 
@@ -76,7 +76,7 @@ public class LobbyUI : MonoBehaviour
 
     public void ExitGameButton()
     {
-        GenericSingleton<SoundCsv>.Instance.WriteSound();
+        GenericSingleton<CsvManager>.Instance.WriteSoundDataFile();
         Application.Quit();
     }
 }

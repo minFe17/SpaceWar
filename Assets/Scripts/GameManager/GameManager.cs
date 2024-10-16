@@ -45,11 +45,11 @@ public class GameManager : MonoBehaviour
         else
         {
             IsAddPassive = true;
-            CsvController csvController = GenericSingleton<CsvController>.Instance;
-            csvController.WriteDataFile();
-            while (csvController.IsWriting == true || csvController.CheckDataFile() == false)
+            CsvManager csvManager = GenericSingleton<CsvManager>.Instance;
+            csvManager.WriteDataFile();
+            while (csvManager.IsWriting == true || csvManager.CheckDataFiles() == false)
             {
-                if (csvController.IsWriting == false && csvController.CheckDataFile() == true)
+                if (csvManager.IsWriting == false && csvManager.CheckDataFiles() == true)
                     break;
             }
             SceneManager.LoadScene($"{(EWorldType)MapStage}");

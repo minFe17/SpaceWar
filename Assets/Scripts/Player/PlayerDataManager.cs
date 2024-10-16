@@ -28,10 +28,10 @@ public class PlayerDataManager : MonoBehaviour
 
     public void SettingPlayerData()
     {
-        CsvController csvController = GenericSingleton<CsvController>.Instance;
-        if (csvController.CheckDataFile())
+        CsvManager csvManager = GenericSingleton<CsvManager>.Instance;
+        if (csvManager.CheckDataFiles())
         {
-            csvController.ReadDataFile();
+            csvManager.ReadDataFile();
         }
         else
         {

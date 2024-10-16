@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour
 
     void CheckCsvFile()
     {
-        if (!GenericSingleton<SoundCsv>.Instance.ReadSound())
+        if (!GenericSingleton<CsvManager>.Instance.ReadSoundDataFile())
         {
             _bgmSound = 0.5f;
             _sfxSound = 0.5f;

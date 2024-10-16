@@ -36,7 +36,7 @@ public class SoundOptionUI : MonoBehaviour
     public void CloseButton()
     {
         _audioClipManager.PlaySFX(ESFXAudioType.Button);
-        GenericSingleton<SoundCsv>.Instance.WriteSound();
+        GenericSingleton<CsvManager>.Instance.WriteSoundDataFile();
         this.gameObject.SetActive(false);
         _parent.SetActive(true);
         if(SceneManager.GetActiveScene().name != "Lobbby")

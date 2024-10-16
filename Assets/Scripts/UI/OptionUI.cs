@@ -46,7 +46,7 @@ public class OptionUI : MonoBehaviour
 
     public void ExitGame()
     {
-        GenericSingleton<SoundCsv>.Instance.WriteSound();
+        GenericSingleton<CsvManager>.Instance.WriteSoundDataFile();
         Application.Quit();
     }
 }

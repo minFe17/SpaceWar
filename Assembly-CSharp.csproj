@@ -118,7 +118,6 @@
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\Turn_Move.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Scavenger.cs" />
-    <Compile Include="Assets\Scripts\Csv\CsvController.cs" />
     <Compile Include="Assets\Scripts\UI\VendingMachineResult.cs" />
     <Compile Include="Assets\Scripts\Obstacle\Fire.cs" />
     <Compile Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
@@ -202,7 +201,6 @@
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Obstacle\ObstacleAssetManager.cs" />
     <Compile Include="Assets\Scripts\Addressable\AddressableManager.cs" />
-    <Compile Include="Assets\Scripts\Sound\SoundCsv.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />

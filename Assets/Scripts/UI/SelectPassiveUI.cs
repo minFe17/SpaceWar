@@ -15,15 +15,15 @@ public class SelectPassiveUI : MonoBehaviour
 
     public void SelectedPassive(int buttonIndex)
     {
-        CsvController csvController = GenericSingleton<CsvController>.Instance;
+        CsvManager csvManager = GenericSingleton<CsvManager>.Instance;
 
         _passiveButton[buttonIndex].Passive.AddPassive();
         GenericSingleton<PlayerDataManager>.Instance.Passive.Add(_passiveButton[buttonIndex].Passive.PassiveData.Name);
         GenericSingleton<PassiveManager>.Instance.RemovePassive(_passiveButton[buttonIndex].Passive);
-        csvController.WriteDataFile();
-        while (csvController.IsWriting == true || csvController.CheckDataFile() == false)
+        csvManager.WriteDataFile();
+        while (csvManager.IsWriting == true || csvManager.CheckDataFiles() == false)
         {
-            if (csvController.IsWriting == false && csvController.CheckDataFile() == true)
+            if (csvManager.IsWriting == false && csvManager.CheckDataFiles() == true)
                 break;
         }
 
