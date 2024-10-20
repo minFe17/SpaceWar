@@ -3,6 +3,7 @@ using Utils;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] EMapPoolType _mapPoolType;
     [SerializeField] GameObject _leftDoor;
     [SerializeField] GameObject _rightDoor;
     [SerializeField] Transform _leftDoorArea;
@@ -19,6 +20,11 @@ public class Door : MonoBehaviour
     {
         _collider = GetComponent<BoxCollider>();
         _doorPos = _leftDoor.transform.position;
+    }
+
+    public void Init()
+    {
+        _isOpen = false;
         GenericSingleton<DoorManager>.Instance.Doors.Add(this);
     }
 

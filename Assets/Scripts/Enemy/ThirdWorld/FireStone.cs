@@ -1,5 +1,9 @@
+using UnityEngine;
+
 public class FireStone : MovableEnemy
 {
+    [SerializeField] EThirdWorldEnemyType _enemyType;
+
     void Update()
     {
         LookTarget();

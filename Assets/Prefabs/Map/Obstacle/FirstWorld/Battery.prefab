@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3328572}
   - component: {fileID: 2359638}
   - component: {fileID: 6529104}
+  - component: {fileID: 7755320513607635862}
   m_Layer: 14
   m_Name: Battery
   m_TagString: Obstacle
@@ -98,3 +99,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.7767224, y: 3.879192, z: 4.161581}
   m_Center: {x: 0.016551793, y: 1.939596, z: 0}
+--- !u!114 &7755320513607635862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971fda5630f322e4fa48be1328cd70ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleType: 0

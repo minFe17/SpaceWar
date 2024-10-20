@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33113082129204022}
   - component: {fileID: 23688913790639552}
   - component: {fileID: 4152260440952265779}
+  - component: {fileID: 3796686031786659913}
   m_Layer: 0
   m_Name: Altar_02
   m_TagString: Untagged
@@ -99,6 +100,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300024, guid: 9889117518dff7b42806ad82249545f8, type: 3}
+--- !u!114 &3796686031786659913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120020899853670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507c9dc2d597e8844872883d56a8e715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleType: 1
 --- !u!1 &1434708538357436
 GameObject:
   m_ObjectHideFlags: 0

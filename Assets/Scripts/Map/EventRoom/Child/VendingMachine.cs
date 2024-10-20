@@ -11,6 +11,12 @@ public class VendingMachine: EventRoom
         Event();
     }
 
+    public override void Init()
+    {
+        base.Init();
+        _isBuy = false;
+    }
+
     public override void OnEnter()
     {
         _message = $"수상한 물약 사기 : {_cost}";

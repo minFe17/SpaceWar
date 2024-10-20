@@ -12,10 +12,15 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        Init();
+    }
+
+    public void Init()
+    {
         Invoke("Remove", _lifeTime);
     }
 
-    public virtual void Move()
+    protected virtual void Move()
     {
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
     }

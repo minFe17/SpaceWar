@@ -1858,6 +1858,7 @@ MonoBehaviour:
   _damage: 5
   _moveSpeed: 3
   _attackArea: {fileID: 5379856207158569477}
+  _enemyType: 2
   _revivalCollider: {fileID: 2848278045475580345}
 --- !u!95 &6647671584607977318
 Animator:
@@ -1879,6 +1880,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &6647671584607977321
 BoxCollider:
   m_ObjectHideFlags: 0

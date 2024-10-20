@@ -24,6 +24,11 @@ public class FirstWorld : IWorldEnemyListBase
             _addressableManager.Release(_enemyManager.Missile);
     }
 
+    void IWorldEnemyListBase.MakePool(EnemyObjectPool enemyObjectPool)
+    {
+        enemyObjectPool.CreatePool<EFirstWorldEnemyType>();
+    }
+
     async Task LoadEnemy()
     {
         for (int i = 0; i < (int)EFirstWorldEnemyType.Max; i++)

@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a755448ef808dcc439e00ebcb2b02d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mapPoolType: 1
   _leftDoor: {fileID: 5509017158016019959}
   _rightDoor: {fileID: 5508256306742884369}
   _leftDoorArea: {fileID: 5510012828879598786}

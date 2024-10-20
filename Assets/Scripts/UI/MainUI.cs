@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MainUI : MonoBehaviour
 {
+    [SerializeField] EPlayerPoolType _playerPoolType;
     [SerializeField] IngameUI _ingameUI;
     [SerializeField] GameObject _aimPoint;
     [SerializeField] GameOverUI _gameOverUI;

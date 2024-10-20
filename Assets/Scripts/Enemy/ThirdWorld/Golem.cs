@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Golem : MovableEnemy
 {
+    [SerializeField] EThirdWorldEnemyType _enemyType;
+
     GolemRock _rock;
 
     void Update()

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Pachy : MovableEnemy
 {
+    [SerializeField] ESecondWorldEnemyType _enemyType;
     bool _isReady;
 
     void Update()
@@ -9,6 +10,12 @@ public class Pachy : MovableEnemy
         LookTarget();
         Move();
         FreezePos();
+    }
+
+    public override void Init(EnemyController enemyController)
+    {
+        base.Init(enemyController);
+        _isReady = false;
     }
 
     public override void Move()

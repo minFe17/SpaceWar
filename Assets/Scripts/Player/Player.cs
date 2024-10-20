@@ -6,6 +6,7 @@ using Utils;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] EPlayerPoolType _playerPoolType;
     [SerializeField] Transform _idleBulletPos;
     [SerializeField] GameObject _zoomCamera;
     [SerializeField] GameObject _InfoKeyUI;
@@ -48,21 +49,40 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        _bulletPos = _idleBulletPos;
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
+        SetManager();
+        Init();
+    }
+
+    public void Init()
+    {
+        _mouseX = 0;
+        _mouseY = 0;
+        _idleTimer = 0;
+
+        _isAiming = false;
+        _isShoot = false;
+        _isOpenOption = false;
+        _isDie = false;
+
+        _bulletPos = _idleBulletPos;
+        Cursor.lockState = CursorLockMode.Locked;
+        SettingUI();
+        ShowUI();
+    }
+
+    void SetManager()
+    {
         _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
         _gameManager = GenericSingleton<GameManager>.Instance;
         _audioManager = GenericSingleton<AudioClipManager>.Instance;
         _bullet = GenericSingleton<PlayerAssetManager>.Instance.Bullet;
-        Cursor.lockState = CursorLockMode.Locked;
-        _playerDataManager.Player = this;
 
-        SettingUI();
-        Init();
+        _playerDataManager.Player = this;
     }
 
-    void Init()
+    void ShowUI()
     {
         _uiManager.IngameUI.ShowHp();
         _uiManager.IngameUI.ShowMoney();

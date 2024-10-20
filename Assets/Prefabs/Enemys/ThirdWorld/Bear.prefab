@@ -122,6 +122,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &321905576182080530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +140,7 @@ MonoBehaviour:
   _damage: 3
   _moveSpeed: 2
   _attackArea: {fileID: 6268242823713895018}
+  _enemyType: 1
 --- !u!65 &321905576182080531
 BoxCollider:
   m_ObjectHideFlags: 0

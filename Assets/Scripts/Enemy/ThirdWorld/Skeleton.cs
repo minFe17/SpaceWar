@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Skeleton : MovableEnemy
 {
+    [SerializeField] EThirdWorldEnemyType _enemyType;
     [SerializeField] GameObject _revivalCollider;
     bool _isRevival;
 
@@ -10,6 +11,12 @@ public class Skeleton : MovableEnemy
         LookTarget();
         Move();
         FreezePos();
+    }
+
+    public override void Init(EnemyController enemyController)
+    {
+        base.Init(enemyController);
+        _isRevival = false;
     }
 
     public override void TakeDamage(int damage)

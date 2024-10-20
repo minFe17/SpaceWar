@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8031466109042363487}
   - component: {fileID: 5551533542644412143}
   - component: {fileID: 7155337205580214158}
+  - component: {fileID: 414998411002306570}
   m_Layer: 14
   m_Name: Bone
   m_TagString: Obstacle
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 68d5de4c275b2484a87de4f93591635f, type: 3}
+--- !u!114 &414998411002306570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3528937856151575714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a059dd05e0828246822a48d1a4010d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleType: 0

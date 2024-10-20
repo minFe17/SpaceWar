@@ -4255,6 +4255,7 @@ MonoBehaviour:
   _damage: 1
   _moveSpeed: 3
   _attackArea: {fileID: 4745635998310546798}
+  _enemyType: 1
   _meshRenderer: {fileID: 4745635999766478512}
 --- !u!95 &4745636000298523816
 Animator:

@@ -26,6 +26,11 @@ public class SecondWorld : IWorldEnemyListBase
             ReleaseRaptorMaterial();
     }
 
+    void IWorldEnemyListBase.MakePool(EnemyObjectPool enemyObjectPool)
+    {
+        enemyObjectPool.CreatePool<ESecondWorldEnemyType>();
+    }
+
     async Task LoadEnemy()
     {
         for (int i = 0; i < (int)ESecondWorldEnemyType.Max; i++)

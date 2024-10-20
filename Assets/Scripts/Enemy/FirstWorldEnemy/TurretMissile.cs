@@ -7,7 +7,7 @@ public class TurretMissile : Bullet
         Move();
     }
 
-    public override void Move()
+    protected override void Move()
     {
         _rigidbody.AddRelativeForce(Vector3.forward * _speed * Time.deltaTime, ForceMode.Impulse);
     }

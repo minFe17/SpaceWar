@@ -3,6 +3,7 @@ using Utils;
 
 public class Coin : MonoBehaviour
 {
+    [SerializeField] ECoinType _coinType;
     [SerializeField] GameObject _parent;
     [SerializeField] int _money;
     [SerializeField] GameObject _effect;
@@ -14,6 +15,12 @@ public class Coin : MonoBehaviour
     void Start()
     {
         _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
+    }
+
+    public void Init()
+    {
+        _isEat = false;
+        _effect.SetActive(false);
     }
 
     void PlayerGetCoin()

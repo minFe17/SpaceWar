@@ -10,7 +10,7 @@ public class GolemRock : Bullet
         Move();
     }
 
-    public override void Move()
+    protected override void Move()
     {
         if (_isThrow == true)
         {

@@ -20,6 +20,13 @@ public class MovableEnemy : Enemy
         _animator = GetComponent<Animator>();
     }
 
+    public override void Init(EnemyController enemyController)
+    {
+        base.Init(enemyController);
+        _isAttack = false;
+        _isHitted = false;
+    }
+
     public virtual void Move()
     {
         if (!_isAttack && !_isDie && !_isHitted)

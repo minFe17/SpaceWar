@@ -54,6 +54,7 @@ MonoBehaviour:
   _damage: 1
   _moveSpeed: 3
   _attackArea: {fileID: 8301216704425398334}
+  _enemyType: 1
 --- !u!95 &1734458830461285799
 Animator:
   serializedVersion: 5
@@ -74,6 +75,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &1734458830461285792
 BoxCollider:
   m_ObjectHideFlags: 0

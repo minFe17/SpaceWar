@@ -1,5 +1,9 @@
+using UnityEngine;
+
 public class DeliveryRobot : MovableEnemy
 {
+    [SerializeField] EFirstWorldEnemyType _enemyType;
+
     void Update()
     {
         LookTarget();

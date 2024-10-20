@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] EGroundWorkType _groundWorkType;
     [SerializeField] float _spawnDelay;
     [SerializeField] int _minEnemy;
     [SerializeField] int _maxEnemy;
@@ -36,12 +37,13 @@ public class EnemyController : MonoBehaviour
         _enemyManager = GenericSingleton<EnemyManager>.Instance;
         _doorManager = GenericSingleton<DoorManager>.Instance;
         _ground = GetComponent<BoxCollider>();
-        _wave = Random.Range(1, 3);
-        _isClear = false;
     }
 
     public void Init(Vector3 createPos, bool isBossRoom)
     {
+        _wave = Random.Range(1, 3);
+        _waveIndex = 0;
+        _isClear = false;
         _createPos = createPos;
         _isBossRoom = isBossRoom;
         _basePos = _createPos + _ground.center;

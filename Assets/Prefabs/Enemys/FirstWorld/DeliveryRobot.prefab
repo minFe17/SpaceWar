@@ -54,6 +54,7 @@ MonoBehaviour:
   _damage: 2
   _moveSpeed: 1.5
   _attackArea: {fileID: 6362161742363400255}
+  _enemyType: 2
 --- !u!95 &645469222335424959
 Animator:
   serializedVersion: 5

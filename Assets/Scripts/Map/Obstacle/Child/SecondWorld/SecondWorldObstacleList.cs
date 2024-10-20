@@ -11,4 +11,9 @@ public class SecondWorldObstacleList : IObstacleList
             obstacleAssetManager.Obstacles.Add(temp);
         }
     }
+
+    void IObstacleList.MakePool(ObstacleObjectPool obstacleObjectPool)
+    {
+        obstacleObjectPool.CreatePool<ESecondWorldObstacleType>();
+    }
 }

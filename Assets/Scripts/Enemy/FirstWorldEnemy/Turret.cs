@@ -4,6 +4,7 @@ using Utils;
 
 public class Turret : Enemy
 {
+    [SerializeField] EFirstWorldEnemyType _enemyType;
     [SerializeField] Transform _gun;
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _dieEffect;
@@ -11,10 +12,14 @@ public class Turret : Enemy
     GameObject _bullet;
     bool _isAttack;
 
+    void Start()
+    {
+        _bullet = _enemyManager.Missile;
+    }
+
     public override void Init(EnemyController enemyController)
     {
         base.Init(enemyController);
-        _bullet = _enemyManager.Missile;
         StartCoroutine(AttackRoutine());
     }
 

@@ -24,6 +24,11 @@ public class ThirdWorld : IWorldEnemyListBase
             _addressableManager.Release(_enemyManager.Rock);
     }
 
+    void IWorldEnemyListBase.MakePool(EnemyObjectPool enemyObjectPool)
+    {
+        enemyObjectPool.CreatePool<EThirdWorldEnemyType>();
+    }
+
     async Task LoadEnemy()
     {
         for (int i = 0; i < (int)EThirdWorldEnemyType.Max; i++)

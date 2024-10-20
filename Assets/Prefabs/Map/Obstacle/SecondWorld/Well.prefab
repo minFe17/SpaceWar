@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1436264612901220058}
   - component: {fileID: 4417025915841391107}
   - component: {fileID: 7333113946857289859}
+  - component: {fileID: -9202362213850127046}
   m_Layer: 14
   m_Name: Well
   m_TagString: Obstacle
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d1b3cc5751f113146b7d01d700c186df, type: 3}
+--- !u!114 &-9202362213850127046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419156976716735788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a059dd05e0828246822a48d1a4010d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleType: 9
