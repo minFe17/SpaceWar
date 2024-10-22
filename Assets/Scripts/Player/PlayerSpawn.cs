@@ -11,8 +11,7 @@ public class PlayerSpawn : MonoBehaviour
     GameObject _mapCamera;
 
     FactoryManager _factoryManager;
-    PlayerAssetManager _playerAssetManager;
-    CameraAssetManager _cameraAssetManager;
+    ObjectPoolManager _objectPoolManager;
 
     public void Spawn()
     {
@@ -29,30 +28,26 @@ public class PlayerSpawn : MonoBehaviour
 
     public void SpawnCamera()
     {
-        if (_cameraAssetManager == null)
-            _cameraAssetManager = GenericSingleton<CameraAssetManager>.Instance;
+        _mainCamera = _factoryManager.MakeObject<ECameraType, GameObject>(ECameraType.MainCamera);
 
-        GameObject camera = _cameraAssetManager.MainCamera;
-        _mainCamera = Instantiate(camera);
-
-        GameObject followCamera = _cameraAssetManager.FollowCamera;
-        _followCam = Instantiate(followCamera);
+        _followCam = _factoryManager.MakeObject<ECameraType, GameObject>(ECameraType.FollowCamera);
         _followCam.GetComponent<FollowCamera>().Init(_player.transform);
 
-        GameObject miniMapCam = _cameraAssetManager.MiniMapCamera;
-        _miniMapCam = Instantiate(miniMapCam);
+        _miniMapCam = _factoryManager.MakeObject<ECameraType, GameObject>(ECameraType.MiniMapCamera);
         _miniMapCam.GetComponent<MiniMapCam>().Init(_player.transform);
 
-        GameObject mapCamera = _cameraAssetManager.MapCamera;
-        _mapCamera = Instantiate(mapCamera);
+        _mapCamera = _factoryManager.MakeObject<ECameraType, GameObject>(ECameraType.MapCamera);
     }
 
     public void DestroyPlayer()
     {
-        Destroy(_player);
-        Destroy(_mainCamera);
-        Destroy(_followCam);
-        Destroy(_miniMapCam);
-        Destroy(_mapCamera);
+        if (_objectPoolManager == null)
+            _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
+
+        _objectPoolManager.Pull(EPlayerPoolType.Player, _player.gameObject);
+        _objectPoolManager.Pull(ECameraType.MainCamera, _mainCamera);
+        _objectPoolManager.Pull(ECameraType.FollowCamera, _followCam);
+        _objectPoolManager.Pull(ECameraType.MiniMapCamera, _miniMapCam);
+        _objectPoolManager.Pull(ECameraType.MapCamera, _mapCamera);
     }
 }

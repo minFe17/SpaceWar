@@ -181,10 +181,11 @@ public class DungeonCreator : MonoBehaviour
         Vector3 bottomLeft = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
         Vector3 topRight = new Vector3(topRightCorner.x, 0, topRightCorner.y);
         Vector3 createPos = CalculateCreatePosition(bottomLeftCorner, topRightCorner);
-        GameObject temp = Instantiate(_mapAssetManager.EnemyController, parent.transform);
-        temp.transform.position = createPos;
-        temp.GetComponent<BoxCollider>().size = new Vector3((topRight.x - bottomLeft.x) - _enemyControllerOffset, 7, (topRight.z - bottomLeft.z) - _enemyControllerOffset);
-        temp.GetComponent<EnemyController>().Init(createPos, isBossRoom);
+        GameObject enemyController = _factoryMaanger.MakeObject<EGroundWorkType, GameObject>(EGroundWorkType.EnemyController);
+        enemyController.transform.position = createPos;
+        enemyController.transform.parent = parent.transform;
+        enemyController.GetComponent<BoxCollider>().size = new Vector3((topRight.x - bottomLeft.x) - _enemyControllerOffset, 7, (topRight.z - bottomLeft.z) - _enemyControllerOffset);
+        enemyController.GetComponent<EnemyController>().Init(createPos, isBossRoom);
     }
 
     void CalculateWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
@@ -264,9 +265,9 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateDeadZone()
     {
-        GameObject temp = Instantiate(_mapAssetManager.DeadZone, transform);
-        temp.transform.position = new Vector3(_dungeonWidth / 2, -10, _dungeonLength / 2);
-        temp.transform.localScale = new Vector3(_dungeonWidth + 50, 1, _dungeonLength + 50);
+        GameObject deadZone = _factoryMaanger.MakeObject<EGroundWorkType, GameObject>(EGroundWorkType.DeadZone);
+        deadZone.transform.position = new Vector3(_dungeonWidth / 2, -10, _dungeonLength / 2);
+        deadZone.transform.localScale = new Vector3(_dungeonWidth + 50, 1, _dungeonLength + 50);
     }
 
     void DestroyAllChildren()
