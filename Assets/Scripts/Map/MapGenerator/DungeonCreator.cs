@@ -32,6 +32,7 @@ public class DungeonCreator : MonoBehaviour
     List<Vector3Int> _possibleWallHorizontalPosition = new List<Vector3Int>();
 
     MapAssetManager _mapAssetManager;
+    FactoryManager _factoryMaanger;
 
     PlayerSpawn _playerSpawn;
 
@@ -45,6 +46,8 @@ public class DungeonCreator : MonoBehaviour
     {
         if (_mapAssetManager == null)
             _mapAssetManager = GenericSingleton<MapAssetManager>.Instance;
+        if (_factoryMaanger == null)
+            _factoryMaanger = GenericSingleton<FactoryManager>.Instance;
     }
 
     void CreateDungeon()
@@ -162,17 +165,13 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateShop(Vector3 createPos, GameObject parent)
     {
-        GameObject temp;
-        _mapAssetManager.EventRooms.TryGetValue(EEventRoomType.VendingMachine, out temp);
-        GameObject shop = Instantiate(temp, parent.transform);
+        GameObject shop = _factoryMaanger.MakeObject<EEventRoomType, GameObject>(EEventRoomType.VendingMachine);
         shop.transform.position = createPos;
     }
 
     void CreatePortal(Vector3 createPos, GameObject parent)
     {
-        GameObject temp;
-        _mapAssetManager.EventRooms.TryGetValue(EEventRoomType.Portal, out temp);
-        GameObject portal = Instantiate(temp, parent.transform);
+        GameObject portal =  _factoryMaanger.MakeObject<EEventRoomType, GameObject>(EEventRoomType.Portal);
         GenericSingleton<GameManager>.Instance.Portal = portal;
         portal.transform.position = createPos;
     }

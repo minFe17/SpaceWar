@@ -221,6 +221,20 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
+    <Compile Include="Assets\Scripts\Factory\Interface\IFactorys.cs" />
+    <Compile Include="Assets\Scripts\Factory\FactoryBase.cs" />
+    <Compile Include="Assets\Scripts\Factory\Factory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Interface\IFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\FactoryManager.cs" />
+    <Compile Include="Assets\Scripts\Factory\Interface\IGenericFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Player\PlayerFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Player\PlayerBulletFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Coin\CoinFactoryBase.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Coin\Child\GoldCoinFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Coin\Child\SliverCoinFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\EventRoom\EventRoomFactoryBase.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\EventRoom\Child\PortalFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\EventRoom\Child\VendingMachineFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

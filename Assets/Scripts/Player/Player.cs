@@ -18,11 +18,11 @@ public class Player : MonoBehaviour
     [SerializeField] float _fireDelay;
 
     PlayerDataManager _playerDataManager;
+    FactoryManager _factoryManager;
     UIManager _uiManager;
     GameManager _gameManager;
     AudioClipManager _audioManager;
 
-    GameObject _bullet;
     Animator _animator;
     Rigidbody _rigidbody;
     Transform _bulletPos;
@@ -75,9 +75,9 @@ public class Player : MonoBehaviour
     void SetManager()
     {
         _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
+        _factoryManager = GenericSingleton<FactoryManager>.Instance;
         _gameManager = GenericSingleton<GameManager>.Instance;
         _audioManager = GenericSingleton<AudioClipManager>.Instance;
-        _bullet = GenericSingleton<PlayerAssetManager>.Instance.Bullet;
 
         _playerDataManager.Player = this;
     }
@@ -323,7 +323,7 @@ public class Player : MonoBehaviour
 
     void MakeBullet()
     {
-        GameObject bullet = Instantiate(_bullet);
+        GameObject bullet = _factoryManager.MakeObject<EPlayerPoolType, GameObject>(EPlayerPoolType.Bullet);
         bullet.transform.position = _bulletPos.position;
         bullet.transform.rotation = _bulletPos.rotation;
     }
