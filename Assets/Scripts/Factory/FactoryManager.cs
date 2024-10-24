@@ -8,8 +8,11 @@ public class FactoryManager : MonoBehaviour
 {
     //╫л╠шео
     Dictionary<Type, IFactorys> _factorys = new Dictionary<Type, IFactorys>();
+    EnemyFactory _enemyFactory = new EnemyFactory();
     GameObject _factoryPrefab;
     AddressableManager _addressableManager;
+
+    public EnemyFactory EnemyFactory { get => _enemyFactory; }
 
     void Awake()
     {

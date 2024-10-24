@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\LobbyUI.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\UnlockBurstMode.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\SecondWorld\SecondWorldEnemyFactoryBase.cs" />
     <Compile Include="Assets\Scripts\Sound\Enum\EBGMAudioType.cs" />
     <Compile Include="Assets\Scripts\Passive\Struct\PassiveData.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\BulletUp.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\DungeonGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\ThirdWorld.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Interface\IObstacleList.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\SecondWorld\Child\ZombieFactory.cs" />
     <Compile Include="Assets\Scripts\Coin\Enum\ECoinType.cs" />
     <Compile Include="Assets\Scripts\Map\Enum\EMapPoolType.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
@@ -84,6 +86,8 @@
     <Compile Include="Assets\Scripts\Enemy\AttackArea.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRPachycephalasaurus\Scripts\Bonehead_BodyEffects.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\ObjectPoolManager.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\Child\SkeletonFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\ThirdWorldEnemyFactoryBase.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\Map\Door\Door.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundController.cs" />
@@ -97,6 +101,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\GroundWork\GroundWorkFactoryBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\ZombieAttackArea.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Breath.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\SecondWorld\Child\RaptorFactory.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\FireStone.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\Interface\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\ThirdWorldd\ThirdObstacle.cs" />
@@ -106,6 +111,7 @@
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Addressable\AssetManager.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\MainCameraFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\FirstWorlld\FirstWorldEnemyFactoryBase.cs" />
     <Compile Include="Assets\DownloadAssets\Map\DungeonModules\Scripts\DoorAOpen.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Enum\EDragonAttackType.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAssetManager.cs" />
@@ -115,6 +121,7 @@
     <Compile Include="Assets\Scripts\GameManager\WorldManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Map\Enum\EGroundWorkType.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\Child\FireStoneFactory.cs" />
     <Compile Include="Assets\Scripts\Map\Door\DoorManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\FireStoneAttakcArea.cs" />
     <Compile Include="Assets\Scripts\UI\KeyInfoUI.cs" />
@@ -142,9 +149,12 @@
     <Compile Include="Assets\Scripts\Lobby\LobbySoundController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\ESecondWorldEnemyType.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\ScorpionAttackArea.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\FirstWorlld\Child\TurretFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\SecondWorld\Child\PachyFactory.cs" />
     <Compile Include="Assets\Scripts\Utils\StateMachine.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\RoomGenerator.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\StructureHelper.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\Child\BearFactory.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Sound\AudioClipManager.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Player\PlayerFactory.cs" />
@@ -161,6 +171,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorsGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Rhino.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Turret.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\FirstWorlld\Child\DeliveryRobotFactory.cs" />
     <Compile Include="Assets\Bullet Casing\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\ThirdWorldd\ThirdWorldObstacleList.cs" />
     <Compile Include="Assets\UI button pack 2\Scene\CreateObj.cs" />
@@ -172,6 +183,7 @@
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Enum\ERhinoAttackType.cs" />
     <Compile Include="Assets\Scripts\Camera\ClearRoom.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\FirstWorld\FirstWorldObstacleList.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\EnemyFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\FactoryManager.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\BlendShapeTrigger.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EFirstWorldEnemyType.cs" />
@@ -188,6 +200,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\Coin\Child\SliverCoinFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Interface\IGenericFactory.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EThirdWorldEnemyType.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\FirstWorlld\Child\ScorpionFactory.cs" />
     <Compile Include="Assets\Scripts\Coin\CoinManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Enum\ERaptorMaterialType.cs" />
     <Compile Include="Assets\Scripts\Potion\Child\MaxHPReducedPotion.cs" />
@@ -221,6 +234,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\MiniMapCameraFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\Child\GolemFactory.cs" />
     <Compile Include="Assets\Scripts\UI\IngameUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\RaptorAttackarea.cs" />
     <Compile Include="Assets\Scripts\Csv\CsvManager.cs" />
@@ -243,6 +257,11 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Map\MapFactoryBase.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Map\Child\HorizontalDoorFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Map\Child\VerticalDoor.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Map\Child\HorizontalWall.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Map\Child\VerticalWall.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

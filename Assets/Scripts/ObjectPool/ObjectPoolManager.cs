@@ -9,6 +9,8 @@ public class ObjectPoolManager : MonoBehaviour
     EnemyObjectPool _enemyObjectPool = new EnemyObjectPool();
     ObstacleObjectPool _obstacleObjectPool = new ObstacleObjectPool();
 
+    public EnemyObjectPool EnemyObjectPool { get => _enemyObjectPool; }
+
     void Awake()
     {
         _objectPools.Add(typeof(EPlayerPoolType), new ObjectPool<EPlayerPoolType>());
@@ -28,7 +30,7 @@ public class ObjectPoolManager : MonoBehaviour
         _objectPools[typeof(EEventRoomType)].Init();
         _objectPools[typeof(EGroundWorkType)].Init();
         _objectPools[typeof(ECameraType)].Init();
-        _objectPools[typeof (EMapPoolType)].Init();
+        _objectPools[typeof(EMapPoolType)].Init();
     }
 
     void CreateWorldPool()
