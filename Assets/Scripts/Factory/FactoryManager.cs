@@ -9,11 +9,12 @@ public class FactoryManager : MonoBehaviour
     //╫л╠шео
     Dictionary<Type, IFactorys> _factorys = new Dictionary<Type, IFactorys>();
     EnemyFactory _enemyFactory = new EnemyFactory();
+    ObstacleFactory _obstacleFactpry = new ObstacleFactory();
     GameObject _factoryPrefab;
     AddressableManager _addressableManager;
 
     public EnemyFactory EnemyFactory { get => _enemyFactory; }
-
+    public ObstacleFactory ObstacleFactory { get; }
     void Awake()
     {
         _factorys.Add(typeof(EPlayerPoolType), new Factory<EPlayerPoolType>());

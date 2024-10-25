@@ -6,10 +6,10 @@ using Utils;
 public class ObstacleObjectPool : MonoBehaviour
 {
     List<IObstacleList> _worlds = new List<IObstacleList>();
-    IObjectPool _enemyPool = null;
+    IObjectPool _obstaclePool = null;
     GameManager _gameMaanger;
 
-    public IObjectPool EnemyPool { get => _enemyPool; }
+    public IObjectPool ObstaclePool { get => _obstaclePool; }
 
     void Init()
     {
@@ -21,7 +21,7 @@ public class ObstacleObjectPool : MonoBehaviour
 
     void DestroyChild()
     {
-        _enemyPool.Clear();
+        _obstaclePool.Clear();
     }
 
     void MakePool()
@@ -31,7 +31,7 @@ public class ObstacleObjectPool : MonoBehaviour
 
     public void ChangePool()
     {
-        if (_enemyPool != null)
+        if (_obstaclePool != null)
             DestroyChild();
         MakePool();
     }
@@ -44,6 +44,6 @@ public class ObstacleObjectPool : MonoBehaviour
 
     public void CreatePool<T>() where T : Enum
     {
-        _enemyPool = new ObjectPool<T>();
+        _obstaclePool = new ObjectPool<T>();
     }
 }

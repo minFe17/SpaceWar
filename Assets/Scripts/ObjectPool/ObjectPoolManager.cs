@@ -10,6 +10,7 @@ public class ObjectPoolManager : MonoBehaviour
     ObstacleObjectPool _obstacleObjectPool = new ObstacleObjectPool();
 
     public EnemyObjectPool EnemyObjectPool { get => _enemyObjectPool; }
+    public ObstacleObjectPool ObstacleObjectPool { get => _obstacleObjectPool; }
 
     void Awake()
     {
