@@ -335,7 +335,6 @@ public class DungeonCreator : MonoBehaviour
 
     void DestroyAllChildren()
     {
-        // 수정필요
         GenericSingleton<UIManager>.Instance.DestroyUI();
         if (_playerSpawn != null)
             _playerSpawn.DestroyPlayer();
