@@ -4,7 +4,6 @@ using Utils;
 
 public class Turret : Enemy
 {
-    [SerializeField] EFirstWorldEnemyType _enemyType;
     [SerializeField] Transform _gun;
     [SerializeField] Transform _bulletPos;
     [SerializeField] GameObject _dieEffect;
@@ -15,6 +14,7 @@ public class Turret : Enemy
     void Start()
     {
         _bullet = _enemyManager.Missile;
+        _enemyType =  EFirstWorldEnemyType.Turret;
     }
 
     public override void Init(EnemyController enemyController)
@@ -46,9 +46,7 @@ public class Turret : Enemy
             _isDie = true;
             _dieEffect.SetActive(true);
             Invoke("Die", 1f);
-
-            Destroy(this.gameObject, 2f);
-            _enemyController.EnemyList.Remove(this);
+            Invoke("RemoveEnemy", 2f);
         }
     }
 

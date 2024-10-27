@@ -4,6 +4,9 @@ using Utils;
 public abstract class EventRoom : MonoBehaviour
 {
     [SerializeField] protected EEventRoomType _eventRoomType;
+
+    ObjectPoolManager _objectPoolManager;
+
     protected bool _inPlayer;
     protected string _message;
 
@@ -12,7 +15,14 @@ public abstract class EventRoom : MonoBehaviour
 
     public virtual void Init()
     {
+        if (_objectPoolManager == null)
+            _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
         _inPlayer = false;
+    }
+
+    public void DestroyEventRoom()
+    {
+        _objectPoolManager.Pull(_eventRoomType, gameObject);
     }
 
     void OnTriggerStay(Collider other)

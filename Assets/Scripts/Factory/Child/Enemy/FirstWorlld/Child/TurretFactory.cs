@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TurretFactory : FirstWorldEnemyFactoryBase, IFactory<GameObject>
+public class TurretFactory : FirstWorldEnemyFactoryBase, IFactory<Enemy>
 {
     protected override void Init()
     {
@@ -8,9 +8,9 @@ public class TurretFactory : FirstWorldEnemyFactoryBase, IFactory<GameObject>
         _factoryManager.EnemyFactory.AddFactory(_enemyType, this);
     }
 
-    GameObject IFactory<GameObject>.MakeObject()
+    Enemy IFactory<Enemy>.MakeObject()
     {
         GameObject turret = _enemyObjectPool.EnemyPool.Push(_enemyType, _prefab);
-        return turret;
+        return turret.GetComponent<Enemy>();
     }
 }

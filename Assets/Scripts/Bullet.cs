@@ -25,9 +25,9 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
     }
 
-    void Remove()
+    protected virtual void Remove()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

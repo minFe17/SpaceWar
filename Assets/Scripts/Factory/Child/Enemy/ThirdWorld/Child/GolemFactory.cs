@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GolemFactory : ThirdWorldEnemyFactoryBase, IFactory<GameObject>
+public class GolemFactory : ThirdWorldEnemyFactoryBase, IFactory<Enemy>
 {
     protected override void Init()
     {
@@ -8,9 +8,9 @@ public class GolemFactory : ThirdWorldEnemyFactoryBase, IFactory<GameObject>
         _factoryManager.EnemyFactory.AddFactory(_enemyType, this);
     }
 
-    GameObject IFactory<GameObject>.MakeObject()
+    Enemy IFactory<Enemy>.MakeObject()
     {
         GameObject golem = _enemyObjectPool.EnemyPool.Push(_enemyType, _prefab);
-        return golem;
+        return golem.GetComponent<Enemy>();
     }
 }

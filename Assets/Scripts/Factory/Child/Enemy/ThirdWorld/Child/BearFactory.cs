@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BearFactory : ThirdWorldEnemyFactoryBase, IFactory<GameObject>
+public class BearFactory : ThirdWorldEnemyFactoryBase, IFactory<Enemy>
 {
     protected override void Init()
     {
@@ -8,9 +8,9 @@ public class BearFactory : ThirdWorldEnemyFactoryBase, IFactory<GameObject>
         _factoryManager.EnemyFactory.AddFactory(_enemyType, this);
     }
 
-    GameObject IFactory<GameObject>.MakeObject()
+    Enemy IFactory<Enemy>.MakeObject()
     {
         GameObject bear = _enemyObjectPool.EnemyPool.Push(_enemyType, _prefab);
-        return bear;
+        return bear.GetComponent<Enemy>();
     }
 }

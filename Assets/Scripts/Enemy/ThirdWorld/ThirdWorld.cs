@@ -1,12 +1,13 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class ThirdWorld : IWorldEnemyListBase
+public class ThirdWorld : IEnemyList
 {
     EnemyManager _enemyManager;
     AddressableManager _addressableManager;
 
-    async Task IWorldEnemyListBase.AddEnemyList(EnemyManager enemyManager, AddressableManager addressableManager)
+    async Task IEnemyList.AddEnemyList(EnemyManager enemyManager, AddressableManager addressableManager)
     {
         _enemyManager = enemyManager;
         _addressableManager = addressableManager;
@@ -18,13 +19,18 @@ public class ThirdWorld : IWorldEnemyListBase
         await LoadRock();
     }
 
-    void IWorldEnemyListBase.ReleaseAsset()
+    Enum IEnemyList.ConvertEnumToInt(int value)
+    {
+        return (EThirdWorldEnemyType)value;
+    }
+
+    void IEnemyList.ReleaseAsset()
     {
         if (_enemyManager.Rock != null)
             _addressableManager.Release(_enemyManager.Rock);
     }
 
-    void IWorldEnemyListBase.MakePool(EnemyObjectPool enemyObjectPool)
+    void IEnemyList.MakePool(EnemyObjectPool enemyObjectPool)
     {
         enemyObjectPool.CreatePool<EThirdWorldEnemyType>();
     }

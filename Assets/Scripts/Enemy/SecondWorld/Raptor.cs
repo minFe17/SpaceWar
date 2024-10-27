@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class Raptor : MovableEnemy
 {
-    [SerializeField] ESecondWorldEnemyType _enemyType;
     [SerializeField] SkinnedMeshRenderer _meshRenderer;
+
+    void Awake()
+    {
+        _enemyType = ESecondWorldEnemyType.Raptor;
+    }
 
     void Update()
     {

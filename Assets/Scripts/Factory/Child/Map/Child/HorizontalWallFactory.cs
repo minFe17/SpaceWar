@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class HorizontalWall : MapFactoryBase, IFactory<GameObject>
+public class HorizontalWallFactory : MapFactoryBase, IFactory<GameObject>
 {
     protected override void Init()
     {
         _mapType = EMapPoolType.HorizontalWall;
-        _factoryManager.EnemyFactory.AddFactory(_mapType, this);
+        _factoryManager.MapFactory.AddFactory(_mapType, this);
     }
 
     GameObject IFactory<GameObject>.MakeObject()

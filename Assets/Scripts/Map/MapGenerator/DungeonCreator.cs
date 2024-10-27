@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
@@ -28,13 +29,21 @@ public class DungeonCreator : MonoBehaviour
     [Range(6, 10)]
     [SerializeField] int _roomOffset;
 
+    List<GameObject> _enemyControllers = new List<GameObject>(); 
+    List<EventRoom> _eventRooms = new List<EventRoom>();
+    List<IMap> _maps = new List<IMap>();
+    List<IObstacle> _obstacles = new List<IObstacle>();
+
     List<Vector3Int> _possibleWallVerticalPosition = new List<Vector3Int>();
     List<Vector3Int> _possibleWallHorizontalPosition = new List<Vector3Int>();
 
     MapAssetManager _mapAssetManager;
     FactoryManager _factoryMaanger;
+    ObstacleAssetManager _obstacleAssetManager;
+    ObjectPoolManager _objectPoolManager;
 
     PlayerSpawn _playerSpawn;
+    GameObject _deadZone;
 
     void Start()
     {
@@ -48,6 +57,10 @@ public class DungeonCreator : MonoBehaviour
             _mapAssetManager = GenericSingleton<MapAssetManager>.Instance;
         if (_factoryMaanger == null)
             _factoryMaanger = GenericSingleton<FactoryManager>.Instance;
+        if (_obstacleAssetManager == null)
+            _obstacleAssetManager = GenericSingleton<ObstacleAssetManager>.Instance;
+        if(_objectPoolManager == null)
+            _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
     }
 
     void CreateDungeon()
@@ -147,10 +160,13 @@ public class DungeonCreator : MonoBehaviour
         int obstacleCount = Random.Range(_minObstacle, _maxObstacle);
         for (int i = 0; i < obstacleCount; i++)
         {
-            int index = Random.Range(0, obstacles.Count);
-            GameObject temp = obstacles[index];
+            int random = Random.Range(0, obstacles.Count);
             Vector3 position = new Vector3(Random.Range(bottomLeftCorner.x + 10, topRightCorner.x - 10), 0, Random.Range(bottomLeftCorner.y + 10, topRightCorner.y - 10));
-            Instantiate(temp, position, Quaternion.identity, parent);
+            Enum type = _obstacleAssetManager.ConvertEnumToInt(random);
+            GameObject obstacle = _factoryMaanger.ObstacleFactory.MakeObject(type);
+            obstacle.transform.position = position;
+            obstacle.transform.parent = parent;
+            _obstacles.Add(obstacle.GetComponent<IObstacle>());
         }
     }
 
@@ -167,6 +183,7 @@ public class DungeonCreator : MonoBehaviour
     {
         GameObject shop = _factoryMaanger.MakeObject<EEventRoomType, GameObject>(EEventRoomType.VendingMachine);
         shop.transform.position = createPos;
+        _eventRooms.Add(shop.GetComponent<EventRoom>());
     }
 
     void CreatePortal(Vector3 createPos, GameObject parent)
@@ -174,6 +191,7 @@ public class DungeonCreator : MonoBehaviour
         GameObject portal =  _factoryMaanger.MakeObject<EEventRoomType, GameObject>(EEventRoomType.Portal);
         GenericSingleton<GameManager>.Instance.Portal = portal;
         portal.transform.position = createPos;
+        _eventRooms.Add(portal.GetComponent<EventRoom>());
     }
 
     void CreateEnemyController(Vector2 bottomLeftCorner, Vector2 topRightCorner, GameObject parent, bool isBossRoom)
@@ -186,6 +204,7 @@ public class DungeonCreator : MonoBehaviour
         enemyController.transform.parent = parent.transform;
         enemyController.GetComponent<BoxCollider>().size = new Vector3((topRight.x - bottomLeft.x) - _enemyControllerOffset, 7, (topRight.z - bottomLeft.z) - _enemyControllerOffset);
         enemyController.GetComponent<EnemyController>().Init(createPos, isBossRoom);
+        _enemyControllers.Add(enemyController);
     }
 
     void CalculateWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
@@ -223,15 +242,20 @@ public class DungeonCreator : MonoBehaviour
     void CreateWalls(GameObject wallParent)
     {
         foreach (var wallPosition in _possibleWallHorizontalPosition)
-            CreateWall(wallParent, wallPosition, _mapAssetManager.HorizontalWall);
+        {
+            GameObject wall =_factoryMaanger.MakeObject<EMapPoolType, GameObject>(EMapPoolType.HorizontalWall);
+            wall.transform.position = wallPosition;
+            wall.transform.parent = wallParent.transform;
+            _maps.Add(wall.GetComponent<IMap>());
+        }
 
         foreach (var wallPosition in _possibleWallVerticalPosition)
-            CreateWall(wallParent, wallPosition, _mapAssetManager.VerticalWall);
-    }
-
-    void CreateWall(GameObject wallParent, Vector3Int wallPosition, GameObject wallPrefab)
-    {
-        GameObject temp = Instantiate(wallPrefab, wallPosition, Quaternion.identity, wallParent.transform);
+        {
+            GameObject wall = _factoryMaanger.MakeObject<EMapPoolType, GameObject>(EMapPoolType.VerticalWall);
+            wall.transform.position = wallPosition;
+            wall.transform.parent = wallParent.transform;
+            _maps.Add(wall.GetComponent<IMap>());
+        }
     }
 
     void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner)
@@ -240,20 +264,30 @@ public class DungeonCreator : MonoBehaviour
         {
             Vector3 createBottomPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, -0.2f, bottomLeftCorner.y);
             Vector3 createTopPos = new Vector3((bottomLeftCorner.x + topRightCorner.x) / 2, -0.2f, topRightCorner.y);
-            CreateDoor(createBottomPos, createTopPos, _mapAssetManager.HorizontalDoor);
+
+            CreateDoor(EMapPoolType.HorizontalDoor, createBottomPos, createTopPos);
         }
         else
         {
             Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
             Vector3 createRightPos = new Vector3(topRightCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
-            CreateDoor(createLeftPos, createRightPos, _mapAssetManager.VerticalDoor);
+
+            CreateDoor(EMapPoolType.HorizontalDoor, createLeftPos, createRightPos);
         }
     }
 
-    void CreateDoor(Vector3 doorPos1, Vector3 doorPos2, GameObject doorPrefab)
+    void CreateDoor(Enum doorType, Vector3 pos1,  Vector3 pos2)
     {
-        GameObject firstDoor = Instantiate(doorPrefab, doorPos1, Quaternion.identity, transform);
-        GameObject secondDoor = Instantiate(doorPrefab, doorPos2, Quaternion.identity, transform);
+        GameObject firstDoor = _factoryMaanger.MakeObject<EMapPoolType, GameObject>((EMapPoolType)doorType);
+        firstDoor.transform.position = pos1;
+        firstDoor.transform.parent = transform;
+
+        GameObject secondDoor = _factoryMaanger.MakeObject<EMapPoolType, GameObject>((EMapPoolType)doorType);
+        secondDoor.transform.position = pos2;
+        secondDoor.transform.parent = transform;
+
+        _maps.Add(firstDoor.GetComponent<IMap>());
+        _maps.Add(secondDoor.GetComponent<IMap>());
     }
 
     Vector3 CalculateCreatePosition(Vector2 bottomLeftCorner, Vector2 topRightCorner)
@@ -265,17 +299,50 @@ public class DungeonCreator : MonoBehaviour
 
     void CreateDeadZone()
     {
-        GameObject deadZone = _factoryMaanger.MakeObject<EGroundWorkType, GameObject>(EGroundWorkType.DeadZone);
-        deadZone.transform.position = new Vector3(_dungeonWidth / 2, -10, _dungeonLength / 2);
-        deadZone.transform.localScale = new Vector3(_dungeonWidth + 50, 1, _dungeonLength + 50);
+        _deadZone = _factoryMaanger.MakeObject<EGroundWorkType, GameObject>(EGroundWorkType.DeadZone);
+        _deadZone.transform.position = new Vector3(_dungeonWidth / 2, -10, _dungeonLength / 2);
+        _deadZone.transform.localScale = new Vector3(_dungeonWidth + 50, 1, _dungeonLength + 50);
+    }
+
+    void DestroyGroundWork()
+    {
+        _objectPoolManager.Pull(EGroundWorkType.DeadZone, _deadZone);
+        for(int i=0; i<_enemyControllers.Count; i++)
+            _objectPoolManager.Pull(EGroundWorkType.EnemyController, _enemyControllers[i]);
+        _enemyControllers.Clear();
+    }
+
+    void DestroyeventRoom()
+    {
+        for(int i=0; i<_eventRooms.Count; i++)
+            _eventRooms[i].DestroyEventRoom();
+        _eventRooms.Clear();
+    }
+
+    void DestroyMap()
+    {
+        for(int i=0; i< _maps.Count; i++)
+            _maps[i].DestroyMap();
+        _maps.Clear();
+    }
+
+    void DestroyObstacle()
+    {
+        for(int i=0; i<_obstacles.Count; i++)
+            _obstacles[i].DestroyObstacle();
+        _obstacles.Clear();
     }
 
     void DestroyAllChildren()
     {
+        // 수정필요
         GenericSingleton<UIManager>.Instance.DestroyUI();
         if (_playerSpawn != null)
             _playerSpawn.DestroyPlayer();
-
+        DestroyGroundWork();
+        DestroyeventRoom();
+        DestroyMap();
+        DestroyObstacle();
         while (transform.childCount != 0)
         {
             foreach (Transform item in transform)

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SkeletonFactory : ThirdWorldEnemyFactoryBase, IFactory<GameObject>
+public class SkeletonFactory : ThirdWorldEnemyFactoryBase, IFactory<Enemy>
 {
     protected override void Init()
     {
@@ -8,9 +8,9 @@ public class SkeletonFactory : ThirdWorldEnemyFactoryBase, IFactory<GameObject>
         _factoryManager.EnemyFactory.AddFactory(_enemyType, this);
     }
 
-    GameObject IFactory<GameObject>.MakeObject()
+    Enemy IFactory<Enemy>.MakeObject()
     {
         GameObject skeleton = _enemyObjectPool.EnemyPool.Push(_enemyType, _prefab);
-        return skeleton;
+        return skeleton.GetComponent<Enemy>();
     }
 }

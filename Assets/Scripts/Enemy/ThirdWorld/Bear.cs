@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class Bear : MovableEnemy
 {
-    [SerializeField] EThirdWorldEnemyType _enemyType;
-
     EBearAttackType _bearAttackType;
     public EBearAttackType BearAttackType { get => _bearAttackType; }
+
+    void Awake()
+    {
+        _enemyType = EThirdWorldEnemyType.Bear;
+    }
 
     void Update()
     {

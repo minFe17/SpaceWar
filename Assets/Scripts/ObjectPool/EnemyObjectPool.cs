@@ -5,7 +5,7 @@ using Utils;
 
 public class EnemyObjectPool : MonoBehaviour
 {
-    List<IWorldEnemyListBase> _worlds = new List<IWorldEnemyListBase>();
+    List<IEnemyList> _worlds = new List<IEnemyList>();
     IObjectPool _enemyPool = null;
     GameManager _gameMaanger;
 
@@ -45,5 +45,6 @@ public class EnemyObjectPool : MonoBehaviour
     public void CreatePool<T>() where T : Enum
     {
         _enemyPool = new ObjectPool<T>();
+        _enemyPool.Init();
     }
 }

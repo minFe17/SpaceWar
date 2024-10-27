@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FireStoneFactory : ThirdWorldEnemyFactoryBase, IFactory<GameObject>
+public class FireStoneFactory : ThirdWorldEnemyFactoryBase, IFactory<Enemy>
 {
     protected override void Init()
     {
@@ -8,9 +8,9 @@ public class FireStoneFactory : ThirdWorldEnemyFactoryBase, IFactory<GameObject>
         _factoryManager.EnemyFactory.AddFactory(_enemyType, this);
     }
 
-    GameObject IFactory<GameObject>.MakeObject()
+    Enemy IFactory<Enemy>.MakeObject()
     {
         GameObject fireStone = _enemyObjectPool.EnemyPool.Push(_enemyType, _prefab);
-        return fireStone;
+        return fireStone.GetComponent<Enemy>();
     }
 }

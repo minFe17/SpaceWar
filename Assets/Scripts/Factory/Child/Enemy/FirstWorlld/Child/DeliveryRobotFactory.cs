@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DeliveryRobotFactory : FirstWorldEnemyFactoryBase, IFactory<GameObject>
+public class DeliveryRobotFactory : FirstWorldEnemyFactoryBase, IFactory<Enemy>
 {
     protected override void Init()
     {
@@ -8,9 +8,9 @@ public class DeliveryRobotFactory : FirstWorldEnemyFactoryBase, IFactory<GameObj
         _factoryManager.EnemyFactory.AddFactory(_enemyType, this);
     }
 
-    GameObject IFactory<GameObject>.MakeObject()
+    Enemy IFactory<Enemy>.MakeObject()
     {
         GameObject deliveryRobot = _enemyObjectPool.EnemyPool.Push(_enemyType, _prefab);
-        return deliveryRobot;
+        return deliveryRobot.GetComponent<Enemy>();
     }
 }

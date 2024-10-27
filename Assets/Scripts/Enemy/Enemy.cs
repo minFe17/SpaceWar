@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Utils;
 
@@ -9,9 +10,11 @@ public abstract class Enemy : MonoBehaviour
     protected EnemyController _enemyController;
     protected Rigidbody _rigidbody;
     protected EnemyManager _enemyManager;
+    protected ObjectPoolManager _objectPoolManager;
     protected CoinManager _coinManager;
     protected Transform _target;
     protected Player _player;
+    protected Enum _enemyType;
 
     protected int _curHp;
     protected bool _isDie;
@@ -23,6 +26,7 @@ public abstract class Enemy : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _enemyManager = GenericSingleton<EnemyManager>.Instance;
+        _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
         _coinManager = GenericSingleton<CoinManager>.Instance;
         _player = GenericSingleton<PlayerDataManager>.Instance.Player;
     }
@@ -51,8 +55,7 @@ public abstract class Enemy : MonoBehaviour
         {
             _isDie = true;
             _coinManager.MakeCoin(transform.position);
-            Destroy(this.gameObject, 1f);
-            _enemyController.EnemyList.Remove(this);
+            Invoke("Die", 1f);
         }
     }
 
@@ -71,7 +74,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void RemoveEnemy()
     {
-        Destroy(this.gameObject);
+        _objectPoolManager.EnemyObjectPool.EnemyPool.Pull(_enemyType, gameObject);
         _enemyController.EnemyList.Remove(this);
     }
 

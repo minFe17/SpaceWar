@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utils;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IMap
 {
     [SerializeField] EMapPoolType _mapPoolType;
     [SerializeField] GameObject _leftDoor;
@@ -11,6 +11,8 @@ public class Door : MonoBehaviour
 
     [SerializeField] float _speed;
 
+    ObjectPoolManager _objectPoolManager;
+
     BoxCollider _collider;
     Vector3 _doorPos;
 
@@ -18,6 +20,7 @@ public class Door : MonoBehaviour
 
     void Start()
     {
+        _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
         _collider = GetComponent<BoxCollider>();
         _doorPos = _leftDoor.transform.position;
     }
@@ -73,5 +76,10 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
             _isOpen = false;
+    }
+
+    void IMap.DestroyMap()
+    {
+        _objectPoolManager.Pull(_mapPoolType, gameObject);
     }
 }

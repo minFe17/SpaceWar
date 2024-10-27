@@ -9,12 +9,14 @@ public class Coin : MonoBehaviour
     [SerializeField] GameObject _effect;
 
     Player _player;
+    ObjectPoolManager _objectPoolManager;
 
     bool _isEat;
 
     void Start()
     {
         _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
+        _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
     }
 
     public void Init()
@@ -39,7 +41,7 @@ public class Coin : MonoBehaviour
 
     void DestroyCoin()
     {
-        Destroy(_parent);
+        _objectPoolManager.Pull(_coinType, _parent);
     }
 
     private void OnTriggerEnter(Collider other)

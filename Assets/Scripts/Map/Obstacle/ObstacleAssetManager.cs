@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class ObstacleAssetManager : MonoBehaviour
 {
     // ╫л╠шео
     AddressableManager _addressableManager;
+    WorldManager _worldManager;
 
     List<IObstacleList> _worldList = new List<IObstacleList>();
     List<GameObject> _obstacles = new List<GameObject>();
@@ -14,8 +16,10 @@ public class ObstacleAssetManager : MonoBehaviour
 
     void Awake()
     {
-        if(_addressableManager == null)
+        if (_addressableManager == null)
             _addressableManager = GenericSingleton<AddressableManager>.Instance;
+        if (_worldManager == null)
+            _worldManager = GenericSingleton<WorldManager>.Instance;
     }
 
     void AddWorldList()
@@ -25,19 +29,25 @@ public class ObstacleAssetManager : MonoBehaviour
         _worldList.Add(new ThirdWorldObstacleList());
     }
 
-    public async Task LoadAsset(EWorldType worldType)
+    public async Task LoadAsset()
     {
         if (_worldList.Count == 0)
             AddWorldList();
-        await _worldList[(int)worldType].AddObstacle(this, _addressableManager);
+        int world = (int)_worldManager.WorldType;
+        await _worldList[world].AddObstacle(this, _addressableManager);
     }
 
-
     public void ReleaseAsset()
-    {   
+    {
         if (_obstacles.Count == 0)
             return;
         for (int i = 0; i < _obstacles.Count; i++)
             _addressableManager.Release(_obstacles[i]);
+    }
+
+    public Enum ConvertEnumToInt(int value)
+    {
+        int world = (int)_worldManager.WorldType;
+        return _worldList[world].ConvertEnumToInt(value);
     }
 }

@@ -1,12 +1,13 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class FirstWorld : IWorldEnemyListBase
+public class FirstWorld : IEnemyList
 {
     EnemyManager _enemyManager;
     AddressableManager _addressableManager;
 
-    async Task IWorldEnemyListBase.AddEnemyList(EnemyManager enemyManager, AddressableManager addressableManager)
+    async Task IEnemyList.AddEnemyList(EnemyManager enemyManager, AddressableManager addressableManager)
     {
         _enemyManager = enemyManager;
         _addressableManager = addressableManager;
@@ -18,13 +19,18 @@ public class FirstWorld : IWorldEnemyListBase
         await LoadMissile();
     }
 
-    void IWorldEnemyListBase.ReleaseAsset()
+    Enum IEnemyList.ConvertEnumToInt(int value)
+    {
+        return (EFirstWorldEnemyType)value;
+    }
+
+    void IEnemyList.ReleaseAsset()
     {
         if (_enemyManager.Missile != null)
             _addressableManager.Release(_enemyManager.Missile);
     }
 
-    void IWorldEnemyListBase.MakePool(EnemyObjectPool enemyObjectPool)
+    void IEnemyList.MakePool(EnemyObjectPool enemyObjectPool)
     {
         enemyObjectPool.CreatePool<EFirstWorldEnemyType>();
     }
@@ -43,4 +49,6 @@ public class FirstWorld : IWorldEnemyListBase
     {
         _enemyManager.Missile = await _addressableManager.GetAddressableAsset<GameObject>("FirstWorld/Missile.prefab");
     }
+
+    
 }

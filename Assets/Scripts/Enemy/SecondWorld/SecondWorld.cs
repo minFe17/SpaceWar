@@ -1,12 +1,13 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class SecondWorld : IWorldEnemyListBase
+public class SecondWorld : IEnemyList
 {
     EnemyManager _enemyManager;
     AddressableManager _addressableManager;
 
-    async Task IWorldEnemyListBase.AddEnemyList(EnemyManager enemyManager, AddressableManager addressableManager)
+    async Task IEnemyList.AddEnemyList(EnemyManager enemyManager, AddressableManager addressableManager)
     {
         _enemyManager = enemyManager;
         _addressableManager = addressableManager;
@@ -18,7 +19,12 @@ public class SecondWorld : IWorldEnemyListBase
         await LoadRaptorMaterial();
     }
 
-    void IWorldEnemyListBase.ReleaseAsset()
+    Enum IEnemyList.ConvertEnumToInt(int value)
+    {
+        return (ESecondWorldEnemyType)value;
+    }
+
+    void IEnemyList.ReleaseAsset()
     {
         if (_enemyManager.MiniBoss != null)
             _addressableManager.Release(_enemyManager.MiniBoss);
@@ -26,7 +32,7 @@ public class SecondWorld : IWorldEnemyListBase
             ReleaseRaptorMaterial();
     }
 
-    void IWorldEnemyListBase.MakePool(EnemyObjectPool enemyObjectPool)
+    void IEnemyList.MakePool(EnemyObjectPool enemyObjectPool)
     {
         enemyObjectPool.CreatePool<ESecondWorldEnemyType>();
     }

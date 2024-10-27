@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class Zombie : MovableEnemy
 {
-    [SerializeField] ESecondWorldEnemyType _enemyType;
     [SerializeField] GameObject _secondAttackArea;
+
+    void Awake()
+    {
+        _enemyType = ESecondWorldEnemyType.Zombie;
+    }
 
     void Update()
     {

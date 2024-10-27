@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class Pachy : MovableEnemy
 {
-    [SerializeField] ESecondWorldEnemyType _enemyType;
     bool _isReady;
+
+    void Awake()
+    {
+        _enemyType = ESecondWorldEnemyType.Pachy;
+    }
 
     void Update()
     {

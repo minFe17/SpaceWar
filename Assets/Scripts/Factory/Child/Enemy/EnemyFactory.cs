@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class EnemyFactory : MonoBehaviour
 {
-    Dictionary<Type, IFactorys> _enemyFactorys = new Dictionary<Type, IFactorys>();
-    public Dictionary<Type, IFactorys> EnemyFactorys { get => _enemyFactorys; }
+    Dictionary<Enum, IFactory<Enemy>> _enemyFactorys = new Dictionary<Enum, IFactory<Enemy>>();
 
-    void Awake()
+    public void AddFactory<TEnum>(TEnum key, IFactory<Enemy> value) where TEnum : Enum
     {
-        _enemyFactorys.Add(typeof(EFirstWorldEnemyType), new Factory<EFirstWorldEnemyType>());
-        _enemyFactorys.Add(typeof(ESecondWorldEnemyType), new Factory<ESecondWorldEnemyType>());
-        _enemyFactorys.Add(typeof(EThirdWorldEnemyType), new Factory<EThirdWorldEnemyType>());
+        _enemyFactorys.Add(key, value);
     }
 
-    public void AddFactory<TEnum, T>(TEnum key, IFactory<T> value) where TEnum : Enum
+    public Enemy MakeObject<TEnum>(TEnum key) where TEnum : Enum
     {
-        IFactorys factory;
-        _enemyFactorys.TryGetValue(typeof(TEnum), out factory);
-        factory.AddFactorys(key, value);
+        IFactory<Enemy> factory;
+        _enemyFactorys.TryGetValue(key, out factory);
+        return factory.MakeObject();
     }
 
-    public T MakeObject<TEnum, T>(TEnum key) where TEnum : Enum
+    public void RemoveFactory()
     {
-        IFactorys factory;
-        _enemyFactorys.TryGetValue(typeof(TEnum), out factory);
-        return (T)factory.MakeObject(key);
+        if (_enemyFactorys.Count != 0)
+            _enemyFactorys.Clear();
     }
 }

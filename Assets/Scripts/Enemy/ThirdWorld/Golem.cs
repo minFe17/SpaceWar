@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class Golem : MovableEnemy
 {
-    [SerializeField] EThirdWorldEnemyType _enemyType;
-
     GolemRock _rock;
+
+    void Awkae()
+    {
+        _enemyType = EThirdWorldEnemyType.Golem;
+    }
 
     void Update()
     {

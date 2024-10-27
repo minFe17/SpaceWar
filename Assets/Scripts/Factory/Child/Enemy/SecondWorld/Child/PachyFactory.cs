@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PachyFactory : SecondWorldEnemyFactoryBase, IFactory<GameObject>
+public class PachyFactory : SecondWorldEnemyFactoryBase, IFactory<Enemy>
 {
     protected override void Init()
     {
@@ -8,9 +8,9 @@ public class PachyFactory : SecondWorldEnemyFactoryBase, IFactory<GameObject>
         _factoryManager.EnemyFactory.AddFactory(_enemyType, this);
     }
 
-    GameObject IFactory<GameObject>.MakeObject()
+    Enemy IFactory<Enemy>.MakeObject()
     {
         GameObject pachy = _enemyObjectPool.EnemyPool.Push(_enemyType, _prefab);
-        return pachy;
+        return pachy.GetComponent<Enemy>();
     }
 }

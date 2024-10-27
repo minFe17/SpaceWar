@@ -73,8 +73,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1097879707258240684}
-  - component: {fileID: 6475154896780879062}
   - component: {fileID: 321905576182080530}
+  - component: {fileID: 6475154896780879062}
   - component: {fileID: 321905576182080531}
   - component: {fileID: 321905576182080528}
   - component: {fileID: 321905576182080529}
@@ -102,6 +102,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &321905576182080530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321905576182080534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3d33d6e1e9eda4ea54bf8726c51ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 10
+  _attackDelay: 2
+  _damage: 3
+  _moveSpeed: 2
+  _attackArea: {fileID: 6268242823713895018}
+  _enemyType: 1
 --- !u!95 &6475154896780879062
 Animator:
   serializedVersion: 5
@@ -123,24 +141,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &321905576182080530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321905576182080534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3d33d6e1e9eda4ea54bf8726c51ab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHp: 10
-  _attackDelay: 2
-  _damage: 3
-  _moveSpeed: 2
-  _attackArea: {fileID: 6268242823713895018}
-  _enemyType: 1
 --- !u!65 &321905576182080531
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -15,5 +16,10 @@ public class SecondWorldObstacleList : IObstacleList
     void IObstacleList.MakePool(ObstacleObjectPool obstacleObjectPool)
     {
         obstacleObjectPool.CreatePool<ESecondWorldObstacleType>();
+    }
+
+    Enum IObstacleList.ConvertEnumToInt(int value)
+    {
+        return (ESecondWorldObstacleType)value;
     }
 }

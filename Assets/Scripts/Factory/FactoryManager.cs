@@ -9,12 +9,17 @@ public class FactoryManager : MonoBehaviour
     //╫л╠шео
     Dictionary<Type, IFactorys> _factorys = new Dictionary<Type, IFactorys>();
     EnemyFactory _enemyFactory = new EnemyFactory();
-    ObstacleFactory _obstacleFactpry = new ObstacleFactory();
+    MapFactory _mapFactory = new MapFactory();
+    ObstacleFactory _obstacleFactory = new ObstacleFactory();
+
     GameObject _factoryPrefab;
     AddressableManager _addressableManager;
+    WorldFactory _worldFactory;
 
     public EnemyFactory EnemyFactory { get => _enemyFactory; }
-    public ObstacleFactory ObstacleFactory { get; }
+    public ObstacleFactory ObstacleFactory { get => _obstacleFactory; }
+    public MapFactory MapFactory { get => _mapFactory; }
+
     void Awake()
     {
         _factorys.Add(typeof(EPlayerPoolType), new Factory<EPlayerPoolType>());
@@ -22,7 +27,6 @@ public class FactoryManager : MonoBehaviour
         _factorys.Add(typeof(EEventRoomType), new Factory<EEventRoomType>());
         _factorys.Add(typeof(EGroundWorkType), new Factory<EGroundWorkType>());
         _factorys.Add(typeof(ECameraType), new Factory<ECameraType>());
-        _factorys.Add(typeof(EMapPoolType), new Factory<EMapPoolType>());
     }
 
     public async void Init()
@@ -43,7 +47,17 @@ public class FactoryManager : MonoBehaviour
 
     void CreateFactory()
     {
-        Instantiate(_factoryPrefab, transform);
+        GameObject temp = Instantiate(_factoryPrefab, transform);
+        _worldFactory = temp.GetComponent<WorldFactory>();
+        _worldFactory.Init();
+    }
+
+    public void ChangeWorld()
+    {
+        _enemyFactory.RemoveFactory();
+        _obstacleFactory.RemoveFactory();
+        _mapFactory.RemoveFactory();
+        _worldFactory.ChangeWorldFactory();
     }
 
     public void AddFactorys<TEnum, T>(TEnum key, IFactory<T> value) where TEnum : Enum

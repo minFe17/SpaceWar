@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ScorpionFactory : FirstWorldEnemyFactoryBase, IFactory<GameObject>
+public class ScorpionFactory : FirstWorldEnemyFactoryBase, IFactory<Enemy>
 {
     protected override void Init()
     {
@@ -8,9 +8,9 @@ public class ScorpionFactory : FirstWorldEnemyFactoryBase, IFactory<GameObject>
         _factoryManager.EnemyFactory.AddFactory(_enemyType, this);
     }
 
-    GameObject IFactory<GameObject>.MakeObject()
+    Enemy IFactory<Enemy>.MakeObject()
     {
         GameObject scorpion = _enemyObjectPool.EnemyPool.Push(_enemyType, _prefab);
-        return scorpion;
+        return scorpion.GetComponent<Enemy>();
     }
 }

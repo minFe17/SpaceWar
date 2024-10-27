@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,6 +14,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _maxEnemy;
 
     UIManager _uiManager;
+    FactoryManager _factoryManager;
+    WorldManager _worldManager;
     EnemyManager _enemyManager;
     List<Enemy> _enemyList = new List<Enemy>();
 
@@ -35,6 +38,8 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         _enemyManager = GenericSingleton<EnemyManager>.Instance;
+        _factoryManager = GenericSingleton<FactoryManager>.Instance;
+        _worldManager = GenericSingleton<WorldManager>.Instance;
         _doorManager = GenericSingleton<DoorManager>.Instance;
         _ground = GetComponent<BoxCollider>();
     }
@@ -61,7 +66,7 @@ public class EnemyController : MonoBehaviour
         if (_waveIndex == _wave && _enemyList.Count == 0)
         {
             _isClear = true;
-            if(transform.parent.GetComponent<ClearRoom>() == null)
+            if (transform.parent.GetComponent<ClearRoom>() == null)
                 transform.parent.AddComponent<ClearRoom>();
             _doorManager.UnlockDoor();
         }
@@ -73,9 +78,11 @@ public class EnemyController : MonoBehaviour
 
         if (GenericSingleton<EnemyManager>.Instance.Enemys.Count > 0)
         {
-            int ramdom = Random.Range(0, GenericSingleton<EnemyManager>.Instance.Enemys.Count);
-            GameObject enemy = Instantiate(GenericSingleton<EnemyManager>.Instance.Enemys[ramdom], spawnPos, Quaternion.identity);
-            enemy.GetComponent<Enemy>().Init(this);
+            int random = Random.Range(0, GenericSingleton<EnemyManager>.Instance.Enemys.Count);
+            Enum value = _enemyManager.ConvertEnumToInt(random);
+            Enemy enemy = _factoryManager.EnemyFactory.MakeObject(value);
+            enemy.transform.position = spawnPos;
+            enemy.Init(this);
         }
     }
 

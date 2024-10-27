@@ -1,8 +1,9 @@
-using UnityEngine;
-
 public class DeliveryRobot : MovableEnemy
 {
-    [SerializeField] EFirstWorldEnemyType _enemyType;
+    void Awake()
+    {
+        _enemyType = EFirstWorldEnemyType.DeliveryRobot;
+    }
 
     void Update()
     {

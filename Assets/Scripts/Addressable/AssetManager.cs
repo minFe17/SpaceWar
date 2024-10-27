@@ -7,6 +7,7 @@ public class AssetManager : MonoBehaviour
     // ╫л╠шео
     public async Task LoadAsset()
     {
+        LoadFactory();
         await LoadPlayerAsset();
         await LoadCameraAsset();
         await LoadSoundAsset();
@@ -45,5 +46,10 @@ public class AssetManager : MonoBehaviour
     {
         await GenericSingleton<PassiveSpriteManager>.Instance.LoadAsset();
         await GenericSingleton<PassiveManager>.Instance.Init();
+    }
+
+    void LoadFactory()
+    {
+        GenericSingleton<FactoryManager>.Instance.Init();
     }
 }

@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class Skeleton : MovableEnemy
 {
-    [SerializeField] EThirdWorldEnemyType _enemyType;
     [SerializeField] GameObject _revivalCollider;
     bool _isRevival;
+
+    void Awake()
+    {
+        _enemyType =EThirdWorldEnemyType.Skeleton;
+    }
 
     void Update()
     {

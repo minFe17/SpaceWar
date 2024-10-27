@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ZombieFactory : SecondWorldEnemyFactoryBase, IFactory<GameObject>
+public class ZombieFactory : SecondWorldEnemyFactoryBase, IFactory<Enemy>
 {
     protected override void Init()
     {
@@ -8,9 +8,9 @@ public class ZombieFactory : SecondWorldEnemyFactoryBase, IFactory<GameObject>
         _factoryManager.EnemyFactory.AddFactory(_enemyType, this);
     }
 
-    GameObject IFactory<GameObject>.MakeObject()
+    Enemy IFactory<Enemy>.MakeObject()
     {
         GameObject zombie = _enemyObjectPool.EnemyPool.Push(_enemyType, _prefab);
-        return zombie;
+        return zombie.GetComponent<Enemy>();
     }
 }
