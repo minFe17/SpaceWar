@@ -11,6 +11,7 @@ public abstract class CoinFactoryBase : FactoryBase
     {
         _factoryManager = GenericSingleton<FactoryManager>.Instance;
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
+        _addressableManager = GenericSingleton<AddressableManager>.Instance;
         Init();
         _prefab = await _addressableManager.GetAddressableAsset<GameObject>(_coinType.ToString());
     }

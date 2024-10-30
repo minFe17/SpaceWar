@@ -1,6 +1,6 @@
 public enum ECoinType
 {
     GoldCoin,
-    SliverCoin,
+    SilverCoin,
     Max,
 }

@@ -18,9 +18,9 @@ public class WorldManager : MonoBehaviour
 
     async Task LoadAsset()
     {
-        await GenericSingleton<MapAssetManager>.Instance.LoadAsset(WorldType);
         await GenericSingleton<EnemyManager>.Instance.LoadAsset();
         await GenericSingleton<ObstacleAssetManager>.Instance.LoadAsset();
+        await GenericSingleton<MapAssetManager>.Instance.LoadWorldAsset(WorldType);
 
         MakeWorldFactory();
     }
@@ -34,14 +34,21 @@ public class WorldManager : MonoBehaviour
 
     void MakeWorldFactory()
     {
-        _factoryManager.ChangeWorld();
         _objectPoolManager.ChangeWorldPool();
+        _factoryManager.ChangeWorld();
     }
 
     public async Task ResetWorld()
     {
         ReleaseAsset();
         WorldType = EWorldType.FirstWorld;
+        await LoadAsset();
+    }
+
+    public async Task ContinueGame()
+    {
+        ReleaseAsset();
+        WorldType = (EWorldType)GenericSingleton<GameManager>.Instance.MapStage - 1;
         await LoadAsset();
     }
 

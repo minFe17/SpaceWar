@@ -14,6 +14,9 @@ public class ObjectPoolManager : MonoBehaviour
 
     void Awake()
     {
+        _enemyObjectPool = new EnemyObjectPool();
+        _obstacleObjectPool = new ObstacleObjectPool();
+
         _objectPools.Add(typeof(EPlayerPoolType), new ObjectPool<EPlayerPoolType>());
         _objectPools.Add(typeof(ECoinType), new ObjectPool<ECoinType>());
         _objectPools.Add(typeof(EEventRoomType), new ObjectPool<EEventRoomType>());
@@ -21,7 +24,6 @@ public class ObjectPoolManager : MonoBehaviour
         _objectPools.Add(typeof(ECameraType), new ObjectPool<ECameraType>());
         _objectPools.Add(typeof(EMapPoolType), new ObjectPool<EMapPoolType>());
         CreateQueue();
-        CreateWorldPool();
     }
 
     void CreateQueue()
@@ -32,12 +34,6 @@ public class ObjectPoolManager : MonoBehaviour
         _objectPools[typeof(EGroundWorkType)].Init();
         _objectPools[typeof(ECameraType)].Init();
         _objectPools[typeof(EMapPoolType)].Init();
-    }
-
-    void CreateWorldPool()
-    {
-        _enemyObjectPool.CreateEnemyPool();
-        _obstacleObjectPool.CreateEnemyPool();
     }
 
     public GameObject Push<TEnum>(TEnum type, GameObject prefab) where TEnum : Enum
@@ -57,7 +53,9 @@ public class ObjectPoolManager : MonoBehaviour
     public void ChangeWorldPool()
     {
         _enemyObjectPool.ChangePool();
-        _objectPools[typeof(EMapPoolType)].ClearChild();
         _obstacleObjectPool.ChangePool();
+
+        if (_objectPools[typeof(EMapPoolType)] != null)
+            _objectPools[typeof(EMapPoolType)].ClearChild();
     }
 }

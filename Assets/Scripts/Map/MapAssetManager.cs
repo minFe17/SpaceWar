@@ -21,9 +21,8 @@ public class MapAssetManager : MonoBehaviour
     public GameObject HorizontalWall { get; private set; }
     public GameObject VerticalWall { get; private set; }
 
-    async void LoadEventRoomAsset()
+    async Task LoadEventRoomAsset()
     {
-
         if (_eventRoom.Count != 0)
             return;
 
@@ -34,21 +33,21 @@ public class MapAssetManager : MonoBehaviour
         }
     }
 
-    async void LoadPlayerSpawnPosAsset()
+    async Task LoadPlayerSpawnPosAsset()
     {
         if (PlayerSpawnPos != null)
             return;
         PlayerSpawnPos = await _addressableManager.GetAddressableAsset<GameObject>("PlayerSpawnPos");
     }
 
-    async void LoadEnemyControllerAsset()
+    async Task LoadEnemyControllerAsset()
     {
         if (EnemyController != null)
             return;
         EnemyController = await _addressableManager.GetAddressableAsset<GameObject>("EnemyController");
     }
 
-    async void LoadDeadZoneAsset()
+    async Task LoadDeadZoneAsset()
     {
         if (DeadZone != null)
             return;
@@ -64,16 +63,19 @@ public class MapAssetManager : MonoBehaviour
         VerticalWall = await _addressableManager.GetAddressableAsset<GameObject>($"{worldType}/VerticalWall.prefab");
     }
 
-    public async Task LoadAsset(EWorldType worldType)
+    public async Task LoadAsset()
     {
         if (_addressableManager == null)
             _addressableManager = GenericSingleton<AddressableManager>.Instance;
 
-        LoadEventRoomAsset();
-        LoadPlayerSpawnPosAsset();
-        LoadEnemyControllerAsset();
-        LoadDeadZoneAsset();
+        await LoadDeadZoneAsset();
+        await LoadEventRoomAsset();
+        await LoadEnemyControllerAsset();
+        await LoadPlayerSpawnPosAsset();
+    }
 
+    public async Task LoadWorldAsset(EWorldType worldType)
+    {
         await LoadMapAsset(worldType);
     }
 

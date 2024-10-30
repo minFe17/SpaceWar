@@ -15,16 +15,12 @@ public class MovableEnemy : Enemy
 
     public int Damage { get => _damage; }
 
-    void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
-
     public override void Init(EnemyController enemyController)
     {
         base.Init(enemyController);
         _isAttack = false;
         _isHitted = false;
+        _animator = GetComponent<Animator>();
     }
 
     public virtual void Move()

@@ -12,8 +12,6 @@ public class WorldFactory : MonoBehaviour
     {
         if (_worldManager == null)
             _worldManager = GenericSingleton<WorldManager>.Instance;
-
-        ChangeWorldFactory();
     }
 
     public void ChangeWorldFactory()

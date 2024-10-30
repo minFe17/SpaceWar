@@ -18,7 +18,8 @@ public class PlayerSpawn : MonoBehaviour
         if (_factoryManager == null)
             _factoryManager = GenericSingleton<FactoryManager>.Instance;
        
-        _player = _factoryManager.MakeObject<EPlayerPoolType, Player>(EPlayerPoolType.Player);
+        GameObject temp = _factoryManager.MakeObject<EPlayerPoolType, GameObject>(EPlayerPoolType.Player);
+        _player = temp.GetComponent<Player>();
 
         _player.transform.position = transform.position;
         SpawnCamera();

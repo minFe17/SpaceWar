@@ -6,6 +6,7 @@ public class VerticalWallFactory : MapFactoryBase, IFactory<GameObject>
     {
         _mapType = EMapPoolType.VerticalWall;
         _factoryManager.MapFactory.AddFactory(_mapType, this);
+        _prefab = _mapAssetManager.VerticalWall;
     }
 
     GameObject IFactory<GameObject>.MakeObject()

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
@@ -29,7 +28,7 @@ public class DungeonCreator : MonoBehaviour
     [Range(6, 10)]
     [SerializeField] int _roomOffset;
 
-    List<GameObject> _enemyControllers = new List<GameObject>(); 
+    List<GameObject> _enemyControllers = new List<GameObject>();
     List<EventRoom> _eventRooms = new List<EventRoom>();
     List<IMap> _maps = new List<IMap>();
     List<IObstacle> _obstacles = new List<IObstacle>();
@@ -59,7 +58,7 @@ public class DungeonCreator : MonoBehaviour
             _factoryMaanger = GenericSingleton<FactoryManager>.Instance;
         if (_obstacleAssetManager == null)
             _obstacleAssetManager = GenericSingleton<ObstacleAssetManager>.Instance;
-        if(_objectPoolManager == null)
+        if (_objectPoolManager == null)
             _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
     }
 
@@ -188,7 +187,7 @@ public class DungeonCreator : MonoBehaviour
 
     void CreatePortal(Vector3 createPos, GameObject parent)
     {
-        GameObject portal =  _factoryMaanger.MakeObject<EEventRoomType, GameObject>(EEventRoomType.Portal);
+        GameObject portal = _factoryMaanger.MakeObject<EEventRoomType, GameObject>(EEventRoomType.Portal);
         GenericSingleton<GameManager>.Instance.Portal = portal;
         portal.transform.position = createPos;
         _eventRooms.Add(portal.GetComponent<EventRoom>());
@@ -243,7 +242,7 @@ public class DungeonCreator : MonoBehaviour
     {
         foreach (var wallPosition in _possibleWallHorizontalPosition)
         {
-            GameObject wall =_factoryMaanger.MakeObject<EMapPoolType, GameObject>(EMapPoolType.HorizontalWall);
+            GameObject wall = _factoryMaanger.MapFactory.MakeObject(EMapPoolType.HorizontalWall);
             wall.transform.position = wallPosition;
             wall.transform.parent = wallParent.transform;
             _maps.Add(wall.GetComponent<IMap>());
@@ -251,7 +250,7 @@ public class DungeonCreator : MonoBehaviour
 
         foreach (var wallPosition in _possibleWallVerticalPosition)
         {
-            GameObject wall = _factoryMaanger.MakeObject<EMapPoolType, GameObject>(EMapPoolType.VerticalWall);
+            GameObject wall = _factoryMaanger.MapFactory.MakeObject(EMapPoolType.VerticalWall);
             wall.transform.position = wallPosition;
             wall.transform.parent = wallParent.transform;
             _maps.Add(wall.GetComponent<IMap>());
@@ -272,17 +271,17 @@ public class DungeonCreator : MonoBehaviour
             Vector3 createLeftPos = new Vector3(bottomLeftCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
             Vector3 createRightPos = new Vector3(topRightCorner.x, -0.2f, (bottomLeftCorner.y + topRightCorner.y) / 2);
 
-            CreateDoor(EMapPoolType.HorizontalDoor, createLeftPos, createRightPos);
+            CreateDoor(EMapPoolType.VerticalDoor, createLeftPos, createRightPos);
         }
     }
 
-    void CreateDoor(Enum doorType, Vector3 pos1,  Vector3 pos2)
+    void CreateDoor(Enum doorType, Vector3 pos1, Vector3 pos2)
     {
-        GameObject firstDoor = _factoryMaanger.MakeObject<EMapPoolType, GameObject>((EMapPoolType)doorType);
+        GameObject firstDoor = _factoryMaanger.MapFactory.MakeObject((EMapPoolType)doorType);
         firstDoor.transform.position = pos1;
         firstDoor.transform.parent = transform;
 
-        GameObject secondDoor = _factoryMaanger.MakeObject<EMapPoolType, GameObject>((EMapPoolType)doorType);
+        GameObject secondDoor = _factoryMaanger.MapFactory.MakeObject((EMapPoolType)doorType);
         secondDoor.transform.position = pos2;
         secondDoor.transform.parent = transform;
 
@@ -306,29 +305,30 @@ public class DungeonCreator : MonoBehaviour
 
     void DestroyGroundWork()
     {
-        _objectPoolManager.Pull(EGroundWorkType.DeadZone, _deadZone);
-        for(int i=0; i<_enemyControllers.Count; i++)
+        if (_deadZone != null)
+            _objectPoolManager.Pull(EGroundWorkType.DeadZone, _deadZone);
+        for (int i = 0; i < _enemyControllers.Count; i++)
             _objectPoolManager.Pull(EGroundWorkType.EnemyController, _enemyControllers[i]);
         _enemyControllers.Clear();
     }
 
     void DestroyeventRoom()
     {
-        for(int i=0; i<_eventRooms.Count; i++)
+        for (int i = 0; i < _eventRooms.Count; i++)
             _eventRooms[i].DestroyEventRoom();
         _eventRooms.Clear();
     }
 
     void DestroyMap()
     {
-        for(int i=0; i< _maps.Count; i++)
+        for (int i = 0; i < _maps.Count; i++)
             _maps[i].DestroyMap();
         _maps.Clear();
     }
 
     void DestroyObstacle()
     {
-        for(int i=0; i<_obstacles.Count; i++)
+        for (int i = 0; i < _obstacles.Count; i++)
             _obstacles[i].DestroyObstacle();
         _obstacles.Clear();
     }
@@ -342,6 +342,7 @@ public class DungeonCreator : MonoBehaviour
         DestroyeventRoom();
         DestroyMap();
         DestroyObstacle();
+
         while (transform.childCount != 0)
         {
             foreach (Transform item in transform)

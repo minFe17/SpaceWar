@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Factory\Child\Map\MapFactoryBase.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Map\MapFactory.cs" />
     <Compile Include="Assets\amusedART\StoneMonster\Script\Animation_Test.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\LobbyUI.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\SecondCageFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\MapCameraFactory.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Map\Obstacle\interface\IObstacle.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\GolemRock.cs" />
     <Compile Include="Assets\Scripts\Potion\Interface\IPotion.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\SecondWorld\SecondWorldObstacleList.cs" />
@@ -203,6 +205,7 @@
     <Compile Include="Assets\Bullet Casing\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\ThirdWorldd\ThirdWorldObstacleList.cs" />
     <Compile Include="Assets\UI button pack 2\Scene\CreateObj.cs" />
+    <Compile Include="Assets\Scripts\Factory\WorldFactory.cs" />
     <Compile Include="Assets\Scripts\Potion\PotionManager.cs" />
     <Compile Include="Assets\Scripts\UI\SoundOptionUI.cs" />
     <Compile Include="Assets\Bullet Casing\Scripts\FP_Shooting.cs" />
@@ -228,7 +231,7 @@
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\SecondWorld\SecondObstacle.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\RaptorSoundEffects.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\EventRoom\Child\PortalFactory.cs" />
-    <Compile Include="Assets\Scripts\Factory\Child\Coin\Child\SliverCoinFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Coin\Child\SilverCoinCoinFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Interface\IGenericFactory.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EThirdWorldEnemyType.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\FirstWorlld\Child\ScorpionFactory.cs" />
@@ -272,6 +275,7 @@
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\RaptorAttackarea.cs" />
     <Compile Include="Assets\Scripts\Csv\CsvManager.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Coin\CoinFactoryBase.cs" />
+    <Compile Include="Assets\Prefabs\Map\Dungeon\Interface\IMap.cs" />
     <Compile Include="Assets\Scripts\Enemy\MovableEnemy.cs" />
     <Compile Include="Assets\Scripts\Csv\WriteData.cs" />
     <Compile Include="Assets\Scripts\Camera\Enum\ECameraType.cs" />
@@ -292,10 +296,6 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Factory\WorldFactory.cs" />
-    <Compile Include="Assets\Scripts\Factory\Child\Map\MapFactory.cs" />
-    <Compile Include="Assets\Prefabs\Map\Dungeon\Interface\IMap.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\interface\IObstacle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

@@ -6,6 +6,7 @@ public class HorizontalDoorFactory : MapFactoryBase, IFactory<GameObject>
     {
         _mapType = EMapPoolType.HorizontalDoor;
         _factoryManager.MapFactory.AddFactory(_mapType, this);
+        _prefab = _mapAssetManager.HorizontalDoor;
     }
 
     GameObject IFactory<GameObject>.MakeObject()

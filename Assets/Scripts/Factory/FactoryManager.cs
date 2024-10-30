@@ -22,14 +22,14 @@ public class FactoryManager : MonoBehaviour
 
     void Awake()
     {
-        _factorys.Add(typeof(EPlayerPoolType), new Factory<EPlayerPoolType>());
-        _factorys.Add(typeof(ECoinType), new Factory<ECoinType>());
-        _factorys.Add(typeof(EEventRoomType), new Factory<EEventRoomType>());
-        _factorys.Add(typeof(EGroundWorkType), new Factory<EGroundWorkType>());
-        _factorys.Add(typeof(ECameraType), new Factory<ECameraType>());
+        _factorys.Add(typeof(EPlayerPoolType), new Factory<GameObject>());
+        _factorys.Add(typeof(ECoinType), new Factory<GameObject>());
+        _factorys.Add(typeof(EEventRoomType), new Factory<GameObject>());
+        _factorys.Add(typeof(EGroundWorkType), new Factory<GameObject>());
+        _factorys.Add(typeof(ECameraType), new Factory<GameObject>());
     }
 
-    public async void Init()
+    public async Task Init()
     {
         await LoadAsset();
         CreateFactory();

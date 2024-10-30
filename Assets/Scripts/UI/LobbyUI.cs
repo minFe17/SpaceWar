@@ -31,9 +31,9 @@ public class LobbyUI : MonoBehaviour
         _buttonPanel.SetActive(false);
         GenericSingleton<SoundManager>.Instance.Init();
         _continueGameButton.interactable = false;
+        _auidoClipManager = GenericSingleton<AudioClipManager>.Instance;
         _disabledColorAlpha = _continueGameButton.colors.disabledColor.a;
         _continueGameText.color = new Color(0, 0, 0, _disabledColorAlpha);
-        _auidoClipManager = GenericSingleton<AudioClipManager>.Instance;
     }
 
     async Task LoadAsset()
@@ -54,16 +54,19 @@ public class LobbyUI : MonoBehaviour
         }
     }
 
-    public void NewGameButton()
+    public async void NewGameButton()
     {
         Time.timeScale = 1f;
         GenericSingleton<CsvManager>.Instance.DestroyDataFiles();
+        GenericSingleton<GameManager>.Instance.MapStage = 1;
+        await GenericSingleton<WorldManager>.Instance.ResetWorld();
         SceneManager.LoadScene("FirstWorld");
     }
 
-    public void ContinueGameButton()
+    public async void ContinueGameButton()
     {
         Time.timeScale = 1f;
+        await GenericSingleton<WorldManager>.Instance.ContinueGame();
         SceneManager.LoadScene($"{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}");
     }
 

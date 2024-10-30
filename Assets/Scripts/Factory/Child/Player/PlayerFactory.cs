@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utils;
 
-public class PlayerFactory : FactoryBase, IFactory<Player>
+public class PlayerFactory : FactoryBase, IFactory<GameObject>
 {
     EPlayerPoolType _poolType;
     PlayerAssetManager _assetManager;
@@ -21,10 +21,9 @@ public class PlayerFactory : FactoryBase, IFactory<Player>
         _factoryManager.AddFactorys(_poolType, this);
     }
 
-    Player IFactory<Player>.MakeObject()
+    GameObject IFactory<GameObject>.MakeObject()
     {
-        GameObject temp = _objectPoolManager.Push(_poolType, _prefab);
-        Player player = temp.GetComponent<Player>();
+        GameObject player = _objectPoolManager.Push(_poolType, _prefab);
         return player;
     }
 }

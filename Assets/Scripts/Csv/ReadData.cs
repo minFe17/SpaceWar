@@ -139,10 +139,10 @@ public class ReadData : MonoBehaviour
 
     public bool ReadSoundData()
     {
-        if (!_csvManager.CheckDataFile(_csvManager.PassiveDataFilePath))
+        if (!_csvManager.CheckDataFile(_csvManager.SoundDataFilePath))
             return false;
 
-        string[] value = BaseReadData(_csvManager.PassiveDataFilePath);
+        string[] value = BaseReadData(_csvManager.SoundDataFilePath);
         if(value == null)
             return false;
 

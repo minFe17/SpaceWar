@@ -11,9 +11,8 @@ public class ObstacleObjectPool : MonoBehaviour
 
     public IObjectPool ObstaclePool { get => _obstaclePool; }
 
-    void Init()
+    void MakeWorldList()
     {
-        _gameMaanger = GenericSingleton<GameManager>.Instance;
         _worlds.Add(new FirstWorldObstacleList());
         _worlds.Add(new SecondWorldObstacleList());
         _worlds.Add(new ThirdWorldObstacleList());
@@ -26,6 +25,10 @@ public class ObstacleObjectPool : MonoBehaviour
 
     void MakePool()
     {
+        if (_gameMaanger == null)
+            _gameMaanger = GenericSingleton<GameManager>.Instance;
+        if (_worlds.Count == 0)
+            MakeWorldList();
         _worlds[_gameMaanger.MapStage - 1].MakePool(this);
     }
 
@@ -33,12 +36,6 @@ public class ObstacleObjectPool : MonoBehaviour
     {
         if (_obstaclePool != null)
             DestroyChild();
-        MakePool();
-    }
-
-    public void CreateEnemyPool()
-    {
-        Init();
         MakePool();
     }
 

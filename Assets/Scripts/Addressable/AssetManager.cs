@@ -7,15 +7,15 @@ public class AssetManager : MonoBehaviour
     // ╫л╠шео
     public async Task LoadAsset()
     {
-        LoadFactory();
         await LoadPlayerAsset();
         await LoadCameraAsset();
         await LoadSoundAsset();
         await LoadUIAsset();
-        await LoadWorldAsset();
         await LoadPassiveAsset();
+        await LoadGroundWorkAsset();
+        await LoadFactory();
     }
-    
+
     async Task LoadCameraAsset()
     {
         await GenericSingleton<CameraAssetManager>.Instance.LoadAsset();
@@ -37,19 +37,19 @@ public class AssetManager : MonoBehaviour
         await GenericSingleton<UIManager>.Instance.LoadAsset();
     }
 
-    async Task LoadWorldAsset()
-    {
-        await GenericSingleton<WorldManager>.Instance.ResetWorld();
-    }
-
     async Task LoadPassiveAsset()
     {
         await GenericSingleton<PassiveSpriteManager>.Instance.LoadAsset();
         await GenericSingleton<PassiveManager>.Instance.Init();
     }
 
-    void LoadFactory()
+    async Task LoadGroundWorkAsset()
     {
-        GenericSingleton<FactoryManager>.Instance.Init();
+        await GenericSingleton<MapAssetManager>.Instance.LoadAsset();
+    }
+
+    async Task LoadFactory()
+    {
+        await GenericSingleton<FactoryManager>.Instance.Init();
     }
 }

@@ -22,15 +22,6 @@ public abstract class Enemy : MonoBehaviour
     public int CurHp { get => _curHp; }
     public int MaxHp { get => _maxHp; }
 
-    void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-        _enemyManager = GenericSingleton<EnemyManager>.Instance;
-        _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
-        _coinManager = GenericSingleton<CoinManager>.Instance;
-        _player = GenericSingleton<PlayerDataManager>.Instance.Player;
-    }
-
     public virtual void Init(EnemyController enemyController)
     {
         _isDie = false;
@@ -38,6 +29,11 @@ public abstract class Enemy : MonoBehaviour
         _enemyController = enemyController;
         _enemyController.EnemyList.Add(this);
         _target = GenericSingleton<EnemyManager>.Instance.Target;
+        _player = GenericSingleton<PlayerDataManager>.Instance.Player;
+        _rigidbody = GetComponent<Rigidbody>();
+        _enemyManager = GenericSingleton<EnemyManager>.Instance;
+        _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
+        _coinManager = GenericSingleton<CoinManager>.Instance;
     }
 
     public virtual void LookTarget()

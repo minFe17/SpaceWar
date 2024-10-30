@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class SliverCoinFactory : CoinFactoryBase, IFactory<GameObject>
+public class SilverCoinCoinFactory : CoinFactoryBase, IFactory<GameObject>
 {
     protected override void Init()
     {
-        _coinType = ECoinType.SliverCoin;
+        _coinType = ECoinType.SilverCoin;
         _factoryManager.AddFactorys(_coinType, this);
     }
 

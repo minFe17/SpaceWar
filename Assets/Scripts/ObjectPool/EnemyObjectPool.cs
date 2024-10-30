@@ -11,9 +11,8 @@ public class EnemyObjectPool : MonoBehaviour
 
     public IObjectPool EnemyPool { get=>_enemyPool; }
 
-    void Init()
+    void MakeWorldList()
     {
-        _gameMaanger = GenericSingleton<GameManager>.Instance;
         _worlds.Add(new FirstWorld());
         _worlds.Add(new SecondWorld());
         _worlds.Add(new ThirdWorld());
@@ -26,6 +25,11 @@ public class EnemyObjectPool : MonoBehaviour
 
     void MakePool()
     {
+        if (_gameMaanger == null)
+            _gameMaanger = GenericSingleton<GameManager>.Instance;
+        if(_worlds.Count == 0)
+            MakeWorldList();
+        
         _worlds[_gameMaanger.MapStage - 1].MakePool(this);
     }
 
@@ -33,12 +37,6 @@ public class EnemyObjectPool : MonoBehaviour
     {
         if (_enemyPool != null)
             DestroyChild();
-        MakePool();
-    }
-
-    public void CreateEnemyPool()
-    {
-        Init();
         MakePool();
     }
 

@@ -6,6 +6,7 @@ public class VerticalDoorFactory : MapFactoryBase, IFactory<GameObject>
     {
         _mapType = EMapPoolType.VerticalDoor;
         _factoryManager.MapFactory.AddFactory(_mapType, this);
+        _prefab = _mapAssetManager.VerticalDoor;
     }
 
     GameObject IFactory<GameObject>.MakeObject()

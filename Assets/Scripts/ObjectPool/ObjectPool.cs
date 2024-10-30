@@ -30,7 +30,7 @@ public class ObjectPool<TEnum> : MonoBehaviour, IObjectPool where TEnum : Enum
         _queue = null;
         GameObject returnObject = null;
         _objectPool.TryGetValue((TEnum)type, out _queue);
-        if (_queue.Count > 0)
+        if (_queue != null && _queue.Count > 0)
         {
             returnObject = _queue.Dequeue();
             returnObject.SetActive(true);
