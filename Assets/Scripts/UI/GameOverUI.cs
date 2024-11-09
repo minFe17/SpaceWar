@@ -82,9 +82,10 @@ public class GameOverUI : MonoBehaviour
         _moneyText.text = string.Format("{0:D3}", money);
     }
 
-    public void RegameButton()
+    public async void RegameButton()
     {
         GenericSingleton<CsvManager>.Instance.DestroyDataFiles();
+        await GenericSingleton<WorldManager>.Instance.ResetWorld();
         SceneManager.LoadScene("FirstWorld");
         GenericSingleton<AudioClipManager>.Instance.PlaySFX(ESFXAudioType.Button);
     }

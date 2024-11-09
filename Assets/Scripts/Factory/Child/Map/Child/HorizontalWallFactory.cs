@@ -12,7 +12,6 @@ public class HorizontalWallFactory : MapFactoryBase, IFactory<GameObject>
     GameObject IFactory<GameObject>.MakeObject()
     {
         GameObject wall = _objectPoolManager.Push(_mapType, _prefab);
-        Debug.Log(wall);
         return wall;
     }
 }
