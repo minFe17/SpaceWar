@@ -73,8 +73,8 @@ public class DungeonCreator : MonoBehaviour
 
         DungeonGenerator generator = new DungeonGenerator(_dungeonWidth, _dungeonLength);
 
-        CreateCorridor(generator);
         CreateRoom(generator);
+        CreateCorridor(generator);
 
         GameObject wallParent = new GameObject("wallParent");
         wallParent.transform.parent = transform;
