@@ -275,7 +275,7 @@
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\RaptorAttackarea.cs" />
     <Compile Include="Assets\Scripts\Csv\CsvManager.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Coin\CoinFactoryBase.cs" />
-    <Compile Include="Assets\Prefabs\Map\Dungeon\Interface\IMap.cs" />
+    <Compile Include="Assets\Scripts\Interface\IMap.cs" />
     <Compile Include="Assets\Scripts\Enemy\MovableEnemy.cs" />
     <Compile Include="Assets\Scripts\Csv\WriteData.cs" />
     <Compile Include="Assets\Scripts\Camera\Enum\ECameraType.cs" />

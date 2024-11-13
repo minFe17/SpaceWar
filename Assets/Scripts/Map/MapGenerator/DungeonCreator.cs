@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Utils;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using Random = UnityEngine.Random;
 
 public class DungeonCreator : MonoBehaviour
@@ -72,57 +72,56 @@ public class DungeonCreator : MonoBehaviour
         CreateDeadZone();
 
         DungeonGenerator generator = new DungeonGenerator(_dungeonWidth, _dungeonLength);
+        var listOfRooms = generator.CalculateDungeon(_maxIterations, _roomWidthMin, _roomLengthMin,
+                                                     _roomBottomCornerModifier, _roomTopCornerModifier, _roomOffset);
+        var listOfCorridors = generator.CalculateCorridors(_corridorWidth);
 
-        CreateRoom(generator);
-        CreateCorridor(generator);
+        CreateCorridor(listOfCorridors);
+        CreateRoom(listOfRooms);
 
         GameObject wallParent = new GameObject("wallParent");
         wallParent.transform.parent = transform;
         CreateWalls(wallParent);
     }
 
-    void CreateCorridor(DungeonGenerator generator)
+    void CreateCorridor(List<Node> corridors)
     {
-        var listOfCorridors = generator.CalculateCorridors(_corridorWidth);
-        for (int i = 0; i < listOfCorridors.Count; i++)
+        for (int i = 0; i < corridors.Count; i++)
         {
-            CreateDoors(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner);
-            CreateMesh(listOfCorridors[i].BottomLeftAreaCorner, listOfCorridors[i].TopRightAreaCorner, true);
+            CreateDoors(corridors[i].BottomLeftAreaCorner, corridors[i].TopRightAreaCorner);
+            CreateMesh(corridors[i].BottomLeftAreaCorner, corridors[i].TopRightAreaCorner, true);
         }
     }
 
-    void CreateRoom(DungeonGenerator generator)
+    void CreateRoom(List<Node> rooms)
     {
-        var listOfRooms = generator.CalculateDungeon(_maxIterations, _roomWidthMin, _roomLengthMin,
-                                                     _roomBottomCornerModifier, _roomTopCornerModifier, _roomOffset);
-
-        for (int i = 0; i < listOfRooms.Count; i++)
+        for (int i = 0; i < rooms.Count; i++)
         {
-            GameObject room = CreateMesh(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, false);
-            Vector3 createPos = CalculateCreatePosition(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner);
+            GameObject room = CreateMesh(rooms[i].BottomLeftAreaCorner, rooms[i].TopRightAreaCorner, false);
+            Vector3 createPos = CalculateCreatePosition(rooms[i].BottomLeftAreaCorner, rooms[i].TopRightAreaCorner);
 
             if (i == 0)
             {
                 CreatePlayerSpawnPos(createPos, room);
                 room.AddComponent<ClearRoom>();
             }
-            else if (i == listOfRooms.Count - 1)
+            else if (i == rooms.Count - 1)
             {
                 if (GenericSingleton<GameManager>.Instance.LevelStage == 5)
                 {
-                    CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, true);
-                    CreateObstacle(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room.transform);
+                    CreateEnemyController(rooms[i].BottomLeftAreaCorner, rooms[i].TopRightAreaCorner, room, true);
+                    CreateObstacle(rooms[i].BottomLeftAreaCorner, rooms[i].TopRightAreaCorner, room.transform);
                 }
                 CreatePortal(createPos, room);
             }
-            else if (listOfRooms.Count / 2 == i)
+            else if (rooms.Count / 2 == i)
             {
                 CreateShop(createPos, room);
             }
             else
             {
-                CreateEnemyController(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room, false);
-                CreateObstacle(listOfRooms[i].BottomLeftAreaCorner, listOfRooms[i].TopRightAreaCorner, room.transform);
+                CreateEnemyController(rooms[i].BottomLeftAreaCorner, rooms[i].TopRightAreaCorner, room, false);
+                CreateObstacle(rooms[i].BottomLeftAreaCorner, rooms[i].TopRightAreaCorner, room.transform);
             }
         }
     }
@@ -239,11 +238,19 @@ public class DungeonCreator : MonoBehaviour
 
     void CalculateRoomWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
     {
-        for (int row = (int)bottomLeft.x; row < (int)bottomRight.x; row += _wallWidth)
+        if(CheckDoor(out int doorPos, _horizontalDoorPos, bottomLeft, bottomRight))
         {
-            var wallPosition = new Vector3(row, 0, bottomLeft.z);
-            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
+            doorPos
         }
+        else
+        {
+            for (int row = (int)bottomLeft.x; row < (int)bottomRight.x; row += _wallWidth)
+            {
+                var wallPosition = new Vector3(row, 0, bottomLeft.z);
+                AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
+            }
+        }
+        
         for (int row = (int)topLeft.x; row < (int)topRight.x; row += _wallWidth)
         {
             var wallPosition = new Vector3(row, 0, topRight.z);
@@ -260,6 +267,18 @@ public class DungeonCreator : MonoBehaviour
             var wallPosition = new Vector3(bottomRight.x, 0, col);
             AddWallPositionToList(wallPosition, _possibleWallVerticalPosition);
         }
+    }
+
+    bool CheckDoor(out int doorPos, Dictionary<int, HashSet<int>> dict, Vector3 key1, Vector3 key2)
+    {
+        HashSet<int> hash;
+        doorPos = 0;
+        if (_horizontalDoorPos.TryGetValue((int)key1.x, out hash))
+        {
+            doorPos = hash.FirstOrDefault(value => key1.x < value && value < key2.x);
+            return true;
+        }
+        return false;
     }
 
     void AddWallPositionToList(Vector3 wallPosition, List<Vector3Int> wallList)
