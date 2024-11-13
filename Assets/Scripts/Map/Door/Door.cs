@@ -68,8 +68,6 @@ public class Door : MonoBehaviour, IMap
     {
         if (other.gameObject.CompareTag("Player"))
             _isOpen = true;
-        else if (other.gameObject.CompareTag("Wall"))
-            Destroy(other.transform.parent.gameObject);
     }
 
     private void OnTriggerExit(Collider other)

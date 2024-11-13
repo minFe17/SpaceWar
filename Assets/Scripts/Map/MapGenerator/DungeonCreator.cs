@@ -40,6 +40,10 @@ public class DungeonCreator : MonoBehaviour
     List<Vector3Int> _possibleWallVerticalPosition = new List<Vector3Int>();
     List<Vector3Int> _possibleWallHorizontalPosition = new List<Vector3Int>();
 
+    GameObject _wallParent;
+    GameObject _floorParent;
+    GameObject _doorParent;
+
     MapAssetManager _mapAssetManager;
     FactoryManager _factoryMaanger;
     ObstacleAssetManager _obstacleAssetManager;
@@ -66,10 +70,23 @@ public class DungeonCreator : MonoBehaviour
             _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
     }
 
+    void CreateParent()
+    {
+        _floorParent = new GameObject("MeshParent");
+        _floorParent.transform.parent = transform;
+
+        _wallParent = new GameObject("WallParent");
+        _wallParent.transform.parent = transform;
+
+        _doorParent = new GameObject("DoorParent");
+        _doorParent.transform.parent = transform;
+    }
+
     void CreateDungeon()
     {
         DestroyAllChildren();
         CreateDeadZone();
+        CreateParent();
 
         DungeonGenerator generator = new DungeonGenerator(_dungeonWidth, _dungeonLength);
         var listOfRooms = generator.CalculateDungeon(_maxIterations, _roomWidthMin, _roomLengthMin,
@@ -78,10 +95,6 @@ public class DungeonCreator : MonoBehaviour
 
         CreateCorridor(listOfCorridors);
         CreateRoom(listOfRooms);
-
-        GameObject wallParent = new GameObject("wallParent");
-        wallParent.transform.parent = transform;
-        CreateWalls(wallParent);
     }
 
     void CreateCorridor(List<Node> corridors)
@@ -168,7 +181,7 @@ public class DungeonCreator : MonoBehaviour
     {
         dungeonFloor.transform.position = Vector3.zero;
         dungeonFloor.transform.localScale = Vector3.one;
-        dungeonFloor.transform.parent = transform;
+        dungeonFloor.transform.parent = _floorParent.transform;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = _mapAssetManager.FloorMaterial;
         dungeonFloor.AddComponent<MeshCollider>();
@@ -238,73 +251,87 @@ public class DungeonCreator : MonoBehaviour
 
     void CalculateRoomWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
     {
-        if(CheckDoor(out int doorPos, _horizontalDoorPos, bottomLeft, bottomRight))
+        CalculateHorizontalWall(bottomLeft, bottomRight);   // Bottom
+        CalculateHorizontalWall(topLeft, topRight);         // Top
+        CalculateVerticalWall(bottomLeft, topLeft);         // Left
+        CalculateVerticalWall(bottomRight, topRight);       // Right
+    }
+
+    void CalculateHorizontalWall(Vector3 leftPos, Vector3 rightPos)
+    {
+        if (CheckDoor(out int doorPos, _horizontalDoorPos, (int)leftPos.z, (int)leftPos.x, (int)rightPos.x))
         {
-            doorPos
+            int pos1 = doorPos - (_doorWidth / 2) - (_wallWidth / 2);
+            int pos2 = doorPos + (_doorWidth / 2) + (_wallWidth / 2);
+
+            for (int row = pos1; row >= (int)leftPos.x - _wallWidth; row -= _wallWidth)
+            {
+                Vector3 wallPos = new Vector3(row, 0, leftPos.z);
+                CreateWall(wallPos, EMapPoolType.HorizontalWall);
+            }
+            for (int row = pos2; row <= (int)rightPos.x + _wallWidth; row += _wallWidth)
+            {
+                Vector3 wallPos = new Vector3(row, 0, rightPos.z);
+                CreateWall(wallPos, EMapPoolType.HorizontalWall);
+            }
         }
         else
         {
-            for (int row = (int)bottomLeft.x; row < (int)bottomRight.x; row += _wallWidth)
+            for (int row = (int)leftPos.x; row <= (int)rightPos.x + _wallWidth; row += _wallWidth)
             {
-                var wallPosition = new Vector3(row, 0, bottomLeft.z);
-                AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
+                var wallPos = new Vector3(row, 0, leftPos.z);
+                CreateWall(wallPos, EMapPoolType.HorizontalWall);
             }
-        }
-        
-        for (int row = (int)topLeft.x; row < (int)topRight.x; row += _wallWidth)
-        {
-            var wallPosition = new Vector3(row, 0, topRight.z);
-            AddWallPositionToList(wallPosition, _possibleWallHorizontalPosition);
-        }
-
-        for (int col = (int)bottomLeft.z; col < (int)topLeft.z; col += _wallWidth)
-        {
-            var wallPosition = new Vector3(bottomLeft.x, 0, col);
-            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition);
-        }
-        for (int col = (int)bottomRight.z; col < (int)topRight.z; col += _wallWidth)
-        {
-            var wallPosition = new Vector3(bottomRight.x, 0, col);
-            AddWallPositionToList(wallPosition, _possibleWallVerticalPosition);
         }
     }
 
-    bool CheckDoor(out int doorPos, Dictionary<int, HashSet<int>> dict, Vector3 key1, Vector3 key2)
+    void CalculateVerticalWall(Vector3 bottomPos, Vector3 topPos)
+    {
+        if (CheckDoor(out int doorPos, _verticalDoorPos, (int)bottomPos.x, (int)bottomPos.z, (int)topPos.z))
+        {
+            int pos1 = doorPos - (_doorWidth / 2) - (_wallWidth / 2);
+            int pos2 = doorPos + (_doorWidth / 2) + (_wallWidth / 2);
+
+            for (int col = pos1; col >= (int)bottomPos.z - _wallWidth; col -= _wallWidth)
+            {
+                Vector3 wallPos = new Vector3(bottomPos.x, 0, col);
+                CreateWall(wallPos, EMapPoolType.VerticalWall);
+            }
+            for (int col = pos2; col <= (int)topPos.z + _wallWidth; col += _wallWidth)
+            {
+                Vector3 wallPos = new Vector3(topPos.x, 0, col);
+                CreateWall(wallPos, EMapPoolType.VerticalWall);
+            }
+        }
+        else
+        {
+            for (int col = (int)bottomPos.z; col <= (int)topPos.z + _wallWidth; col += _wallWidth)
+            {
+                var wallPos = new Vector3(bottomPos.x, 0, col);
+                CreateWall(wallPos, EMapPoolType.VerticalWall);
+            }
+        }
+    }
+
+    bool CheckDoor(out int doorPos, Dictionary<int, HashSet<int>> dict, int key, int pos1, int pos2)
     {
         HashSet<int> hash;
         doorPos = 0;
-        if (_horizontalDoorPos.TryGetValue((int)key1.x, out hash))
+        if (dict.TryGetValue(key, out hash))
         {
-            doorPos = hash.FirstOrDefault(value => key1.x < value && value < key2.x);
-            return true;
+            doorPos = hash.FirstOrDefault(value => pos1 < value && value < pos2);
+            if (doorPos != 0)
+                return true;
         }
         return false;
     }
 
-    void AddWallPositionToList(Vector3 wallPosition, List<Vector3Int> wallList)
+    void CreateWall(Vector3 pos, EMapPoolType type)
     {
-        Vector3Int point = Vector3Int.CeilToInt(wallPosition);
-        if (!wallList.Contains(point))
-            wallList.Add(point);
-    }
-
-    void CreateWalls(GameObject wallParent)
-    {
-        foreach (var wallPosition in _possibleWallHorizontalPosition)
-        {
-            GameObject wall = _factoryMaanger.MapFactory.MakeObject(EMapPoolType.HorizontalWall);
-            wall.transform.position = wallPosition;
-            wall.transform.parent = wallParent.transform;
-            _maps.Add(wall.GetComponent<IMap>());
-        }
-
-        foreach (var wallPosition in _possibleWallVerticalPosition)
-        {
-            GameObject wall = _factoryMaanger.MapFactory.MakeObject(EMapPoolType.VerticalWall);
-            wall.transform.position = wallPosition;
-            wall.transform.parent = wallParent.transform;
-            _maps.Add(wall.GetComponent<IMap>());
-        }
+        GameObject wall = _factoryMaanger.MapFactory.MakeObject(type);
+        wall.transform.position = pos;
+        wall.transform.parent = _wallParent.transform;
+        _maps.Add(wall.GetComponent<IMap>());
     }
 
     void CreateDoors(Vector2 bottomLeftCorner, Vector2 topRightCorner)
@@ -317,8 +344,8 @@ public class DungeonCreator : MonoBehaviour
             CreateDoor(EMapPoolType.HorizontalDoor, createBottomPos);
             CreateDoor(EMapPoolType.HorizontalDoor, createTopPos);
 
-            AddWallPosition(_horizontalDoorPos, (int)createBottomPos.y, (int)createBottomPos.x);
-            AddWallPosition(_horizontalDoorPos, (int)createTopPos.y, (int)createTopPos.x);
+            AddDoorPosition(_horizontalDoorPos, (int)createBottomPos.z, (int)createBottomPos.x);
+            AddDoorPosition(_horizontalDoorPos, (int)createTopPos.z, (int)createTopPos.x);
         }
         else
         {
@@ -328,8 +355,8 @@ public class DungeonCreator : MonoBehaviour
             CreateDoor(EMapPoolType.VerticalDoor, createLeftPos);
             CreateDoor(EMapPoolType.VerticalDoor, createRightPos);
 
-            AddWallPosition(_verticalDoorPos, (int)createLeftPos.x, (int)createLeftPos.y);
-            AddWallPosition(_horizontalDoorPos, (int)createRightPos.x, (int)createRightPos.y);
+            AddDoorPosition(_verticalDoorPos, (int)createLeftPos.x, (int)createLeftPos.z);
+            AddDoorPosition(_verticalDoorPos, (int)createRightPos.x, (int)createRightPos.z);
         }
     }
 
@@ -337,12 +364,11 @@ public class DungeonCreator : MonoBehaviour
     {
         GameObject door = _factoryMaanger.MapFactory.MakeObject((EMapPoolType)doorType);
         door.transform.position = pos;
-        door.transform.parent = transform;
-
+        door.transform.parent = _doorParent.transform;
         _maps.Add(door.GetComponent<IMap>());
     }
 
-    void AddWallPosition(Dictionary<int, HashSet<int>> target, int key, int value)
+    void AddDoorPosition(Dictionary<int, HashSet<int>> target, int key, int value)
     {
         if (!target.ContainsKey(key))
             target[key] = new HashSet<int>();
