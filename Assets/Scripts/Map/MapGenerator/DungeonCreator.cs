@@ -37,9 +37,6 @@ public class DungeonCreator : MonoBehaviour
     Dictionary<int, HashSet<int>> _horizontalDoorPos = new Dictionary<int, HashSet<int>>();
     Dictionary<int, HashSet<int>> _verticalDoorPos = new Dictionary<int, HashSet<int>>();
 
-    List<Vector3Int> _possibleWallVerticalPosition = new List<Vector3Int>();
-    List<Vector3Int> _possibleWallHorizontalPosition = new List<Vector3Int>();
-
     GameObject _wallParent;
     GameObject _floorParent;
     GameObject _doorParent;
@@ -51,6 +48,8 @@ public class DungeonCreator : MonoBehaviour
 
     PlayerSpawn _playerSpawn;
     GameObject _deadZone;
+
+    int _doorThickness = 2;
 
     void Start()
     {
@@ -246,18 +245,27 @@ public class DungeonCreator : MonoBehaviour
 
     void CalculateCorridorWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
     {
-
+        if ((bottomRight.x - bottomLeft.x) < (topLeft.y - topRight.y))
+        {
+            VerticalCorridorWall(bottomLeft, topLeft);
+            VerticalCorridorWall(bottomRight, topRight);
+        }
+        else
+        {
+            HorizontalCorridorWall(bottomLeft, bottomRight);
+            HorizontalCorridorWall(topLeft, topRight);
+        }
     }
 
     void CalculateRoomWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
     {
-        CalculateHorizontalWall(bottomLeft, bottomRight);   // Bottom
-        CalculateHorizontalWall(topLeft, topRight);         // Top
-        CalculateVerticalWall(bottomLeft, topLeft);         // Left
-        CalculateVerticalWall(bottomRight, topRight);       // Right
+        HorizontalRoomWall(bottomLeft, bottomRight);   // Bottom
+        HorizontalRoomWall(topLeft, topRight);         // Top
+        VerticalRoomWall(bottomLeft, topLeft);         // Left
+        VerticalRoomWall(bottomRight, topRight);       // Right
     }
 
-    void CalculateHorizontalWall(Vector3 leftPos, Vector3 rightPos)
+    void HorizontalRoomWall(Vector3 leftPos, Vector3 rightPos)
     {
         if (CheckDoor(out int doorPos, _horizontalDoorPos, (int)leftPos.z, (int)leftPos.x, (int)rightPos.x))
         {
@@ -285,7 +293,7 @@ public class DungeonCreator : MonoBehaviour
         }
     }
 
-    void CalculateVerticalWall(Vector3 bottomPos, Vector3 topPos)
+    void VerticalRoomWall(Vector3 bottomPos, Vector3 topPos)
     {
         if (CheckDoor(out int doorPos, _verticalDoorPos, (int)bottomPos.x, (int)bottomPos.z, (int)topPos.z))
         {
@@ -313,6 +321,48 @@ public class DungeonCreator : MonoBehaviour
         }
     }
 
+    void HorizontalCorridorWall(Vector3 leftPos, Vector3 rightPos)
+    {
+        int curPos = (int)leftPos.x + (_doorThickness / 2) + (_wallWidth / 2);
+        int totalWallLength = (int)leftPos.x + (_doorThickness / 2) + _wallWidth;
+        int targetSize = (int)rightPos.x - (_doorThickness / 2);
+
+        for (; totalWallLength <= targetSize; totalWallLength += _wallWidth)
+        {
+            Vector3 createPos = new Vector3(curPos, 0, leftPos.z);
+            CreateWall(createPos, EMapPoolType.HorizontalWall);
+            curPos += _wallWidth;
+        }
+        if (targetSize - totalWallLength > 0)
+        {
+            float wallSize = targetSize - totalWallLength;
+            float wallPos = curPos + (_wallWidth / 2) + (wallSize / 2);
+            Vector3 createPos = new Vector3(wallPos, 0, leftPos.z);
+            CreateWall(createPos, EMapPoolType.HorizontalWall, wallSize);
+        }
+    }
+
+    void VerticalCorridorWall(Vector3 bottomPos, Vector3 topPos)
+    {
+        int curPos = (int)bottomPos.z + (_doorThickness / 2) + (_wallWidth / 2);
+        int totalWallLength = (int)bottomPos.z + (_doorThickness / 2) + _wallWidth;
+        int targetSize = (int)topPos.z - (_doorThickness / 2);
+
+        for (; totalWallLength <= targetSize; totalWallLength += _wallWidth)
+        {
+            Vector3 createPos = new Vector3(bottomPos.x, 0, curPos);
+            CreateWall(createPos, EMapPoolType.VerticalWall);
+            curPos += _wallWidth;
+        }
+        if (targetSize - totalWallLength > 0)
+        {
+            float wallSize = targetSize - totalWallLength;
+            float wallPos = curPos + (_wallWidth / 2) + (wallSize / 2);
+            Vector3 createPos = new Vector3(bottomPos.x, 0, wallPos);
+            CreateWall(createPos, EMapPoolType.VerticalWall, wallSize);
+        }
+    }
+
     bool CheckDoor(out int doorPos, Dictionary<int, HashSet<int>> dict, int key, int pos1, int pos2)
     {
         HashSet<int> hash;
@@ -331,6 +381,15 @@ public class DungeonCreator : MonoBehaviour
         GameObject wall = _factoryMaanger.MapFactory.MakeObject(type);
         wall.transform.position = pos;
         wall.transform.parent = _wallParent.transform;
+        _maps.Add(wall.GetComponent<IMap>());
+    }
+
+    void CreateWall(Vector3 pos, EMapPoolType type, float size)
+    {
+        GameObject wall = _factoryMaanger.MapFactory.MakeObject(type);
+        wall.transform.position = pos;
+        wall.transform.parent = _wallParent.transform;
+        //wall.GetComponent<Wall>().ÇÔ¼ö();
         _maps.Add(wall.GetComponent<IMap>());
     }
 
