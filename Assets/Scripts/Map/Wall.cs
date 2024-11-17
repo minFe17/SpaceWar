@@ -14,6 +14,12 @@ public class Wall : MonoBehaviour, IMap
 
     void IMap.DestroyMap()
     {
+        ChangeWallSize(Vector3.one);
         _objectPoolManager.Pull(_mapPoolType, gameObject);
+    }
+
+    public void ChangeWallSize(Vector3 size)
+    {
+        transform.localScale = size;
     }
 }

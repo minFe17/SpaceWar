@@ -342,6 +342,7 @@ MonoBehaviour:
   _maxIterations: 13
   _wallWidth: 6
   _doorWidth: 10
+  _doorThickness: 2
   _enemyControllerOffset: 4
   _minObstacle: 3
   _maxObstacle: 10
