@@ -25,10 +25,10 @@ public class DungeonGenerator
         return new List<Node>(roomList);
     }
 
-    public List<Node> CalculateCorridors(int corridorWidth)
+    public List<Node> CalculateCorridors(int corridorWidth, int doorWidth)
     {
         CorridorsGenerator corridorsGenerator = new CorridorsGenerator();
-        var corridorList = corridorsGenerator.CreateCorridors(_allNodesCollection, corridorWidth);
+        var corridorList = corridorsGenerator.CreateCorridors(_allNodesCollection, corridorWidth, doorWidth);
         return corridorList;
     }
 }

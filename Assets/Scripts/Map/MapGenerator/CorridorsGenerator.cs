@@ -3,7 +3,7 @@ using System.Linq;
 
 public class CorridorsGenerator
 {
-    public List<Node> CreateCorridors(List<RoomNode> allNodesCollection, int corridorWidth)
+    public List<Node> CreateCorridors(List<RoomNode> allNodesCollection, int corridorWidth, int doorWidth)
     {
         List<Node> corridorList = new List<Node>();
         Queue<RoomNode> structuresToCheck = new Queue<RoomNode>(allNodesCollection.OrderByDescending(node => node.TreeLayerIndex).ToList());
@@ -13,7 +13,7 @@ public class CorridorsGenerator
             if (node.ChildrenNodeList.Count == 0)
                 continue;
 
-            CorridorNode corridor = new CorridorNode(node.ChildrenNodeList[0], node.ChildrenNodeList[1], corridorWidth);
+            CorridorNode corridor = new CorridorNode(node.ChildrenNodeList[0], node.ChildrenNodeList[1], corridorWidth, doorWidth);
             corridorList.Add(corridor);
         }
         return corridorList;

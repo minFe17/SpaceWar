@@ -9,12 +9,14 @@ public class CorridorNode : Node
     Node _structure2;
     int _corridorWidth;
     int _modifierDistanceFromWall = 1;
+    int _doorHalfWidth;
 
-    public CorridorNode(Node structure1, Node structure2, int corridorWidth) : base(null)
+    public CorridorNode(Node structure1, Node structure2, int corridorWidth, int doorWidth) : base(null)
     {
         _structure1 = structure1;
         _structure2 = structure2;
         _corridorWidth = corridorWidth;
+        _doorHalfWidth = doorWidth / 2;
         GenerateCorridor();
     }
 
@@ -89,24 +91,24 @@ public class CorridorNode : Node
         if (bottomNodeLeft.x > topNodeLeft.x && bottomNodeRight.x < topNodeRight.x)
         {
             return StructureHelper.CalculateMiddlePoint(bottomNodeLeft + new Vector2Int(_modifierDistanceFromWall, 0),
-                                                        bottomNodeRight - new Vector2Int(_corridorWidth + _modifierDistanceFromWall, 0)).x;
+                                                        bottomNodeRight - new Vector2Int(_modifierDistanceFromWall + _corridorWidth, 0)).x;
         }
         if (bottomNodeLeft.x <= topNodeLeft.x && bottomNodeRight.x >= topNodeRight.x)
         {
             return StructureHelper.CalculateMiddlePoint(topNodeLeft + new Vector2Int(_modifierDistanceFromWall, 0),
-                                                        topNodeRight - new Vector2Int(_corridorWidth + _modifierDistanceFromWall, 0)).x;
+                                                        topNodeRight - new Vector2Int(_modifierDistanceFromWall + _corridorWidth, 0)).x;
         }
-        if (bottomNodeLeft.x >= topNodeLeft.x && bottomNodeLeft.x <= topNodeRight.x)
+        if (bottomNodeLeft.x >= topNodeLeft.x && bottomNodeLeft.x +_doorHalfWidth <= topNodeRight.x - _doorHalfWidth)
         {
-            return StructureHelper.CalculateMiddlePoint(bottomNodeLeft + new Vector2Int(_modifierDistanceFromWall, 0),
-                                                        topNodeRight - new Vector2Int(_corridorWidth + _modifierDistanceFromWall, 0)).x;
+            return StructureHelper.CalculateMiddlePoint(bottomNodeLeft + new Vector2Int(_modifierDistanceFromWall + _doorHalfWidth, 0),
+                                                        topNodeRight - new Vector2Int(_modifierDistanceFromWall + _corridorWidth, 0)).x;
         }
-        if (bottomNodeRight.x <= topNodeRight.x && bottomNodeRight.x >= topNodeLeft.x)
+        if (bottomNodeRight.x <= topNodeRight.x && bottomNodeRight.x - _doorHalfWidth >= topNodeLeft.x + _doorHalfWidth)
         {
-            return StructureHelper.CalculateMiddlePoint(topNodeLeft + new Vector2Int(_modifierDistanceFromWall, 0),
-                                                        bottomNodeRight - new Vector2Int(_corridorWidth + _modifierDistanceFromWall, 0)).x;
+            return StructureHelper.CalculateMiddlePoint(topNodeLeft + new Vector2Int(_modifierDistanceFromWall + _doorHalfWidth, 0),
+                                                        bottomNodeRight - new Vector2Int(_modifierDistanceFromWall + _corridorWidth, 0)).x;
         }
-        return -1;
+        return -1;  
     }
 
     void ProcessRoomInRelationLeftOrRight(Node structure1, Node structure2)
@@ -165,14 +167,14 @@ public class CorridorNode : Node
             return StructureHelper.CalculateMiddlePoint(leftNodeDown + new Vector2Int(0, _modifierDistanceFromWall),
                                                         leftNodeUp - new Vector2Int(0, _modifierDistanceFromWall + _corridorWidth)).y;
         }
-        if (leftNodeUp.y >= rightNodeDown.y && leftNodeUp.y <= rightNodeUp.y)
+        if (leftNodeUp.y <= rightNodeUp.y && leftNodeUp.y - _doorHalfWidth >= rightNodeDown.y +_doorHalfWidth )
         {
-            return StructureHelper.CalculateMiddlePoint(rightNodeDown + new Vector2Int(0, _modifierDistanceFromWall),
+            return StructureHelper.CalculateMiddlePoint(rightNodeDown + new Vector2Int(0, _modifierDistanceFromWall + _doorHalfWidth),
                                                         leftNodeUp - new Vector2Int(0, _modifierDistanceFromWall + _corridorWidth)).y;
         }
-        if (leftNodeDown.y >= rightNodeDown.y && leftNodeDown.y <= rightNodeUp.y)
+        if (leftNodeDown.y >= rightNodeDown.y && leftNodeDown.y + _doorHalfWidth <= rightNodeUp.y - _doorHalfWidth)
         {
-            return StructureHelper.CalculateMiddlePoint(leftNodeDown + new Vector2Int(0, _modifierDistanceFromWall),
+            return StructureHelper.CalculateMiddlePoint(leftNodeDown + new Vector2Int(0, _modifierDistanceFromWall + _doorHalfWidth),
                                                         rightNodeUp - new Vector2Int(0, _modifierDistanceFromWall + _corridorWidth)).y;
         }
         return -1;
