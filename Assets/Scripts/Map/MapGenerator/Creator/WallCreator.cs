@@ -12,15 +12,12 @@ public class WallCreator : MonoBehaviour
     DungeonCreator _dungeonCreator;
     FactoryManager _factoryManager;
 
-    GameObject _wallParent;
-
     public void Init(int wallWidth, int doorWidth, int doorThickness, DungeonCreator dungeonCreator)
     {
         _wallWidth = wallWidth;
         _doorWidth = doorWidth;
         _doorThickness = doorThickness;
         _dungeonCreator = dungeonCreator;
-        _wallParent = dungeonCreator.WallParent;
         _factoryManager = GenericSingleton<FactoryManager>.Instance;
     }
 
@@ -151,7 +148,6 @@ public class WallCreator : MonoBehaviour
     {
         GameObject wall = _factoryManager.MapFactory.MakeObject(type);
         wall.transform.position = pos;
-        wall.transform.parent = _wallParent.transform;
         _dungeonCreator.Maps.Add(wall.GetComponent<IMap>());
     }
 
@@ -159,7 +155,6 @@ public class WallCreator : MonoBehaviour
     {
         GameObject wall = _factoryManager.MapFactory.MakeObject(type);
         wall.transform.position = pos;
-        wall.transform.parent = _wallParent.transform;
         wall.GetComponent<Wall>().ChangeWallSize(size);
         _dungeonCreator.Maps.Add(wall.GetComponent<IMap>());
     }

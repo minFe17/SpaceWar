@@ -253,6 +253,7 @@
     <Compile Include="Assets\DownloadAssets\Enemy\PBRPachycephalasaurus\Scripts\BoneheadSoundEffects.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\MiniScavenger.cs" />
     <Compile Include="Assets\Scripts\Passive\PassiveSpriteManager.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\WallCreator.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSpawn.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Enum\EFirstWorldObstacleType.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\DamageUp.cs" />
@@ -296,7 +297,9 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Map\MapGenerator\WallCreator.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\DoorCreator.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\MeshCreator.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\ObstacleCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
