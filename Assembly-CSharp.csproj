@@ -194,10 +194,12 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorNode.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\GetMoneyUp.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\SpeedUp.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\DoorCreator.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\EnemyObjectPool.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Enum\EThirdWorldObstacleType.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\ChestFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\BoneFactory.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\MeshCreator.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorsGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Rhino.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Turret.cs" />
@@ -217,6 +219,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\VaseFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\EnemyFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\FirstWorld\FirstWorldObstacleFactoryBase.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\ObstacleCreator.cs" />
     <Compile Include="Assets\Scripts\Factory\FactoryManager.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\BlendShapeTrigger.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EFirstWorldEnemyType.cs" />
@@ -297,9 +300,6 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\DoorCreator.cs" />
-    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\MeshCreator.cs" />
-    <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\ObstacleCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

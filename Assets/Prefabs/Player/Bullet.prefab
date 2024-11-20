@@ -68,6 +68,7 @@ MonoBehaviour:
   _lifeTime: 3
   _speed: 50
   _playerPoolType: 1
+  _trailRenderer: {fileID: 6703152206768703939}
 --- !u!136 &8197368160325313131
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -124,7 +125,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.5
+  m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.15
