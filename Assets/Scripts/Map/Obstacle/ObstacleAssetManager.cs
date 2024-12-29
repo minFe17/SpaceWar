@@ -43,6 +43,7 @@ public class ObstacleAssetManager : MonoBehaviour
             return;
         for (int i = 0; i < _obstacles.Count; i++)
             _addressableManager.Release(_obstacles[i]);
+        _obstacles.Clear();
     }
 
     public Enum ConvertEnumToInt(int value)

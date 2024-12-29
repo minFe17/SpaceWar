@@ -8,7 +8,8 @@ public class ObstacleFactory : MonoBehaviour
 
     public void AddFactory<TEnum>(TEnum key, IFactory<GameObject> value) where TEnum : Enum
     {
-        _obstacleFactorys.Add(key, value);
+        if (!_obstacleFactorys.ContainsKey(key))
+            _obstacleFactorys.Add(key, value);
     }
 
     public GameObject MakeObject<TEnum>(TEnum key) where TEnum : Enum

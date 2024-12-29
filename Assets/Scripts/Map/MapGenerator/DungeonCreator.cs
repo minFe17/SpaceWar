@@ -218,6 +218,7 @@ public class DungeonCreator : MonoBehaviour
         DestroyGroundWork();
         DestroyeventRoom();
         DestroyMap();
+        GenericSingleton<CoinManager>.Instance.DestroyCoin();
         _obstacleCreator.DestroyObstacle();
 
         while (transform.childCount != 0)

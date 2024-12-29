@@ -10,6 +10,7 @@ public class Coin : MonoBehaviour
 
     Player _player;
     ObjectPoolManager _objectPoolManager;
+    CoinManager _coinManager;
 
     bool _isEat;
 
@@ -17,6 +18,7 @@ public class Coin : MonoBehaviour
     {
         _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
+        _coinManager = GenericSingleton<CoinManager>.Instance;
     }
 
     public void Init()
@@ -39,9 +41,10 @@ public class Coin : MonoBehaviour
         Invoke("DestroyCoin", 1f);
     }
 
-    void DestroyCoin()
+    public void DestroyCoin()
     {
         _objectPoolManager.Pull(_coinType, _parent);
+        _coinManager.Coins.Remove(this);
     }
 
     private void OnTriggerEnter(Collider other)

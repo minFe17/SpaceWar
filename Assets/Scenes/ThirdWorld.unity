@@ -339,14 +339,14 @@ MonoBehaviour:
   _dungeonLength: 250
   _roomWidthMin: 50
   _roomLengthMin: 50
-  _maxIterations: 13
+  _maxIterations: 50
   _wallWidth: 6
   _doorWidth: 10
   _doorThickness: 2
   _enemyControllerOffset: 4
   _minObstacle: 3
   _maxObstacle: 10
-  _corridorWidth: 10
+  _corridorWidth: 12
   _roomBottomCornerModifier: 0.1
   _roomTopCornerModifier: 0.9
   _roomOffset: 7

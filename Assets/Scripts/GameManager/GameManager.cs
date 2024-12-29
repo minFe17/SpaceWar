@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
                 if (csvManager.IsWriting == false && csvManager.CheckDataFiles() == true)
                     break;
             }
+            GenericSingleton<DoorManager>.Instance.ClearDoors();
             SceneManager.LoadScene($"{(EWorldType)MapStage}");
         }
     }

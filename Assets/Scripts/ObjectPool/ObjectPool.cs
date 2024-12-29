@@ -53,26 +53,33 @@ public class ObjectPool<TEnum> : MonoBehaviour, IObjectPool where TEnum : Enum
 
     void IObjectPool.ClearChild()
     {
-        for (int i = 0; i < _enumValue.Length; i++)
+        if (_enumValue != null && _enumValue.Length > 0)
         {
-            while (_objectPool[_enumValue[i]].Count > 0)
+            for (int i = 0; i < _enumValue.Length; i++)
             {
-                GameObject temp = _objectPool[_enumValue[i]].Dequeue();
-                Destroy(temp);
+                while (_objectPool[_enumValue[i]].Count > 0)
+                {
+                    GameObject temp = _objectPool[_enumValue[i]].Dequeue();
+                    Destroy(temp);
+                }
             }
         }
     }
 
     void IObjectPool.Clear()
     {
-        for (int i = 0; i < _enumValue.Length; i++)
+        if (_enumValue != null && _enumValue.Length > 0)
         {
-            while (_objectPool[_enumValue[i]].Count > 0)
+            for (int i = 0; i < _enumValue.Length; i++)
             {
-                GameObject temp = _objectPool[_enumValue[i]].Dequeue();
-                Destroy(temp);
+                while (_objectPool[_enumValue[i]].Count > 0)
+                {
+                    GameObject temp = _objectPool[_enumValue[i]].Dequeue();
+                    if (temp != null)
+                        Destroy(temp);
+                }
             }
+            _objectPool.Clear();
         }
-        _objectPool.Clear();
     }
 }

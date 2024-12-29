@@ -19,6 +19,7 @@ public class FactoryManager : MonoBehaviour
     public EnemyFactory EnemyFactory { get => _enemyFactory; }
     public ObstacleFactory ObstacleFactory { get => _obstacleFactory; }
     public MapFactory MapFactory { get => _mapFactory; }
+    public WorldFactory WorldFactory { get => _worldFactory; }
 
     void Awake()
     {

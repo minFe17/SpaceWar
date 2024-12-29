@@ -24,4 +24,11 @@ public class WorldFactory : MonoBehaviour
                 _worldFactorys[i].SetActive(false);
         }
     }
+
+    public void ResetWorldFactory()
+    {
+        for (int i = 0; i < _worldFactorys.Count; i++)
+            _worldFactorys[i].SetActive(false);
+        _worldFactorys[0].SetActive(true);
+    }
 }

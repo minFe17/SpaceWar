@@ -19,4 +19,9 @@ public class DoorManager : MonoBehaviour
         for (int i = 0; i < _doors.Count; i++)
             _doors[i].Unlock();
     }
+
+    public void ClearDoors()
+    {
+        _doors.Clear();
+    }
 }

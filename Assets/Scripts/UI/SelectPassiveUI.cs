@@ -28,7 +28,7 @@ public class SelectPassiveUI : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-
+        GenericSingleton<DoorManager>.Instance.ClearDoors();
         SceneManager.LoadScene($"{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}");
     }
 

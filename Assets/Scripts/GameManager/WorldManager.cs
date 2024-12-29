@@ -43,6 +43,7 @@ public class WorldManager : MonoBehaviour
         ReleaseAsset();
         WorldType = EWorldType.FirstWorld;
         await LoadAsset();
+        _factoryManager.WorldFactory.ResetWorldFactory();
     }
 
     public async Task ContinueGame()

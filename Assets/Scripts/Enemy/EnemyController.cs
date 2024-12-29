@@ -15,7 +15,6 @@ public class EnemyController : MonoBehaviour
 
     UIManager _uiManager;
     FactoryManager _factoryManager;
-    WorldManager _worldManager;
     EnemyManager _enemyManager;
     List<Enemy> _enemyList = new List<Enemy>();
 
@@ -39,16 +38,16 @@ public class EnemyController : MonoBehaviour
     {
         _enemyManager = GenericSingleton<EnemyManager>.Instance;
         _factoryManager = GenericSingleton<FactoryManager>.Instance;
-        _worldManager = GenericSingleton<WorldManager>.Instance;
         _doorManager = GenericSingleton<DoorManager>.Instance;
         _ground = GetComponent<BoxCollider>();
     }
 
     public void Init(Vector3 createPos, bool isBossRoom)
     {
+        _isClear = false;
+        _ground.enabled = true;
         _wave = Random.Range(1, 3);
         _waveIndex = 0;
-        _isClear = false;
         _createPos = createPos;
         _isBossRoom = isBossRoom;
         _basePos = _createPos + _ground.center;

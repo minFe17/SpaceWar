@@ -7,11 +7,15 @@ public abstract class MapFactoryBase : FactoryBase
 
     protected abstract void Init();
 
-    void Start()
+    void Awake()
     {
         _factoryManager = GenericSingleton<FactoryManager>.Instance;
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
         _mapAssetManager = GenericSingleton<MapAssetManager>.Instance;
+    }
+
+    void OnEnable()
+    {
         Init();
     }
 }
