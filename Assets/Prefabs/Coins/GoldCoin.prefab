@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4650495460509737154}
   - component: {fileID: 3628845665192961048}
   - component: {fileID: 9046408435904317961}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4821,7 +4821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2708523559058219259}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GoldCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4855,6 +4855,14 @@ PrefabInstance:
     - target: {fileID: 1498403948531744, guid: fa2c57d3f28a5e6419393e8bc3eeb32a, type: 3}
       propertyPath: m_Name
       value: GoldCoin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498403948531744, guid: fa2c57d3f28a5e6419393e8bc3eeb32a, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667978803413412, guid: fa2c57d3f28a5e6419393e8bc3eeb32a, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4244701375105762, guid: fa2c57d3f28a5e6419393e8bc3eeb32a, type: 3}
       propertyPath: m_RootOrder
@@ -4977,6 +4985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729be38eab2f27749821ec8188de5af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coinType: 0
   _parent: {fileID: 2708523559058219257}
   _money: 10
   _effect: {fileID: 642725436346409967}

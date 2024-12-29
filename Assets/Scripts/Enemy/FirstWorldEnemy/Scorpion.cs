@@ -1,9 +1,5 @@
-using UnityEngine;
-
 public class Scorpion : MovableEnemy
 {
-    [SerializeField] EFirstWorldEnemyType _enemyType;
-
     void Awake()
     {
         _enemyType = EFirstWorldEnemyType.Scorpion;

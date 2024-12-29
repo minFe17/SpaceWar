@@ -11,7 +11,7 @@ public class SilverCoinCoinFactory : CoinFactoryBase, IFactory<GameObject>
     GameObject IFactory<GameObject>.MakeObject()
     {
         GameObject coin = _objectPoolManager.Push(_coinType, _prefab);
-        coin.GetComponent<Coin>().Init();
+        coin.GetComponentInChildren<Coin>().Init();
         return coin;
     }
 }

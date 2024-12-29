@@ -20,6 +20,7 @@ public class Turret : Enemy
     public override void Init(EnemyController enemyController)
     {
         base.Init(enemyController);
+        _dieEffect.SetActive(false);
         StartCoroutine(AttackRoutine());
     }
 

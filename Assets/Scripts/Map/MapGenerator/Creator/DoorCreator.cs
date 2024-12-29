@@ -19,6 +19,7 @@ public class DoorCreator : MonoBehaviour
     void CreateDoor(Enum doorType, Vector3 pos)
     {
         GameObject door = _factoryManager.MapFactory.MakeObject((EMapPoolType)doorType);
+        door.GetComponent<Door>().Init();
         door.transform.position = pos;
         _dungeonCreator.Maps.Add(door.GetComponent<IMap>());
     }

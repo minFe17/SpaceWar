@@ -17,6 +17,8 @@ public class MaxHPReducedPotion : PotionBase, IPotion
     void SetHp()
     {
         _randomHpReduced = Random.Range(_minHpReduced, _maxHpReduced);
+        if(_playerDataManager == null)
+            SetManager();
         _maxHp = _playerDataManager.MaxHp;
         _hp = _maxHp - _randomHpReduced;
     }

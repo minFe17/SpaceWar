@@ -8,6 +8,11 @@ public class PotionBase
 
     void Start()
     {
+        SetManager();
+    }
+
+    protected void SetManager()
+    {
         _audiolipManager = GenericSingleton<AudioClipManager>.Instance;
         _uiManager = GenericSingleton<UIManager>.Instance;
         _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;

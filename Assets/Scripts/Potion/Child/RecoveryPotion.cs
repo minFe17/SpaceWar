@@ -13,6 +13,8 @@
 
     void SetHp()
     {
+        if (_playerDataManager == null)
+            SetManager();
         _maxHp = _playerDataManager.MaxHp;
         _curHp = _playerDataManager.CurHp;
         _recoveryAmount = _maxHp / 3;

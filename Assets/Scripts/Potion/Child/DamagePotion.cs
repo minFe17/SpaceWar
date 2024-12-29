@@ -12,6 +12,8 @@
 
     void SetHp()
     {
+        if (_playerDataManager == null)
+            SetManager();
         _curHp = _playerDataManager.CurHp;
         _damageAmount = _curHp / 3;
     }
