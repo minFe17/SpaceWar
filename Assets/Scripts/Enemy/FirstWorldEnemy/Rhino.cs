@@ -45,13 +45,17 @@ public class Rhino : MovableEnemy
 
     public override void Die()
     {
-        base.Die();
+        _enemyController.EnemyList.Remove(this);
+        _coinManager.MakeCoin(transform.position);
+        GenericSingleton<GameManager>.Instance.AddKillEnemy();
+        _player.Vampirism();
         GenericSingleton<UIManager>.Instance.IngameUI.HideBossHpBar();
         for (int i = 0; i < _enemyController.EnemyList.Count; i++)
         {
             _enemyController.EnemyList[i].Die();
         }
         GenericSingleton<GameManager>.Instance.Portal.SetActive(true);
+        Destroy(this.gameObject);
     }
 
     protected override void ReadyAttack()

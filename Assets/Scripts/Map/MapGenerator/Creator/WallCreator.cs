@@ -23,17 +23,17 @@ public class WallCreator : MonoBehaviour
 
     void HorizontalRoomWall(Vector3 leftPos, Vector3 rightPos)
     {
-        if (CheckDoor(out int doorPos, _dungeonCreator.HorizontalDoorPos, (int)leftPos.z, (int)leftPos.x, (int)rightPos.x))
+        if (CheckDoor(out int doorPos, _dungeonCreator.HorizontalDoorPos, (int)leftPos.z, (int)leftPos.x, (int)rightPos.x)) // 문이 있는지 체크
         {
             int pos1 = doorPos - (_doorWidth / 2) - (_wallWidth / 2);
             int pos2 = doorPos + (_doorWidth / 2) + (_wallWidth / 2);
 
-            for (int row = pos1; row >= (int)leftPos.x - _wallWidth; row -= _wallWidth)
+            for (int row = pos1; row >= (int)leftPos.x - _wallWidth; row -= _wallWidth)     // 문을 기준으로 왼쪽으로 벽 설치
             {
                 Vector3 wallPos = new Vector3(row, 0, leftPos.z);
                 CreateWall(wallPos, EMapPoolType.HorizontalWall);
             }
-            for (int row = pos2; row <= (int)rightPos.x + _wallWidth; row += _wallWidth)
+            for (int row = pos2; row <= (int)rightPos.x + _wallWidth; row += _wallWidth)    // 문을 기준으로 오른쪽으로 벽 설치
             {
                 Vector3 wallPos = new Vector3(row, 0, rightPos.z);
                 CreateWall(wallPos, EMapPoolType.HorizontalWall);
@@ -51,17 +51,17 @@ public class WallCreator : MonoBehaviour
 
     void VerticalRoomWall(Vector3 bottomPos, Vector3 topPos)
     {
-        if (CheckDoor(out int doorPos, _dungeonCreator.VerticalDoorPos, (int)bottomPos.x, (int)bottomPos.z, (int)topPos.z))
+        if (CheckDoor(out int doorPos, _dungeonCreator.VerticalDoorPos, (int)bottomPos.x, (int)bottomPos.z, (int)topPos.z)) // 문이 있는지 체크
         {
             int pos1 = doorPos - (_doorWidth / 2) - (_wallWidth / 2);
             int pos2 = doorPos + (_doorWidth / 2) + (_wallWidth / 2);
 
-            for (int col = pos1; col >= (int)bottomPos.z - _wallWidth; col -= _wallWidth)
+            for (int col = pos1; col >= (int)bottomPos.z - _wallWidth; col -= _wallWidth)   // 문을 기준으로 아래쪽으로 벽 설치
             {
                 Vector3 wallPos = new Vector3(bottomPos.x, 0, col);
                 CreateWall(wallPos, EMapPoolType.VerticalWall);
             }
-            for (int col = pos2; col <= (int)topPos.z + _wallWidth; col += _wallWidth)
+            for (int col = pos2; col <= (int)topPos.z + _wallWidth; col += _wallWidth)      // 문을 기준으로 위쪽으로 벽 설치
             {
                 Vector3 wallPos = new Vector3(topPos.x, 0, col);
                 CreateWall(wallPos, EMapPoolType.VerticalWall);
@@ -77,26 +77,26 @@ public class WallCreator : MonoBehaviour
         }
     }
 
-    void HorizontalCorridorWall(Vector3 leftPos, Vector3 rightPos)
+    void HorizontalCorridorWall(Vector3 leftPos, Vector3 rightPos) 
     {
-        int curPos = (int)leftPos.x + (_doorThickness / 2) + (_wallWidth / 2);
-        int totalWallLength = (int)leftPos.x + (_doorThickness / 2) + _wallWidth;
-        int targetSize = (int)rightPos.x - (_doorThickness / 2);
+        int curPos = (int)leftPos.x + (_doorThickness / 2) + (_wallWidth / 2);      // 현재 위치
+        int totalWallLength = (int)leftPos.x + (_doorThickness / 2) + _wallWidth;   // 설치한 벽 길이
+        int targetSize = (int)rightPos.x - (_doorThickness / 2);                    // 벽을 설치할 총 길이
 
-        while (totalWallLength <= targetSize)
+        while (totalWallLength <= targetSize)   // 설치한 벽 길이 <= 벽을 설치한 총 길이
         {
             Vector3 createPos = new Vector3(curPos, 0, leftPos.z);
             CreateWall(createPos, EMapPoolType.HorizontalWall);
-            if (totalWallLength + _wallWidth > targetSize)
+            if (totalWallLength + _wallWidth > targetSize)  // 설치한 벽 길이 + 벽 길이 > 벽을 설치할 총 길이
                 break;
             curPos += _wallWidth;
             totalWallLength += _wallWidth;
         }
 
-        if (targetSize - totalWallLength > 0)
+        if (targetSize - totalWallLength > 0)   // 벽을 작게 설치해야 함
         {
-            float wallSize = targetSize - totalWallLength;
-            float wallPos = totalWallLength + (wallSize / 2);
+            float wallSize = targetSize - totalWallLength;      // 벽 사이즈 = 벽을 설치할 총 길이 - 설치한 벽 길이
+            float wallPos = totalWallLength + (wallSize / 2);   
             float wallScale = 1 / (float)_wallWidth * wallSize;
             Vector3 createPos = new Vector3(wallPos, 0, leftPos.z);
             Vector3 cresteSize = new Vector3(wallScale, 1, 1);
@@ -106,23 +106,23 @@ public class WallCreator : MonoBehaviour
 
     void VerticalCorridorWall(Vector3 bottomPos, Vector3 topPos)
     {
-        int curPos = (int)bottomPos.z + (_doorThickness / 2) + (_wallWidth / 2);
-        int totalWallLength = (int)bottomPos.z + (_doorThickness / 2) + _wallWidth;
-        int targetSize = (int)topPos.z - (_doorThickness / 2);
+        int curPos = (int)bottomPos.z + (_doorThickness / 2) + (_wallWidth / 2);        // 현재 위치
+        int totalWallLength = (int)bottomPos.z + (_doorThickness / 2) + _wallWidth;     // 설치한 벽 길이
+        int targetSize = (int)topPos.z - (_doorThickness / 2);                          // 벽을 설치할 총 길이
 
-        while (totalWallLength <= targetSize)
+        while (totalWallLength <= targetSize)   // 설치한 벽 길이 <= 벽을 설치한 총 길이
         {
             Vector3 createPos = new Vector3(bottomPos.x, 0, curPos);
             CreateWall(createPos, EMapPoolType.VerticalWall);
-            if (totalWallLength + _wallWidth > targetSize)
+            if (totalWallLength + _wallWidth > targetSize)  // 설치한 벽 길이 + 벽 길이 > 벽을 설치할 총 길이
                 break;
             curPos += _wallWidth;
             totalWallLength += _wallWidth;
         }
 
-        if (targetSize - totalWallLength > 0)
+        if (targetSize - totalWallLength > 0)   // 벽을 작게 설치해야 함
         {
-            float wallSize = targetSize - totalWallLength;
+            float wallSize = targetSize - totalWallLength;      // 벽 사이즈 = 벽을 설치할 총 길이 - 설치한 벽 길이
             float wallPos = totalWallLength + (wallSize / 2);
             float wallScale = 1 / (float)_wallWidth * wallSize;
             Vector3 createPos = new Vector3(bottomPos.x, 0, wallPos);
@@ -159,7 +159,7 @@ public class WallCreator : MonoBehaviour
         _dungeonCreator.Maps.Add(wall.GetComponent<IMap>());
     }
 
-    public void CalculateRoomWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
+    public void CalculateRoomWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)   // 방 벽 설치
     {
         HorizontalRoomWall(bottomLeft, bottomRight);   // Bottom
         HorizontalRoomWall(topLeft, topRight);         // Top
@@ -167,7 +167,7 @@ public class WallCreator : MonoBehaviour
         VerticalRoomWall(bottomRight, topRight);       // Right
     }
 
-    public void CalculateCorridorWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)
+    public void CalculateCorridorWallPosition(Vector3 bottomLeft, Vector3 bottomRight, Vector3 topLeft, Vector3 topRight)   // 복도 벽 설치
     {
         if ((bottomRight.x - bottomLeft.x) < (topLeft.z - bottomLeft.z))
         {

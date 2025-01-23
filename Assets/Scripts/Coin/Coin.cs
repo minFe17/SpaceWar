@@ -43,8 +43,8 @@ public class Coin : MonoBehaviour
 
     public void DestroyCoin()
     {
-        _objectPoolManager.Pull(_coinType, _parent);
         _coinManager.Coins.Remove(this);
+        _objectPoolManager.Pull(_coinType, _parent);
     }
 
     private void OnTriggerEnter(Collider other)

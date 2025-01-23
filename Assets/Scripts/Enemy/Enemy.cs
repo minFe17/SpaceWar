@@ -62,6 +62,7 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
+        _isDie = true;
         _coinManager.MakeCoin(transform.position);
         GenericSingleton<GameManager>.Instance.AddKillEnemy();
         _player.Vampirism();

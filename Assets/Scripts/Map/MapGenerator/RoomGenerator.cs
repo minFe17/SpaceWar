@@ -8,8 +8,10 @@ public class RoomGenerator
         List<RoomNode> listToReturn = new List<RoomNode>();
         foreach (var space in roomSpaces)
         {
+            // BottomLeft를 새로운 값으로 계산
             Vector2Int newBottomLeftPoint = StructureHelper.GenerateBottomLeftCornerBetween(space.BottomLeftAreaCorner, space.TopRightAreaCorner,
                                                                                             roomBottomCornerModifier, roomOffset);
+            // TopRight를 새로운 값으로 계산
             Vector2Int newTopRightPoint = StructureHelper.GenerateTopRightCornerBetween(space.BottomLeftAreaCorner, space.TopRightAreaCorner,
                                                                                         roomTopCornerModifier, roomOffset);
             space.BottomLeftAreaCorner = newBottomLeftPoint;

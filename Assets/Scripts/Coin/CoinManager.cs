@@ -26,9 +26,10 @@ public class CoinManager : MonoBehaviour
 
     public void DestroyCoin()
     {
-        for(int i=0; i< _coins.Count; i++)
+        for (int i = 0; i < _coins.Count; i++)
         {
-            _coins[i].DestroyCoin();
+            if (_coins[i] != null)
+                _coins[i].DestroyCoin();
         }
         _coins.Clear();
     }

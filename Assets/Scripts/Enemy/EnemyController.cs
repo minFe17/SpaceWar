@@ -98,8 +98,6 @@ public class EnemyController : MonoBehaviour
     public void SpawnBoss()
     {
         GenericSingleton<GameManager>.Instance.Portal.SetActive(false);
-        EWorldType eWorld = GenericSingleton<WorldManager>.Instance.WorldType;
-
         GameObject bossGameObject = Instantiate(_enemyManager.Boss);
         bossGameObject.transform.position = _basePos;
         Enemy boss = bossGameObject.GetComponent<Enemy>();

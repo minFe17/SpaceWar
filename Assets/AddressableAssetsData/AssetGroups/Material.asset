@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: Cloaking
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: dbb1e7de04dcd634381f9081d7157204
+    m_Address: CloakingShader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9986345a85cf2c34c9a1ba8a37c4bd4a, type: 2}
   m_SchemaSet:
