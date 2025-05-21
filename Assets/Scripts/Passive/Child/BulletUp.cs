@@ -6,7 +6,7 @@ public class BulletUp : PassiveBase, IPassive
 
     void IPassive.AddPassive()
     {
-        _playerDataManager.MaxBullet += _bulletUp;
+        _playerData.MaxBullet += _bulletUp;
         _uiManager.IngameUI.ShowBullet();
     }
 

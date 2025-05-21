@@ -6,7 +6,7 @@ public class SpeedUp : PassiveBase, IPassive
 
     void IPassive.AddPassive()
     {
-        _playerDataManager.MoveSpeed += _moveSpeed;
+        _playerData.MoveSpeed += _moveSpeed;
     }
 
     void IPassive.SetPassiveData(PassiveData passiveData)

@@ -17,9 +17,9 @@ public class MaxHPReducedPotion : PotionBase, IPotion
     void SetHp()
     {
         _randomHpReduced = Random.Range(_minHpReduced, _maxHpReduced);
-        if(_playerDataManager == null)
+        if(_playerData == null)
             SetManager();
-        _maxHp = _playerDataManager.MaxHp;
+        _maxHp = _playerData.MaxHp;
         _hp = _maxHp - _randomHpReduced;
     }
 
@@ -32,10 +32,10 @@ public class MaxHPReducedPotion : PotionBase, IPotion
             _randomHpReduced = _maxHp - _hp;
         }
 
-        _playerDataManager.MaxHp = _hp;
+        _playerData.MaxHp = _hp;
 
-        if (_playerDataManager.CurHp > _hp)
-            _playerDataManager.CurHp = _hp;
+        if (_playerData.CurHp > _hp)
+            _playerData.CurHp = _hp;
     }
 
     void ShowResult()

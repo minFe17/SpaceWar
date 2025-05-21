@@ -34,9 +34,9 @@ public class VendingMachine: EventRoom
 
         if (Input.GetKeyDown(KeyCode.F) && _inPlayer && !_isBuy)
         {
-            if(GenericSingleton<PlayerDataManager>.Instance.Money >= _cost)
+            if(DataSingleton<PlayerData>.Instance.Money >= _cost)
             {
-                GenericSingleton<PlayerDataManager>.Instance.Money -= _cost;
+                DataSingleton<PlayerData>.Instance.Money -= _cost;
                 GenericSingleton<UIManager>.Instance.IngameUI.ShowMoney();
                 GenericSingleton<PotionManager>.Instance.ApplyPotion();
                 _isBuy = true;

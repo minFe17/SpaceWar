@@ -4,7 +4,7 @@ public class HpUpByMoney : PassiveBase, IPassive
 
     void IPassive.AddPassive()
     {
-        _playerDataManager.HPUpByMoney = true;
+        _playerData.HPUpByMoney = true;
     }
 
     void IPassive.SetPassiveData(PassiveData passiveData)

@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Playables;
 using Utils;
 
 public class ReadData : MonoBehaviour
@@ -77,68 +78,34 @@ public class ReadData : MonoBehaviour
         }
     }
 
+    void ReadJsonData(string path, object dataClass)
+    {
+        string json = File.ReadAllText(path);
+        JsonUtility.FromJsonOverwrite(json, dataClass);
+    }
+
     void ReadPlayerData()
     {
         if (!_csvManager.CheckDataFile(_csvManager.PlayerDataFilePath))
             return;
-
         PlayerDataManager playerData = GenericSingleton<PlayerDataManager>.Instance;
-        string[] value = BaseReadData(_csvManager.PlayerDataFilePath);
-        if (value == null)
-            return;
-
-        playerData.MaxHp = int.Parse(value[0]);
-        playerData.CurHp = int.Parse(value[1]);
-        playerData.ShootMode = (EShootModeType)Enum.Parse(typeof(EShootModeType), value[2]);
-        playerData.MaxBullet = int.Parse(value[3]);
-        playerData.CurBullet = int.Parse(value[4]);
-        playerData.BulletDamage = int.Parse(value[5]);
-        playerData.MoveSpeed = float.Parse(value[6]);
-        playerData.SplintSpeed = float.Parse(value[7]);
-        playerData.Money = int.Parse(value[8]);
-        playerData.BonusMoney = int.Parse(value[9]);
-        playerData.UnlockBurstMode = bool.Parse(value[10]);
-        playerData.UnlockAutoMode = bool.Parse(value[11]);
-        playerData.HPUpByMoney = bool.Parse(value[12]);
-        playerData.Vampirism = bool.Parse(value[13]);
+        ReadJsonData(_csvManager.PlayerDataFilePath, playerData);
     }
 
     void ReadGameData()
     {
         if (!_csvManager.CheckDataFile(_csvManager.GameDataFilePath))
             return;
-
-        //GameManager gameData = GenericSingleton<GameManager>.Instance;
-        //string[] value = BaseReadData(_csvManager.GameDataFilePath);
-        //if (value == null)
-        //    return;
-
-        //gameData.MapStage = int.Parse(value[0]);
-        //gameData.LevelStage = int.Parse(value[1]);
-        //gameData.KillEnemy = int.Parse(value[2]);
-        //gameData.PlayTime = float.Parse(value[3]);
-        //gameData.IsAddPassive = bool.Parse(value[4]);
-
         GameData gamedata = DataSingleton<GameData>.Instance;
-        string json = File.ReadAllText(_csvManager.GameDataFilePath);
-        JsonUtility.FromJsonOverwrite(json, gamedata);
+        ReadJsonData(_csvManager.GameDataFilePath, gamedata);
     }
 
     void ReadSavePassiveData()
     {
         if (!_csvManager.CheckDataFile(_csvManager.PassiveDataFilePath))
             return;
-
-        List<string> passive = GenericSingleton<PlayerDataManager>.Instance.Passive;
-        string[] value = BaseReadData(_csvManager.PassiveDataFilePath);
-        if (value == null)
-            return;
-
-        passive.Clear();
-        for (int i = 0; i < value.Length; i++)
-        {
-            passive.Add(value[i]);
-        }
+        SelectPassiveData passiveData = DataSingleton<SelectPassiveData>.Instance;
+        ReadJsonData(_csvManager.PassiveDataFilePath, passiveData);
     }
 
     public void ReadSoundData()
@@ -150,8 +117,6 @@ public class ReadData : MonoBehaviour
             volumnData.SFXSound = 0.5f;
             return;
         }
-
-        string json = File.ReadAllText(_csvManager.SoundDataFilePath);
-        JsonUtility.FromJsonOverwrite(json, volumnData);
+        ReadJsonData(_csvManager.SoundDataFilePath, volumnData);
     }
 }

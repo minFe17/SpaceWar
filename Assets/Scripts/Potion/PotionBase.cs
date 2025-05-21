@@ -4,7 +4,7 @@ public class PotionBase
 {
     protected AudioClipManager _audiolipManager;
     protected UIManager _uiManager;
-    protected PlayerDataManager _playerDataManager;
+    protected PlayerData _playerData;
 
     void Start()
     {
@@ -15,6 +15,6 @@ public class PotionBase
     {
         _audiolipManager = GenericSingleton<AudioClipManager>.Instance;
         _uiManager = GenericSingleton<UIManager>.Instance;
-        _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
+        _playerData = DataSingleton<PlayerData>.Instance;
     }
 }

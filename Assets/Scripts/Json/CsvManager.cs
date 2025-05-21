@@ -41,9 +41,9 @@ public class CsvManager : MonoBehaviour
     {
         if (_stringBuilder == null)
             _stringBuilder = new StringBuilder();
-        CreateDataPath(out _playerDataFilePath, "SavePlayerDataFile.csv");
+        CreateDataPath(out _playerDataFilePath, "SavePlayerDataFile.json");
         CreateDataPath(out _gameDataFilePath, "SaveGameDataFile.json");
-        CreateDataPath(out _passiveDataFilePath, "PassiveDataFile.csv");
+        CreateDataPath(out _passiveDataFilePath, "PassiveDataFile.json");
         CreateDataPath(out _soundDataFilePath, "SoundDataFile.json");
     }
 

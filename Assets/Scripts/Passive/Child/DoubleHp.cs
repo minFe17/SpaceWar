@@ -4,8 +4,8 @@ public class DoubleHp : PassiveBase, IPassive
 
     void IPassive.AddPassive()
     {
-        _playerDataManager.MaxHp *= 2;
-        _playerDataManager.CurHp *= 2;
+        _playerData.MaxHp *= 2;
+        _playerData.CurHp *= 2;
         _uiManager.IngameUI.ShowHp();
     }
 

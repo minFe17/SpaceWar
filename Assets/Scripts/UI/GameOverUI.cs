@@ -79,7 +79,7 @@ public class GameOverUI : MonoBehaviour
 
     void ShowMoney()
     {
-        int money = GenericSingleton<PlayerDataManager>.Instance.Money;
+        int money = DataSingleton<PlayerData>.Instance.Money;
         _moneyText.text = string.Format("{0:D3}", money);
     }
 

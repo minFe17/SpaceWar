@@ -6,7 +6,6 @@ public class MaxHPIncreasePotion : PotionBase, IPotion
     int _maxHpIncrease = 6;
     int _randomHpIncrease;
 
-
     void IPotion.PotionEffect()
     {
         CalculatePotion();
@@ -16,9 +15,9 @@ public class MaxHPIncreasePotion : PotionBase, IPotion
     void CalculatePotion()
     {
         _randomHpIncrease = Random.Range(_minHpIncrease, _maxHpIncrease);
-        if (_playerDataManager == null)
+        if (_playerData == null)
             SetManager();
-        _playerDataManager.MaxHp += _randomHpIncrease;
+        _playerData.MaxHp += _randomHpIncrease;
     }
 
     void ShowResult()

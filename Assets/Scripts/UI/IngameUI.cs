@@ -32,10 +32,12 @@ public class IngameUI : MonoBehaviour
     MiniScavenger _firstMiniScavenger;
     MiniScavenger _secondMiniScavenger;
 
+    PlayerData _playerData = DataSingleton<PlayerData>.Instance;
+
     public void ShowHp()
     {
-        int curHp = GenericSingleton<PlayerDataManager>.Instance.CurHp;
-        int maxHp = GenericSingleton<PlayerDataManager>.Instance.MaxHp;
+        int curHp = _playerData.CurHp;
+        int maxHp = _playerData.MaxHp;
         _hpBar.fillAmount = (float)curHp / maxHp;
         if (curHp < 0)
             curHp = 0;
@@ -51,7 +53,7 @@ public class IngameUI : MonoBehaviour
 
     public void ShowMoney()
     {
-        int money = GenericSingleton<PlayerDataManager>.Instance.Money;
+        int money = _playerData.Money;
         String text;
         if (money < 100)
             text = string.Format("{0:D3}", money);
@@ -81,14 +83,14 @@ public class IngameUI : MonoBehaviour
 
     public void ShowBullet()
     {
-        int curBullet = GenericSingleton<PlayerDataManager>.Instance.CurBullet;
-        int maxBullet = GenericSingleton<PlayerDataManager>.Instance.MaxBullet;
+        int curBullet = _playerData.CurBullet;
+        int maxBullet = _playerData.MaxBullet;
         _BulletText.text = $"{curBullet} / {maxBullet}";
     }
 
     public void ShowShootMode()
     {
-        EShootModeType shootMode = GenericSingleton<PlayerDataManager>.Instance.ShootMode;
+        EShootModeType shootMode = _playerData.ShootMode;
         for (int i = 0; i < (int)EShootModeType.Max; i++)
         {
             if (i == (int)shootMode)

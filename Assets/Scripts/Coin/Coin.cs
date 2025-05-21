@@ -30,7 +30,7 @@ public class Coin : MonoBehaviour
     void PlayerGetCoin()
     {
         _isEat = true;
-        _player.GetMoney(_money + GenericSingleton<PlayerDataManager>.Instance.BonusMoney);
+        _player.GetMoney(_money + DataSingleton<PlayerData>.Instance.BonusMoney);
         OnEffect();
     }
 

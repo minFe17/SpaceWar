@@ -4,7 +4,7 @@ public class UnlockAutoMode : PassiveBase, IPassive
 
     void IPassive.AddPassive()
     {
-        _playerDataManager.UnlockAutoMode = true;
+        _playerData.UnlockAutoMode = true;
     }
 
     void IPassive.SetPassiveData(PassiveData passiveData)

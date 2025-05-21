@@ -5,7 +5,7 @@ public class GetMoneyUp : PassiveBase, IPassive
     PassiveData IPassive.PassiveData{get =>_passiveData;}
     void IPassive.AddPassive()
     {
-        _playerDataManager.BonusMoney = _bonusMoney;
+        _playerData.BonusMoney = _bonusMoney;
     }
 
     void IPassive.SetPassiveData(PassiveData passiveData)

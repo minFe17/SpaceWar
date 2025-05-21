@@ -12,9 +12,9 @@
 
     void SetHp()
     {
-        if (_playerDataManager == null)
+        if (_playerData == null)
             SetManager();
-        _curHp = _playerDataManager.CurHp;
+        _curHp = _playerData.CurHp;
         _damageAmount = _curHp / 3;
     }
 
@@ -36,7 +36,7 @@
 
     void ShowResult()
     {
-        _playerDataManager.CurHp = _hp;
+        _playerData.CurHp = _hp;
         _uiManager.IngameUI.ShowHp();
         _uiManager.IngameUI.ShowVendingMachineResult($"현재 HP -{_damageAmount} 감소");
         _audiolipManager.PlaySFX(ESFXAudioType.Damage);

@@ -6,7 +6,7 @@ public class DamageUp : PassiveBase, IPassive
 
     void IPassive.AddPassive()
     {
-        _playerDataManager.BulletDamage += _bulletDamage;
+        _playerData.BulletDamage += _bulletDamage;
     }
 
     void IPassive.SetPassiveData(PassiveData passiveData)

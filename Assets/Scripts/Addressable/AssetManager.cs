@@ -5,8 +5,15 @@ using Utils;
 public class AssetManager : MonoBehaviour
 {
     // ╫л╠шео
+    bool _isLoad;
+
+    public bool IsLoad { get => _isLoad; }
+
     public async Task LoadAsset()
     {
+        if (_isLoad) 
+            return;
+        _isLoad = true;
         await LoadPlayerAsset();
         await LoadCameraAsset();
         await LoadSoundAsset();

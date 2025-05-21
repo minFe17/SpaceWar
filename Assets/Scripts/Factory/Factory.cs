@@ -9,6 +9,8 @@ public class Factory<T> : IFactorys
 
     void IFactorys.AddFactorys<TEnum>(TEnum key, IFactory value)
     {
+        if (_factorys.ContainsKey(key))
+            return;
         _factorys.Add(key, (IFactory<T>)value);
     }
 

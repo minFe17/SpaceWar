@@ -18,7 +18,7 @@ public class SelectPassiveUI : MonoBehaviour
         CsvManager csvManager = GenericSingleton<CsvManager>.Instance;
 
         _passiveButton[buttonIndex].Passive.AddPassive();
-        GenericSingleton<PlayerDataManager>.Instance.Passive.Add(_passiveButton[buttonIndex].Passive.PassiveData.Name);
+        DataSingleton<SelectPassiveData>.Instance.PassiveList.Add(_passiveButton[buttonIndex].Passive);
         GenericSingleton<PassiveManager>.Instance.RemovePassive(_passiveButton[buttonIndex].Passive);
         csvManager.WriteDataFile();
         while (csvManager.IsWriting == true || csvManager.CheckDataFiles() == false)

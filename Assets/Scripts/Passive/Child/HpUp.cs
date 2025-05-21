@@ -6,8 +6,8 @@ public class HpUp : PassiveBase, IPassive
 
     void IPassive.AddPassive()
     {
-        _playerDataManager.MaxHp += _hpAmount;
-        _playerDataManager.CurHp += _hpAmount;
+        _playerData.MaxHp += _hpAmount;
+        _playerData.CurHp += _hpAmount;
         _uiManager.IngameUI.ShowHp();
     }
 

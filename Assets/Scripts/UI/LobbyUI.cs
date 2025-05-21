@@ -25,10 +25,13 @@ public class LobbyUI : MonoBehaviour
 
     async void Start()
     {
-        await LoadAsset();
+        Time.timeScale = 1.0f;
+        if (!GenericSingleton<AssetManager>.Instance.IsLoad)
+            await LoadAsset();
         _animator.SetBool("isLoad", true);
         _clickText.SetActive(true);
         _buttonPanel.SetActive(false);
+
         GenericSingleton<SoundManager>.Instance.Init();
         GenericSingleton<CsvManager>.Instance.ReadDataFile();
         _continueGameButton.interactable = false;

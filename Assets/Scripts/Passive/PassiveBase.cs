@@ -4,13 +4,13 @@ using Utils;
 public abstract class PassiveBase : MonoBehaviour
 {
     protected PassiveData _passiveData;
-    protected PlayerDataManager _playerDataManager;
+    protected PlayerData _playerData;
     protected UIManager _uiManager;
     protected PassiveSpriteManager _passiveSpriteManager;
 
     void Init()
     {
-        _playerDataManager = GenericSingleton<PlayerDataManager>.Instance;
+        _playerData = DataSingleton<PlayerData>.Instance;
         _uiManager = GenericSingleton<UIManager>.Instance;
         _passiveSpriteManager = GenericSingleton<PassiveSpriteManager>.Instance;
     }

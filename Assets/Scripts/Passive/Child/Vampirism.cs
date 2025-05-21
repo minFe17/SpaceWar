@@ -4,7 +4,7 @@ public class Vampirism : PassiveBase, IPassive
 
     void IPassive.AddPassive()
     {
-        _playerDataManager.Vampirism = true;
+        _playerData.Vampirism = true;
     }
 
     void IPassive.SetPassiveData(PassiveData passiveData)

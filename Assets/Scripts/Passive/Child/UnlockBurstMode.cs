@@ -4,7 +4,7 @@ public class UnlockBurstMode : PassiveBase, IPassive
 
     void IPassive.AddPassive()
     {
-        _playerDataManager.UnlockBurstMode = true;
+        _playerData.UnlockBurstMode = true;
     }
 
     void IPassive.SetPassiveData(PassiveData passiveData)
