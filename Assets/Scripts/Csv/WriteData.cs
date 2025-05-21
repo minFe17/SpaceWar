@@ -110,7 +110,6 @@ public class WriteData : MonoBehaviour
     string[] GameDataToString()
     {
         GameManager data = GenericSingleton<GameManager>.Instance;
-        Debug.Log(data.MapStage);
         List<string> value = new List<string>
         {
             data.MapStage.ToString(),
