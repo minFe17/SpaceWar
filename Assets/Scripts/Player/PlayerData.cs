@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public class PlayerData
 {
     // 데이터 싱글턴

@@ -233,7 +233,6 @@
     <Compile Include="Assets\Scripts\Potion\Child\MaxHPIncreasePotion.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\SecondWorld\SecondObstacle.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\RaptorSoundEffects.cs" />
-    <Compile Include="Assets\Scripts\Test.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\EventRoom\Child\PortalFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Coin\Child\SilverCoinCoinFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Interface\IGenericFactory.cs" />
@@ -306,6 +305,8 @@
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
     <Compile Include="Assets\Scripts\Player\SelectPassiveData.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\Passive\PassiveUIData.cs" />
+    <Compile Include="Assets\Scripts\Passive\PassiveUIDataList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

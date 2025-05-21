@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class SelectPassiveData
 {
     // 데이터 싱글턴
