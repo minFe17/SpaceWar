@@ -303,6 +303,7 @@
     <Compile Include="Assets\Scripts\Test.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundVolumnData.cs" />
     <Compile Include="Assets\Scripts\Utils\DataSingleton.cs" />
+    <Compile Include="Assets\Scripts\GameManager\GameData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
