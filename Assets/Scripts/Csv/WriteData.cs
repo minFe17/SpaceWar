@@ -52,13 +52,9 @@ public class WriteData : MonoBehaviour
 
     void WirteGameData()
     {
-        List<string[]> lists = new List<string[]>();
-
-        string[] datas = new string[] { "MapStage", "LevelStage", "KillEnemy", "PlayTime", "IsAddPassive" };
-        lists.Add(datas);
-        lists.Add(GameDataToString());
-
-        BaseWriteData(lists, _csvManager.GameDataFilePath);
+        GameData data = DataSingleton<GameData>.Instance;
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(_csvManager.GameDataFilePath, json);
     }
 
     void WirtePassiveData()
@@ -102,21 +98,6 @@ public class WriteData : MonoBehaviour
             data.UnlockAutoMode.ToString(),
             data.HPUpByMoney.ToString(),
             data.Vampirism.ToString()
-        };
-
-        return value.ToArray();
-    }
-
-    string[] GameDataToString()
-    {
-        GameManager data = GenericSingleton<GameManager>.Instance;
-        List<string> value = new List<string>
-        {
-            data.MapStage.ToString(),
-            data.LevelStage.ToString(),
-            data.KillEnemy.ToString(),
-            data.PlayTime.ToString(),
-            data.IsAddPassive.ToString()
         };
 
         return value.ToArray();

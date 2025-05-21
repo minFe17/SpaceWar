@@ -117,7 +117,7 @@ public class DungeonCreator : MonoBehaviour
             }
             else if (i == rooms.Count - 1)
             {
-                if (GenericSingleton<GameManager>.Instance.LevelStage == 5)
+                if (DataSingleton<GameData>.Instance.LevelStage == 5)
                 {
                     CreateEnemyController(rooms[i].BottomLeftAreaCorner, rooms[i].TopRightAreaCorner, room, true);
                     _obstacleCreator.CreateObstacle(rooms[i].BottomLeftAreaCorner, rooms[i].TopRightAreaCorner, room.transform);

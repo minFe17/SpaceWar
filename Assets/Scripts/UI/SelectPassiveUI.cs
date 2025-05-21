@@ -29,7 +29,7 @@ public class SelectPassiveUI : MonoBehaviour
 
         gameObject.SetActive(false);
         GenericSingleton<DoorManager>.Instance.ClearDoors();
-        SceneManager.LoadScene($"{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}");
+        SceneManager.LoadScene($"{(EWorldType)DataSingleton<GameData>.Instance.MapStage}");
     }
 
     public void ShowInfo(int buttonIndex)   // Event Trigger를 사용하는 함수

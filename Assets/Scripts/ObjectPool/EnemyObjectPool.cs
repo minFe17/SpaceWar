@@ -7,7 +7,7 @@ public class EnemyObjectPool : MonoBehaviour
 {
     List<IEnemyList> _worlds = new List<IEnemyList>();
     IObjectPool _enemyPool = null;
-    GameManager _gameMaanger;
+    GameData _gameData;
 
     public IObjectPool EnemyPool { get=>_enemyPool; }
 
@@ -25,12 +25,12 @@ public class EnemyObjectPool : MonoBehaviour
 
     void MakePool()
     {
-        if (_gameMaanger == null)
-            _gameMaanger = GenericSingleton<GameManager>.Instance;
+        if (_gameData == null)
+            _gameData = DataSingleton<GameData>.Instance;
         if(_worlds.Count == 0)
             MakeWorldList();
         
-        _worlds[_gameMaanger.MapStage - 1].MakePool(this);
+        _worlds[_gameData.MapStage - 1].MakePool(this);
     }
 
     public void ChangePool()

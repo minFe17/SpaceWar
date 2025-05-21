@@ -73,8 +73,9 @@ public class IngameUI : MonoBehaviour
 
     public void ShowStage()
     {
-        int mapStage = GenericSingleton<GameManager>.Instance.MapStage;
-        int levelStage = GenericSingleton<GameManager>.Instance.LevelStage;
+        GameData gameData = DataSingleton<GameData>.Instance;
+        int mapStage = gameData.MapStage;
+        int levelStage = gameData.LevelStage;
         _stageText.text = $"{mapStage} - {levelStage}";
     }
 

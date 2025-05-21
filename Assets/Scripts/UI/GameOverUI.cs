@@ -22,6 +22,7 @@ public class GameOverUI : MonoBehaviour
 
     List<Transform[]> _wavePos = new List<Transform[]>();
 
+    GameData _gameData = DataSingleton<GameData>.Instance;
     Vector3 _dieWavePos;
 
     void Awake()
@@ -47,8 +48,8 @@ public class GameOverUI : MonoBehaviour
     void ShowWave()
     {
         GameManager gameManager = GenericSingleton<GameManager>.Instance;
-        int mapStage = gameManager.MapStage;
-        int levelStage = gameManager.LevelStage;
+        int mapStage = _gameData.MapStage;
+        int levelStage = _gameData.LevelStage;
         _playerImage.position = _startPos.position;
         _dieWavePos = _wavePos[mapStage - 1][levelStage - 1].position;
         if (!gameManager.IsClear)
@@ -64,7 +65,7 @@ public class GameOverUI : MonoBehaviour
 
     void ShowPlayTime()
     {
-        float time = GenericSingleton<GameManager>.Instance.PlayTime;
+        float time = _gameData.PlayTime;
         int minute = (int)time / 60;
         int sec = (int)time % 60;
         _playTimeText.text = string.Format("{0:D2} : {1:D2}", minute, sec);
@@ -72,7 +73,7 @@ public class GameOverUI : MonoBehaviour
 
     void ShowKillEnemy()
     {
-        int killEnemy = GenericSingleton<GameManager>.Instance.KillEnemy;
+        int killEnemy = _gameData.KillEnemy;
         _killEnemyText.text = string.Format("{0:D3}", killEnemy);
     }
 

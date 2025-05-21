@@ -108,16 +108,20 @@ public class ReadData : MonoBehaviour
         if (!_csvManager.CheckDataFile(_csvManager.GameDataFilePath))
             return;
 
-        GameManager gameData = GenericSingleton<GameManager>.Instance;
-        string[] value = BaseReadData(_csvManager.GameDataFilePath);
-        if (value == null)
-            return;
+        //GameManager gameData = GenericSingleton<GameManager>.Instance;
+        //string[] value = BaseReadData(_csvManager.GameDataFilePath);
+        //if (value == null)
+        //    return;
 
-        gameData.MapStage = int.Parse(value[0]);
-        gameData.LevelStage = int.Parse(value[1]);
-        gameData.KillEnemy = int.Parse(value[2]);
-        gameData.PlayTime = float.Parse(value[3]);
-        gameData.IsAddPassive = bool.Parse(value[4]);
+        //gameData.MapStage = int.Parse(value[0]);
+        //gameData.LevelStage = int.Parse(value[1]);
+        //gameData.KillEnemy = int.Parse(value[2]);
+        //gameData.PlayTime = float.Parse(value[3]);
+        //gameData.IsAddPassive = bool.Parse(value[4]);
+
+        GameData gamedata = DataSingleton<GameData>.Instance;
+        string json = File.ReadAllText(_csvManager.GameDataFilePath);
+        JsonUtility.FromJsonOverwrite(json, gamedata);
     }
 
     void ReadSavePassiveData()

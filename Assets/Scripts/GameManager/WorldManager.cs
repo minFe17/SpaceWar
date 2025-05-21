@@ -49,7 +49,7 @@ public class WorldManager : MonoBehaviour
     public async Task ContinueGame()
     {
         ReleaseAsset();
-        WorldType = (EWorldType)GenericSingleton<GameManager>.Instance.MapStage - 1;
+        WorldType = (EWorldType)DataSingleton<GameData>.Instance.MapStage - 1;
         await LoadAsset();
     }
 

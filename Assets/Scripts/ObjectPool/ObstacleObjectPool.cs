@@ -7,7 +7,7 @@ public class ObstacleObjectPool : MonoBehaviour
 {
     List<IObstacleList> _worlds = new List<IObstacleList>();
     IObjectPool _obstaclePool = null;
-    GameManager _gameMaanger;
+    GameData _gameData;
 
     public IObjectPool ObstaclePool { get => _obstaclePool; }
 
@@ -25,11 +25,11 @@ public class ObstacleObjectPool : MonoBehaviour
 
     void MakePool()
     {
-        if (_gameMaanger == null)
-            _gameMaanger = GenericSingleton<GameManager>.Instance;
+        if (_gameData == null)
+            _gameData = DataSingleton<GameData>.Instance;
         if (_worlds.Count == 0)
             MakeWorldList();
-        _worlds[_gameMaanger.MapStage - 1].MakePool(this);
+        _worlds[_gameData.MapStage - 1].MakePool(this);
     }
 
     public void ChangePool()

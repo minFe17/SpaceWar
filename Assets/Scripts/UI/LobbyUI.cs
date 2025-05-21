@@ -59,7 +59,7 @@ public class LobbyUI : MonoBehaviour
     {
         Time.timeScale = 1f;
         GenericSingleton<CsvManager>.Instance.DestroyDataFiles();
-        GenericSingleton<GameManager>.Instance.MapStage = 1;
+        DataSingleton<GameData>.Instance.MapStage = 1;
         await GenericSingleton<WorldManager>.Instance.ResetWorld();
         SceneManager.LoadScene("FirstWorld");
     }
@@ -68,7 +68,7 @@ public class LobbyUI : MonoBehaviour
     {
         Time.timeScale = 1f;
         await GenericSingleton<WorldManager>.Instance.ContinueGame();
-        SceneManager.LoadScene($"{(EWorldType)GenericSingleton<GameManager>.Instance.MapStage}");
+        SceneManager.LoadScene($"{(EWorldType)DataSingleton<GameData>.Instance.MapStage}");
     }
 
     public void OpenSoundOption()
