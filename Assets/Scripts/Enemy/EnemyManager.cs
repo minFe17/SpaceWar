@@ -9,13 +9,14 @@ public class EnemyManager : MonoBehaviour
     // ╫л╠шео
     List<IEnemyList> _worldList = new List<IEnemyList>();
     List<GameObject> _enemys = new List<GameObject>();
+    List<Material> _raptorMaterials = new List<Material>();
 
     AddressableManager _addressableManager;
     WorldManager _worldManager;
     Transform _target;
 
     public List<GameObject> Enemys { get => _enemys; }
-    public List<Material> RaptorMaterials { get; }
+    public List<Material> RaptorMaterials { get => _raptorMaterials; }
     public Transform Target { get => _target; set => _target = value; }
 
     public GameObject Boss { get; set; }

@@ -30,6 +30,7 @@ public class LobbyUI : MonoBehaviour
         _clickText.SetActive(true);
         _buttonPanel.SetActive(false);
         GenericSingleton<SoundManager>.Instance.Init();
+        GenericSingleton<CsvManager>.Instance.ReadDataFile();
         _continueGameButton.interactable = false;
         _auidoClipManager = GenericSingleton<AudioClipManager>.Instance;
         _disabledColorAlpha = _continueGameButton.colors.disabledColor.a;

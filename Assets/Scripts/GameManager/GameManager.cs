@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         {
             await GenericSingleton<WorldManager>.Instance.NextWorld();
             LevelStage = 1;
+            MapStage++;
         }
         else
         {

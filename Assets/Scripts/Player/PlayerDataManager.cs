@@ -30,13 +30,9 @@ public class PlayerDataManager : MonoBehaviour
     {
         CsvManager csvManager = GenericSingleton<CsvManager>.Instance;
         if (csvManager.CheckDataFiles())
-        {
             csvManager.ReadDataFile();
-        }
         else
-        {
             ResetData();
-        }
         GenericSingleton<AudioClipManager>.Instance.PlayBGM(EBGMAudioType.BGM);
     }
 

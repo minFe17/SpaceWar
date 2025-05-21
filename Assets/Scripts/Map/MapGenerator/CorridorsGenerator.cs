@@ -12,7 +12,7 @@ public class CorridorsGenerator
         
         while (structuresToCheck.Count > 0)
         {
-            var node = structuresToCheck.Dequeue();
+            RoomNode node = structuresToCheck.Dequeue();
 
             // 자식 노드가 없다면 복도를 만들지 않음
             if (node.ChildrenNodeList.Count == 0)

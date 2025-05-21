@@ -6,7 +6,7 @@ public class RoomGenerator
     public List<RoomNode> GenerateRoomsInGivenSpace(List<Node> roomSpaces, float roomBottomCornerModifier, float roomTopCornerModifier, int roomOffset)
     {
         List<RoomNode> listToReturn = new List<RoomNode>();
-        foreach (var space in roomSpaces)
+        foreach (Node space in roomSpaces)
         {
             // BottomLeft를 새로운 값으로 계산
             Vector2Int newBottomLeftPoint = StructureHelper.GenerateBottomLeftCornerBetween(space.BottomLeftAreaCorner, space.TopRightAreaCorner,

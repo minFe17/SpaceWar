@@ -86,9 +86,9 @@ public class DungeonCreator : MonoBehaviour
         CreateDeadZone();
 
         DungeonGenerator generator = new DungeonGenerator(_dungeonWidth, _dungeonLength);
-        var listOfRooms = generator.CalculateDungeon(_maxIterations, _roomWidthMin, _roomLengthMin,
+        List<Node> listOfRooms = generator.CalculateDungeon(_maxIterations, _roomWidthMin, _roomLengthMin,
                                                      _roomBottomCornerModifier, _roomTopCornerModifier, _roomOffset);
-        var listOfCorridors = generator.CalculateCorridors(_corridorWidth, _doorWidth);
+        List<Node> listOfCorridors = generator.CalculateCorridors(_corridorWidth, _doorWidth);
 
         CreateCorridor(listOfCorridors);
         CreateRoom(listOfRooms);

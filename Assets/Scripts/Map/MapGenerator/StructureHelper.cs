@@ -17,14 +17,14 @@ public static class StructureHelper
             return new List<Node>() { parentNode };
 
         // 자식 노드가 있으면 큐에 추가
-        foreach (var child in parentNode.ChildrenNodeList)
+        foreach (Node child in parentNode.ChildrenNodeList)
             nodesToCheck.Enqueue(child);
 
         // 큐가 비어있지 않으면 노드 탐색
         while (nodesToCheck.Count > 0)
         {
             // 큐에서 노드 꺼내기
-            var currentNode = nodesToCheck.Dequeue();
+            Node currentNode = nodesToCheck.Dequeue();
 
             // 자식 노드가 없다면 리스트에 추가
             if (currentNode.ChildrenNodeList.Count == 0)
@@ -32,7 +32,7 @@ public static class StructureHelper
             else
             {
                 // 자식 노드가 있다면 자식들을 큐에 추가
-                foreach (var child in currentNode.ChildrenNodeList)
+                foreach (Node child in currentNode.ChildrenNodeList)
                     nodesToCheck.Enqueue(child);
             }
         }

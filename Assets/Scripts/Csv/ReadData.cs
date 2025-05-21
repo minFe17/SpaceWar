@@ -64,7 +64,7 @@ public class ReadData : MonoBehaviour
         BaseReadOnlyData(out data, passiveDatas);
         for (int i = 1; i < data.Length; i++)
         {
-            var values = data[i].Split(",");
+            string[] values = data[i].Split(",");
             if (values.Length == 0 || string.IsNullOrEmpty(values[0]))
                 continue;
 

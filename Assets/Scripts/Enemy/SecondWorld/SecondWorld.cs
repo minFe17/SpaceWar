@@ -51,12 +51,9 @@ public class SecondWorld : IEnemyList
 
     async Task LoadRaptorMaterial()
     {
-        _cloakingGraph = await _addressableManager.GetAddressableAsset<Shader>("CloakingShader");
-        Debug.Log(_cloakingGraph);
         for (int i = 0; i < (int)ERaptorMaterialType.Max; i++)
         {
             Material temp = await _addressableManager.GetAddressableAsset<Material>($"{(ERaptorMaterialType)i}");
-            Debug.Log(temp);
             _enemyManager.RaptorMaterials.Add(temp);
         }
     }

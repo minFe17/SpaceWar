@@ -43,7 +43,7 @@ public class WallCreator : MonoBehaviour
         {
             for (int row = (int)leftPos.x; row <= (int)rightPos.x + _wallWidth; row += _wallWidth)
             {
-                var wallPos = new Vector3(row, 0, leftPos.z);
+                Vector3 wallPos = new Vector3(row, 0, leftPos.z);
                 CreateWall(wallPos, EMapPoolType.HorizontalWall);
             }
         }
@@ -71,7 +71,7 @@ public class WallCreator : MonoBehaviour
         {
             for (int col = (int)bottomPos.z; col <= (int)topPos.z + _wallWidth; col += _wallWidth)
             {
-                var wallPos = new Vector3(bottomPos.x, 0, col);
+                Vector3 wallPos = new Vector3(bottomPos.x, 0, col);
                 CreateWall(wallPos, EMapPoolType.VerticalWall);
             }
         }

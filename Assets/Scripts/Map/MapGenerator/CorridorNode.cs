@@ -22,7 +22,7 @@ public class CorridorNode : Node
 
     void GenerateCorridor()
     {
-        var relativePositionOfStructure2 = CheckPositionStructure2AgainstStructure1();
+        ERelativePositionType relativePositionOfStructure2 = CheckPositionStructure2AgainstStructure1();
         switch (relativePositionOfStructure2)
         {
             case ERelativePositionType.Up:
@@ -51,7 +51,7 @@ public class CorridorNode : Node
         List<Node> topStructureChildren = StructureHelper.TraverseGraphToExtractLowestLeafes(structure2);
 
         // 노드를 y 좌표 기준으로 내림차순으로 정령
-        var sortedBottomStructure = bottomStructureChildren.OrderByDescending(child => child.TopRightAreaCorner.y).ToList();
+        List<Node> sortedBottomStructure = bottomStructureChildren.OrderByDescending(child => child.TopRightAreaCorner.y).ToList();
 
         // 노드가 1개일 경우(structure1 리프노드인 경우)
         if (sortedBottomStructure.Count == 1)
@@ -69,7 +69,7 @@ public class CorridorNode : Node
 
         // bottomStructure와 연결 가능한 노드 찾기
         // 연결 가능한 x 좌표를 가져야 함
-        var possibleNeighboursInTopStructure = topStructureChildren.Where(
+        List<Node> possibleNeighboursInTopStructure = topStructureChildren.Where(
             child => GetValidXForNeighourUpDown(bottomStructure.TopLeftAreaCorner, bottomStructure.TopRightAreaCorner,
                                                 child.BottomLeftAreaCorner, child.BottomRightAreaCorner) != -1).
                                                 OrderBy(child => child.BottomRightAreaCorner.y).ToList();
@@ -140,7 +140,7 @@ public class CorridorNode : Node
         List<Node> rightStructureChildren = StructureHelper.TraverseGraphToExtractLowestLeafes(structure2);
 
         // 자식 노드를 x 좌표 기준으로 내림차순으로 정령
-        var sortedLeftStructure = leftStructureChildren.OrderByDescending(child => child.TopRightAreaCorner.x).ToList();
+        List<Node> sortedLeftStructure = leftStructureChildren.OrderByDescending(child => child.TopRightAreaCorner.x).ToList();
 
         // 노드가 1개일 경우(structure1 리프노드인 경우)
         if (sortedLeftStructure.Count == 1)
@@ -158,7 +158,7 @@ public class CorridorNode : Node
 
         // leftStructure와 연결 가능한 노드 찾기
         // 연결 가능한 y 좌표를 가져야 함
-        var possibleNeighboursInRightStructure = rightStructureChildren.Where(
+        List<Node> possibleNeighboursInRightStructure = rightStructureChildren.Where(
             child => GetValidYForNeighourLeftRight(leftStructure.TopRightAreaCorner, leftStructure.BottomRightAreaCorner,
                                                    child.TopLeftAreaCorner, child.BottomLeftAreaCorner) != -1).
                                                    OrderBy(child => child.BottomRightAreaCorner.x).ToList();
