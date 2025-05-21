@@ -137,18 +137,17 @@ public class ReadData : MonoBehaviour
         }
     }
 
-    public bool ReadSoundData()
+    public void ReadSoundData()
     {
+        SoundVolumnData volumnData = DataSingleton<SoundVolumnData>.Instance;
         if (!_csvManager.CheckDataFile(_csvManager.SoundDataFilePath))
-            return false;
+        {
+            volumnData.BgmSound = 0.5f;
+            volumnData.SFXSound = 0.5f;
+            return;
+        }
 
-        string[] value = BaseReadData(_csvManager.SoundDataFilePath);
-        if(value == null)
-            return false;
-
-        GenericSingleton<SoundManager>.Instance.BgmSound = float.Parse(value[0]);
-        GenericSingleton<SoundManager>.Instance.SFXSound = float.Parse(value[1]);
-
-        return true;
+        string json = File.ReadAllText(_csvManager.SoundDataFilePath);
+        JsonUtility.FromJsonOverwrite(json, volumnData);
     }
 }

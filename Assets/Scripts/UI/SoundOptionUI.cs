@@ -10,21 +10,23 @@ public class SoundOptionUI : MonoBehaviour
     [SerializeField] Slider _sfxSlider;
 
     SoundManager _soundManager;
+    SoundVolumnData _soundVolumnData;
     SoundController _soundController;
     AudioClipManager _audioClipManager;
 
     void Awake()
     {
         _soundManager = GenericSingleton<SoundManager>.Instance;
+        _soundVolumnData = DataSingleton<SoundVolumnData>.Instance;
         _soundController = _soundManager.SoundController;
         _audioClipManager = GenericSingleton<AudioClipManager>.Instance;
 
-        _bgmSlider.value = _soundManager.BgmSound;
-        _sfxSlider.value = _soundManager.SFXSound;
+        _bgmSlider.value = _soundVolumnData.BgmSound;
+        _sfxSlider.value = _soundVolumnData.SFXSound;
 
-        _soundController.BGM.volume = _soundManager.BgmSound;
+        _soundController.BGM.volume = _soundVolumnData.BgmSound;
         for (int i = 0; i < _soundController.SFXAudio.Count; i++)
-            _soundController.SFXAudio[i].volume = _soundManager.SFXSound;
+            _soundController.SFXAudio[i].volume = _soundVolumnData.SFXSound;
     }
 
     void Update()
@@ -45,13 +47,13 @@ public class SoundOptionUI : MonoBehaviour
 
     public void ChangeBGMSoundVolume()
     {
-        _soundManager.BgmSound = _bgmSlider.value;
+        _soundVolumnData.BgmSound = _bgmSlider.value;
         _soundController.BGM.volume = _bgmSlider.value;
     }
 
     public void ChangeSFXSoundVolume()
     {
-        _soundManager.SFXSound = _sfxSlider.value;
+        _soundVolumnData.SFXSound = _sfxSlider.value;
         for (int i = 0; i < _soundController.SFXAudio.Count; i++)
         {
             _soundController.SFXAudio[i].volume = _sfxSlider.value;

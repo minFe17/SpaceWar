@@ -44,7 +44,7 @@ public class CsvManager : MonoBehaviour
         CreateDataPath(out _playerDataFilePath, "SavePlayerDataFile.csv");
         CreateDataPath(out _gameDataFilePath, "SaveGameDataFile.csv");
         CreateDataPath(out _passiveDataFilePath, "PassiveDataFile.csv");
-        CreateDataPath(out _soundDataFilePath, "SoundDataFile.csv");
+        CreateDataPath(out _soundDataFilePath, "SoundDataFile.json");
     }
 
     void CreateDataPath(out string path, string dataName)
@@ -79,9 +79,9 @@ public class CsvManager : MonoBehaviour
         _readData.ReadDataFile();
     }
 
-    public bool ReadSoundDataFile()
+    public void ReadSoundDataFile()
     {
-        return _readData.ReadSoundData();
+        _readData.ReadSoundData();
     }
 
     public void WriteDataFile()
@@ -101,9 +101,7 @@ public class CsvManager : MonoBehaviour
 
     public bool CheckDataFile(string path)
     {
-        if (File.Exists(path) == false)
-            return false;
-        return true;
+        return File.Exists(path);
     }
 
     void DestroyDataFile(string path)

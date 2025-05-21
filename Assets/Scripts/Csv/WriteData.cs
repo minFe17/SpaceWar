@@ -124,13 +124,8 @@ public class WriteData : MonoBehaviour
 
     public void WriteSound()
     {
-        List<string[]> lists = new List<string[]>();
-
-        string[] header = new string[] { "BGMVolume", "SFXVolume" };
-        lists.Add(header);
-        string[] value = new string[] { GenericSingleton<SoundManager>.Instance.BgmSound.ToString(), GenericSingleton<SoundManager>.Instance.SFXSound.ToString() };
-        lists.Add(value);
-
-        BaseWriteData(lists, _csvManager.SoundDataFilePath);
+        SoundVolumnData data = DataSingleton<SoundVolumnData>.Instance;
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(_csvManager.SoundDataFilePath, json);
     }
 }

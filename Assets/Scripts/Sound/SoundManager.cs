@@ -8,11 +8,6 @@ public class SoundManager : MonoBehaviour
     SoundController _soundController;
     GameObject _soundControllerPrefab;
     AddressableManager _addressableManager;
-    float _bgmSound;
-    float _sfxSound;
-
-    public float BgmSound { get { return _bgmSound; } set { _bgmSound = value; } }
-    public float SFXSound { get { return _sfxSound; } set { _sfxSound = value; } }
 
     public SoundController SoundController
     {
@@ -44,15 +39,6 @@ public class SoundManager : MonoBehaviour
 
     public void Init()
     {
-        CheckCsvFile();
-    }
-
-    void CheckCsvFile()
-    {
-        if (!GenericSingleton<CsvManager>.Instance.ReadSoundDataFile())
-        {
-            _bgmSound = 0.5f;
-            _sfxSound = 0.5f;
-        }
+        GenericSingleton<CsvManager>.Instance.ReadSoundDataFile();
     }
 }
