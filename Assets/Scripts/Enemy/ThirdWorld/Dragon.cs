@@ -53,7 +53,7 @@ public class Dragon : MovableEnemy
         GenericSingleton<UIManager>.Instance.IngameUI.HideBossHpBar();
         for (int i = 0; i < _enemyController.EnemyList.Count; i++)
         {
-            _enemyController.EnemyList[i].Die();
+            _enemyController.EnemyList[0].RemoveEnemy();
         }
         GenericSingleton<GameManager>.Instance.Portal.SetActive(true);
     }

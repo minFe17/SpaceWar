@@ -52,7 +52,7 @@ public class Rhino : MovableEnemy
         GenericSingleton<UIManager>.Instance.IngameUI.HideBossHpBar();
         for (int i = 0; i < _enemyController.EnemyList.Count; i++)
         {
-            _enemyController.EnemyList[i].Die();
+            _enemyController.EnemyList[0].RemoveEnemy();
         }
         GenericSingleton<GameManager>.Instance.Portal.SetActive(true);
         Destroy(this.gameObject);
@@ -60,6 +60,8 @@ public class Rhino : MovableEnemy
 
     protected override void ReadyAttack()
     {
+        if(_isDie) 
+            return;
         _isAttack = true;
         _attackType = (ERhinoAttackType)Random.Range(0, (int)ERhinoAttackType.Max);
         _animator.SetTrigger($"do{_attackType}");
@@ -72,6 +74,7 @@ public class Rhino : MovableEnemy
         _isAttack = false;
     }
 
+    // 애니메이션 이벤트로 실행
     void Shout()
     {
         int random = Random.Range(1, 4);

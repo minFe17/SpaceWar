@@ -115,6 +115,8 @@
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\SecondWorld\Child\RaptorFactory.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\FireStone.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\FirstCactusFactory.cs" />
+    <Compile Include="Assets\Scripts\Player\SelectPassiveData.cs" />
+    <Compile Include="Assets\Scripts\Passive\PassiveData.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\Interface\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\ThirdWorldd\ThirdObstacle.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\DeliveryRobot.cs" />
@@ -195,6 +197,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\DoorCreator.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\EnemyObjectPool.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Enum\EThirdWorldObstacleType.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\ChestFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\BoneFactory.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\MeshCreator.cs" />
@@ -220,6 +223,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\ObstacleCreator.cs" />
     <Compile Include="Assets\Scripts\Factory\FactoryManager.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\BlendShapeTrigger.cs" />
+    <Compile Include="Assets\Scripts\Passive\PassiveDataList.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EFirstWorldEnemyType.cs" />
     <Compile Include="Assets\Scripts\Factory\Factory.cs" />
     <Compile Include="Assets\Scripts\UI\MainUI.cs" />
@@ -300,10 +304,6 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
-    <Compile Include="Assets\Scripts\Player\SelectPassiveData.cs" />
-    <Compile Include="Assets\Scripts\Passive\PassiveData.cs" />
-    <Compile Include="Assets\Scripts\Passive\PassiveDataList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

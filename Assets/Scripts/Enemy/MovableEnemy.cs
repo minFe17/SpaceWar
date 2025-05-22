@@ -52,6 +52,8 @@ public class MovableEnemy : Enemy
 
     protected virtual void Attack()
     {
+        if (_isDie)
+            return;
         _attackArea.SetActive(true);
     }
 
