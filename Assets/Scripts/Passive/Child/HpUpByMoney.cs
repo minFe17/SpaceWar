@@ -1,14 +1,7 @@
-public class HpUpByMoney : PassiveBase, IPassive
+public class HpUpByMoney : PassiveData
 {
-    PassiveData IPassive.PassiveData { get => _passiveData; }
-
-    void IPassive.AddPassive()
+    public override void AddPassive()
     {
         _playerData.HPUpByMoney = true;
-    }
-
-    void IPassive.SetPassiveData(PassiveData passiveData)
-    {
-        SetPassiveData(passiveData);
     }
 }

@@ -1,16 +1,9 @@
-public class DamageUp : PassiveBase, IPassive
+public class DamageUp : PassiveData
 {
     int _bulletDamage = 3;
-
-    PassiveData IPassive.PassiveData { get => _passiveData; }
-
-    void IPassive.AddPassive()
+    
+    public override void AddPassive()
     {
         _playerData.BulletDamage += _bulletDamage;
-    }
-
-    void IPassive.SetPassiveData(PassiveData passiveData)
-    {
-        SetPassiveData(passiveData);
     }
 }

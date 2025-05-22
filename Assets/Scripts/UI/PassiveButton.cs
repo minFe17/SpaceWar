@@ -4,13 +4,13 @@ using UnityEngine.UI;
 public class PassiveButton : MonoBehaviour
 {
     Image _image;
-    IPassive _passive;
+    PassiveData _passive;
 
-    public IPassive Passive { get => _passive; set => _passive = value; }
+    public PassiveData Passive { get => _passive; set => _passive = value; }
 
     public void Init()
     {
         _image = GetComponent<Image>();
-        _image.sprite = _passive.PassiveData.Image;
+        _image.sprite = _passive.Image;
     }
 }

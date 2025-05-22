@@ -37,7 +37,7 @@ public class SelectPassiveUI : MonoBehaviour
         if (_passiveInfoPanel.activeSelf == false)
             _passiveInfoPanel.SetActive(true);
 
-        _passiveNameText.text = _passiveButton[buttonIndex].Passive.PassiveData.Name;
-        _passiveInfoText.text = _passiveButton[buttonIndex].Passive.PassiveData.Info;
+        _passiveNameText.text = _passiveButton[buttonIndex].Passive.Name;
+        _passiveInfoText.text = _passiveButton[buttonIndex].Passive.Info;
     }
 }

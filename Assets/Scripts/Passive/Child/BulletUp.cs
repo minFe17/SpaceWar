@@ -1,17 +1,14 @@
-public class BulletUp : PassiveBase, IPassive
+using Utils;
+
+public class BulletUp : PassiveData
 {
     int _bulletUp = 30;
 
-    PassiveData IPassive.PassiveData { get => _passiveData; }
-
-    void IPassive.AddPassive()
+    public override void AddPassive()
     {
         _playerData.MaxBullet += _bulletUp;
+        if (_uiManager == null)
+            _uiManager = GenericSingleton<UIManager>.Instance;
         _uiManager.IngameUI.ShowBullet();
-    }
-
-    void IPassive.SetPassiveData(PassiveData passiveData)
-    {
-        SetPassiveData(passiveData);
     }
 }

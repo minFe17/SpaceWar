@@ -1,14 +1,7 @@
-public class UnlockBurstMode : PassiveBase, IPassive
+public class UnlockBurstMode : PassiveData
 {
-    PassiveData IPassive.PassiveData { get => _passiveData; }
-
-    void IPassive.AddPassive()
+    public override void AddPassive()
     {
         _playerData.UnlockBurstMode = true;
-    }
-
-    void IPassive.SetPassiveData(PassiveData passiveData)
-    {
-        SetPassiveData(passiveData);
     }
 }

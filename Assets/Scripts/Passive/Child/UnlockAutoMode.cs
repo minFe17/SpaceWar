@@ -1,14 +1,7 @@
-public class UnlockAutoMode : PassiveBase, IPassive
+public class UnlockAutoMode : PassiveData
 {
-    PassiveData IPassive.PassiveData { get => _passiveData; }
-
-    void IPassive.AddPassive()
+    public override void AddPassive()
     {
         _playerData.UnlockAutoMode = true;
-    }
-
-    void IPassive.SetPassiveData(PassiveData passiveData)
-    {
-        SetPassiveData(passiveData);
     }
 }

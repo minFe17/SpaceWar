@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using Utils;
@@ -7,30 +6,7 @@ public class PassiveManager : MonoBehaviour
 {
     // ╫л╠шео
     CsvManager _csvManager;
-    List<IPassive> _passive = new List<IPassive>();
-    public List<IPassive> Passive 
-    { 
-        get
-        {
-            if (_passive.Count == 0)
-                AddPassive();
-            return _passive;
-        }   
-    }
-
-    void AddPassive()
-    {
-        _passive.Add(new HpUp());
-        _passive.Add(new DamageUp());
-        _passive.Add(new SpeedUp());
-        _passive.Add(new BulletUp());
-        _passive.Add(new UnlockBurstMode());
-        _passive.Add(new UnlockAutoMode());
-        _passive.Add(new GetMoneyUp());
-        _passive.Add(new DoubleHp());
-        _passive.Add(new HpUpByMoney());
-        _passive.Add(new Vampirism());
-    }
+    PassiveDataList _dataList = DataSingleton<PassiveDataList>.Instance;
 
     async Task ReadData()
     {
@@ -41,12 +17,11 @@ public class PassiveManager : MonoBehaviour
 
     public async Task Init()
     {
-        AddPassive();
         await ReadData();
     }
 
-    public void RemovePassive(IPassive passive)
+    public void RemovePassive(PassiveData passive)
     {
-        _passive.Remove(passive);
+        _dataList.UIDataList.Remove(passive);
     }
 }
