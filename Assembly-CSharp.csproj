@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Factory\Child\Map\MapFactoryBase.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Map\MapFactory.cs" />
-    <Compile Include="Assets\amusedART\StoneMonster\Script\Animation_Test.cs" />
+    <Compile Include="Assets\DownloadAssets\amusedART\StoneMonster\Script\Animation_Test.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\LobbyUI.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\UnlockBurstMode.cs" />
@@ -121,7 +121,7 @@
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\ThirdWorldd\ThirdObstacle.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\DeliveryRobot.cs" />
     <Compile Include="Assets\Scripts\Potion\Child\RecoveryPotion.cs" />
-    <Compile Include="Assets\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
+    <Compile Include="Assets\DownloadAssets\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\FirstWorld\Child\BatteryFactory.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Addressable\AssetManager.cs" />
@@ -150,7 +150,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\GroundWork\Child\DeadZoneFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Map\Child\VerticalWallFactory.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\ScavengerAttack.cs" />
-    <Compile Include="Assets\Blink\Art\Animals\Stylized\Demo_Animals\DemoData\AnimationDemo.cs" />
+    <Compile Include="Assets\DownloadAssets\Blink\Art\Animals\Stylized\Demo_Animals\DemoData\AnimationDemo.cs" />
     <Compile Include="Assets\Scripts\UI\GameOverUI.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\DungeonCreator.cs" />
     <Compile Include="Assets\Scripts\Utils\GenericSingleton.cs" />
@@ -164,7 +164,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\ThirdRockFactory.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Fire.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\FirstWorld\FirstObstacle.cs" />
-    <Compile Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
+    <Compile Include="Assets\DownloadAssets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\CameraFactoryBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\FirstWorld.cs" />
@@ -205,13 +205,13 @@
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Rhino.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Turret.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\FirstWorlld\Child\DeliveryRobotFactory.cs" />
-    <Compile Include="Assets\Bullet Casing\Scripts\Sound.cs" />
+    <Compile Include="Assets\DownloadAssets\Bullet Casing\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\ThirdWorldd\ThirdWorldObstacleList.cs" />
-    <Compile Include="Assets\UI button pack 2\Scene\CreateObj.cs" />
+    <Compile Include="Assets\DownloadAssets\UI button pack 2\Scene\CreateObj.cs" />
     <Compile Include="Assets\Scripts\Factory\WorldFactory.cs" />
     <Compile Include="Assets\Scripts\Potion\PotionManager.cs" />
     <Compile Include="Assets\Scripts\UI\SoundOptionUI.cs" />
-    <Compile Include="Assets\Bullet Casing\Scripts\FP_Shooting.cs" />
+    <Compile Include="Assets\DownloadAssets\Bullet Casing\Scripts\FP_Shooting.cs" />
     <Compile Include="Assets\Scripts\Factory\Interface\IFactorys.cs" />
     <Compile Include="Assets\Scripts\Camera\Camera.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Enum\ERhinoAttackType.cs" />
@@ -306,17 +306,17 @@
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
+    <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\Sound\Sc-Fi Music\Note.txt" />
+    <None Include="Assets\DownloadAssets\Sound\Sc-Fi Music\Note.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\DownloadAssets\Enemy\Rhino\Sheder\StandardDoubleSided.shader" />
-    <None Include="Assets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Basic.shader" />
+    <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Basic.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
+    <None Include="Assets\DownloadAssets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
     <None Include="Assets\DownloadAssets\Map\_Creepy_Cat\_Docs\Doc.txt" />
     <None Include="Assets\DownloadAssets\Map\Triple Dungeon Pack\Blue Dungeon\blue dungeon_ReadMe.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
@@ -329,7 +329,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
+    <None Include="Assets\DownloadAssets\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\DownloadAssets\Snack_machines\readme.txt" />
     <None Include="Assets\DownloadAssets\Skybox\SkySeries Freebie\Hdri setup.txt" />
