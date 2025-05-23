@@ -399,7 +399,7 @@ public class Player : MonoBehaviour
         _uiManager.GameOverUI.gameObject.SetActive(true);
         _uiManager.GameOverUI.GameOver();
         Cursor.lockState = CursorLockMode.None;
-        GenericSingleton<CsvManager>.Instance.DestroyDataFiles();
+        GenericSingleton<JsonManager>.Instance.DestroyDataFiles();
         _audioManager.PlaySFX(ESFXAudioType.Die);
 
         if (EnemyController != null)

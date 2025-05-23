@@ -42,11 +42,11 @@ public class GameManager : MonoBehaviour
         else
         {
             _gameData.IsAddPassive = true;
-            CsvManager csvManager = GenericSingleton<CsvManager>.Instance;
-            csvManager.WriteDataFile();
-            while (csvManager.IsWriting == true || csvManager.CheckDataFiles() == false)
+            JsonManager jsonManager = GenericSingleton<JsonManager>.Instance;
+            jsonManager.WriteDataFile();
+            while (jsonManager.IsWriting == true || jsonManager.CheckDataFiles() == false)
             {
-                if (csvManager.IsWriting == false && csvManager.CheckDataFiles() == true)
+                if (jsonManager.IsWriting == false && jsonManager.CheckDataFiles() == true)
                     break;
             }
             GenericSingleton<DoorManager>.Instance.ClearDoors();

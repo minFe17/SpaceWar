@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class CsvManager : MonoBehaviour
+public class JsonManager : MonoBehaviour
 {
     // ╫л╠шео
     ReadData _readData = new ReadData();

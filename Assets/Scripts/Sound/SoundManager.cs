@@ -39,6 +39,6 @@ public class SoundManager : MonoBehaviour
 
     public void Init()
     {
-        GenericSingleton<CsvManager>.Instance.ReadSoundDataFile();
+        GenericSingleton<JsonManager>.Instance.ReadSoundDataFile();
     }
 }

@@ -1,27 +1,25 @@
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using UnityEngine;
 using Utils;
 
 public class WriteData : MonoBehaviour
 {
-    CsvManager _csvManager;
+    JsonManager _jsonManager;
 
-    public void Init(CsvManager csvManager)
+    public void Init(JsonManager jsonManager)
     {
-        _csvManager = csvManager;
+        _jsonManager = jsonManager;
     }
 
     public void WriteDataFile()
     {
-        _csvManager.IsWriting = true;
-        _csvManager.DestroyDataFiles();
+        _jsonManager.IsWriting = true;
+        _jsonManager.DestroyDataFiles();
         WirtePlayerData();
         WirteGameData();
         WirtePassiveData();
 
-        _csvManager.IsWriting = false;
+        _jsonManager.IsWriting = false;
     }
 
     void WriteJsonDataBase(object data, string filePath)
@@ -33,24 +31,24 @@ public class WriteData : MonoBehaviour
     void WirtePlayerData()
     {
         PlayerData playerData = DataSingleton<PlayerData>.Instance;
-        WriteJsonDataBase(playerData, _csvManager.PlayerDataFilePath);
+        WriteJsonDataBase(playerData, _jsonManager.PlayerDataFilePath);
     }
 
     void WirteGameData()
     {
         GameData data = DataSingleton<GameData>.Instance;
-        WriteJsonDataBase(data, _csvManager.GameDataFilePath);
+        WriteJsonDataBase(data, _jsonManager.GameDataFilePath);
     }
 
     void WirtePassiveData()
     {
         SelectPassiveData passiveData = DataSingleton<SelectPassiveData>.Instance;
-        WriteJsonDataBase(passiveData, _csvManager.PassiveDataFilePath);
+        WriteJsonDataBase(passiveData, _jsonManager.PassiveDataFilePath);
     }
 
     public void WriteSound()
     {
         SoundVolumnData data = DataSingleton<SoundVolumnData>.Instance;
-        WriteJsonDataBase(data, _csvManager.SoundDataFilePath);
+        WriteJsonDataBase(data, _jsonManager.SoundDataFilePath);
     }
 }

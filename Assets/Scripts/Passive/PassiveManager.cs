@@ -5,14 +5,14 @@ using Utils;
 public class PassiveManager : MonoBehaviour
 {
     // ╫л╠шео
-    CsvManager _csvManager;
+    JsonManager _jsonManager;
     PassiveDataList _dataList = DataSingleton<PassiveDataList>.Instance;
 
     async Task ReadData()
     {
-        if (_csvManager == null)
-            _csvManager = GenericSingleton<CsvManager>.Instance;
-        await _csvManager.ReadPassiveData();
+        if (_jsonManager == null)
+            _jsonManager = GenericSingleton<JsonManager>.Instance;
+        await _jsonManager.ReadPassiveData();
     }
 
     public async Task Init()

@@ -11,9 +11,9 @@ public class PlayerDataManager : MonoBehaviour
 
     public void SettingPlayerData()
     {
-        CsvManager csvManager = GenericSingleton<CsvManager>.Instance;
-        if (csvManager.CheckDataFiles())
-            csvManager.ReadDataFile();
+        JsonManager jsonManager = GenericSingleton<JsonManager>.Instance;
+        if (jsonManager.CheckDataFiles())
+            jsonManager.ReadDataFile();
         else
             ResetData();
         GenericSingleton<AudioClipManager>.Instance.PlayBGM(EBGMAudioType.BGM);

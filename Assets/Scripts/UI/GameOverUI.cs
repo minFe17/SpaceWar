@@ -85,7 +85,7 @@ public class GameOverUI : MonoBehaviour
 
     public async void RegameButton()
     {
-        GenericSingleton<CsvManager>.Instance.DestroyDataFiles();
+        GenericSingleton<JsonManager>.Instance.DestroyDataFiles();
         await GenericSingleton<WorldManager>.Instance.ResetWorld();
         SceneManager.LoadScene("FirstWorld");
         GenericSingleton<AudioClipManager>.Instance.PlaySFX(ESFXAudioType.Button);

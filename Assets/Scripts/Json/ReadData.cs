@@ -1,5 +1,4 @@
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 using Utils;
@@ -8,11 +7,11 @@ public class ReadData : MonoBehaviour
 {
     AddressableManager _addressableManager;
     PassiveManager _passiveManager;
-    CsvManager _csvManager;
+    JsonManager _jsonManager;
 
-    public void Init(CsvManager csvManager)
+    public void Init(JsonManager jsonManager)
     {
-        _csvManager = csvManager;
+        _jsonManager = jsonManager;
     }
 
     public void ReadDataFile()
@@ -43,37 +42,37 @@ public class ReadData : MonoBehaviour
 
     void ReadPlayerData()
     {
-        if (!_csvManager.CheckDataFile(_csvManager.PlayerDataFilePath))
+        if (!_jsonManager.CheckDataFile(_jsonManager.PlayerDataFilePath))
             return;
         PlayerDataManager playerData = GenericSingleton<PlayerDataManager>.Instance;
-        ReadJsonData(_csvManager.PlayerDataFilePath, playerData);
+        ReadJsonData(_jsonManager.PlayerDataFilePath, playerData);
     }
 
     void ReadGameData()
     {
-        if (!_csvManager.CheckDataFile(_csvManager.GameDataFilePath))
+        if (!_jsonManager.CheckDataFile(_jsonManager.GameDataFilePath))
             return;
         GameData gamedata = DataSingleton<GameData>.Instance;
-        ReadJsonData(_csvManager.GameDataFilePath, gamedata);
+        ReadJsonData(_jsonManager.GameDataFilePath, gamedata);
     }
 
     void ReadSavePassiveData()
     {
-        if (!_csvManager.CheckDataFile(_csvManager.PassiveDataFilePath))
+        if (!_jsonManager.CheckDataFile(_jsonManager.PassiveDataFilePath))
             return;
         SelectPassiveData passiveData = DataSingleton<SelectPassiveData>.Instance;
-        ReadJsonData(_csvManager.PassiveDataFilePath, passiveData);
+        ReadJsonData(_jsonManager.PassiveDataFilePath, passiveData);
     }
 
     public void ReadSoundData()
     {
         SoundVolumnData volumnData = DataSingleton<SoundVolumnData>.Instance;
-        if (!_csvManager.CheckDataFile(_csvManager.SoundDataFilePath))
+        if (!_jsonManager.CheckDataFile(_jsonManager.SoundDataFilePath))
         {
             volumnData.BgmSound = 0.5f;
             volumnData.SFXSound = 0.5f;
             return;
         }
-        ReadJsonData(_csvManager.SoundDataFilePath, volumnData);
+        ReadJsonData(_jsonManager.SoundDataFilePath, volumnData);
     }
 }
