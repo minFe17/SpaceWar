@@ -19,7 +19,7 @@ public class OptionUI : MonoBehaviour
         GenericSingleton<UIManager>.Instance.OnOffOptionUI(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
-        GenericSingleton<UIManager>.Instance.Player.OptionUIState(false);
+        GenericSingleton<UIManager>.Instance.Player.OptionUIState();
         _audioClipManaer.PlaySFX(ESFXAudioType.Button);
     }
 

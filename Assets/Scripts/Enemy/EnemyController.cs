@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
 
     DoorManager _doorManager;
     BoxCollider _ground;
-    Player _player;
+    PlayerBase _player;
 
     Vector3 _createPos;
     Vector3 _basePos;
@@ -137,7 +137,7 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !_isClear)
         {
-            _player = other.gameObject.GetComponent<Player>();
+            _player = other.gameObject.GetComponent<PlayerBase>();
             _player.EnemyController = this;
             _doorManager.LockDoor();
             _ground.enabled = false;

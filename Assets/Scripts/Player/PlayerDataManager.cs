@@ -7,7 +7,7 @@ public class PlayerDataManager : MonoBehaviour
     PlayerData _playerData = DataSingleton<PlayerData>.Instance;
     SelectPassiveData _passiveData = DataSingleton<SelectPassiveData>.Instance;
     
-    public Player Player { get; set; }
+    public PlayerBase Player { get; set; }
 
     public void SettingPlayerData()
     {

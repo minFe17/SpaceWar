@@ -4,7 +4,7 @@ using Utils;
 public class Fire : MonoBehaviour
 {
     ParticleSystem _fire;
-    Player _player;
+    PlayerBase _player;
 
     float _coolTime = 1;
 

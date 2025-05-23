@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour
     protected ObjectPoolManager _objectPoolManager;
     protected CoinManager _coinManager;
     protected Transform _target;
-    protected Player _player;
+    protected PlayerBase _player;
     protected Enum _enemyType;
 
     protected int _curHp;

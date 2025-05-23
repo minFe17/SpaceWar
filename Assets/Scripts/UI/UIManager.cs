@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject OptionUI { get; set; }
     public SelectPassiveUI SelectPassiveUI { get; set; }
 
-    public Player Player { get; set; }
+    public PlayerBase Player { get; set; }
 
     public GameObject InfoKey { get; set; }
     public Text InfoMessage {  get; set; }

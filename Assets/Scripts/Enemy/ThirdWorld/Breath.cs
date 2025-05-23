@@ -4,12 +4,12 @@ public class Breath : MonoBehaviour
 {
     [SerializeField] float _breathTime;
 
-    Player _player;
+    PlayerBase _player;
     Dragon _base;
     float _coolTime;
     float _curBreathTime;
 
-    public void Init(Player player, Dragon dragon)
+    public void Init(PlayerBase player, Dragon dragon)
     {
         _player = player;
         _base = dragon;
