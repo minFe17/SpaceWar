@@ -6,43 +6,65 @@ using Utils;
 
 public class Player : MonoBehaviour
 {
+    // playerBase에서?
     [SerializeField] EPlayerPoolType _playerPoolType;
+
+
     [SerializeField] Transform _idleBulletPos;
     [SerializeField] GameObject _zoomCamera;
+
+    // playerBase에서
     [SerializeField] GameObject _InfoKeyUI;
     [SerializeField] Text _InfoMseeage;
 
+    // playerBase에서
     [SerializeField] float _jumpPower;
     [SerializeField] float _rotateSpeed;
+
+    // playerBase에서?
     [SerializeField] float _idleTime;
     [SerializeField] float _fireDelay;
 
+
+    // playerBase에서
     PlayerData _playerData;
     FactoryManager _factoryManager;
     UIManager _uiManager;
     GameManager _gameManager;
     AudioClipManager _audioManager;
 
+    // playerBase에서?
     Animator _animator;
     Rigidbody _rigidbody;
     Transform _bulletPos;
 
+    // playerBase에서?
     Vector3 _move;
 
+    // playerBase에서
     int _addMaxHP;
 
+    // playerBase에서
     float _mouseX;
+
     float _mouseY;
+
+    // playerBase에서?
     float _idleTimer;
+
+    // playerBase에서
     float _speed;
 
+    // playerBase에서?
     bool _isJump;
-    bool _isAiming;
     bool _isShoot;
     bool _isReload;
     bool _isOpenOption;
     bool _isDie;
 
+    bool _isAiming;
+
+    // playerBase에서?
     public EnemyController EnemyController { get; set; }
     public CinemachineFreeLook FollowCam { get; set; }
     public bool IsDie { get => _isDie; }
@@ -118,6 +140,7 @@ public class Player : MonoBehaviour
         HPUpByMoney();
     }
 
+    // playerBase에서? animator.SetFloat떄문에 고민
     void Move()
     {
         if (_isDie)
@@ -140,6 +163,7 @@ public class Player : MonoBehaviour
             IdleTimer();
     }
 
+    // playerBase에서?
     void IdleTimer()
     {
         if (_idleTimer >= _idleTime)
@@ -148,6 +172,7 @@ public class Player : MonoBehaviour
             _idleTimer += Time.deltaTime;
     }
 
+    // playerBase에서
     void Sprint()
     {
         if (Input.GetKey(KeyCode.LeftShift))
@@ -215,6 +240,7 @@ public class Player : MonoBehaviour
         _bulletPos.transform.eulerAngles = rotate;
     }
 
+    // playerBase에서?
     void Fire()
     {
         if (Input.GetButton("Fire") && !_isDie && !_isOpenOption)
@@ -246,6 +272,7 @@ public class Player : MonoBehaviour
         _animator.SetBool("isShootIdle", false);
     }
 
+    // playerBase에서
     void Reload()
     {
         if (!_isDie && !_isReload)
@@ -259,6 +286,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // playerBase에서
     void ReloadBullet()
     {
         _playerData.CurBullet = _playerData.MaxBullet;
@@ -266,6 +294,7 @@ public class Player : MonoBehaviour
         _uiManager.IngameUI.ShowBullet();
     }
 
+    // playerBase에서?
     void ChangeShootMode()
     {
         if (!_isDie && !_isOpenOption)
@@ -282,6 +311,7 @@ public class Player : MonoBehaviour
 
     }
 
+    // playerBase에서
     void Turn()
     {
         if (!_isAiming && !_isOpenOption && !_isDie)
@@ -295,6 +325,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // playerBase에서
     void OpenMap()
     {
         if (!_isAiming && !_isDie && !_isOpenOption)
@@ -308,18 +339,22 @@ public class Player : MonoBehaviour
             _uiManager.IngameUI.HideMap();
     }
 
+
+    // playerBase에서
     void Jump()
     {
         if (Input.GetButtonDown("Jump") && !_isJump && !_isDie)
             StartCoroutine(JumpRoutine());
     }
 
+    // playerBase에서
     public void GetMoney(int money)
     {
         _playerData.Money += money;
         _uiManager.IngameUI.ShowMoney();
     }
 
+    // playerBase에서?
     void MakeBullet()
     {
         GameObject bullet = _factoryManager.MakeObject<EPlayerPoolType, GameObject>(EPlayerPoolType.Bullet);
@@ -327,6 +362,7 @@ public class Player : MonoBehaviour
         bullet.transform.rotation = _bulletPos.rotation;
     }
 
+    // playerBase에서
     void HPUpByMoney()
     {
         if (_playerData.HPUpByMoney && !_isDie)
@@ -336,6 +372,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // playerBase에서
     public void Vampirism()
     {
         if (!_isDie && _playerData.Vampirism)
@@ -345,6 +382,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // playerBase에서
     public void ShowOptionUI()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !_uiManager.IsKeyInfoUI && !_uiManager.IsSoundOption)
@@ -371,12 +409,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    // playerBase에서
     public void OptionUIState(bool isOpenOtion)
     {
         _isOpenOption = isOpenOtion;
         FollowCam.enabled = true;
     }
 
+    // playerBase에서
     public void TakeDamage(int damage)
     {
         if (_isDie)
@@ -394,6 +434,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // playerBase에서
     public void GameOver()
     {
         _uiManager.GameOverUI.gameObject.SetActive(true);
@@ -470,6 +511,7 @@ public class Player : MonoBehaviour
             Reload();
     }
 
+    // playerBase에서
     IEnumerator JumpRoutine()
     {
         _isJump = true;
@@ -478,6 +520,7 @@ public class Player : MonoBehaviour
         _rigidbody.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
     }
 
+    // playerBase에서
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -493,6 +536,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // playerBase에서
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("DeadZone"))
