@@ -19,7 +19,7 @@ public class Cactus : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && _coolTime >= 1f)
         {
-            collision.gameObject.GetComponent<Player>().TakeDamage(1);
+            collision.gameObject.GetComponent<PlayerBase>().TakeDamage(1);
             _coolTime = 0;
         }
     }

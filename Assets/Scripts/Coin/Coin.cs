@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour
     [SerializeField] int _money;
     [SerializeField] GameObject _effect;
 
-    Player _player;
+    PlayerBase _player;
     ObjectPoolManager _objectPoolManager;
     CoinManager _coinManager;
 
@@ -16,7 +16,7 @@ public class Coin : MonoBehaviour
 
     void Start()
     {
-        _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<Player>();
+        _player = GenericSingleton<EnemyManager>.Instance.Target.GetComponent<PlayerBase>();
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
         _coinManager = GenericSingleton<CoinManager>.Instance;
     }

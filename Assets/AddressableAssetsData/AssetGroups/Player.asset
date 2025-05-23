@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 34e358f1a68d5a647b817962b82df140
   m_SerializeEntries:
   - m_GUID: 71616eae035daf546b1e8ae9191da6cd
-    m_Address: Player
+    m_Address: Soldier
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 180d81f8de7dcb84292d251e9f7f1312

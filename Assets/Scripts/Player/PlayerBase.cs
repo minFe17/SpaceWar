@@ -5,7 +5,8 @@ using Utils;
 
 public class PlayerBase : MonoBehaviour
 {
-
+    // 수정필요
+    [SerializeField] EPlayerPoolType _playerPoolType;
     [SerializeField] GameObject _InfoKeyUI;
     [SerializeField] Text _InfoMseeage;
     [SerializeField] float _jumpPower;
@@ -25,6 +26,7 @@ public class PlayerBase : MonoBehaviour
 
     protected float _mouseX;
 
+    protected bool _isShoot;
     protected bool _isReload;
     protected bool _isOpenOption;
     protected bool _isDie;
@@ -32,7 +34,6 @@ public class PlayerBase : MonoBehaviour
 
     int _addMaxHP;
     float _idleTimer;
-
     float _speed;
     bool _isJump;
     Vector3 _move;
@@ -72,7 +73,7 @@ public class PlayerBase : MonoBehaviour
         _mouseX = 0;
         _idleTimer = 0;
 
-        //_isShoot = false;
+        _isShoot = false;
         _isJump = false;
         _isReload = false;
         _isOpenOption = false;

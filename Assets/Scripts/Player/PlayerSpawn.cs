@@ -4,7 +4,7 @@ using Utils;
 
 public class PlayerSpawn : MonoBehaviour
 {
-    Player _player;
+    PlayerBase _player;
     GameObject _mainCamera;
     GameObject _followCam;
     GameObject _miniMapCam;
@@ -19,7 +19,7 @@ public class PlayerSpawn : MonoBehaviour
             _factoryManager = GenericSingleton<FactoryManager>.Instance;
        
         GameObject temp = _factoryManager.MakeObject<EPlayerPoolType, GameObject>(EPlayerPoolType.Player);
-        _player = temp.GetComponent<Player>();
+        _player = temp.GetComponent<PlayerBase>();
 
         _player.transform.position = transform.position;
         SpawnCamera();

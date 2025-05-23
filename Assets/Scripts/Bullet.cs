@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
             other.gameObject.GetComponent<Enemy>().TakeDamage(DataSingleton<PlayerData>.Instance.BulletDamage);
 
         if (other.gameObject.CompareTag("Player"))
-            other.gameObject.GetComponent<Player>().TakeDamage(_damage);
+            other.gameObject.GetComponent<PlayerBase>().TakeDamage(_damage);
         Remove();
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utils;
 
-public class PlayerFactory : FactoryBase, IFactory<GameObject>
+public class SoldierFactory : FactoryBase, IFactory<GameObject>
 {
     EPlayerPoolType _poolType;
     PlayerAssetManager _assetManager;
@@ -12,7 +12,7 @@ public class PlayerFactory : FactoryBase, IFactory<GameObject>
         _factoryManager = GenericSingleton<FactoryManager>.Instance;
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
         _assetManager = GenericSingleton<PlayerAssetManager>.Instance;
-        _prefab = _assetManager.Player;
+        _prefab = _assetManager.Soldier;
         Init();
     }
 

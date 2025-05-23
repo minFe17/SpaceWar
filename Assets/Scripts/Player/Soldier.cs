@@ -1,33 +1,20 @@
 using UnityEngine;
 
-public class Player : PlayerBase
+public class Soldier : PlayerBase
 {
-    // playerBase에서?
-    [SerializeField] EPlayerPoolType _playerPoolType;
-
     [SerializeField] GameObject _zoomCamera;
 
     // playerBase에서?
     [SerializeField] float _fireDelay;
 
-    // playerBase에서?
-
     float _mouseY;
-
-    // playerBase에서?
-    bool _isShoot;
-
     bool _isAiming;
 
     protected override void Init()
     {
         base.Init();
-        //_mouseX = 0;
         _mouseY = 0;
-
         _isAiming = false;
-        //_isShoot = false;
-
     }
 
     protected override void CharacterUpdate()
@@ -134,7 +121,6 @@ public class Player : PlayerBase
 
             _uiManager.IngameUI.ShowShootMode();
         }
-
     }
 
     void StartSingleShoot()

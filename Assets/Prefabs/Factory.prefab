@@ -230,9 +230,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 529784977068516262}
-  - component: {fileID: 622920639758065597}
+  - component: {fileID: 279871164865476048}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,7 +253,7 @@ Transform:
   m_Father: {fileID: 529784976251250273}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &622920639758065597
+--- !u!114 &279871164865476048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
