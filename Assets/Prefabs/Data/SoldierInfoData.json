@@ -1,0 +1,39 @@
+{
+    "_statDataList": [
+        {
+            "_maxHp": 15,
+            "_maxBullet": 30,
+            "_bulletDamage": 1,
+            "_upgradeCost": 1000
+        },
+        {
+            "_maxHp": 20,
+            "_maxBullet": 30,
+            "_bulletDamage": 1,
+            "_upgradeCost": 3000
+        },
+        {
+            "_maxHp": 30,
+            "_maxBullet": 35,
+            "_bulletDamage": 2,
+            "_upgradeCost": 5000
+        },
+        {
+            "_maxHp": 30,
+            "_maxBullet": 50,
+            "_bulletDamage": 2,
+            "_upgradeCost": 7000
+        },
+        {
+            "_maxHp": 35,
+            "_maxBullet": 60,
+            "_bulletDamage": 3,
+            "_upgradeCost": 0
+        }
+    ],
+    "_skillName": [
+        "단발",
+        "점사",
+        "연사"
+    ]
+}

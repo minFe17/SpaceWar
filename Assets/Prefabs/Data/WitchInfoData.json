@@ -1,0 +1,39 @@
+{
+    "_statDataList": [
+        {
+            "_maxHp": 10,
+            "_maxBullet": 10,
+            "_bulletDamage": 3,
+            "_upgradeCost": 1000
+        },
+        {
+            "_maxHp": 15,
+            "_maxBullet": 10,
+            "_bulletDamage": 3,
+            "_upgradeCost": 3000
+        },
+        {
+            "_maxHp": 20,
+            "_maxBullet": 15,
+            "_bulletDamage": 5,
+            "_upgradeCost": 5000
+        },
+        {
+            "_maxHp": 25,
+            "_maxBullet": 15,
+            "_bulletDamage": 5,
+            "_upgradeCost": 7000
+        },
+        {
+            "_maxHp": 30,
+            "_maxBullet": 20,
+            "_bulletDamage": 7,
+            "_upgradeCost": 0
+        }
+    ],
+    "_skillName": [
+        "고드름",
+        "연쇄",
+        "블랙홀"
+    ]
+}
