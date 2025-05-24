@@ -1,9 +1,11 @@
 using UnityEngine;
+using Utils;
 
 [System.Serializable]
 public class PlayerData
 {
     // 데이터 싱글턴
+    [SerializeField] EPlayerType _playerType;
     [SerializeField] EShootModeType _shootMode;
     [SerializeField] int _maxHp;
     [SerializeField] int _curHp;
@@ -16,8 +18,8 @@ public class PlayerData
     [SerializeField] float _moveSpeed;
     [SerializeField] float _splintSpeed;
 
-    [SerializeField] bool _unlockBurstMode;
-    [SerializeField] bool _unlockAutoMode;
+    [SerializeField] bool _unlockFirstSkill;
+    [SerializeField] bool _unlockSecondSkill;
     [SerializeField] bool _hpUpByMoney;
     [SerializeField] bool _vampirism;
 
@@ -33,25 +35,28 @@ public class PlayerData
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
     public float SplintSpeed { get => _splintSpeed; set => _splintSpeed = value; }
 
-    public bool UnlockBurstMode { get => _unlockBurstMode; set => _unlockBurstMode = value; }
-    public bool UnlockAutoMode { get => _unlockAutoMode; set => _unlockAutoMode = value; }
+    public bool UnlockFirstSkill { get => _unlockFirstSkill; set => _unlockFirstSkill = value; }
+    public bool UnlockSecondSkill { get => _unlockSecondSkill; set => _unlockSecondSkill = value; }
     public bool HPUpByMoney { get => _hpUpByMoney; set => _hpUpByMoney = value; }
     public bool Vampirism { get => _vampirism; set => _vampirism = value; }
 
     public void ResetData()
     {
-        _maxHp = 10;
+        PlayerStatManager playerStatManager = GenericSingleton<PlayerStatManager>.Instance;
+        PlayerInfoData data = playerStatManager.StatData[(int)_playerType];
+        int level = playerStatManager.LevelDatas[(int)_playerType].Level;
+        _maxHp = data.StatDataList[level].MaxHp;
         _curHp = _maxHp;
-        _maxBullet = 30;
+        _maxBullet = data.StatDataList[level].MaxBullet;
         _curBullet = _maxBullet;
-        _bulletDamage = 1;
+        _bulletDamage = data.StatDataList[level].BulletDamage;
         _money = 0;
         _bonusMoney = 0;
         _moveSpeed = 5f;
         _splintSpeed = 5f;
-        _shootMode = EShootModeType.Single;
-        _unlockBurstMode = false;
-        _unlockAutoMode = false;
+        _shootMode = EShootModeType.Normal;
+        _unlockFirstSkill = false;
+        _unlockSecondSkill = false;
         _hpUpByMoney = false;
         _vampirism = false;
     }

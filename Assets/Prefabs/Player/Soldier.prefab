@@ -3198,13 +3198,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a73dd0a30a7474881b8aa6dd1c3b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleBulletPos: {fileID: 6224945380842809370}
-  _zoomCamera: {fileID: 6224945380283946659}
   _InfoKeyUI: {fileID: 6224945380578610091}
   _InfoMseeage: {fileID: 3357039669930630183}
   _jumpPower: 7
-  _rotateSpeed: 1
   _idleTime: 3
+  _playerType: 1
+  _idleBulletPos: {fileID: 6224945380842809370}
+  _rotateSpeed: 1
+  _zoomCamera: {fileID: 6224945380283946659}
   _fireDelay: 1
 --- !u!95 &6224945381614643216
 Animator:

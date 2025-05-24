@@ -4,6 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public abstract class PlayerInfoData
 {
+    // 데이터 싱글턴
+    // 읽기 전용
     [SerializeField] protected List<PlayerStatData> _statDataList = new List<PlayerStatData>();
     [SerializeField] protected List<string> _skillName = new List<string>();
 
@@ -15,5 +17,6 @@ public abstract class PlayerInfoData
     public EPlayerType PlayerType { get => _playerType; }
     public string Name { get => _name; }
 
+    // 호출 필요
     public abstract void Init();
 }

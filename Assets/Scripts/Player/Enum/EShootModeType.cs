@@ -1,7 +1,7 @@
 public enum EShootModeType
 {
-    Single,
-    Burst,
-    Auto,
+    Normal,
+    FirstSkill,
+    SecondSkill,
     Max
 }

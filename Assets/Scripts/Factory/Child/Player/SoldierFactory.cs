@@ -3,12 +3,12 @@ using Utils;
 
 public class SoldierFactory : FactoryBase, IFactory<GameObject>
 {
-    EPlayerPoolType _poolType;
+    EPlayerType _poolType;
     PlayerAssetManager _assetManager;
 
     void Start()
     {
-        _poolType = EPlayerPoolType.Player;
+        _poolType = EPlayerType.Soldier;
         _factoryManager = GenericSingleton<FactoryManager>.Instance;
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
         _assetManager = GenericSingleton<PlayerAssetManager>.Instance;

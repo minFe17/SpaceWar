@@ -2,6 +2,6 @@ public class UnlockAutoMode : PassiveData
 {
     public override void AddPassive()
     {
-        _playerData.UnlockAutoMode = true;
+        _playerData.UnlockSecondSkill = true;
     }
 }

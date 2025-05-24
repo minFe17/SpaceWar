@@ -6,14 +6,14 @@ using Utils;
 public class PlayerBase : MonoBehaviour
 {
     // 수정필요
-    [SerializeField] EPlayerPoolType _playerPoolType;
     [SerializeField] GameObject _InfoKeyUI;
     [SerializeField] Text _InfoMseeage;
     [SerializeField] float _jumpPower;
     [SerializeField] float _idleTime;
 
-    [SerializeField] protected float _rotateSpeed;
+    [SerializeField] protected EPlayerType _playerType;
     [SerializeField] protected Transform _idleBulletPos;
+    [SerializeField] protected float _rotateSpeed;
 
     protected Animator _animator;
     protected Rigidbody _rigidbody;

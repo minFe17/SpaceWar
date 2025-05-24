@@ -157,7 +157,7 @@
     <Compile Include="Assets\Scripts\Utils\GenericSingleton.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Pachy.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Bear.cs" />
-    <Compile Include="Assets\Scripts\Player\Soldier.cs" />
+    <Compile Include="Assets\Scripts\Player\Soldier\Soldier.cs" />
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\Turn_Move.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Scavenger.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ObstacleFactory.cs" />
@@ -277,7 +277,7 @@
     <Compile Include="Assets\Scripts\Sound\Enum\ESFXAudioType.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\Enum\ERelativePositionType.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\EventRoom.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
+    <Compile Include="Assets\Scripts\Player\Soldier\PlayerBullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\MiniMapCameraFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\Child\GolemFactory.cs" />
@@ -311,6 +311,10 @@
     <Compile Include="Assets\Scripts\Player\Data\PlayerInfoData.cs" />
     <Compile Include="Assets\Scripts\Player\Enum\EPlayerType.cs" />
     <Compile Include="Assets\Scripts\Player\Data\Witch\WitchInfoData.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\PlayerStatManager.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\PlayerLevelData.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\Soldier\SoldierLevelData.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\Witch\WitchLevelData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

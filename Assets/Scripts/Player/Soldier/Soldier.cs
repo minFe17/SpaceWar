@@ -82,13 +82,13 @@ public class Soldier : PlayerBase
         {
             switch (_playerData.ShootMode)
             {
-                case EShootModeType.Single:
+                case EShootModeType.Normal:
                     StartSingleShoot();
                     break;
-                case EShootModeType.Burst:
+                case EShootModeType.FirstSkill:
                     StartBurstShoot();
                     break;
-                case EShootModeType.Auto:
+                case EShootModeType.SecondSkill:
                     StartAutoShoot();
                     break;
                 default:
@@ -113,11 +113,11 @@ public class Soldier : PlayerBase
         if (!_isDie && !_isOpenOption)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                _playerData.ShootMode = EShootModeType.Single;
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && _playerData.UnlockBurstMode)
-                _playerData.ShootMode = EShootModeType.Burst;
-            else if (Input.GetKeyDown(KeyCode.Alpha3) && _playerData.UnlockAutoMode)
-                _playerData.ShootMode = EShootModeType.Auto;
+                _playerData.ShootMode = EShootModeType.Normal;
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && _playerData.UnlockFirstSkill)
+                _playerData.ShootMode = EShootModeType.FirstSkill;
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && _playerData.UnlockSecondSkill)
+                _playerData.ShootMode = EShootModeType.SecondSkill;
 
             _uiManager.IngameUI.ShowShootMode();
         }
