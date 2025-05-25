@@ -106,6 +106,7 @@
     <Compile Include="Assets\Scripts\Map\Obstacle\interface\IObstacle.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\GolemRock.cs" />
     <Compile Include="Assets\Scripts\Potion\Interface\IPotion.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\Soldier\SoldierInfoData.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\SecondWorld\SecondWorldObstacleList.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\GroundWork\GroundWorkFactoryBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\ZombieAttackArea.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\FirstCactusFactory.cs" />
     <Compile Include="Assets\Scripts\Player\Data\SelectPassiveData.cs" />
     <Compile Include="Assets\Scripts\Passive\PassiveData.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\PlayerStatData.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\Interface\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\ThirdWorldd\ThirdObstacle.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\DeliveryRobot.cs" />
@@ -181,6 +183,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\RoomGenerator.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\StructureHelper.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\WellFactory.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\Soldier\SoldierLevelData.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\Child\BearFactory.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Sound\AudioClipManager.cs" />
@@ -193,6 +196,7 @@
     <Compile Include="Assets\Scripts\Potion\PotionBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Scorpion.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\SecondcactusFactory.cs" />
+    <Compile Include="Assets\Scripts\Player\Enum\EPlayerType.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorNode.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\GetMoneyUp.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\SpeedUp.cs" />
@@ -205,6 +209,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\MeshCreator.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorsGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Rhino.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\PlayerInfoData.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Turret.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\FirstWorlld\Child\DeliveryRobotFactory.cs" />
     <Compile Include="Assets\DownloadAssets\Bullet Casing\Scripts\Sound.cs" />
@@ -262,6 +267,7 @@
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\MiniScavenger.cs" />
     <Compile Include="Assets\Scripts\Passive\PassiveSpriteManager.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\WallCreator.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\PlayerStatManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSpawn.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameData.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Enum\EFirstWorldObstacleType.cs" />
@@ -269,6 +275,7 @@
     <Compile Include="Assets\Scripts\DeadZone.cs" />
     <Compile Include="Assets\Scripts\UI\SelectPassiveUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\SkeletonAttackArea.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\PlayerLevelData.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\DoubleHp.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\UnlockAutoMode.cs" />
     <Compile Include="Assets\Scripts\UI\PassiveButton.cs" />
@@ -278,6 +285,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\Enum\ERelativePositionType.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\EventRoom.cs" />
     <Compile Include="Assets\Scripts\Player\Soldier\PlayerBullet.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\Witch\WitchInfoData.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\MiniMapCameraFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\Child\GolemFactory.cs" />
@@ -291,6 +299,7 @@
     <Compile Include="Assets\Scripts\Utils\DataSingleton.cs" />
     <Compile Include="Assets\Scripts\Camera\Enum\ECameraType.cs" />
     <Compile Include="Assets\Scripts\Json\ReadData.cs" />
+    <Compile Include="Assets\Scripts\Player\Data\Witch\WitchLevelData.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\RoomNode.cs" />
     <Compile Include="Assets\Scripts\Potion\Child\DamagePotion.cs" />
     <Compile Include="Assets\Scripts\Factory\Interface\IFactory.cs" />
@@ -306,15 +315,6 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Player\Data\PlayerStatData.cs" />
-    <Compile Include="Assets\Scripts\Player\Data\Soldier\SoldierInfoData.cs" />
-    <Compile Include="Assets\Scripts\Player\Data\PlayerInfoData.cs" />
-    <Compile Include="Assets\Scripts\Player\Enum\EPlayerType.cs" />
-    <Compile Include="Assets\Scripts\Player\Data\Witch\WitchInfoData.cs" />
-    <Compile Include="Assets\Scripts\Player\Data\PlayerStatManager.cs" />
-    <Compile Include="Assets\Scripts\Player\Data\PlayerLevelData.cs" />
-    <Compile Include="Assets\Scripts\Player\Data\Soldier\SoldierLevelData.cs" />
-    <Compile Include="Assets\Scripts\Player\Data\Witch\WitchLevelData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
@@ -329,6 +329,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\DownloadAssets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
     <None Include="Assets\DownloadAssets\Map\_Creepy_Cat\_Docs\Doc.txt" />
+    <None Include="Assets\DownloadAssets\UnityTechnologies\ParticlePack\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\DownloadAssets\Map\Triple Dungeon Pack\Blue Dungeon\blue dungeon_ReadMe.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
