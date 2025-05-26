@@ -1,9 +1,11 @@
+using Utils;
+
 [System.Serializable]
 public class SoldierInfoData : PlayerInfoData
 {
     public override void Init()
     {
-        _playerType = EPlayerType.Soldier;
+        DataSingleton<PlayerData>.Instance.PlayerType = EPlayerType.Soldier;
         _name = "¼ÖÀú";
     }
 }

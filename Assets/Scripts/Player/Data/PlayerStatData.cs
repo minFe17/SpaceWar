@@ -13,12 +13,4 @@ public class PlayerStatData
     public int MaxBullet { get => _maxBullet; }
     public int BulletDamage { get => _bulletDamage; }
     public int UpgradeCost { get => _upgradeCost; }
-
-    public PlayerStatData(int maxHp, int maxBullet, int bulletDamage, int upgradeCost)
-    {
-        _maxHp = maxHp;
-        _maxBullet = maxBullet;
-        _bulletDamage = bulletDamage;
-        _upgradeCost = upgradeCost;
-    }
 }

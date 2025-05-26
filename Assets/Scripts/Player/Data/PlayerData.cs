@@ -23,6 +23,7 @@ public class PlayerData
     [SerializeField] bool _hpUpByMoney;
     [SerializeField] bool _vampirism;
 
+    public EPlayerType PlayerType { get => _playerType; set => _playerType = value; }
     public EShootModeType ShootMode { get => _shootMode; set => _shootMode = value; }
     public int MaxHp { get => _maxHp; set => _maxHp = value; }
     public int CurHp { get => _curHp; set => _curHp = value; }

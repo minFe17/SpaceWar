@@ -21,16 +21,6 @@
             "_imageName": "BulletUp"
         },
         {
-            "_name": "점사모드 해제",
-            "_info": "점사모드를 해제합니다",
-            "_imageName": "UnlockBurstMode"
-        },
-        {
-            "_name": "연사모드 해제",
-            "_info": "연사모드를 해제합니다",
-            "_imageName": "UnlockAutoMode"
-        },
-        {
             "_name": "얻는 돈 증가",
             "_info": "추가로 돈을 더 얻습니다",
             "_imageName": "GetMoneyUp"

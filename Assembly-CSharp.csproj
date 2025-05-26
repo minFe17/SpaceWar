@@ -61,11 +61,11 @@
     <Compile Include="Assets\DownloadAssets\amusedART\StoneMonster\Script\Animation_Test.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\LobbyUI.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\UnlockBurstMode.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Soldier\UnlockBurstMode.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\SecondWorld\SecondWorldEnemyFactoryBase.cs" />
     <Compile Include="Assets\Scripts\Sound\Enum\EBGMAudioType.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\FirstWorld\Child\CapacitorFactory.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\BulletUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Common\BulletUp.cs" />
     <Compile Include="Assets\Scripts\Player\Data\PlayerDataManager.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Player\PlayerBulletFactory.cs" />
     <Compile Include="Assets\Scripts\Map\MapAssetManager.cs" />
@@ -85,7 +85,7 @@
     <Compile Include="Assets\Scripts\Map\Enum\EMapPoolType.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\Player\Enum\EPlayerPoolType.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\HpUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Common\HpUp.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\VendingMachine.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Cactus.cs" />
     <Compile Include="Assets\Scripts\Enemy\AttackArea.cs" />
@@ -103,7 +103,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\SecondCageFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\MapCameraFactory.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\interface\IObstacle.cs" />
+    <Compile Include="Assets\Scripts\Map\Obstacle\Interface\IObstacle.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\GolemRock.cs" />
     <Compile Include="Assets\Scripts\Potion\Interface\IPotion.cs" />
     <Compile Include="Assets\Scripts\Player\Data\Soldier\SoldierInfoData.cs" />
@@ -133,9 +133,9 @@
     <Compile Include="Assets\DownloadAssets\Map\DungeonModules\Scripts\DoorAOpen.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Enum\EDragonAttackType.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAssetManager.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\Vampirism.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Common\Vampirism.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\FirstRockFactory.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\HpUpByMoney.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Common\HpUpByMoney.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\ObstacleObjectPool.cs" />
     <Compile Include="Assets\Scripts\GameManager\WorldManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
@@ -198,8 +198,8 @@
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\SecondcactusFactory.cs" />
     <Compile Include="Assets\Scripts\Player\Enum\EPlayerType.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\CorridorNode.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\GetMoneyUp.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\SpeedUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Common\GetMoneyUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Common\SpeedUp.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\DoorCreator.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\EnemyObjectPool.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Enum\EThirdWorldObstacleType.cs" />
@@ -230,7 +230,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\Creator\ObstacleCreator.cs" />
     <Compile Include="Assets\Scripts\Factory\FactoryManager.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\BlendShapeTrigger.cs" />
-    <Compile Include="Assets\Scripts\Passive\PassiveDataList.cs" />
+    <Compile Include="Assets\Scripts\Passive\CommonPassiveData.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enum\EFirstWorldEnemyType.cs" />
     <Compile Include="Assets\Scripts\Factory\Factory.cs" />
     <Compile Include="Assets\Scripts\UI\MainUI.cs" />
@@ -271,13 +271,13 @@
     <Compile Include="Assets\Scripts\Player\PlayerSpawn.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameData.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Enum\EFirstWorldObstacleType.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\DamageUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Common\DamageUp.cs" />
     <Compile Include="Assets\Scripts\DeadZone.cs" />
     <Compile Include="Assets\Scripts\UI\SelectPassiveUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\SkeletonAttackArea.cs" />
     <Compile Include="Assets\Scripts\Player\Data\PlayerLevelData.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\DoubleHp.cs" />
-    <Compile Include="Assets\Scripts\Passive\Child\UnlockAutoMode.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Common\DoubleHp.cs" />
+    <Compile Include="Assets\Scripts\Passive\Child\Soldier\UnlockAutoMode.cs" />
     <Compile Include="Assets\Scripts\UI\PassiveButton.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Enum\EBearAttackType.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Golem.cs" />
@@ -315,6 +315,10 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
+    <Compile Include="Assets\Scripts\Passive\PlayerPassiveData.cs" />
+    <Compile Include="Assets\Scripts\Passive\SoldierPassiveData.cs" />
+    <Compile Include="Assets\Scripts\Passive\SoliderPassiveData.cs" />
+    <Compile Include="Assets\Scripts\Passive\WitchPassiveData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
@@ -604,12 +608,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

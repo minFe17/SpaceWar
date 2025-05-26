@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using Utils;
 
 public class PlayerStatManager : MonoBehaviour
 {
@@ -10,27 +12,34 @@ public class PlayerStatManager : MonoBehaviour
     public List<PlayerInfoData> StatData { get => _playerStatDatas;  }
     public List<PlayerLevelData> LevelDatas { get => _playerLevelDatas; }
 
-    // 호출 필요
-    public void Init()
+    // 로비에서? 호출 필요
+    public async Task Init()
     {
         if (_playerStatDatas.Count > 0)
             return;
 
         SetStatData();
         SetLevelData();
-        // json 파일 읽기 필요
-        // 파일 읽을 때 _playerStatDatas, _playerLevelDatas 매개변수로 줘야할듯
+        await GenericSingleton<JsonManager>.Instance.ReadPlayerStatDataFile();
     }
 
     void SetStatData()
     {
         _playerStatDatas.Add(new SoldierInfoData());
         _playerStatDatas.Add(new WitchInfoData());
+
+        for(int i=0; i<_playerStatDatas.Count; i++)
+            _playerStatDatas[i].Init();
     }
 
     void SetLevelData()
     {
         _playerLevelDatas.Add(new SoldierLevelData());
         _playerLevelDatas.Add(new WitchLevelData());
+    }
+
+    public void SetLock(int index)
+    {
+        _playerLevelDatas[index].IsUnlock = false;
     }
 }

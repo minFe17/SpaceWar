@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     public void SelectPassive()
     {
         SelectPassiveData selectPassiveData = DataSingleton<SelectPassiveData>.Instance;
-        PassiveDataList dataList = DataSingleton<PassiveDataList>.Instance;
+        PassiveManager passiveData = GenericSingleton<PassiveManager>.Instance;
         GenericSingleton<UIManager>.Instance.SelectPassiveUI.gameObject.SetActive(true);
 
         List<int> passiveIndex = new List<int>();
@@ -81,12 +81,12 @@ public class GameManager : MonoBehaviour
             int random;
             do
             {
-                random = Random.Range(0, dataList.UIDataList.Count);
+                random = Random.Range(0, passiveData.AllPassiveData.Count);
             }
-            while (passiveIndex.Contains(random) || selectPassiveData.PassiveList.Contains(dataList.UIDataList[random]));
+            while (passiveIndex.Contains(random) || selectPassiveData.PassiveList.Contains(passiveData.AllPassiveData[random]));
 
             passiveIndex.Add(random);
-            GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = dataList.UIDataList[random];
+            GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Passive = passiveData.AllPassiveData[random];
             GenericSingleton<UIManager>.Instance.SelectPassiveUI.PassiveButton[i].Init();
         }
     }

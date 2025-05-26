@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,14 @@ public class JsonManager : MonoBehaviour
     string _passiveDataFilePath;
     string _soundDataFilePath;
 
+    List<string> _playerLevelDataFilePath = new List<string>();
+
     public bool IsWriting { get => _isWriting; set => _isWriting = value; }
     public String PlayerDataFilePath { get => _playerDataFilePath; }
     public String GameDataFilePath { get => _gameDataFilePath; }
     public String PassiveDataFilePath { get => _passiveDataFilePath; }
     public string SoundDataFilePath { get => _soundDataFilePath; }
+    public List<string> PlayerLevelDataFilePath { get => _playerLevelDataFilePath; }
 
     private void Awake()
     {
@@ -45,6 +49,8 @@ public class JsonManager : MonoBehaviour
         CreateDataPath(out _gameDataFilePath, "SaveGameDataFile.json");
         CreateDataPath(out _passiveDataFilePath, "PassiveDataFile.json");
         CreateDataPath(out _soundDataFilePath, "SoundDataFile.json");
+
+        CreatePlayerLevelDataFilePath();
     }
 
     void CreateDataPath(out string path, string dataName)
@@ -53,6 +59,22 @@ public class JsonManager : MonoBehaviour
         _stringBuilder.Append(Application.persistentDataPath);
         _stringBuilder.Append(dataName);
         path = _stringBuilder.ToString();
+    }
+
+    void CreatePlayerLevelDataFilePath()
+    {
+        string path = null;
+        CreateDataPath(out path, "SaveSoldierLevelDataFile.json");
+        _playerLevelDataFilePath.Add(path);
+
+        CreateDataPath(out path, "SaveWitchLevelDataFile.json");
+        _playerLevelDataFilePath.Add(path);
+    }
+
+    void DestroyDataFile(string path)
+    {
+        if (CheckDataFile(path))
+            File.Delete(path);
     }
 
     public bool CheckDataFiles()
@@ -67,11 +89,21 @@ public class JsonManager : MonoBehaviour
         return true;
     }
 
+    public bool CheckDataFile(string path)
+    {
+        return File.Exists(path);
+    }
+
     public void DestroyDataFiles()
     {
         DestroyDataFile(_playerDataFilePath);
         DestroyDataFile(_gameDataFilePath);
         DestroyDataFile(_passiveDataFilePath);
+    }
+
+    public async Task ReadPassiveData()
+    {
+        await _readData.ReadPassiveInfoData();
     }
 
     public void ReadDataFile()
@@ -84,6 +116,11 @@ public class JsonManager : MonoBehaviour
         _readData.ReadSoundData();
     }
 
+    public async Task ReadPlayerStatDataFile()
+    {
+        await _readData.ReadPlayerStatData();
+    }
+
     public void WriteDataFile()
     {
         _writeData.WriteDataFile();
@@ -92,21 +129,5 @@ public class JsonManager : MonoBehaviour
     public void WriteSoundDataFile()
     {
         _writeData.WriteSound();
-    }
-
-    public async Task ReadPassiveData()
-    {
-        await _readData.ReadPassiveInfoData();
-    }
-
-    public bool CheckDataFile(string path)
-    {
-        return File.Exists(path);
-    }
-
-    void DestroyDataFile(string path)
-    {
-        if (CheckDataFile(path))
-            File.Delete(path);
     }
 }

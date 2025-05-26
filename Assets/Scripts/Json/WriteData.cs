@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Utils;
@@ -50,5 +52,12 @@ public class WriteData : MonoBehaviour
     {
         SoundVolumnData data = DataSingleton<SoundVolumnData>.Instance;
         WriteJsonDataBase(data, _jsonManager.SoundDataFilePath);
+    }
+
+    public void WritePlayerLevelData()
+    {
+        List<PlayerLevelData> levelData = GenericSingleton<PlayerStatManager>.Instance.LevelDatas;
+        for(int i=0; i<levelData.Count; i++)
+            WriteJsonDataBase(levelData[i], _jsonManager.PlayerLevelDataFilePath[i]);
     }
 }
