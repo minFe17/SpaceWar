@@ -29,6 +29,14 @@ MonoBehaviour:
     m_Address: WitchInfoData.json
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1b22e587c101781458f3bc9b37fd92b4
+    m_Address: SoldierPassiveData.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 058f32f14d02d054b86edab02a2cc213
+    m_Address: WitchPassiveData.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9986345a85cf2c34c9a1ba8a37c4bd4a, type: 2}
   m_SchemaSet:
