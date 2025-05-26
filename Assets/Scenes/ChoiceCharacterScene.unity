@@ -3356,7 +3356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1753966829
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3847,8 +3847,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "HP : ~~\n\uACF5\uACA9\uB825 : ~~\n\uCD1D\uC54C : ~~\n\uC774\uB3D9 \uC18D\uB3C4
-    : ~~ "
+  m_Text: "HP : ~~\n\uACF5\uACA9\uB825 : ~~\n\uCD1D\uC54C : ~~"
 --- !u!222 &1899741763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4154,10 +4153,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8c820a98e7cceb646a81dd0991479e56, type: 3}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -4165,8 +4164,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "HP : 30 => ~~\n\uACF5\uACA9\uB825 : 1 => ~~\n\uCD1D\uC54C : 30 => ~~\n\uC774\uB3D9
-    \uC18D\uB3C4 : ~~  => ~~"
+  m_Text: "HP : 30 => ~~\n\uACF5\uACA9\uB825 : 1 => ~~\n\uCD1D\uC54C : 30 => ~~"
 --- !u!222 &1938249331
 CanvasRenderer:
   m_ObjectHideFlags: 0

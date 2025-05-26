@@ -130,4 +130,9 @@ public class JsonManager : MonoBehaviour
     {
         _writeData.WriteSound();
     }
+
+    public void WrtiePlayerLevelDataFile()
+    {
+        _writeData.WritePlayerLevelData();
+    }
 }
