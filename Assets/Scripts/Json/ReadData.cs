@@ -18,7 +18,7 @@ public class ReadData : MonoBehaviour
         if(_playerInfoDataPath.Count == 0)
         {
             _playerInfoDataPath.Add("SoldierInfoData.json");
-            _playerInfoDataPath.Add("WitchInfoData.json.json");
+            _playerInfoDataPath.Add("WitchInfoData.json");
         }
         if(_passiveDataPath.Count == 0)
         {
@@ -86,7 +86,10 @@ public class ReadData : MonoBehaviour
         for (int i = 0; i < _jsonManager.PlayerLevelDataFilePath.Count; i++)
         {
             if (!_jsonManager.CheckDataFile(_jsonManager.GameDataFilePath))
+            {
                 GenericSingleton<PlayerStatManager>.Instance.SetLock(i);
+                continue;
+            }
 
             ReadJsonData(_jsonManager.GameDataFilePath, levelData[i]);
         }

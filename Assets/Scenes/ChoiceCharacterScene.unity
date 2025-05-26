@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 60330482}
   - component: {fileID: 60330483}
+  - component: {fileID: 60330484}
   m_Layer: 5
   m_Name: PageButton
   m_TagString: Untagged
@@ -170,6 +171,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60330481}
   m_CullTransparentMesh: 1
+--- !u!114 &60330484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60330481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa311ac885e23248a185218d935fa14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentPanel: {fileID: 281556449}
 --- !u!1 &62239712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2772,6 +2786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1469425619}
   - component: {fileID: 1469425620}
+  - component: {fileID: 1469425621}
   m_Layer: 5
   m_Name: UnlockPanel
   m_TagString: Untagged
@@ -2809,6 +2824,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469425618}
   m_CullTransparentMesh: 1
+--- !u!114 &1469425621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469425618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6093450371459748a048d927c907fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1489750058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2891,7 +2918,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1489750061}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 60330484}
+        m_TargetAssemblyTypeName: PageButtonPanel, Assembly-CSharp
+        m_MethodName: MoveRightPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1489750061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3092,7 +3131,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1638490399}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 60330484}
+        m_TargetAssemblyTypeName: PageButtonPanel, Assembly-CSharp
+        m_MethodName: MoveLeftPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1638490399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3464,8 +3515,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 281556449}
-        m_TargetAssemblyTypeName: ChoiceCharacterUI, Assembly-CSharp
+      - m_Target: {fileID: 1469425621}
+        m_TargetAssemblyTypeName: UnlockPanel, Assembly-CSharp
         m_MethodName: GameStart
         m_Mode: 1
         m_Arguments:
@@ -3946,7 +3997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -23}
+  m_AnchoredPosition: {x: -10, y: -15}
   m_SizeDelta: {x: 170, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1914002966

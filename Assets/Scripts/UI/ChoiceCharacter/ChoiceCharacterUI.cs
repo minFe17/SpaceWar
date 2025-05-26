@@ -1,15 +1,44 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Utils;
 
 public class ChoiceCharacterUI : MonoBehaviour
 {
-    public async void GameStart()
+    [SerializeField] UnlockPanel _unlockPanel;
+    [SerializeField] LockPanel _lockPanel;
+
+    PlayerStatManager _playerStatManager;
+    PlayerInfoData _playerInfoData;
+    PlayerLevelData _playerLevelData;
+
+    int _index = 0;
+
+    public int Index { get => _index; }
+
+    void Start()
     {
-        GenericSingleton<JsonManager>.Instance.DestroyDataFiles();
-        DataSingleton<GameData>.Instance.MapStage = 1;
-        await GenericSingleton<WorldManager>.Instance.ResetWorld();
-        SceneManager.LoadScene("FirstWorld");
-        // 플레이어 캐릭터가 뭔지 넘겨주기
+        _playerStatManager = GenericSingleton<PlayerStatManager>.Instance;
+        ChangePage(0);
+    }
+
+    public void ChangePage(int direction)
+    {
+        _index += direction;
+        _playerInfoData = _playerStatManager.StatData[_index];
+        _playerLevelData = _playerStatManager.LevelDatas[_index];
+        CheckUnlock();
+    }
+
+    void CheckUnlock()
+    {
+        if(_playerLevelData.IsUnlock)
+        {
+            _lockPanel.gameObject.SetActive(false);
+            _unlockPanel.ShowUI(_playerInfoData, _playerLevelData);
+        }
+        else
+        {
+            _lockPanel.gameObject.SetActive(true);
+            _lockPanel.ShowUI(_playerInfoData, _playerLevelData);
+        }
     }
 }

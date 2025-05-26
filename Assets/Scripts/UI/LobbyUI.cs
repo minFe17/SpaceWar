@@ -33,6 +33,9 @@ public class LobbyUI : MonoBehaviour
         _buttonPanel.SetActive(false);
 
         GenericSingleton<SoundManager>.Instance.Init();
+
+        //GenericSingleton<JsonManager>.Instance.Init();
+        await GenericSingleton<PlayerStatManager>.Instance.Init();
         GenericSingleton<JsonManager>.Instance.ReadDataFile();
         _continueGameButton.interactable = false;
         _auidoClipManager = GenericSingleton<AudioClipManager>.Instance;

@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Sound\Enum\EBGMAudioType.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\FirstWorld\Child\CapacitorFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\Common\BulletUp.cs" />
+    <Compile Include="Assets\Scripts\Passive\SoliderPassiveData.cs" />
     <Compile Include="Assets\Scripts\Player\Data\PlayerDataManager.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Player\PlayerBulletFactory.cs" />
     <Compile Include="Assets\Scripts\Map\MapAssetManager.cs" />
@@ -103,7 +104,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\SecondCageFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\MapCameraFactory.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\Interface\IObstacle.cs" />
+    <Compile Include="Assets\Scripts\Map\Obstacle\interface\IObstacle.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\GolemRock.cs" />
     <Compile Include="Assets\Scripts\Potion\Interface\IPotion.cs" />
     <Compile Include="Assets\Scripts\Player\Data\Soldier\SoldierInfoData.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Assets\Scripts\Player\Data\PlayerInfoData.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\Turret.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\FirstWorlld\Child\DeliveryRobotFactory.cs" />
+    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\ChoiceCharacterUI.cs" />
     <Compile Include="Assets\DownloadAssets\Bullet Casing\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\ThirdWorldd\ThirdWorldObstacleList.cs" />
     <Compile Include="Assets\DownloadAssets\UI button pack 2\Scene\CreateObj.cs" />
@@ -234,6 +236,7 @@
     <Compile Include="Assets\Scripts\Enemy\Enum\EFirstWorldEnemyType.cs" />
     <Compile Include="Assets\Scripts\Factory\Factory.cs" />
     <Compile Include="Assets\Scripts\UI\MainUI.cs" />
+    <Compile Include="Assets\Scripts\Passive\WitchPassiveData.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Enum\EEventRoomType.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Coin\Child\GoldCoinFactory.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraAssetManager.cs" />
@@ -242,6 +245,7 @@
     <Compile Include="Assets\Scripts\Potion\Child\MaxHPIncreasePotion.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\SecondWorld\SecondObstacle.cs" />
     <Compile Include="Assets\DownloadAssets\Enemy\PBRVelociraptor\Scripts\RaptorSoundEffects.cs" />
+    <Compile Include="Assets\Scripts\Passive\SoldierPassiveData.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\EventRoom\Child\PortalFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Coin\Child\SilverCoinCoinFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Interface\IGenericFactory.cs" />
@@ -303,11 +307,13 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\RoomNode.cs" />
     <Compile Include="Assets\Scripts\Potion\Child\DamagePotion.cs" />
     <Compile Include="Assets\Scripts\Factory\Interface\IFactory.cs" />
+    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\LockPanel.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Dragon.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\FirstWorld\Child\ProjectorFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\SecondTreeFactory.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\BearAttackArea.cs" />
     <Compile Include="Assets\DownloadAssets\Map\_Barking_Dog\Common Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\Passive\PlayerPassiveData.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\ObstacleAssetManager.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\FollowCameraFactory.cs" />
     <Compile Include="Assets\Scripts\Addressable\AddressableManager.cs" />
@@ -315,12 +321,8 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Passive\PlayerPassiveData.cs" />
-    <Compile Include="Assets\Scripts\Passive\SoldierPassiveData.cs" />
-    <Compile Include="Assets\Scripts\Passive\SoliderPassiveData.cs" />
-    <Compile Include="Assets\Scripts\Passive\WitchPassiveData.cs" />
-    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\ChoiceCharacterUI.cs" />
-    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\LockPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\UnlockPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\PageButtonPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
@@ -610,6 +612,12 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

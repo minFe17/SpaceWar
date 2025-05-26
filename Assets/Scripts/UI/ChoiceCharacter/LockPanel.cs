@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LockPanel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    PlayerInfoData _playerInfoData;
+    PlayerLevelData _playerLevelData;
 
-    // Update is called once per frame
-    void Update()
+    public void ShowUI(PlayerInfoData playerInfoData, PlayerLevelData playerLevelData)
     {
-        
+        _playerInfoData = playerInfoData;
+        _playerLevelData = playerLevelData;
     }
 }
