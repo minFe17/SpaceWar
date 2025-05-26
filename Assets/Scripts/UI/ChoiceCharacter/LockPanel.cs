@@ -1,13 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LockPanel : MonoBehaviour
+public class LockPanel : CharacterPanelBase
 {
     PlayerInfoData _playerInfoData;
     PlayerLevelData _playerLevelData;
-
-    public void ShowUI(PlayerInfoData playerInfoData, PlayerLevelData playerLevelData)
-    {
-        _playerInfoData = playerInfoData;
-        _playerLevelData = playerLevelData;
-    }
 }

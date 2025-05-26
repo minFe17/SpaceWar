@@ -631,14 +631,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1509434, g: 0.118903525, b: 0.118903525, a: 1}
+  m_Color: {r: 0.103773594, g: 0.085662164, b: 0.085662164, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c0525719a985704cb7ac11d7d1b7842, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b0bc8d4653716bf4083e71f83829e2db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1073,6 +1073,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440e96120e18543448f05bbfe3fbe15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterImage:
+  - {fileID: 21300000, guid: 9c0525719a985704cb7ac11d7d1b7842, type: 3}
+  - {fileID: 21300000, guid: b0bc8d4653716bf4083e71f83829e2db, type: 3}
+  _unlockPanel: {fileID: 1469425621}
+  _lockPanel: {fileID: 1753966832}
 --- !u!1 &294165005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2836,6 +2841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6093450371459748a048d927c907fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parentPanel: {fileID: 281556449}
+  _characterImage: {fileID: 279179247}
 --- !u!1 &1489750058
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,7 +3364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1753966829
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3431,6 +3438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f22960ea8f787f47ade54290ed2be6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parentPanel: {fileID: 281556449}
+  _characterImage: {fileID: 170083610}
 --- !u!1 &1770448069
 GameObject:
   m_ObjectHideFlags: 0
