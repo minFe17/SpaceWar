@@ -28,6 +28,7 @@ public class FactoryManager : MonoBehaviour
         _factorys.Add(typeof(EEventRoomType), new Factory<GameObject>());
         _factorys.Add(typeof(EGroundWorkType), new Factory<GameObject>());
         _factorys.Add(typeof(ECameraType), new Factory<GameObject>());
+        _factorys.Add(typeof(EPlayerType), new Factory<GameObject>());
     }
 
     public async Task Init()

@@ -1708,7 +1708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d172c22791a73d64ab9cfd99ee72de93, type: 3}
       propertyPath: m_Name
-      value: StellarWitch
+      value: Witch
       objectReference: {fileID: 0}
     - target: {fileID: 2471327632749696619, guid: d172c22791a73d64ab9cfd99ee72de93, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1809,6 +1809,30 @@ RotationConstraint:
   m_Sources:
   - sourceTransform: {fileID: 4670999035939808347}
     weight: 1
+--- !u!1 &1095970306432993455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d172c22791a73d64ab9cfd99ee72de93, type: 3}
+  m_PrefabInstance: {fileID: 285067073604662782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1223207007729498872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095970306432993455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a593db6e9b0304f9af252de990b71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _InfoKeyUI: {fileID: 0}
+  _InfoMseeage: {fileID: 0}
+  _jumpPower: 7
+  _idleTime: 3
+  _playerType: 1
+  _idleBulletPos: {fileID: 6050326340102635440}
+  _rotateSpeed: 1
 --- !u!4 &1276315825881914283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1315790534332853845, guid: d172c22791a73d64ab9cfd99ee72de93, type: 3}
@@ -1912,6 +1936,11 @@ Transform:
 --- !u!4 &5114525216386260169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4976111898189015351, guid: d172c22791a73d64ab9cfd99ee72de93, type: 3}
+  m_PrefabInstance: {fileID: 285067073604662782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6050326340102635440 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5765682012960328270, guid: d172c22791a73d64ab9cfd99ee72de93, type: 3}
   m_PrefabInstance: {fileID: 285067073604662782}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6184674643878828196 stripped

@@ -23,6 +23,7 @@ public class ObjectPoolManager : MonoBehaviour
         _objectPools.Add(typeof(EGroundWorkType), new ObjectPool<EGroundWorkType>());
         _objectPools.Add(typeof(ECameraType), new ObjectPool<ECameraType>());
         _objectPools.Add(typeof(EMapPoolType), new ObjectPool<EMapPoolType>());
+        _objectPools.Add(typeof(EPlayerType), new ObjectPool<EPlayerType>());
         CreateQueue();
     }
 
@@ -34,6 +35,7 @@ public class ObjectPoolManager : MonoBehaviour
         _objectPools[typeof(EGroundWorkType)].Init();
         _objectPools[typeof(ECameraType)].Init();
         _objectPools[typeof(EMapPoolType)].Init();
+        _objectPools[typeof(EPlayerType)].Init();
     }
 
     public GameObject Push<TEnum>(TEnum type, GameObject prefab) where TEnum : Enum

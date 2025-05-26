@@ -18,7 +18,8 @@ public class PlayerSpawn : MonoBehaviour
         if (_factoryManager == null)
             _factoryManager = GenericSingleton<FactoryManager>.Instance;
        
-        GameObject temp = _factoryManager.MakeObject<EPlayerPoolType, GameObject>(EPlayerPoolType.Player);
+        // 수정 필요
+        GameObject temp = _factoryManager.MakeObject<EPlayerType, GameObject>(EPlayerType.Soldier);
         _player = temp.GetComponent<PlayerBase>();
 
         _player.transform.position = transform.position;

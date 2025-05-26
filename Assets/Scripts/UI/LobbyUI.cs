@@ -58,13 +58,10 @@ public class LobbyUI : MonoBehaviour
         }
     }
 
-    public async void NewGameButton()
+    public void NewGameButton()
     {
         Time.timeScale = 1f;
-        GenericSingleton<JsonManager>.Instance.DestroyDataFiles();
-        DataSingleton<GameData>.Instance.MapStage = 1;
-        await GenericSingleton<WorldManager>.Instance.ResetWorld();
-        SceneManager.LoadScene("FirstWorld");
+        SceneManager.LoadScene("ChoiceCharacterScene");
     }
 
     public async void ContinueGameButton()
