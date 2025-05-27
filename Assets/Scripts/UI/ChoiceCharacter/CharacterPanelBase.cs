@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class CharacterPanelBase : MonoBehaviour
 
     protected PlayerInfoData _playerInfoData;
     protected PlayerLevelData _playerLevelData;
+    protected StringBuilder _stringBuilder = new StringBuilder();
 
     public virtual void ShowUI(PlayerInfoData playerInfoData, PlayerLevelData playerLevelData)
     {

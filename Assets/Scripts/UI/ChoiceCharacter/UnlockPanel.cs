@@ -12,8 +12,6 @@ public class UnlockPanel : CharacterPanelBase
     [SerializeField] Text _upgradeText;
     [SerializeField] Text _upgradeCostText;
 
-    StringBuilder _stringBuilder = new StringBuilder();
-
     public override void ShowUI(PlayerInfoData playerInfoData, PlayerLevelData playerLevelData)
     {
         base.ShowUI(playerInfoData, playerLevelData);
