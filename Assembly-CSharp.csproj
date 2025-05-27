@@ -104,7 +104,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\SecondCageFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\MapCameraFactory.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\interface\IObstacle.cs" />
+    <Compile Include="Assets\Scripts\Map\Obstacle\Interface\IObstacle.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\GolemRock.cs" />
     <Compile Include="Assets\Scripts\Potion\Interface\IPotion.cs" />
     <Compile Include="Assets\Scripts\Player\Data\Soldier\SoldierInfoData.cs" />
@@ -142,9 +142,11 @@
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\SecondWorldObstacleFactoryBase.cs" />
+    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\CharacterPanelBase.cs" />
     <Compile Include="Assets\Scripts\Map\Enum\EGroundWorkType.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\Child\FireStoneFactory.cs" />
     <Compile Include="Assets\Scripts\Map\Door\DoorManager.cs" />
+    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\UnlockPanel.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\FireStoneAttakcArea.cs" />
     <Compile Include="Assets\Scripts\UI\KeyInfoUI.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\FirstWorld\Child\ContainerFactory.cs" />
@@ -220,6 +222,7 @@
     <Compile Include="Assets\Scripts\Factory\WorldFactory.cs" />
     <Compile Include="Assets\Scripts\Potion\PotionManager.cs" />
     <Compile Include="Assets\Scripts\UI\SoundOptionUI.cs" />
+    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\PageButtonPanel.cs" />
     <Compile Include="Assets\DownloadAssets\Bullet Casing\Scripts\FP_Shooting.cs" />
     <Compile Include="Assets\Scripts\Factory\Interface\IFactorys.cs" />
     <Compile Include="Assets\Scripts\Camera\Camera.cs" />
@@ -321,9 +324,7 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\UnlockPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\PageButtonPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\CharacterPanelBase.cs" />
+    <Compile Include="Assets\Scripts\UI\ChoiceCharacter\GemData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
@@ -613,12 +614,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

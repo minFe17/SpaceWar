@@ -6,10 +6,10 @@ public class CharacterPanelBase : MonoBehaviour
     [SerializeField] protected ChoiceCharacterUI _parentPanel;
     [SerializeField] protected Image _characterImage;
 
-    PlayerInfoData _playerInfoData;
-    PlayerLevelData _playerLevelData;
+    protected PlayerInfoData _playerInfoData;
+    protected PlayerLevelData _playerLevelData;
 
-    public void ShowUI(PlayerInfoData playerInfoData, PlayerLevelData playerLevelData)
+    public virtual void ShowUI(PlayerInfoData playerInfoData, PlayerLevelData playerLevelData)
     {
         _playerInfoData = playerInfoData;
         _playerLevelData = playerLevelData;

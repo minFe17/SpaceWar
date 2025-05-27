@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1076,6 +1076,7 @@ MonoBehaviour:
   _characterImage:
   - {fileID: 21300000, guid: 9c0525719a985704cb7ac11d7d1b7842, type: 3}
   - {fileID: 21300000, guid: b0bc8d4653716bf4083e71f83829e2db, type: 3}
+  _characterName: {fileID: 1990907623}
   _unlockPanel: {fileID: 1469425621}
   _lockPanel: {fileID: 1753966832}
 --- !u!1 &294165005
@@ -1671,7 +1672,7 @@ RectTransform:
   - {fileID: 606588176}
   - {fileID: 1642672323}
   m_Father: {fileID: 1753966829}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2440,7 +2441,7 @@ RectTransform:
   - {fileID: 80669216}
   - {fileID: 904823167}
   m_Father: {fileID: 1753966829}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2671,7 +2672,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "HP : ??\n\uACF5\uACA9\uB825 : ??\n\uCD1D\uC54C :  ??"
+  m_Text: "HP : ??\n\uACF5\uACA9\uB825 : ??\n\uD0C4\uC57D :  ??"
 --- !u!222 &1257873440
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2843,6 +2844,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parentPanel: {fileID: 281556449}
   _characterImage: {fileID: 279179247}
+  _skillNameText:
+  - {fileID: 1956024169}
+  - {fileID: 844796998}
+  - {fileID: 2085906152}
+  _statText: {fileID: 1899741762}
+  _upgradeText: {fileID: 1938249330}
+  _upgradeCostText: {fileID: 1917282263}
 --- !u!1 &1489750058
 GameObject:
   m_ObjectHideFlags: 0
@@ -3377,8 +3385,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1164607114}
   - {fileID: 612388413}
+  - {fileID: 1164607114}
   - {fileID: 229461362}
   m_Father: {fileID: 79941489}
   m_RootOrder: 1
@@ -4198,7 +4206,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "HP : 30 => ~~\n\uACF5\uACA9\uB825 : 1 => ~~\n\uCD1D\uC54C : 30 => ~~"
+  m_Text: "HP : 30 => ---\n\uACF5\uACA9\uB825 : 1 => ---\n\uCD1D\uC54C : 30 => ---"
 --- !u!222 &1938249331
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4450,7 +4458,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2020903482}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1469425621}
+        m_TargetAssemblyTypeName: UnlockPanel, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2020903482
 MonoBehaviour:
   m_ObjectHideFlags: 0

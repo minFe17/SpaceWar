@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 public class ChoiceCharacterUI : MonoBehaviour
 {
     [SerializeField] List<Sprite> _characterImage;
+    [SerializeField] Text _characterName;
     [SerializeField] UnlockPanel _unlockPanel;
     [SerializeField] LockPanel _lockPanel;
 
@@ -20,23 +22,7 @@ public class ChoiceCharacterUI : MonoBehaviour
     void Start()
     {
         _playerStatManager = GenericSingleton<PlayerStatManager>.Instance;
-        Init();
-    }
-
-    void Init()
-    {
-        _index = 0;
-        _playerInfoData = _playerStatManager.StatData[_index];
-        _playerLevelData = _playerStatManager.LevelDatas[_index];
-        CheckUnlock();
-    }
-
-    public void ChangePage(int direction)
-    {
-        _index += direction;
-        _playerInfoData = _playerStatManager.StatData[_index];
-        _playerLevelData = _playerStatManager.LevelDatas[_index];
-        CheckUnlock();
+        ChangePage();
     }
 
     void CheckUnlock()
@@ -53,5 +39,19 @@ public class ChoiceCharacterUI : MonoBehaviour
             _lockPanel.gameObject.SetActive(true);
             _lockPanel.ShowUI(_playerInfoData, _playerLevelData);
         }
+    }
+
+    void ShowCharacterName()
+    {
+        _characterName.text = _playerInfoData.Name;
+    }
+
+    public void ChangePage(int direction = 0)
+    {
+        _index += direction;
+        _playerInfoData = _playerStatManager.StatData[_index];
+        _playerLevelData = _playerStatManager.LevelDatas[_index];
+        CheckUnlock();
+        ShowCharacterName();
     }
 }
