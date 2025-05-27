@@ -64,6 +64,7 @@ public class PlayerBase : MonoBehaviour
         CharacterUpdate();
         Turn();
         OpenMap();
+        ChangeShootMode();
     }
 
     protected virtual void CharacterUpdate() { }
@@ -211,6 +212,21 @@ public class PlayerBase : MonoBehaviour
         _playerData.CurBullet = _playerData.MaxBullet;
         _isReload = false;
         _uiManager.IngameUI.ShowBullet();
+    }
+
+    void ChangeShootMode()
+    {
+        if (!_isDie && !_isOpenOption)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                _playerData.ShootMode = EShootModeType.Normal;
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && _playerData.UnlockFirstSkill)
+                _playerData.ShootMode = EShootModeType.FirstSkill;
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && _playerData.UnlockSecondSkill)
+                _playerData.ShootMode = EShootModeType.SecondSkill;
+
+            _uiManager.IngameUI.ShowShootMode();
+        }
     }
 
     void HPUpByMoney()

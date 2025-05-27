@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 public class LockPanel : CharacterPanelBase
 {
@@ -23,6 +24,8 @@ public class LockPanel : CharacterPanelBase
 
     public void Unlock()
     {
-
+        GemData gemData = DataSingleton<GemData>.Instance;
+        if (_playerInfoData.UnlockCost > gemData.Gem)
+            return;
     }
 }

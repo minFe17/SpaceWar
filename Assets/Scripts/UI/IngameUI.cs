@@ -88,6 +88,9 @@ public class IngameUI : MonoBehaviour
         _BulletText.text = $"{curBullet} / {maxBullet}";
     }
 
+    // 수정 필요
+    // 이미지 스프라이트를 리스트로?
+    // Init할때 세팅?
     public void ShowShootMode()
     {
         EShootModeType shootMode = _playerData.ShootMode;
