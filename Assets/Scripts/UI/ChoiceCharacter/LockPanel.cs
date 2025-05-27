@@ -27,5 +27,7 @@ public class LockPanel : CharacterPanelBase
         GemData gemData = DataSingleton<GemData>.Instance;
         if (_playerInfoData.UnlockCost > gemData.Gem)
             return;
+        _playerLevelData.IsUnlock = true;
+        _parentPanel.ChangePage();
     }
 }
