@@ -12,7 +12,6 @@ public class PlayerStatManager : MonoBehaviour
     public List<PlayerInfoData> StatData { get => _playerStatDatas;  }
     public List<PlayerLevelData> LevelDatas { get => _playerLevelDatas; }
 
-    // 로비에서? 호출 필요
     public async Task Init()
     {
         if (_playerStatDatas.Count > 0)
@@ -25,8 +24,8 @@ public class PlayerStatManager : MonoBehaviour
 
     void SetStatData()
     {
-        _playerStatDatas.Add(new SoldierInfoData());
-        _playerStatDatas.Add(new WitchInfoData());
+        _playerStatDatas.Add(DataSingleton<SoldierInfoData>.Instance);
+        _playerStatDatas.Add(DataSingleton<WitchInfoData>.Instance);
 
         for(int i=0; i<_playerStatDatas.Count; i++)
             _playerStatDatas[i].Init();
@@ -34,8 +33,8 @@ public class PlayerStatManager : MonoBehaviour
 
     void SetLevelData()
     {
-        _playerLevelDatas.Add(new SoldierLevelData());
-        _playerLevelDatas.Add(new WitchLevelData());
+        _playerLevelDatas.Add(DataSingleton<SoldierLevelData>.Instance);
+        _playerLevelDatas.Add(DataSingleton<WitchLevelData>.Instance);
     }
 
     public void SetLock(int index)

@@ -76,7 +76,6 @@ public class ReadData : MonoBehaviour
             TextAsset temp = await _addressableManager.GetAddressableAsset<TextAsset>(_playerInfoDataPath[i]);
             string data = temp.text;
             JsonUtility.FromJsonOverwrite(data, infoData[i]);
-            Debug.Log(infoData[i].UnlockCost);
         }
     }
 
@@ -86,12 +85,12 @@ public class ReadData : MonoBehaviour
 
         for (int i = 0; i < _jsonManager.PlayerLevelDataFilePath.Count; i++)
         {
-            if (!_jsonManager.CheckDataFile(_jsonManager.GameDataFilePath))
+            if (!_jsonManager.CheckDataFile(_jsonManager.PlayerLevelDataFilePath[i]))
             {
                 GenericSingleton<PlayerStatManager>.Instance.SetLock(i);
                 continue;
             }
-            ReadJsonData(_jsonManager.GameDataFilePath, levelData[i]);
+            ReadJsonData(_jsonManager.PlayerLevelDataFilePath[i], levelData[i]);
         }
     }
 

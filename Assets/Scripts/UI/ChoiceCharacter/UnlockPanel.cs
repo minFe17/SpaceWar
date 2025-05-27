@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -72,6 +71,8 @@ public class UnlockPanel : CharacterPanelBase
             return;
         _playerLevelData.Level++;
         gemData.Gem -= playerStatData.UpgradeCost;
+        _parentPanel.ShowGem();
+        _parentPanel.ChangePage();
         GenericSingleton<JsonManager>.Instance.WrtiePlayerLevelDataFile();
     }
 

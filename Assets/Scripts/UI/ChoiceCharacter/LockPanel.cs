@@ -29,5 +29,7 @@ public class LockPanel : CharacterPanelBase
             return;
         _playerLevelData.IsUnlock = true;
         _parentPanel.ChangePage();
+        _parentPanel.ShowGem();
+        GenericSingleton<JsonManager>.Instance.WrtiePlayerLevelDataFile();
     }
 }

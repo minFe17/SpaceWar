@@ -33,6 +33,10 @@ MonoBehaviour:
     m_Address: MiniMap
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 60ecb9b24bd23f041b1ca6d9f580d5fc
+    m_Address: Witch
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9986345a85cf2c34c9a1ba8a37c4bd4a, type: 2}
   m_SchemaSet:

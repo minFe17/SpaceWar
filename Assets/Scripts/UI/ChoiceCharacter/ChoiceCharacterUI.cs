@@ -7,12 +7,14 @@ public class ChoiceCharacterUI : MonoBehaviour
 {
     [SerializeField] List<Sprite> _characterImage;
     [SerializeField] Text _characterName;
+    [SerializeField] Text _gemText;
     [SerializeField] UnlockPanel _unlockPanel;
     [SerializeField] LockPanel _lockPanel;
 
     PlayerStatManager _playerStatManager;
     PlayerInfoData _playerInfoData;
     PlayerLevelData _playerLevelData;
+    GemData _gemData;
 
     int _index = 0;
 
@@ -22,12 +24,14 @@ public class ChoiceCharacterUI : MonoBehaviour
     void Start()
     {
         _playerStatManager = GenericSingleton<PlayerStatManager>.Instance;
+        _gemData = DataSingleton<GemData>.Instance;
         ChangePage();
+        ShowGem();
     }
 
     void CheckUnlock()
     {
-        if(_playerLevelData.IsUnlock)
+        if (_playerLevelData.IsUnlock)
         {
             _lockPanel.gameObject.SetActive(false);
             _unlockPanel.gameObject.SetActive(true);
@@ -53,5 +57,10 @@ public class ChoiceCharacterUI : MonoBehaviour
         _playerLevelData = _playerStatManager.LevelDatas[_index];
         CheckUnlock();
         ShowCharacterName();
+    }
+
+    public void ShowGem()
+    {
+        _gemText.text = _gemData.Gem.ToString();
     }
 }

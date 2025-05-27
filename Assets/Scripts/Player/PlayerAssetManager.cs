@@ -8,6 +8,7 @@ public class PlayerAssetManager : MonoBehaviour
     AddressableManager _addressableMaanger;
 
     public GameObject Soldier { get; private set; }
+    public GameObject Witch { get; private set; }
     public GameObject Bullet { get; private set; }
 
     public async Task LoadAsset()
@@ -16,6 +17,7 @@ public class PlayerAssetManager : MonoBehaviour
             _addressableMaanger = GenericSingleton<AddressableManager>.Instance;
 
         Soldier = await _addressableMaanger.GetAddressableAsset<GameObject>("Soldier");
+        Witch = await _addressableMaanger.GetAddressableAsset<GameObject>("Witch");
         Bullet = await _addressableMaanger.GetAddressableAsset<GameObject>("Bullet");
     }
 }
