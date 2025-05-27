@@ -70,7 +70,7 @@ public class UnlockPanel : CharacterPanelBase
         if (_playerInfoData.StatDataList.Count-1 <= _playerLevelData.Level)
             return;
         _playerLevelData.Level++;
-        gemData.Gem -= playerStatData.UpgradeCost;
+        gemData.UseGem(playerStatData.UpgradeCost);
         _parentPanel.ShowGem();
         _parentPanel.ChangePage();
         GenericSingleton<JsonManager>.Instance.WrtiePlayerLevelDataFile();
