@@ -18,7 +18,7 @@ public class IngameUI : MonoBehaviour
     [SerializeField] TMP_Text _BulletText;
 
     [SerializeField] List<GameObject> _shootModeImageList = new List<GameObject>();
-    [SerializeField] TMP_Text _shootModeText;
+    [SerializeField] Text _shootModeText;
 
     [SerializeField] GameObject _bossHpBarBase;
     [SerializeField] Image _bossHpBar;
@@ -101,7 +101,10 @@ public class IngameUI : MonoBehaviour
             else
                 _shootModeImageList[i].SetActive(false);
         }
-        _shootModeText.text = shootMode.ToString();
+        EPlayerType playerType = _playerData.PlayerType;
+        PlayerInfoData playerInfoData = GenericSingleton<PlayerStatManager>.Instance.StatData[(int)playerType];
+        string skillName = playerInfoData.SkillName[(int)shootMode];
+        _shootModeText.text = skillName;
     }
 
     public void ShowBossHpBar(int curHp, int maxHp)
