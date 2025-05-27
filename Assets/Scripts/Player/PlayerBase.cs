@@ -237,7 +237,7 @@ public class PlayerBase : MonoBehaviour
 
     void OpenMap()
     {
-        if(CheckOpenMap())
+        if (CheckOpenMap())
         {
             if (Input.GetKey(KeyCode.Tab))
                 _uiManager.IngameUI.ShowMap();
@@ -255,6 +255,14 @@ public class PlayerBase : MonoBehaviour
             _addMaxHP += (_playerData.Money / 50) - _addMaxHP;
             _playerData.MaxHp += _addMaxHP;
         }
+    }
+
+    void AddGem()
+    {
+        if (_gameManager.IsClear)
+            DataSingleton<GemData>.Instance.AddGem(_playerData.Money * 10);
+        else
+            DataSingleton<GemData>.Instance.AddGem(_playerData.Money * 5);
     }
 
     protected virtual bool CheckTurn()
@@ -351,6 +359,9 @@ public class PlayerBase : MonoBehaviour
         _uiManager.GameOverUI.GameOver();
         Cursor.lockState = CursorLockMode.None;
         GenericSingleton<JsonManager>.Instance.DestroyDataFiles();
+
+        AddGem();
+
         _audioManager.PlaySFX(ESFXAudioType.Die);
 
         if (EnemyController != null)

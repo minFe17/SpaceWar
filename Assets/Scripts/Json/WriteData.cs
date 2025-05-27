@@ -60,4 +60,10 @@ public class WriteData : MonoBehaviour
         for(int i=0; i<levelData.Count; i++)
             WriteJsonDataBase(levelData[i], _jsonManager.PlayerLevelDataFilePath[i]);
     }
+
+    public void WriteGemData()
+    {
+        GemData data = DataSingleton<GemData>.Instance;
+        WriteJsonDataBase(data, _jsonManager.GemDataFilePath);
+    }
 }

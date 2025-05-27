@@ -34,7 +34,6 @@ public class ReadData : MonoBehaviour
         ReadSavePassiveData();
     }
 
-
     void ReadJsonData(string path, object dataClass)
     {
         string json = File.ReadAllText(path);
@@ -127,6 +126,14 @@ public class ReadData : MonoBehaviour
             return;
         }
         ReadJsonData(_jsonManager.SoundDataFilePath, volumnData);
+    }
+
+    public void ReadGemData()
+    {
+        if (!_jsonManager.CheckDataFile(_jsonManager.GemDataFilePath))
+            return;
+        GemData data = DataSingleton<GemData>.Instance;
+        ReadJsonData(_jsonManager.GemDataFilePath, data);
     }
 
     public async Task ReadPlayerStatData()

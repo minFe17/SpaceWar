@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JsonManager : MonoBehaviour
@@ -19,6 +20,7 @@ public class JsonManager : MonoBehaviour
     string _gameDataFilePath;
     string _passiveDataFilePath;
     string _soundDataFilePath;
+    string _gemDataFilePath;
 
     List<string> _playerLevelDataFilePath = new List<string>();
 
@@ -27,6 +29,7 @@ public class JsonManager : MonoBehaviour
     public String GameDataFilePath { get => _gameDataFilePath; }
     public String PassiveDataFilePath { get => _passiveDataFilePath; }
     public string SoundDataFilePath { get => _soundDataFilePath; }
+    public string GemDataFilePath { get => _gemDataFilePath; }
     public List<string> PlayerLevelDataFilePath { get => _playerLevelDataFilePath; }
 
     private void Awake()
@@ -47,8 +50,9 @@ public class JsonManager : MonoBehaviour
             _stringBuilder = new StringBuilder();
         CreateDataPath(out _playerDataFilePath, "SavePlayerDataFile.json");
         CreateDataPath(out _gameDataFilePath, "SaveGameDataFile.json");
-        CreateDataPath(out _passiveDataFilePath, "PassiveDataFile.json");
-        CreateDataPath(out _soundDataFilePath, "SoundDataFile.json");
+        CreateDataPath(out _passiveDataFilePath, "SavePassiveDataFile.json");
+        CreateDataPath(out _soundDataFilePath, "SaveSoundDataFile.json");
+        CreateDataPath(out _gemDataFilePath, "SaveGemDataFile.json");
 
         CreatePlayerLevelDataFilePath();
     }
@@ -121,6 +125,11 @@ public class JsonManager : MonoBehaviour
         await _readData.ReadPlayerStatData();
     }
 
+    public void ReadGemDataFile()
+    {
+        _readData.ReadGemData();
+    }
+
     public void WriteDataFile()
     {
         _writeData.WriteDataFile();
@@ -134,5 +143,10 @@ public class JsonManager : MonoBehaviour
     public void WrtiePlayerLevelDataFile()
     {
         _writeData.WritePlayerLevelData();
+    }
+
+    public void WriteGemDataFile()
+    {
+        _writeData.WriteGemData();
     }
 }
