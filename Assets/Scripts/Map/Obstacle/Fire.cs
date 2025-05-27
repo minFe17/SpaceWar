@@ -26,7 +26,7 @@ public class Fire : MonoBehaviour
         if (_coolTime >= 1f)
         {
             _player.TakeDamage(1);
-            _coolTime = 0f;
+            _coolTime -= 1f;
         }
     }
 }

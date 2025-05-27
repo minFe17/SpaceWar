@@ -64,7 +64,6 @@ public class PlayerBase : MonoBehaviour
         CharacterUpdate();
         Turn();
         OpenMap();
-        ChangeShootMode();
     }
 
     protected virtual void CharacterUpdate() { }

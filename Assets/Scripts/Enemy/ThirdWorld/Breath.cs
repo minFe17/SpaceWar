@@ -30,7 +30,7 @@ public class Breath : MonoBehaviour
         else
         {
             _base.EndBreath();
-            _curBreathTime = 0f;
+            _curBreathTime -= _breathTime;
         }
     }
 
