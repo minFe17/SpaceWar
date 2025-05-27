@@ -25,6 +25,33 @@ public class Soldier : PlayerBase
         ShowOptionUI();
     }
 
+    protected override bool CheckTurn()
+    {
+        if (_isAiming)
+            return false;
+        return base.CheckTurn();
+    }
+
+    protected override void StopAiming()
+    {
+        if(_isAiming)
+            StopAimingEnemy();
+    }
+
+    protected override bool CheckOpenMap()
+    {
+        if (_isAiming)
+            return false;
+        return base.CheckOpenMap();
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        if (_isAiming == true)
+            StopAimingEnemy();
+    }
+
     void Zoom()
     {
         if (!_isDie && !_isOpenOption)
@@ -146,25 +173,5 @@ public class Soldier : PlayerBase
         _isShoot = false;
         if (_playerData.CurBullet <= 0)
             Reload();
-    }
-
-    protected override void OpenMap()
-    {
-        if (!_isAiming && !_isDie && !_isOpenOption)
-        {
-            if (Input.GetKey(KeyCode.Tab))
-                _uiManager.IngameUI.ShowMap();
-            else if (Input.GetKeyUp(KeyCode.Tab))
-                _uiManager.IngameUI.HideMap();
-        }
-        else
-            _uiManager.IngameUI.HideMap();
-    }
-
-    protected override void Die()
-    {
-        base.Die();
-        if (_isAiming == true)
-            StopAimingEnemy();
     }
 }

@@ -17,7 +17,7 @@ public class ObjectPoolManager : MonoBehaviour
         _enemyObjectPool = new EnemyObjectPool();
         _obstacleObjectPool = new ObstacleObjectPool();
 
-        _objectPools.Add(typeof(EPlayerPoolType), new ObjectPool<EPlayerPoolType>());
+        _objectPools.Add(typeof(EBulletPoolType), new ObjectPool<EBulletPoolType>());
         _objectPools.Add(typeof(ECoinType), new ObjectPool<ECoinType>());
         _objectPools.Add(typeof(EEventRoomType), new ObjectPool<EEventRoomType>());
         _objectPools.Add(typeof(EGroundWorkType), new ObjectPool<EGroundWorkType>());
@@ -29,7 +29,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     void CreateQueue()
     {
-        _objectPools[typeof(EPlayerPoolType)].Init();
+        _objectPools[typeof(EBulletPoolType)].Init();
         _objectPools[typeof(ECoinType)].Init();
         _objectPools[typeof(EEventRoomType)].Init();
         _objectPools[typeof(EGroundWorkType)].Init();

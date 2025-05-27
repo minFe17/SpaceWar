@@ -1,6 +1,5 @@
-public enum EPlayerPoolType
+public enum EBulletPoolType
 {
-    Player,
     Bullet,
     Max,
 }

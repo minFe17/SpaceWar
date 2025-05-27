@@ -5,7 +5,6 @@ using Utils;
 
 public class PlayerBase : MonoBehaviour
 {
-    // 수정필요
     [SerializeField] GameObject _InfoKeyUI;
     [SerializeField] Text _InfoMseeage;
     [SerializeField] float _jumpPower;
@@ -42,7 +41,6 @@ public class PlayerBase : MonoBehaviour
     public EnemyController EnemyController { get; set; }
     public bool IsDie { get => _isDie; }
 
-
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -64,9 +62,11 @@ public class PlayerBase : MonoBehaviour
         CharacterUpdate();
         Turn();
         OpenMap();
+        ShowOptionUI();
     }
 
     protected virtual void CharacterUpdate() { }
+    protected virtual void StopAiming() { }
 
     protected virtual void Init()
     {
@@ -112,7 +112,6 @@ public class PlayerBase : MonoBehaviour
         _uiManager.InfoMessage = _InfoMseeage;
     }
 
-    // 확인 필요
     void Move()
     {
         if (_isDie)
@@ -171,10 +170,9 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    // virtual?
     void Turn()
     {
-        if (/*!_isAiming &&*/ !_isOpenOption && !_isDie)
+        if (CheckTurn())
         {
             _mouseX += Input.GetAxis("Mouse X") * _rotateSpeed;
 
@@ -198,10 +196,10 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    // 확인 필요
+    // 수정 필요
     void MakeBullet()
     {
-        GameObject bullet = _factoryManager.MakeObject<EPlayerPoolType, GameObject>(EPlayerPoolType.Bullet);
+        GameObject bullet = _factoryManager.MakeObject<EBulletPoolType, GameObject>(EBulletPoolType.Bullet);
         bullet.transform.position = _bulletPos.position;
         bullet.transform.rotation = _bulletPos.rotation;
     }
@@ -228,6 +226,28 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+    bool CheckShowOptionUI()
+    {
+        if (_uiManager.IsKeyInfoUI || _uiManager.IsSoundOption)
+            return false;
+        if (Input.GetKeyDown(KeyCode.Escape))
+            return true;
+        return false;
+    }
+
+    void OpenMap()
+    {
+        if(CheckOpenMap())
+        {
+            if (Input.GetKey(KeyCode.Tab))
+                _uiManager.IngameUI.ShowMap();
+            else if (Input.GetKeyUp(KeyCode.Tab))
+                _uiManager.IngameUI.HideMap();
+        }
+        else
+            _uiManager.IngameUI.HideMap();
+    }
+
     void HPUpByMoney()
     {
         if (_playerData.HPUpByMoney && !_isDie)
@@ -237,17 +257,18 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    protected virtual void OpenMap()
+    protected virtual bool CheckTurn()
+    {
+        if (!_isOpenOption && !_isDie)
+            return true;
+        return false;
+    }
+
+    protected virtual bool CheckOpenMap()
     {
         if (!_isDie && !_isOpenOption)
-        {
-            if (Input.GetKey(KeyCode.Tab))
-                _uiManager.IngameUI.ShowMap();
-            else if (Input.GetKeyUp(KeyCode.Tab))
-                _uiManager.IngameUI.HideMap();
-        }
-        else
-            _uiManager.IngameUI.HideMap();
+            return true;
+        return false;
     }
 
     protected virtual void Die()
@@ -295,13 +316,11 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    // virtual?
     public void ShowOptionUI()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_uiManager.IsKeyInfoUI && !_uiManager.IsSoundOption)
+        if (CheckShowOptionUI())
         {
-            //if (_isAiming == true)
-            //    StopAimingEnemy();
+            StopAiming();
 
             _uiManager.OnOffOptionUI(!_isOpenOption);
             _audioManager.PlaySFX(ESFXAudioType.Button);
@@ -367,7 +386,7 @@ public class PlayerBase : MonoBehaviour
         if (other.gameObject.CompareTag("DeadZone"))
         {
             _isDie = true;
-            //GameOver();
+            GameOver();
         }
     }
 }

@@ -46,8 +46,9 @@ public class PlayerSpawn : MonoBehaviour
     {
         if (_objectPoolManager == null)
             _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
+        EPlayerType playerType = DataSingleton<PlayerData>.Instance.PlayerType;
 
-        _objectPoolManager.Pull(EPlayerPoolType.Player, _player.gameObject);
+        _objectPoolManager.Pull(playerType, _player.gameObject);
         _objectPoolManager.Pull(ECameraType.MainCamera, _mainCamera);
         _objectPoolManager.Pull(ECameraType.FollowCamera, _followCam);
         _objectPoolManager.Pull(ECameraType.MiniMapCamera, _miniMapCam);

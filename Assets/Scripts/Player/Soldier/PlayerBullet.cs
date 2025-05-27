@@ -3,7 +3,7 @@ using Utils;
 
 public class PlayerBullet : Bullet
 {
-    [SerializeField] EPlayerPoolType _playerPoolType;
+    [SerializeField] EBulletPoolType _bulletPoolType;
     [SerializeField] TrailRenderer _trailRenderer;
     ObjectPoolManager _objectPoolManager;
 
@@ -17,6 +17,6 @@ public class PlayerBullet : Bullet
         _trailRenderer.Clear();
         if (_objectPoolManager == null)
             _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
-        _objectPoolManager.Pull(EPlayerPoolType.Bullet, gameObject);
+        _objectPoolManager.Pull(EBulletPoolType.Bullet, gameObject);
     }
 }
