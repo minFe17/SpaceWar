@@ -5127,7 +5127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4e219fbe557fd4697ec1f80619adbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPoolType: 2
+  _bulletPoolType: 0
   _ingameUI: {fileID: 1424901033750217032}
   _aimPoint: {fileID: 1424901032526674788}
   _gameOverUI: {fileID: 1424901033990897598}
@@ -9399,8 +9399,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -13098,8 +13098,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

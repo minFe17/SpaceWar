@@ -55,6 +55,8 @@ SpriteAtlas:
     - {fileID: 21300000, guid: cea864dbe1ffdcf41aedd5203f365346, type: 3}
     - {fileID: 21300000, guid: 08c2ec4275e483b439b8661c51f980c6, type: 3}
     - {fileID: 21300000, guid: 580bda229cac7284783e41e390b02451, type: 3}
+    - {fileID: 21300000, guid: 5c1b5b73c64b65841aa39112d92379d5, type: 3}
+    - {fileID: 21300000, guid: ccbe609266e0c8f4781a332915893a6c, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -65,7 +67,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 23fa6831d3970164c947f23eef8a963a, type: 3}
   - {fileID: 21300000, guid: 580bda229cac7284783e41e390b02451, type: 3}
   - {fileID: 21300000, guid: 08c2ec4275e483b439b8661c51f980c6, type: 3}
+  - {fileID: 21300000, guid: ccbe609266e0c8f4781a332915893a6c, type: 3}
   - {fileID: 21300000, guid: 1d4d5392c736c1b49b15bbfd9be6fe4b, type: 3}
+  - {fileID: 21300000, guid: 5c1b5b73c64b65841aa39112d92379d5, type: 3}
   - {fileID: 21300000, guid: d2002bb37d4a364489d9a55354f35a01, type: 3}
   - {fileID: 21300000, guid: 09ffc2e31958907499bf966afeab93db, type: 3}
   - {fileID: 21300000, guid: 575ccdd6a94e8404c80f3dad5c9020b7, type: 3}
@@ -77,7 +81,9 @@ SpriteAtlas:
   - HpUpByMoney
   - Vampirism
   - UnlockBurstMode
+  - UnlockBlackHole
   - DoubleHp
+  - UnlockThunderBall
   - SpeedUp
   - HpUp
   - BulletUp
