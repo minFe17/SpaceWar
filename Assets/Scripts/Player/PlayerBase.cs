@@ -340,7 +340,6 @@ public abstract class PlayerBase : MonoBehaviour
                 _animator.SetTrigger("doReload");
             }
         }
-
     }
 
     public void TakeDamage(int damage)
