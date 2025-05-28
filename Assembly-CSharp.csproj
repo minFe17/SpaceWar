@@ -68,7 +68,7 @@
     <Compile Include="Assets\Scripts\Passive\Child\Common\BulletUp.cs" />
     <Compile Include="Assets\Scripts\Passive\SoliderPassiveData.cs" />
     <Compile Include="Assets\Scripts\Player\Data\PlayerDataManager.cs" />
-    <Compile Include="Assets\Scripts\Factory\Child\Player\PlayerBulletFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Bullet\PlayerBulletFactory.cs" />
     <Compile Include="Assets\Scripts\Map\MapAssetManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Raptor.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\SecondWorld\Child\ThirdCactusFactory.cs" />
@@ -94,7 +94,7 @@
     <Compile Include="Assets\Scripts\ObjectPool\ObjectPoolManager.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\Child\SkeletonFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\ThirdWorld\ThirdWorldEnemyFactoryBase.cs" />
-    <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Bullet\Bullet.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Map\Child\HorizontalDoorFactory.cs" />
     <Compile Include="Assets\Scripts\Map\Door\Door.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundController.cs" />
@@ -326,6 +326,8 @@
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Bullet\IceLanceFactory.cs" />
+    <Compile Include="Assets\Scripts\Bullet\BulletAssetManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

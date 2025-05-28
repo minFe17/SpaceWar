@@ -1,0 +1,21 @@
+using System.Threading.Tasks;
+using UnityEngine;
+using Utils;
+
+public class BulletAssetManager : MonoBehaviour
+{
+    // ╫л╠шео
+    AddressableManager _addressableMaanger;
+
+    public GameObject Bullet { get; private set; }
+    public GameObject IceLance { get; private set; }
+
+    public async Task LoadAsset()
+    {
+        if (_addressableMaanger == null)
+            _addressableMaanger = GenericSingleton<AddressableManager>.Instance;
+
+        Bullet = await _addressableMaanger.GetAddressableAsset<GameObject>("Bullet");
+        IceLance = await _addressableMaanger.GetAddressableAsset<GameObject>("IceLance");
+    }
+}

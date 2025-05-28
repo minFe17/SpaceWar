@@ -5,18 +5,21 @@ public class Witch : PlayerBase
         base.CharacterUpdate();
     }
 
-    protected override void StartFirstSkillAttack()
-    {
-        Fire();
-    }
-
     protected override void StartNormalAttack()
     {
+        _bulletType = EBulletPoolType.IceLance;
         Fire();
     }
 
+    protected override void StartFirstSkillAttack()
+    {
+        //_bulletType = EBulletPoolType.ThunderBall;
+        Fire();
+    }
+   
     protected override void StartSecondSkillAttack()
     {
+        //_bulletType = EBulletPoolType.BlackHole;
         Fire();
     }
 

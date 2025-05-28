@@ -4,14 +4,14 @@ using Utils;
 public class PlayerBulletFactory : FactoryBase, IFactory<GameObject>
 {
     EBulletPoolType _poolType;
-    PlayerAssetManager _assetManager;
+    BulletAssetManager _assetManager;
 
     void Start()
     {
         _poolType = EBulletPoolType.Bullet;
         _factoryManager = GenericSingleton<FactoryManager>.Instance;
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
-        _assetManager = GenericSingleton<PlayerAssetManager>.Instance;
+        _assetManager = GenericSingleton<BulletAssetManager>.Instance;
         _prefab = _assetManager.Bullet;
         Init();
     }

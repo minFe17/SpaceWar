@@ -10,32 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Player
+  m_Name: Bullet
   m_EditorClassIdentifier: 
-  m_GroupName: Player
+  m_GroupName: Bullet
   m_Data:
     m_SerializedData: []
-  m_GUID: 34e358f1a68d5a647b817962b82df140
+  m_GUID: 0292857c447b2b64a8e3fd4c62d7932c
   m_SerializeEntries:
-  - m_GUID: 71616eae035daf546b1e8ae9191da6cd
-    m_Address: Soldier
+  - m_GUID: 180d81f8de7dcb84292d251e9f7f1312
+    m_Address: Bullet
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 301d4eeec92ca5546bc95021b143be7c
-    m_Address: Map
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 5aafd910338bc0f41bab1d860db0c27b
-    m_Address: MiniMap
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 60ecb9b24bd23f041b1ca6d9f580d5fc
-    m_Address: Witch
+  - m_GUID: 26b0067589f35cf48a0ce6e7d4806a11
+    m_Address: IceLance
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9986345a85cf2c34c9a1ba8a37c4bd4a, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d578ef3523351104792f97a47dd65ec5, type: 2}
-    - {fileID: 11400000, guid: cc8cdd8cd74dab24280b4ab3fc98dac6, type: 2}
+    - {fileID: 11400000, guid: cb1ed51c076525443a03f72269b5f1e0, type: 2}
+    - {fileID: 11400000, guid: 441fdec0b030f834582bbb1ba3ce9d36, type: 2}

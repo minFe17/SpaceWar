@@ -12,6 +12,7 @@ public class Soldier : PlayerBase
 
     protected override void Init()
     {
+        _bulletType = EBulletPoolType.Bullet;
         base.Init();
         _mouseY = 0;
         _isAiming = false;
@@ -57,6 +58,12 @@ public class Soldier : PlayerBase
             _isShoot = true;
             _animator.SetTrigger("doAutoShoot");
         }
+    }
+
+    protected override void MakeBullet()
+    {
+        base.MakeBullet();
+        PlaySFX(ESFXAudioType.Shoot);
     }
 
     protected override bool CheckTurn()

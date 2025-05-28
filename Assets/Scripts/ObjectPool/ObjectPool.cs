@@ -17,7 +17,9 @@ public class ObjectPool<TEnum> : MonoBehaviour, IObjectPool where TEnum : Enum
         _enumValue = (TEnum[])Enum.GetValues(typeof(TEnum));
 
         for (int i = 0; i < _enumValue.Length; i++)
+        {
             _objectPool.Add(_enumValue[i], new Queue<GameObject>());
+        }
     }
 
     GameObject CreateObject(GameObject prefab)

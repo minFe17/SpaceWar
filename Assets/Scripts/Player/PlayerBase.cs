@@ -14,6 +14,7 @@ public abstract class PlayerBase : MonoBehaviour
     [SerializeField] protected Transform _idleBulletPos;
     [SerializeField] protected float _rotateSpeed;
 
+    protected EBulletPoolType _bulletType;
     protected Animator _animator;
     protected Rigidbody _rigidbody;
 
@@ -247,14 +248,14 @@ public abstract class PlayerBase : MonoBehaviour
             MakeBullet();
             _playerData.CurBullet--;
             _uiManager.IngameUI.ShowBullet();
-            _audioManager.PlaySFX(ESFXAudioType.Shoot);
         }
     }
 
     // 수정 필요
-    void MakeBullet()
+    protected virtual void MakeBullet()
     {
-        GameObject bullet = _factoryManager.MakeObject<EBulletPoolType, GameObject>(EBulletPoolType.Bullet);
+        Debug.Log(_bulletType);
+        GameObject bullet = _factoryManager.MakeObject<EBulletPoolType, GameObject>(_bulletType);
         bullet.transform.position = _bulletPos.position;
         bullet.transform.rotation = _bulletPos.rotation;
     }
@@ -321,6 +322,11 @@ public abstract class PlayerBase : MonoBehaviour
             DataSingleton<GemData>.Instance.AddGem(_playerData.Money * 5);
     }
 
+    protected void PlaySFX(ESFXAudioType type)
+    {
+        _audioManager.PlaySFX(type);
+    }
+
     protected bool CheckAttack()
     {
         if (_playerData.CurBullet <= 0 || _isReload)
@@ -375,7 +381,7 @@ public abstract class PlayerBase : MonoBehaviour
             StopAiming();
 
             _uiManager.OnOffOptionUI(!_isOpenOption);
-            _audioManager.PlaySFX(ESFXAudioType.Button);
+            PlaySFX(ESFXAudioType.Button);
             if (!_isOpenOption)
             {
                 Time.timeScale = 0;
@@ -407,7 +413,7 @@ public abstract class PlayerBase : MonoBehaviour
 
         AddGem();
 
-        _audioManager.PlaySFX(ESFXAudioType.Die);
+        PlaySFX(ESFXAudioType.Die);
 
         if (EnemyController != null)
         {

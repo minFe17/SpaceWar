@@ -31,6 +31,7 @@ public class AssetManager : MonoBehaviour
     async Task LoadPlayerAsset()
     {
         await GenericSingleton<PlayerAssetManager>.Instance.LoadAsset();
+        await GenericSingleton<BulletAssetManager>.Instance.LoadAsset();
     }
 
     async Task LoadSoundAsset()
