@@ -1015,7 +1015,7 @@ MonoBehaviour:
   _jumpPower: 7
   _idleTime: 3
   _playerType: 1
-  _idleBulletPos: {fileID: 6050326340102635440}
+  _idleBulletPos: {fileID: 8984769888550596783}
   _rotateSpeed: 1
 --- !u!95 &5953291791835662447
 Animator:

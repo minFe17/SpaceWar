@@ -20,9 +20,43 @@ public class Soldier : PlayerBase
     protected override void CharacterUpdate()
     {
         Zoom();
-        Fire();
-        Reload();
-        ShowOptionUI();
+    }
+
+    protected override void Attack()
+    {
+        base.Attack();
+        if (Input.GetButtonUp("Fire"))
+        {
+            _animator.SetBool("isShootIdle", true);
+            Invoke("ShootIdle", 0.5f);
+        }
+    }
+
+    protected override void StartNormalAttack()
+    {
+        if (CheckAttack() && !_isShoot)
+        {
+            _isShoot = true;
+            _animator.SetTrigger("doSingleShoot");
+        }
+    }
+
+    protected override void StartFirstSkillAttack()
+    {
+        if (CheckAttack() && !_isShoot)
+        {
+            _isShoot = true;
+            _animator.SetTrigger("doBurstShoot");
+        }
+    }
+
+    protected override void StartSecondSkillAttack()
+    {
+        if (CheckAttack())
+        {
+            _isShoot = true;
+            _animator.SetTrigger("doAutoShoot");
+        }
     }
 
     protected override bool CheckTurn()
@@ -34,7 +68,7 @@ public class Soldier : PlayerBase
 
     protected override void StopAiming()
     {
-        if(_isAiming)
+        if (_isAiming)
             StopAimingEnemy();
     }
 
@@ -43,6 +77,12 @@ public class Soldier : PlayerBase
         if (_isAiming)
             return false;
         return base.CheckOpenMap();
+    }
+
+    protected override void EndShoot()
+    {
+        base.EndShoot();
+        _animator.SetBool("isShootIdle", true);
     }
 
     protected override void Die()
@@ -101,71 +141,9 @@ public class Soldier : PlayerBase
         _bulletPos.transform.eulerAngles = rotate;
     }
 
-    // playerBase¿¡¼­?
-    void Fire()
-    {
-        if (Input.GetButton("Fire") && !_isDie && !_isOpenOption)
-        {
-            switch (_playerData.ShootMode)
-            {
-                case EShootModeType.Normal:
-                    StartSingleShoot();
-                    break;
-                case EShootModeType.FirstSkill:
-                    StartBurstShoot();
-                    break;
-                case EShootModeType.SecondSkill:
-                    StartAutoShoot();
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (Input.GetButtonUp("Fire"))
-        {
-            _animator.SetBool("isShootIdle", true);
-            Invoke("ShootIdle", 0.5f);
-        }
-    }
-
     void ShootIdle()
     {
         _animator.SetBool("isShootIdle", false);
-    }
-
-    void StartSingleShoot()
-    {
-        if (_playerData.CurBullet > 0 && !_isReload && !_isShoot)
-        {
-            _isShoot = true;
-            _animator.SetTrigger("doSingleShoot");
-        }
-    }
-
-    void EndShoot()
-    {
-        _animator.SetBool("isShootIdle", true);
-        if (_playerData.CurBullet <= 0)
-            Reload();
-        _isShoot = false;
-    }
-
-    void StartBurstShoot()
-    {
-        if (_playerData.CurBullet > 0 && !_isReload && !_isShoot)
-        {
-            _isShoot = true;
-            _animator.SetTrigger("doBurstShoot");
-        }
-    }
-
-    void StartAutoShoot()
-    {
-        if (_playerData.CurBullet > 0 && !_isReload)
-        {
-            _isShoot = true;
-            _animator.SetTrigger("doAutoShoot");
-        }
     }
 
     void EndAutoShoot()

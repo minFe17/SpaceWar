@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
-public class PlayerBase : MonoBehaviour
+public abstract class PlayerBase : MonoBehaviour
 {
     [SerializeField] GameObject _InfoKeyUI;
     [SerializeField] Text _InfoMseeage;
@@ -41,6 +41,13 @@ public class PlayerBase : MonoBehaviour
     public EnemyController EnemyController { get; set; }
     public bool IsDie { get => _isDie; }
 
+    protected abstract void StartNormalAttack();
+    protected abstract void StartFirstSkillAttack();
+    protected abstract void StartSecondSkillAttack();
+
+    protected virtual void CharacterUpdate() { }
+    protected virtual void StopAiming() { }
+
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -63,10 +70,10 @@ public class PlayerBase : MonoBehaviour
         Turn();
         OpenMap();
         ShowOptionUI();
+        Reload();
+        ChangeShootMode();
+        Attack();
     }
-
-    protected virtual void CharacterUpdate() { }
-    protected virtual void StopAiming() { }
 
     protected virtual void Init()
     {
@@ -83,6 +90,53 @@ public class PlayerBase : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         SettingUI();
         ShowUI();
+    }
+
+    protected virtual void Attack()
+    {
+        if (Input.GetButton("Fire") && !_isDie && !_isOpenOption)
+        {
+            switch (_playerData.ShootMode)
+            {
+                case EShootModeType.Normal:
+                    StartNormalAttack();
+                    break;
+                case EShootModeType.FirstSkill:
+                    StartFirstSkillAttack();
+                    break;
+                case EShootModeType.SecondSkill:
+                    StartSecondSkillAttack();
+                    break;
+            }
+        }
+    }
+
+    protected virtual bool CheckTurn()
+    {
+        if (!_isOpenOption && !_isDie)
+            return true;
+        return false;
+    }
+
+    protected virtual bool CheckOpenMap()
+    {
+        if (!_isDie && !_isOpenOption)
+            return true;
+        return false;
+    }
+
+    protected virtual void Die()
+    {
+        _isDie = true;
+        _animator.SetTrigger("doDie");
+    }
+
+    // 애니메이션 이벤트 함수
+    protected virtual void EndShoot()
+    {
+        _isShoot = false;
+        if (_playerData.CurBullet <= 0)
+            Reload();
     }
 
     void SetManager()
@@ -183,6 +237,7 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+    // 애니메이션 이벤트 함수
     void ShootBullet()
     {
         if (_playerData.CurBullet <= 0)
@@ -204,6 +259,7 @@ public class PlayerBase : MonoBehaviour
         bullet.transform.rotation = _bulletPos.rotation;
     }
 
+    // 애니메이션 이벤트 함수
     void ReloadBullet()
     {
         _playerData.CurBullet = _playerData.MaxBullet;
@@ -265,24 +321,11 @@ public class PlayerBase : MonoBehaviour
             DataSingleton<GemData>.Instance.AddGem(_playerData.Money * 5);
     }
 
-    protected virtual bool CheckTurn()
+    protected bool CheckAttack()
     {
-        if (!_isOpenOption && !_isDie)
-            return true;
-        return false;
-    }
-
-    protected virtual bool CheckOpenMap()
-    {
-        if (!_isDie && !_isOpenOption)
-            return true;
-        return false;
-    }
-
-    protected virtual void Die()
-    {
-        _isDie = true;
-        _animator.SetTrigger("doDie");
+        if (_playerData.CurBullet <= 0 || _isReload)
+            return false;
+        return true;
     }
 
     protected void Reload()
@@ -293,9 +336,11 @@ public class PlayerBase : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R) || curBullet <= 0)
             {
                 _isReload = true;
+                _isShoot = false;
                 _animator.SetTrigger("doReload");
             }
         }
+
     }
 
     public void TakeDamage(int damage)
@@ -353,6 +398,7 @@ public class PlayerBase : MonoBehaviour
         FollowCam.enabled = !FollowCam.enabled;
     }
 
+    // 애니메이션 이벤트에서도 호출함
     public void GameOver()
     {
         _uiManager.GameOverUI.gameObject.SetActive(true);
