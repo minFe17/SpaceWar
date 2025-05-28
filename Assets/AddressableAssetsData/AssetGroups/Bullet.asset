@@ -25,6 +25,14 @@ MonoBehaviour:
     m_Address: IceLance
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 64c2cb59c922d584cba808d516d79fde
+    m_Address: ThunderBall
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ba1840a13b7aa394091f2fcab9d91dda
+    m_Address: BlackHole
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9986345a85cf2c34c9a1ba8a37c4bd4a, type: 2}
   m_SchemaSet:

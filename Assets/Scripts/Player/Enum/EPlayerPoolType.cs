@@ -2,7 +2,7 @@ public enum EBulletPoolType
 {
     Bullet,
     IceLance,
-    //ThunderBall,
-    //BlackHole,
+    ThunderBall,
+    BlackHole,
     Max,
 }

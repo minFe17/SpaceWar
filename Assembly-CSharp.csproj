@@ -328,6 +328,8 @@
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Bullet\IceLanceFactory.cs" />
     <Compile Include="Assets\Scripts\Bullet\BulletAssetManager.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Bullet\ThunderBallFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Bullet\BlackHoleFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

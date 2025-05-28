@@ -9,6 +9,8 @@ public class BulletAssetManager : MonoBehaviour
 
     public GameObject Bullet { get; private set; }
     public GameObject IceLance { get; private set; }
+    public GameObject ThunderBall { get; private set; }
+    public GameObject BlackHole { get; private set; }
 
     public async Task LoadAsset()
     {
@@ -17,5 +19,7 @@ public class BulletAssetManager : MonoBehaviour
 
         Bullet = await _addressableMaanger.GetAddressableAsset<GameObject>("Bullet");
         IceLance = await _addressableMaanger.GetAddressableAsset<GameObject>("IceLance");
+        ThunderBall = await _addressableMaanger.GetAddressableAsset<GameObject>("ThunderBall");
+        BlackHole = await _addressableMaanger.GetAddressableAsset<GameObject>("BlackHole");
     }
 }

@@ -13,13 +13,13 @@ public class Witch : PlayerBase
 
     protected override void StartFirstSkillAttack()
     {
-        //_bulletType = EBulletPoolType.ThunderBall;
+        _bulletType = EBulletPoolType.ThunderBall;
         Fire();
     }
-   
+
     protected override void StartSecondSkillAttack()
     {
-        //_bulletType = EBulletPoolType.BlackHole;
+        _bulletType = EBulletPoolType.BlackHole;
         Fire();
     }
 
