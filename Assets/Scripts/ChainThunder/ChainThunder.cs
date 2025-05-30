@@ -5,6 +5,7 @@ using Utils;
 
 public class ChainThunder : MonoBehaviour
 {
+    // ╫л╠шео
     List<GameObject> _spawnedLineRenderer = new List<GameObject>();
     List<Enemy> _enemiesIsChain = new List<Enemy>();
 
@@ -13,7 +14,7 @@ public class ChainThunder : MonoBehaviour
     FactoryManager _factoryManager;
     ObjectPoolManager _poolManager;
 
-    int _maxEnemyChain = 10;
+    int _maxEnemyChain = 5;
     int _counter;
     float _refreshTime = 0.01f;
     float _delayBetweenEachChain = 0.01f;
@@ -52,13 +53,22 @@ public class ChainThunder : MonoBehaviour
 
         if (_enemyDetector != null && _bulletAssetManager.ChainThunder != null)
         {
-            if(!_isShot)
+            if (!_isShot)
             {
+                Enemy nextEnemy = _enemyDetector.GetClosestEnemy();
                 _isShot = true;
-                NewLineRenderer(_enemyDetector.transform, _enemyDetector.GetClosestEnemy().transform);
+                if (nextEnemy != null)
+                {
+                    NewLineRenderer(_enemyDetector.transform, nextEnemy.transform);
 
-                if (_maxEnemyChain > 1)
-                    StartCoroutine(ChainReaction(_enemyDetector.GetClosestEnemy()));
+                    if (_maxEnemyChain > 1)
+                        StartCoroutine(ChainReaction(_enemyDetector.GetClosestEnemy()));
+                }
+                else
+                {
+                    Enemy enemy = _enemyDetector.gameObject.GetComponent<Enemy>();
+                    enemy.TakeDamage(DataSingleton<PlayerData>.Instance.BulletDamage);
+                }
             }
         }
     }
@@ -73,10 +83,10 @@ public class ChainThunder : MonoBehaviour
     void StopChain()
     {
         _isChain = false;
-        _isShot= false;
+        _isShot = false;
         _counter = 1;
 
-        for(int i=0; i<_spawnedLineRenderer.Count; i++)
+        for (int i = 0; i < _spawnedLineRenderer.Count; i++)
             _poolManager.Pull(EBulletPoolType.ChainThunder, _spawnedLineRenderer[i]);
 
         for (int i = 0; i < _enemiesIsChain.Count; i++)
@@ -91,7 +101,7 @@ public class ChainThunder : MonoBehaviour
 
     IEnumerator UpdateLineRenderer(GameObject lineRenderer, Transform startPos, Transform endPos)
     {
-        if(_isChain && _isShot)
+        if (_isChain && _isShot)
         {
             lineRenderer.GetComponent<LineRendererController>().SetPosition(startPos, endPos);
             yield return new WaitForSeconds(_refreshTime);
@@ -101,25 +111,27 @@ public class ChainThunder : MonoBehaviour
 
     IEnumerator ChainReaction(Enemy closesetEnemy)
     {
-        if(!closesetEnemy.IsChainHit)
+        if (!closesetEnemy.IsChainHit)
         {
             closesetEnemy.TakeDamage(DataSingleton<PlayerData>.Instance.BulletDamage);
             closesetEnemy.IsChainHit = true;
         }
+
         yield return new WaitForSeconds(_delayBetweenEachChain);
-        if(_counter == _maxEnemyChain)
+
+        if (_counter == _maxEnemyChain)
             yield return null;
         else
         {
-            if(_isChain)
+            if (_isChain)
             {
                 _counter++;
                 _enemiesIsChain.Add(closesetEnemy);
 
                 Enemy nextEnemy = closesetEnemy.GetComponent<EnemyDetector>().GetClosestEnemy();
-                if(!_enemiesIsChain.Contains(nextEnemy))
+                if (!_enemiesIsChain.Contains(nextEnemy))
                 {
-                    if(nextEnemy!= null)
+                    if (nextEnemy != null)
                     {
                         NewLineRenderer(closesetEnemy.transform, nextEnemy.transform);
                         StartCoroutine(ChainReaction(nextEnemy));
