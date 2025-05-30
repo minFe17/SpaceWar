@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Utils;
@@ -28,6 +29,9 @@ public class EnemyController : MonoBehaviour
 
     int _wave;
     int _waveIndex;
+
+    float _searchRadius = 20f;
+    float _frontAngle = 60f;
 
     bool _isClear;
     bool _isBossRoom;
@@ -73,6 +77,7 @@ public class EnemyController : MonoBehaviour
 
     public void SpawnEnemy()
     {
+        _enemyManager.EnemyController = this;
         Vector3 spawnPos = GetRandomSpawnPosition();
 
         if (GenericSingleton<EnemyManager>.Instance.Enemys.Count > 0)
@@ -93,6 +98,30 @@ public class EnemyController : MonoBehaviour
         Vector3 spawnPos = new Vector3(posX, _basePos.y, posZ);
 
         return spawnPos;
+    }
+
+    public Transform GetClosestEnemy()
+    {
+        Vector3 playerPos = _enemyManager.Target.position;
+        Vector3 playerForward = _enemyManager.Target.forward;
+
+        List<Transform> enemyList = _enemyList.Where(temp =>
+        {
+            Vector3 enemy = temp.transform.position - playerPos;
+            float distance = enemy.magnitude;
+            if (distance > _searchRadius)
+                return false;
+
+            float angle = Vector3.Angle(playerForward, enemy);
+            return angle <= _frontAngle / 2f;
+        }).Select(temp => temp.transform).ToList();
+
+        if(enemyList.Count > 0)
+        {
+            int randomIndex = Random.Range(0, enemyList.Count);
+            return enemyList[randomIndex];
+        }
+        return null;
     }
 
     public void SpawnBoss()

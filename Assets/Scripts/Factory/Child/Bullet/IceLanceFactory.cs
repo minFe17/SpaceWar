@@ -24,6 +24,7 @@ public class IceLanceFactory : FactoryBase, IFactory<GameObject>
     GameObject IFactory<GameObject>.MakeObject()
     {
         GameObject bullet = _objectPoolManager.Push(_poolType, _prefab);
+        bullet.GetComponent<IceLance>().Init();
         return bullet;
     }
 }

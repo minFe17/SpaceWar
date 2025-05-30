@@ -251,7 +251,6 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
 
-    // 수정 필요
     protected virtual void MakeBullet()
     {
         GameObject bullet = _factoryManager.MakeObject<EBulletPoolType, GameObject>(_bulletType);

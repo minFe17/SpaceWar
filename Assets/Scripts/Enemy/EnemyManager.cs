@@ -23,6 +23,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject MiniBoss { get; set; }
     public GameObject Missile { get; set; }
     public GameObject Rock { get; set; }
+    public EnemyController EnemyController { get; set; }
 
     void Awake()
     {
