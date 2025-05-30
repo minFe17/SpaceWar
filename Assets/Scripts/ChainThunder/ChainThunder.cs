@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +5,6 @@ using Utils;
 
 public class ChainThunder : MonoBehaviour
 {
-    [SerializeField] [Range(1, 10)] int _maxEnemyChain = 5;
-    [SerializeField] float _refreshTime = 0.01f;
-    [SerializeField] float _delayBetweenEachChain = 0.01f;
-
     List<GameObject> _spawnedLineRenderer = new List<GameObject>();
     List<Enemy> _enemiesIsChain = new List<Enemy>();
 
@@ -18,7 +13,10 @@ public class ChainThunder : MonoBehaviour
     FactoryManager _factoryManager;
     ObjectPoolManager _poolManager;
 
+    int _maxEnemyChain = 10;
     int _counter;
+    float _refreshTime = 0.01f;
+    float _delayBetweenEachChain = 0.01f;
     bool _isChain;
     bool _isShot;
 
@@ -37,7 +35,7 @@ public class ChainThunder : MonoBehaviour
         }
         else
             StopChain();
-        Invoke("StopChain", 1f);
+        Invoke("StopChain", 0.5f);
     }
 
     void SetManager()
@@ -84,6 +82,7 @@ public class ChainThunder : MonoBehaviour
             _poolManager.Pull(EBulletPoolType.ChainThunder, _spawnedLineRenderer[i]);
 
         _spawnedLineRenderer.Clear();
+        _enemiesIsChain.Clear();
     }
 
     IEnumerator UpdateLineRenderer(GameObject lineRenderer, Transform startPos, Transform endPos)

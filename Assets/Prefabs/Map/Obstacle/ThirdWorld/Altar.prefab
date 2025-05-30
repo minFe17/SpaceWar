@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5233936238837056034}
   - component: {fileID: 2218200819707869599}
   - component: {fileID: 5061965890644152735}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,9 +128,9 @@ GameObject:
   - component: {fileID: 5058906987909441522}
   - component: {fileID: 9116813002915107698}
   - component: {fileID: -5297499068620514732}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Altar
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 5635094152893309650}
   - component: {fileID: 5310667796608812372}
   - component: {fileID: 320379920028424976}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: fire particle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -35,25 +35,25 @@ public class EnemyDetector : MonoBehaviour
         return target;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Enemy"))
-        {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (_enemiesInRange.Count == 0)
-                _enemiesInRange.Add(enemy);
-            else if (!_enemiesInRange.Contains(enemy))
-                _enemiesInRange.Add(enemy);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.CompareTag("Enemy"))
+    //    {
+    //        Enemy enemy = other.GetComponent<Enemy>();
+    //        if (_enemiesInRange.Count == 0)
+    //            _enemiesInRange.Add(enemy);
+    //        else if (!_enemiesInRange.Contains(enemy))
+    //            _enemiesInRange.Add(enemy);
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.CompareTag("Enemy"))
-        {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if(_enemiesInRange.Count > 0)
-                _enemiesInRange.Remove(enemy);
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if(other.CompareTag("Enemy"))
+    //    {
+    //        Enemy enemy = other.GetComponent<Enemy>();
+    //        if(_enemiesInRange.Count > 0)
+    //            _enemiesInRange.Remove(enemy);
+    //    }
+    //}
 }

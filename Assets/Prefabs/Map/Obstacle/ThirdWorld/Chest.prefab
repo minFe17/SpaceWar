@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1696049666827515628}
   - component: {fileID: 1586982327419578926}
   - component: {fileID: 2856464642378660841}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: cup light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 1725297522618554168}
   - component: {fileID: 1716928640887248262}
   - component: {fileID: 6048888538535132170}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: fire_cup_1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 1533239999722790210}
   - component: {fileID: 1531517613648508154}
   - component: {fileID: 3920541573496019520}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: fire particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4015,21 +4015,15 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
-    inside: 1
+    inside: 2
     outside: 0
     enter: 0
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
-    primitives:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    primitives: []
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -5062,9 +5056,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9092992691991272847}
   - component: {fileID: -7556303670159522327}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5111,7 +5105,7 @@ GameObject:
   - component: {fileID: 6132731369660163052}
   - component: {fileID: 6140689681888931236}
   - component: {fileID: 6660855546239706477}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: chest_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5210,7 +5204,7 @@ GameObject:
   - component: {fileID: 6132564062975731998}
   - component: {fileID: 6140673551073639732}
   - component: {fileID: 3870825286587789046}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: chest_up
   m_TagString: Untagged
   m_Icon: {fileID: 0}

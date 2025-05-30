@@ -399,6 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 449768}
   - component: {fileID: 8215121489665804504}
+  - component: {fileID: 3927141656709517505}
   m_Layer: 14
   m_Name: Capacitor
   m_TagString: Obstacle
@@ -438,3 +439,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _obstacleType: 1
+--- !u!65 &3927141656709517505
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133022}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

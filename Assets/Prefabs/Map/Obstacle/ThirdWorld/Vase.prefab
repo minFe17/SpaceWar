@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7079090661209820481}
   - component: {fileID: 6738845770604586240}
   - component: {fileID: 4580602411096234345}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Vase
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

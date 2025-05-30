@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6901806236095082408}
   - component: {fileID: 7278333983046511532}
   - component: {fileID: 2185167316895367893}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: cage_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: 5796569432663667188}
   - component: {fileID: 6217359853239674980}
   - component: {fileID: 1094727783829810538}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cage
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

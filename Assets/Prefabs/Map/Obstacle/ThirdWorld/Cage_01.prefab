@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4525000622065678}
   - component: {fileID: 33864308219696878}
   - component: {fileID: 23797165785417604}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: chain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: 23008438846825724}
   - component: {fileID: 8863502947970173867}
   - component: {fileID: 8616214243728401885}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cage_01
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
