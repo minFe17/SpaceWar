@@ -75,8 +75,8 @@ public abstract class Enemy : MonoBehaviour
 
     public void RemoveEnemy()
     {
-        _objectPoolManager.EnemyObjectPool.EnemyPool.Pull(_enemyType, gameObject);
         _enemyController.EnemyList.Remove(this);
+        _objectPoolManager.EnemyObjectPool.EnemyPool.Pull(_enemyType, gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
