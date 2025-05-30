@@ -70,7 +70,7 @@ public class ChainThunder : MonoBehaviour
         StartCoroutine(UpdateLineRenderer(lineRenderer, startPos, endPos));
     }
 
-    public void StopChain()
+    void StopChain()
     {
         _isChain = false;
         _isShot= false;
@@ -78,6 +78,12 @@ public class ChainThunder : MonoBehaviour
 
         for(int i=0; i<_spawnedLineRenderer.Count; i++)
             _poolManager.Pull(EBulletPoolType.ChainThunder, _spawnedLineRenderer[i]);
+
+        for (int i = 0; i < _enemiesIsChain.Count; i++)
+        {
+            if (_enemiesIsChain[i] != null)
+                _enemiesIsChain[i].IsChainHit = false;
+        }
 
         _spawnedLineRenderer.Clear();
         _enemiesIsChain.Clear();
@@ -95,8 +101,12 @@ public class ChainThunder : MonoBehaviour
 
     IEnumerator ChainReaction(Enemy closesetEnemy)
     {
+        if(!closesetEnemy.IsChainHit)
+        {
+            closesetEnemy.TakeDamage(DataSingleton<PlayerData>.Instance.BulletDamage);
+            closesetEnemy.IsChainHit = true;
+        }
         yield return new WaitForSeconds(_delayBetweenEachChain);
-
         if(_counter == _maxEnemyChain)
             yield return null;
         else
@@ -114,7 +124,6 @@ public class ChainThunder : MonoBehaviour
                         NewLineRenderer(closesetEnemy.transform, nextEnemy.transform);
                         StartCoroutine(ChainReaction(nextEnemy));
                     }
-                    
                 }
             }
         }

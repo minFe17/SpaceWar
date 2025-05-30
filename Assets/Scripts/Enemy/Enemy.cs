@@ -22,6 +22,7 @@ public abstract class Enemy : MonoBehaviour
 
     public int CurHp { get => _curHp; }
     public int MaxHp { get => _maxHp; }
+    public bool IsChainHit { get; set; }
     public EnemyController EnemyController { get => _enemyController; }
 
     public virtual void Init(EnemyController enemyController)
