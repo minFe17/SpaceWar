@@ -7,7 +7,9 @@ public class Witch : PlayerBase
 
     protected override void StartNormalAttack()
     {
-        _bulletType = EBulletPoolType.IceLance;
+        //_bulletType = EBulletPoolType.IceLance;
+        _bulletType = EBulletPoolType.ThunderBall;
+
         Fire();
     }
 

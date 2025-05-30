@@ -6,6 +6,7 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected int _maxHp;
     [SerializeField] protected float _attackDelay;
+    [SerializeField] protected EnemyDetector _enemyDetector;  
 
     protected EnemyController _enemyController;
     protected Rigidbody _rigidbody;
@@ -21,6 +22,7 @@ public abstract class Enemy : MonoBehaviour
 
     public int CurHp { get => _curHp; }
     public int MaxHp { get => _maxHp; }
+    public EnemyController EnemyController { get => _enemyController; }
 
     public virtual void Init(EnemyController enemyController)
     {
@@ -34,6 +36,7 @@ public abstract class Enemy : MonoBehaviour
         _enemyManager = GenericSingleton<EnemyManager>.Instance;
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
         _coinManager = GenericSingleton<CoinManager>.Instance;
+        _enemyDetector.Init(enemyController);
     }
 
     public virtual void LookTarget()

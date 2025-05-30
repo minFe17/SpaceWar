@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 645469222335424899}
   - component: {fileID: 4890835903561641094}
+  - component: {fileID: -725293985253697710}
   - component: {fileID: 645469222335424959}
   - component: {fileID: 645469222335424956}
   - component: {fileID: 6525569234176046667}
@@ -51,10 +52,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 5
   _attackDelay: 1
+  _enemyDetector: {fileID: -725293985253697710}
   _damage: 2
   _moveSpeed: 1.5
   _attackArea: {fileID: 6362161742363400255}
-  _enemyType: 2
+--- !u!114 &-725293985253697710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645469222335424898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456223828891d1047909ba1977c794df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &645469222335424959
 Animator:
   serializedVersion: 5

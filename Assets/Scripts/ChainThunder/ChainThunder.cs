@@ -4,50 +4,62 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
-// ThunderBall에게 넣기?
 public class ChainThunder : MonoBehaviour
 {
-    [SerializeField] EnemyDetector _enemyDetector;
-    [SerializeField] [Range(1, 10)] int _maxEnemyChain;
+    [SerializeField] [Range(1, 10)] int _maxEnemyChain = 5;
     [SerializeField] float _refreshTime = 0.01f;
     [SerializeField] float _delayBetweenEachChain = 0.01f;
 
     List<GameObject> _spawnedLineRenderer = new List<GameObject>();
     List<Enemy> _enemiesIsChain = new List<Enemy>();
 
-    AddressableManager _addressableManager;
-    GameObject _prefab;
+    EnemyDetector _enemyDetector;
+    BulletAssetManager _bulletAssetManager;
+    FactoryManager _factoryManager;
+    ObjectPoolManager _poolManager;
 
     int _counter;
     bool _isChain;
     bool _isShot;
 
-    async void Init()
+    public void Init(EnemyDetector enemyDetector)
     {
-        // 이건 나중에 총알 관리하는 곳에서
-        if (_addressableManager == null)
-            _addressableManager = GenericSingleton<AddressableManager>.Instance;
-        _prefab = await _addressableManager.GetAddressableAsset<GameObject>("ChainThunder");
-
+        _enemyDetector = enemyDetector;
+        SetManager();
+        if (_enemyDetector == null)
+            return;
         if (_enemyDetector.EnemiesInRange.Count > 0)
         {
             if (!_isChain)
                 StartChain();
+            else
+                StopChain();
         }
         else
             StopChain();
+        Invoke("StopChain", 1f);
+    }
+
+    void SetManager()
+    {
+        if (_bulletAssetManager == null)
+            _bulletAssetManager = GenericSingleton<BulletAssetManager>.Instance;
+        if (_factoryManager == null)
+            _factoryManager = GenericSingleton<FactoryManager>.Instance;
+        if (_poolManager == null)
+            _poolManager = GenericSingleton<ObjectPoolManager>.Instance;
     }
 
     void StartChain()
     {
         _isChain = true;
 
-        if (_enemyDetector != null && _prefab != null)
+        if (_enemyDetector != null && _bulletAssetManager.ChainThunder != null)
         {
             if(!_isShot)
             {
                 _isShot = true;
-                NewLineRenderer(transform, _enemyDetector.GetClosestEnemy().transform);
+                NewLineRenderer(_enemyDetector.transform, _enemyDetector.GetClosestEnemy().transform);
 
                 if (_maxEnemyChain > 1)
                     StartCoroutine(ChainReaction(_enemyDetector.GetClosestEnemy()));
@@ -57,21 +69,19 @@ public class ChainThunder : MonoBehaviour
 
     void NewLineRenderer(Transform startPos, Transform endPos)
     {
-        GameObject lineRenderer = Instantiate(_prefab);
+        GameObject lineRenderer = _factoryManager.MakeObject<EBulletPoolType, GameObject>(EBulletPoolType.ChainThunder);
         _spawnedLineRenderer.Add(lineRenderer);
         StartCoroutine(UpdateLineRenderer(lineRenderer, startPos, endPos));
     }
 
-    void StopChain()
+    public void StopChain()
     {
         _isChain = false;
         _isShot= false;
         _counter = 1;
 
         for(int i=0; i<_spawnedLineRenderer.Count; i++)
-        {
-            Destroy(_spawnedLineRenderer[i]);
-        }
+            _poolManager.Pull(EBulletPoolType.ChainThunder, _spawnedLineRenderer[i]);
 
         _spawnedLineRenderer.Clear();
     }
@@ -102,8 +112,12 @@ public class ChainThunder : MonoBehaviour
                 Enemy nextEnemy = closesetEnemy.GetComponent<EnemyDetector>().GetClosestEnemy();
                 if(!_enemiesIsChain.Contains(nextEnemy))
                 {
-                    NewLineRenderer(closesetEnemy.transform, nextEnemy.transform);
-                    StartCoroutine(ChainReaction(nextEnemy));
+                    if(nextEnemy!= null)
+                    {
+                        NewLineRenderer(closesetEnemy.transform, nextEnemy.transform);
+                        StartCoroutine(ChainReaction(nextEnemy));
+                    }
+                    
                 }
             }
         }

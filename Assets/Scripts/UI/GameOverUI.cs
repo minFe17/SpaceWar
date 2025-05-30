@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Utils;
 
 public class GameOverUI : MonoBehaviour
@@ -9,10 +10,12 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] Transform[] _firstMap;
     [SerializeField] Transform[] _secondMap;
     [SerializeField] Transform[] _thirdMap;
+    [SerializeField] Sprite[] _playerSprite;
 
     [SerializeField] Transform _startPos;
 
-    [SerializeField] Transform _playerImage;
+    [SerializeField] Image _playerImage;
+    [SerializeField] Transform _playerIcon;
     [SerializeField] TMP_Text _dieWaveText;
     [SerializeField] GameObject _clearPanel;
 
@@ -30,6 +33,9 @@ public class GameOverUI : MonoBehaviour
         _wavePos.Add(_firstMap);
         _wavePos.Add(_secondMap);
         _wavePos.Add(_thirdMap);
+
+        EPlayerType playerType = DataSingleton<PlayerData>.Instance.PlayerType;
+        _playerImage.sprite = _playerSprite[(int)playerType];
     }
 
     void Update()
@@ -50,12 +56,11 @@ public class GameOverUI : MonoBehaviour
         GameManager gameManager = GenericSingleton<GameManager>.Instance;
         int mapStage = _gameData.MapStage;
         int levelStage = _gameData.LevelStage;
-        _playerImage.position = _startPos.position;
+        _playerIcon.position = _startPos.position;
         _dieWavePos = _wavePos[mapStage - 1][levelStage - 1].position;
+
         if (!gameManager.IsClear)
-        {
             _dieWaveText.text = $"{mapStage} - {levelStage}";
-        }
         else
         {
             _dieWaveText.gameObject.SetActive(false);
@@ -93,6 +98,6 @@ public class GameOverUI : MonoBehaviour
 
     void MovePlayerIcon()
     {
-        _playerImage.Translate((_dieWavePos - _playerImage.position) * Time.deltaTime * 2f);
+        _playerIcon.Translate((_dieWavePos - _playerIcon.position) * Time.deltaTime * 2f);
     }
 }

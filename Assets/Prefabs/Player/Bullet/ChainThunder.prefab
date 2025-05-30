@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3191273301130504576}
   - component: {fileID: 6851842221730785816}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Line (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1427303763433082469}
   - component: {fileID: 5049229635492178515}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Line (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8610685787153817129}
   - component: {fileID: 8610685787153817128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8610685787492742318}
   - component: {fileID: 8610685787492742317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ChainThunder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,3 +460,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineRenderers:
   - {fileID: 8610685787153817128}
+  - {fileID: 5049229635492178515}
+  - {fileID: 6851842221730785816}

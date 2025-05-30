@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 124254025482809307}
-  m_Layer: 0
+  - component: {fileID: 8526732412060746583}
+  - component: {fileID: 5140798539520183290}
+  m_Layer: 6
   m_Name: ThunderBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +34,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8526732412060746583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785768428385649429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb56b1dfea12ec4490501a4c1a653dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 0
+  _lifeTime: 3
+  _speed: 30
+  _bulletPoolType: 2
+  _chainThunder: {fileID: 0}
+--- !u!135 &5140798539520183290
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785768428385649429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8673656544946940688
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +75,7 @@ GameObject:
   - component: {fileID: 8673656544946714416}
   - component: {fileID: 8673656544931508848}
   - component: {fileID: 8673656544931597264}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +170,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
   randomSeed: 0
@@ -4782,7 +4814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8673656544946714418}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Effect_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4817,7 +4849,7 @@ GameObject:
   - component: {fileID: 8673656544946714420}
   - component: {fileID: 8673656544957081136}
   - component: {fileID: 1156473502302605075}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

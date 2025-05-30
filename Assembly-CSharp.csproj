@@ -85,7 +85,7 @@
     <Compile Include="Assets\Scripts\Coin\Enum\ECoinType.cs" />
     <Compile Include="Assets\Scripts\Map\Enum\EMapPoolType.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
-    <Compile Include="Assets\Scripts\Player\Enum\EPlayerPoolType.cs" />
+    <Compile Include="Assets\Scripts\Player\Enum\EBulletPoolType.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\Common\HpUp.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\VendingMachine.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Cactus.cs" />
@@ -104,7 +104,7 @@
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\SecondCageFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Camera\Child\MapCameraFactory.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Map\Obstacle\interface\IObstacle.cs" />
+    <Compile Include="Assets\Scripts\Map\Obstacle\Interface\IObstacle.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\GolemRock.cs" />
     <Compile Include="Assets\Scripts\Potion\Interface\IPotion.cs" />
     <Compile Include="Assets\Scripts\Player\Data\Soldier\SoldierInfoData.cs" />
@@ -122,6 +122,7 @@
     <Compile Include="Assets\Scripts\Player\Data\PlayerStatData.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\Interface\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Map\Obstacle\Child\ThirdWorldd\ThirdObstacle.cs" />
+    <Compile Include="Assets\Scripts\ChainThunder\EnemyDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\DeliveryRobot.cs" />
     <Compile Include="Assets\Scripts\Potion\Child\RecoveryPotion.cs" />
     <Compile Include="Assets\DownloadAssets\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\Node.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\GroundWork\Child\DeadZoneFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Map\Child\VerticalWallFactory.cs" />
+    <Compile Include="Assets\Vefects\Trails VFX URP\Scripts\Demo_TurningAround.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\ScavengerAttack.cs" />
     <Compile Include="Assets\DownloadAssets\Blink\Art\Animals\Stylized\Demo_Animals\DemoData\AnimationDemo.cs" />
     <Compile Include="Assets\Scripts\UI\GameOverUI.cs" />
@@ -266,6 +268,7 @@
     <Compile Include="Assets\Scripts\Camera\MiniMapCam.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\DragonAttackArea.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\RhinoAttackArea.cs" />
+    <Compile Include="Assets\Scripts\ChainThunder\ChainThunder.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\FirstAltarFactory.cs" />
     <Compile Include="Assets\Scripts\Enemy\SecondWorld\Enum\EAttackType.cs" />
     <Compile Include="Assets\Scripts\GameManager\Enum\EWorldType.cs" />
@@ -331,16 +334,14 @@
     <Compile Include="Assets\Scripts\Factory\Child\EventRoom\EventRoomFactoryBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
-    <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
     <Compile Include="Assets\Scripts\ChainThunder\LineRendererController.cs" />
-    <Compile Include="Assets\Scripts\ChainThunder\EnemyDetector.cs" />
-    <Compile Include="Assets\Scripts\ChainThunder\ChainThunder.cs" />
-    <Compile Include="Assets\Vefects\Trails VFX URP\Scripts\Demo_TurningAround.cs" />
+    <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
+    <Compile Include="Assets\Scripts\Bullet\ThunderBall.cs" />
+    <Compile Include="Assets\Scripts\Factory\Child\Bullet\ChainThunderFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
-    <None Include="Assets\Vefects\Trails VFX URP\Demo\Resources\Character\Shaders\SH_Vefects_URP_VFX_Character_Showoff.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\DownloadAssets\Sound\Sc-Fi Music\Note.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -368,7 +369,6 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\DownloadAssets\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\Vefects\Trails VFX URP\Demo\Resources\Environment\Shaders\SH_Vefects_Grid_01.shader" />
     <None Include="Assets\DownloadAssets\Snack_machines\readme.txt" />
     <None Include="Assets\DownloadAssets\Skybox\SkySeries Freebie\Hdri setup.txt" />
     <None Include="Assets\Vefects\Trails VFX URP\_ Extra\Shaders\SH_Vefects_Extra_Grid_01.shader" />
@@ -631,12 +631,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.27f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

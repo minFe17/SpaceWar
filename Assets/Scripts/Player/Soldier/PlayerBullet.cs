@@ -17,6 +17,6 @@ public class PlayerBullet : Bullet
         _trailRenderer.Clear();
         if (_objectPoolManager == null)
             _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
-        _objectPoolManager.Pull(EBulletPoolType.Bullet, gameObject);
+        _objectPoolManager.Pull(_bulletPoolType, gameObject);
     }
 }

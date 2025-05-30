@@ -254,7 +254,6 @@ public abstract class PlayerBase : MonoBehaviour
     // 수정 필요
     protected virtual void MakeBullet()
     {
-        Debug.Log(_bulletType);
         GameObject bullet = _factoryManager.MakeObject<EBulletPoolType, GameObject>(_bulletType);
         bullet.transform.position = _bulletPos.position;
         bullet.transform.rotation = _bulletPos.rotation;
@@ -420,9 +419,7 @@ public abstract class PlayerBase : MonoBehaviour
             if (EnemyController.EnemyList.Count != 0)
             {
                 for (int i = EnemyController.EnemyList.Count - 1; i >= 0; i--)
-                {
                     EnemyController.EnemyList[i].RemoveEnemy();
-                }
             }
         }
         FollowCam.enabled = false;

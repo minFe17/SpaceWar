@@ -9,8 +9,6 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_VFX_URP_Trail_Sound_01
   m_Shader: {fileID: 4800000, guid: f94f00b9ec6b04346a617d373aa6281c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -19,7 +17,6 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -156,8 +153,8 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color01: {r: 1, g: 1, b: 1, a: 0}
-    - _Color02: {r: 1, g: 1, b: 1, a: 0}
+    - _Color01: {r: 0.3496351, g: 0.74725384, b: 0.9150943, a: 1}
+    - _Color02: {r: 0.23921567, g: 0.6077666, b: 0.9137255, a: 1}
     - _ColorPanSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _ColorUVScale: {r: 1, g: 1, b: 0, a: 0}
     - _Color_01: {r: 1, g: 1, b: 1, a: 0}

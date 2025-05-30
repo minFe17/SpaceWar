@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4793522874221908137}
   - component: {fileID: 4793522874221908141}
+  - component: {fileID: 7698004889451899400}
   - component: {fileID: 4793522874221908138}
   - component: {fileID: 4793522874221908140}
   m_Layer: 7
@@ -82,9 +83,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 5
   _attackDelay: 2
+  _enemyDetector: {fileID: 7698004889451899400}
   _gun: {fileID: 4793522874848227861}
   _bulletPos: {fileID: 1034329089122052621}
   _dieEffect: {fileID: 7874108628950747213}
+--- !u!114 &7698004889451899400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793522874221908136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456223828891d1047909ba1977c794df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &4793522874221908138
 BoxCollider:
   m_ObjectHideFlags: 0

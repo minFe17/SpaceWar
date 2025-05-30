@@ -33,6 +33,10 @@ MonoBehaviour:
     m_Address: BlackHole
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d3b5cdb56fe7bb64c8290b8d944601a9
+    m_Address: ChainThunder
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9986345a85cf2c34c9a1ba8a37c4bd4a, type: 2}
   m_SchemaSet:
