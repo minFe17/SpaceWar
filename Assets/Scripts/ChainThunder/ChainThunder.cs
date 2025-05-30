@@ -30,8 +30,6 @@ public class ChainThunder : MonoBehaviour
         {
             if (!_isChain)
                 StartChain();
-            else
-                StopChain();
         }
         else
             StopChain();

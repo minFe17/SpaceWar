@@ -8,7 +8,7 @@ public abstract class SecondWorldEnemyFactoryBase : FactoryBase
 
     protected abstract void Init();
 
-    void Start()
+    void OnEnable()
     {
         _factoryManager = GenericSingleton<FactoryManager>.Instance;
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;

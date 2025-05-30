@@ -8,6 +8,8 @@ public class EnemyFactory : MonoBehaviour
 
     public void AddFactory<TEnum>(TEnum key, IFactory<Enemy> value) where TEnum : Enum
     {
+        if (_enemyFactorys.ContainsKey(key))
+            return;
         _enemyFactorys.Add(key, value);
     }
 

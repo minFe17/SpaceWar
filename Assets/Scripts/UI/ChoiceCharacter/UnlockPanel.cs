@@ -78,6 +78,7 @@ public class UnlockPanel : CharacterPanelBase
 
     public async void GameStart()
     {
+        GenericSingleton<DoorManager>.Instance.ClearDoors();
         GenericSingleton<JsonManager>.Instance.DestroyDataFiles();
         DataSingleton<GameData>.Instance.MapStage = 1;
         await GenericSingleton<WorldManager>.Instance.ResetWorld();

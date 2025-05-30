@@ -409,7 +409,7 @@ public abstract class PlayerBase : MonoBehaviour
         _uiManager.GameOverUI.GameOver();
         Cursor.lockState = CursorLockMode.None;
         GenericSingleton<JsonManager>.Instance.DestroyDataFiles();
-
+        GenericSingleton<DoorManager>.Instance.ClearDoors();
         AddGem();
 
         PlaySFX(ESFXAudioType.Die);
