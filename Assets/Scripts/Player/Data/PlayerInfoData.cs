@@ -18,6 +18,5 @@ public abstract class PlayerInfoData
     public string Name { get => _name; }
     public int UnlockCost { get => _unlockCost; }
 
-    // 호출 필요
     public abstract void Init();
 }

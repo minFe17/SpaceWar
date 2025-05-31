@@ -32,7 +32,8 @@ public class SelectPassiveUI : MonoBehaviour
         SceneManager.LoadScene($"{(EWorldType)DataSingleton<GameData>.Instance.MapStage}");
     }
 
-    public void ShowInfo(int buttonIndex)   // Event Trigger를 사용하는 함수
+    // Event Trigger를 사용하는 함수
+    public void ShowInfo(int buttonIndex)   
     {
         if (_passiveInfoPanel.activeSelf == false)
             _passiveInfoPanel.SetActive(true);

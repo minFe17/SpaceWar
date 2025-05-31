@@ -6,7 +6,7 @@ using Utils;
 
 public class FactoryManager : MonoBehaviour
 {
-    //╫л╠шео
+    // ╫л╠шео
     Dictionary<Type, IFactorys> _factorys = new Dictionary<Type, IFactorys>();
     EnemyFactory _enemyFactory = new EnemyFactory();
     MapFactory _mapFactory = new MapFactory();

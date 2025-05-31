@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6848838490968556957}
-  m_Layer: 0
+  - component: {fileID: 1863109733293516922}
+  - component: {fileID: 7025705335461800531}
+  - component: {fileID: 9053387778630781425}
+  m_Layer: 6
   m_Name: BlackHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +35,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1863109733293516922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235000934033448722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ecfeb0037097f46949f8d380229f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletType: 3
+  _lifeTime: 7
+  _speed: 3
+  _pullRadius: 7
+  _pullForce: 700
+  _damageInterval: 1
+  _damageAmount: 1
+--- !u!135 &7025705335461800531
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235000934033448722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &9053387778630781425
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235000934033448722}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6807445517734390862
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +94,7 @@ GameObject:
   - component: {fileID: 6807445517734699590}
   - component: {fileID: 6807445517740926608}
   - component: {fileID: 1846863209973627748}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6807445517734707332}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Effect_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +242,7 @@ GameObject:
   - component: {fileID: 6807445517734709034}
   - component: {fileID: 6807445517749969530}
   - component: {fileID: 6807445517749959558}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +337,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
   randomSeed: 0

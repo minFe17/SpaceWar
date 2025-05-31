@@ -23,6 +23,7 @@ public abstract class Enemy : MonoBehaviour
     public int CurHp { get => _curHp; }
     public int MaxHp { get => _maxHp; }
     public bool IsChainHit { get; set; }
+    public bool IsPullBlackHole { get; set; }
     public EnemyController EnemyController { get => _enemyController; }
 
     public virtual void Init(EnemyController enemyController)
@@ -38,6 +39,7 @@ public abstract class Enemy : MonoBehaviour
         _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
         _coinManager = GenericSingleton<CoinManager>.Instance;
         _enemyDetector.Init(enemyController);
+        IsPullBlackHole = false;
     }
 
     public virtual void LookTarget()
@@ -61,7 +63,13 @@ public abstract class Enemy : MonoBehaviour
 
     protected void FreezePos()
     {
-        _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
+        if(IsPullBlackHole)
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.None;
+        else
+        {
+            _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
+        }
     }
 
     public virtual void Die()

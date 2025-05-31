@@ -13,7 +13,7 @@ public class IceLance : MonoBehaviour
     EnemyManager _enemyManager;
     ObjectPoolManager _objectPoolManager;
 
-    EBulletPoolType _bullettype = EBulletPoolType.IceLance;
+    EBulletPoolType _bulletType = EBulletPoolType.IceLance;
 
     bool _isCollision;
 
@@ -59,7 +59,7 @@ public class IceLance : MonoBehaviour
     {
         if (_objectPoolManager == null)
             _objectPoolManager = GenericSingleton<ObjectPoolManager>.Instance;
-        _objectPoolManager.Pull(_bullettype, gameObject);
+        _objectPoolManager.Pull(_bulletType, gameObject);
     }
 
     public void IsCollision(GameObject other)

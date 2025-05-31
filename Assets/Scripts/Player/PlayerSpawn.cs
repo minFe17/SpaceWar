@@ -18,7 +18,6 @@ public class PlayerSpawn : MonoBehaviour
         if (_factoryManager == null)
             _factoryManager = GenericSingleton<FactoryManager>.Instance;
 
-        // 수정 필요
         EPlayerType playerType = DataSingleton<PlayerData>.Instance.PlayerType;
         GameObject temp = _factoryManager.MakeObject<EPlayerType, GameObject>(playerType);
         _player = temp.GetComponent<PlayerBase>();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    //╫л╠шео
+    // ╫л╠шео
     Dictionary<Type, IObjectPool> _objectPools = new Dictionary<Type, IObjectPool>();
     EnemyObjectPool _enemyObjectPool = new EnemyObjectPool();
     ObstacleObjectPool _obstacleObjectPool = new ObstacleObjectPool();

@@ -3,8 +3,6 @@ using UnityEngine;
 public class Soldier : PlayerBase
 {
     [SerializeField] GameObject _zoomCamera;
-
-    // playerBase¿¡¼­?
     [SerializeField] float _fireDelay;
 
     float _mouseY;
