@@ -271,6 +271,7 @@
     <Compile Include="Assets\Scripts\Potion\Child\MaxHPReducedPotion.cs" />
     <Compile Include="Assets\Scripts\Camera\MiniMapCam.cs" />
     <Compile Include="Assets\Scripts\Enemy\ThirdWorld\DragonAttackArea.cs" />
+    <Compile Include="Assets\Scripts\Bullet\BlackHole.cs" />
     <Compile Include="Assets\Scripts\Enemy\FirstWorldEnemy\RhinoAttackArea.cs" />
     <Compile Include="Assets\Scripts\ChainThunder\ChainThunder.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\ThirdWorld\Child\FirstAltarFactory.cs" />
@@ -340,7 +341,6 @@
     <Compile Include="Assets\Scripts\Map\EventRoom\Child\Portal.cs" />
     <Compile Include="Assets\Scripts\ChainThunder\LineRendererController.cs" />
     <Compile Include="Assets\Scripts\UI\OptionUI.cs" />
-    <Compile Include="Assets\Scripts\Bullet\BlackHole.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DownloadAssets\Free Low Poly Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />

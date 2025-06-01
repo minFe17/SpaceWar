@@ -4,7 +4,7 @@ using Utils;
 [System.Serializable]
 public class GemData
 {
-    [SerializeField] int _gem = 90000;
+    [SerializeField] int _gem;
 
     public int Gem { get => _gem; }
 
