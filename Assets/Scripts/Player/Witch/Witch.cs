@@ -1,10 +1,5 @@
 public class Witch : PlayerBase
 {
-    protected override void CharacterUpdate()
-    {
-        base.CharacterUpdate();
-    }
-
     protected override void StartNormalAttack()
     {
         _bulletType = EBulletPoolType.IceLance;

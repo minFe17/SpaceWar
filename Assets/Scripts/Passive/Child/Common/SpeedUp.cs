@@ -1,9 +1,11 @@
-public class SpeedUp : PassiveData
+using Utils;
+
+public class SpeedUp : IPassiveEffect
 {
     float _moveSpeed = 3f;
 
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.MoveSpeed += _moveSpeed;
+        DataSingleton<PlayerData>.Instance.MoveSpeed += _moveSpeed;
     }
 }

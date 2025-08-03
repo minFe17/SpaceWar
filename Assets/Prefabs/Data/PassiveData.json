@@ -1,44 +1,52 @@
 {
-    "_passiveUIDataList": [
-        {
-            "_name": "HP 증가",
-            "_info": "최대 HP 10 증가",
-            "_imageName": "HpUp"
-        },
-        {
-            "_name": "데미지 증가",
-            "_info": "데미지 3 증가",
-            "_imageName": "DamageUp"
-        },
-        {
-            "_name": "이동속도 증가",
-            "_info": "이동 속도가 더욱 빨라집니다",
-            "_imageName": "SpeedUp"
-        },
-        {
-            "_name": "탄창 용량 증가",
-            "_info": "탄창 용량 2배로 증가",
-            "_imageName": "BulletUp"
-        },
-        {
-            "_name": "얻는 돈 증가",
-            "_info": "추가로 돈을 더 얻습니다",
-            "_imageName": "GetMoneyUp"
-        },
-        {
-            "_name": "Hp 2배",
-            "_info": "현재 Hp가 2배로 증가합니다",
-            "_imageName": "DoubleHp"
-        },
-        {
-            "_name": "돈 비례 Hp 증가",
-            "_info": "보유하고 있는 돈이 50을 넘을 때마다 HP 1씩 증가",
-            "_imageName": "HpUpByMoney"
-        },
-        {
-            "_name": "뱀파이어",
-            "_info": "적 치치 시 일정 확률로 HP 회복",
-            "_imageName": "Vampirism"
-        }
-    ]
+  "_commonPassiveDatas": [
+    {
+      "_type": 0,
+      "_name": "HP 증가",
+      "_info": "최대 HP 10 증가",
+      "_imageName": "HpUp"
+    },
+    {
+      "_type": 1,
+      "_name": "데미지 증가",
+      "_info": "데미지 3 증가",
+      "_imageName": "DamageUp"
+    },
+    {
+      "_type": 2,
+      "_name": "이동속도 증가",
+      "_info": "이동 속도가 더욱 빨라집니다",
+      "_imageName": "SpeedUp"
+    },
+    {
+      "_type": 3,
+      "_name": "탄창 용량 증가",
+      "_info": "탄창 용량 2배로 증가",
+      "_imageName": "BulletUp"
+    },
+    {
+      "_type": 4,
+      "_name": "얻는 돈 증가",
+      "_info": "추가로 돈을 더 얻습니다",
+      "_imageName": "GetMoneyUp"
+    },
+    {
+      "_type": 5,
+      "_name": "Hp 2배",
+      "_info": "현재 Hp가 2배로 증가합니다",
+      "_imageName": "DoubleHp"
+    },
+    {
+      "_type": 6,
+      "_name": "돈 비례 Hp 증가",
+      "_info": "보유하고 있는 돈이 50을 넘을 때마다 HP 1씩 증가",
+      "_imageName": "HpUpByMoney"
+    },
+    {
+      "_type": 7,
+      "_name": "뱀파이어",
+      "_info": "적 치치 시 일정 확률로 HP 회복",
+      "_imageName": "Vampirism"
+    }
+  ]
 }

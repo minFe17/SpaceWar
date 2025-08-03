@@ -1,14 +1,16 @@
 {
     "_playerPassiveDatas": [
-        {
-            "_name": "연쇄탄 해제",
-            "_info": "연쇄탄이 사용 가능해집니다",
-            "_imageName": "UnlockThunderBall"
-        },
-        {
-            "_name": "중력탄 해제",
-            "_info": "중력탄이 사용 가능해집니다",
-            "_imageName": "UnlockBlackHole"
-        }
+      {
+        "_type": 10,
+        "_name": "연쇄탄 해제",
+        "_info": "연쇄탄이 사용 가능해집니다",
+        "_imageName": "UnlockThunderBall"
+      },
+      {
+        "_type": 11,
+        "_name": "중력탄 해제",
+        "_info": "중력탄이 사용 가능해집니다",
+        "_imageName": "UnlockBlackHole"
+      }
     ]
 }

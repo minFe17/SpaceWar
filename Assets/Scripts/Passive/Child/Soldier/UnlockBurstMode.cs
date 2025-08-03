@@ -1,7 +1,9 @@
-public class UnlockBurstMode : PassiveData
+using Utils;
+
+public class UnlockBurstMode : IPassiveEffect
 {
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.UnlockFirstSkill = true;
+        DataSingleton<PlayerData>.Instance.UnlockFirstSkill = true;
     }
 }

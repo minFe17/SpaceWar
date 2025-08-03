@@ -61,13 +61,13 @@
     <Compile Include="Assets\Scripts\Factory\Child\Map\MapFactory.cs" />
     <Compile Include="Assets\DownloadAssets\amusedART\StoneMonster\Script\Animation_Test.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Passive\Interface\IPassiveEffect.cs" />
     <Compile Include="Assets\Scripts\UI\LobbyUI.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\Soldier\UnlockBurstMode.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Enemy\SecondWorld\SecondWorldEnemyFactoryBase.cs" />
     <Compile Include="Assets\Scripts\Sound\Enum\EBGMAudioType.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Obstacle\FirstWorld\Child\CapacitorFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Child\Common\BulletUp.cs" />
-    <Compile Include="Assets\Scripts\Passive\SoliderPassiveData.cs" />
     <Compile Include="Assets\Scripts\Player\Data\PlayerDataManager.cs" />
     <Compile Include="Assets\Scripts\Factory\Child\Bullet\PlayerBulletFactory.cs" />
     <Compile Include="Assets\Scripts\Map\MapAssetManager.cs" />
@@ -231,6 +231,7 @@
     <Compile Include="Assets\DownloadAssets\UI button pack 2\Scene\CreateObj.cs" />
     <Compile Include="Assets\Scripts\Factory\WorldFactory.cs" />
     <Compile Include="Assets\Scripts\Potion\PotionManager.cs" />
+    <Compile Include="Assets\Scripts\Passive\Enum\EPassiveType.cs" />
     <Compile Include="Assets\Scripts\UI\SoundOptionUI.cs" />
     <Compile Include="Assets\Scripts\UI\ChoiceCharacter\PageButtonPanel.cs" />
     <Compile Include="Assets\DownloadAssets\Bullet Casing\Scripts\FP_Shooting.cs" />

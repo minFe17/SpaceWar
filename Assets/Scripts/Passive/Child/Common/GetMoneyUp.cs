@@ -1,9 +1,11 @@
-public class GetMoneyUp : PassiveData
+using Utils;
+
+public class GetMoneyUp : IPassiveEffect
 {
     int _bonusMoney = 10;
 
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.BonusMoney = _bonusMoney;
+        DataSingleton<PlayerData>.Instance.BonusMoney = _bonusMoney;
     }
 }

@@ -53,6 +53,7 @@ public class ChoiceCharacterUI : MonoBehaviour
     public void ChangePage(int direction = 0)
     {
         _index += direction;
+        DataSingleton<PlayerData>.Instance.PlayerType = (EPlayerType)_index;
         _playerInfoData = _playerStatManager.StatData[_index];
         _playerLevelData = _playerStatManager.LevelDatas[_index];
         CheckUnlock();

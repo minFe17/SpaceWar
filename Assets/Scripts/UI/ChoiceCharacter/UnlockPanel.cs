@@ -25,7 +25,7 @@ public class UnlockPanel : CharacterPanelBase
             _skillNameText[i].text = _playerInfoData.SkillName[i];
     }
 
-    void ShowStat()
+    async void ShowStat()
     {
         PlayerStatData playerStatData = _playerInfoData.StatDataList[_playerLevelData.Level];
         _stringBuilder.Append($"HP : {playerStatData.MaxHp}\n");
@@ -78,6 +78,7 @@ public class UnlockPanel : CharacterPanelBase
 
     public async void GameStart()
     {
+        await GenericSingleton<PassiveManager>.Instance.Init();
         GenericSingleton<DoorManager>.Instance.ClearDoors();
         GenericSingleton<JsonManager>.Instance.DestroyDataFiles();
         DataSingleton<GameData>.Instance.MapStage = 1;

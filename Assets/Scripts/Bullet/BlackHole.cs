@@ -74,7 +74,7 @@ public class BlackHole : MonoBehaviour
             return;
 
         Vector3 direction = (transform.position - rigidbody.position).normalized;
-        rigidbody.AddForce(direction * _pullForce * Time.fixedDeltaTime, ForceMode.Impulse);
+        rigidbody.AddForce(direction * _pullForce, ForceMode.Force);
     }
 
     void HandleDamage(Enemy enemy)

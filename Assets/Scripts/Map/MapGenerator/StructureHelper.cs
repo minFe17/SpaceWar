@@ -9,29 +9,37 @@ public static class StructureHelper
     static int _minY;
     static int _maxY;
 
+    /// <summary>
+    /// 주어진 노드 트리에서 가장 하위 리프 노드들을 모두 찾아 반환
+    /// 너비 우선 탐색(BFS) 방식을 사용하여 트리를 순회
+    /// </summary>
     public static List<Node> TraverseGraphToExtractLowestLeafes(Node parentNode)
     {
         Queue<Node> nodesToCheck = new Queue<Node>();
         List<Node> listToReturn = new List<Node>();
+
+        // 만약 부모 노드가 리프 노드라면, 그 노드만 반환
         if (parentNode.ChildrenNodeList.Count == 0)
             return new List<Node>() { parentNode };
 
-        // 자식 노드가 있으면 큐에 추가
+        // 부모 노드의 모든 자식 노드를 탐색 대기 큐에 추가
         foreach (Node child in parentNode.ChildrenNodeList)
             nodesToCheck.Enqueue(child);
 
-        // 큐가 비어있지 않으면 노드 탐색
+        // 큐가 빌 때까지 반복 탐색
         while (nodesToCheck.Count > 0)
         {
-            // 큐에서 노드 꺼내기
+            // 큐에서 노드 하나 꺼내기
             Node currentNode = nodesToCheck.Dequeue();
 
-            // 자식 노드가 없다면 리스트에 추가
             if (currentNode.ChildrenNodeList.Count == 0)
+            {
+                // 자식이 없으면 리프 노드 리스트에 추가
                 listToReturn.Add(currentNode);
+            }
             else
             {
-                // 자식 노드가 있다면 자식들을 큐에 추가
+                // 자식이 있으면 그 자식들을 큐에 추가하여 탐색 계속
                 foreach (Node child in currentNode.ChildrenNodeList)
                     nodesToCheck.Enqueue(child);
             }

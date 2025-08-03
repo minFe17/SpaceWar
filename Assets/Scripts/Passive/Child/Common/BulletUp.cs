@@ -1,12 +1,11 @@
 using Utils;
 
-public class BulletUp : PassiveData
+public class BulletUp : IPassiveEffect
 {
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.MaxBullet *= 2;
-        if (_uiManager == null)
-            _uiManager = GenericSingleton<UIManager>.Instance;
-        _uiManager.IngameUI.ShowBullet();
+        DataSingleton<PlayerData>.Instance.MaxBullet *= 2;
+        UIManager uiManager = GenericSingleton<UIManager>.Instance;
+        uiManager.IngameUI.ShowBullet();
     }
 }

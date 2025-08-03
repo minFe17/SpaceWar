@@ -1,15 +1,16 @@
 using Utils;
 
-public class HpUp : PassiveData
+public class HpUp : IPassiveEffect
 {
     int _hpAmount = 10;
 
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.MaxHp += _hpAmount;
-        _playerData.CurHp += _hpAmount;
-        if (_uiManager == null)
-            _uiManager = GenericSingleton<UIManager>.Instance;
-        _uiManager.IngameUI.ShowHp();
+        PlayerData playerData = DataSingleton<PlayerData>.Instance;
+        playerData.MaxHp += _hpAmount;
+        playerData.CurHp += _hpAmount;
+
+        UIManager uiManager = GenericSingleton<UIManager>.Instance;
+        uiManager.IngameUI.ShowHp();
     }
 }

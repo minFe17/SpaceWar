@@ -1,7 +1,9 @@
-public class UnlockBlackHole : PassiveData
+using Utils;
+
+public class UnlockBlackHole : IPassiveEffect
 {
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.UnlockSecondSkill = true;
+        DataSingleton<PlayerData>.Instance.UnlockSecondSkill = true;
     }
 }

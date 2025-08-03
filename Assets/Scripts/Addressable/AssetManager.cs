@@ -48,7 +48,6 @@ public class AssetManager : MonoBehaviour
     async Task LoadPassiveAsset()
     {
         await GenericSingleton<PassiveSpriteManager>.Instance.LoadAsset();
-        await GenericSingleton<PassiveManager>.Instance.Init();
     }
 
     async Task LoadGroundWorkAsset()

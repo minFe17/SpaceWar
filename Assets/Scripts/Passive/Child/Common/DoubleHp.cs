@@ -1,13 +1,14 @@
 using Utils;
 
-public class DoubleHp : PassiveData
+public class DoubleHp : IPassiveEffect
 {
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.MaxHp *= 2;
-        _playerData.CurHp *= 2;
-        if (_uiManager == null)
-            _uiManager = GenericSingleton<UIManager>.Instance;
-        _uiManager.IngameUI.ShowHp();
+        PlayerData playerData = DataSingleton<PlayerData>.Instance;
+        playerData.MaxHp *= 2;
+        playerData.CurHp *= 2;
+
+        UIManager uiManager = GenericSingleton<UIManager>.Instance;
+        uiManager.IngameUI.ShowHp();
     }
 }

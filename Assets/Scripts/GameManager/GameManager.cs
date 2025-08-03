@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     {
         SelectPassiveData selectPassiveData = DataSingleton<SelectPassiveData>.Instance;
         PassiveManager passiveData = GenericSingleton<PassiveManager>.Instance;
+
         GenericSingleton<UIManager>.Instance.SelectPassiveUI.gameObject.SetActive(true);
 
         List<int> passiveIndex = new List<int>();

@@ -1,7 +1,9 @@
-public class Vampirism : PassiveData
+using Utils;
+
+public class Vampirism : IPassiveEffect
 {
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.Vampirism = true;
+        DataSingleton<PlayerData>.Instance.Vampirism = true;
     }
 }

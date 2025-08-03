@@ -1,9 +1,11 @@
-public class DamageUp : PassiveData
+using Utils;
+
+public class DamageUp : IPassiveEffect
 {
     int _bulletDamage = 3;
-    
-    public override void AddPassive()
+
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.BulletDamage += _bulletDamage;
+        DataSingleton<PlayerData>.Instance.BulletDamage += _bulletDamage;
     }
 }

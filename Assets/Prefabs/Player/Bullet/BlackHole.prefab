@@ -51,7 +51,7 @@ MonoBehaviour:
   _lifeTime: 7
   _speed: 3
   _pullRadius: 7
-  _pullForce: 700
+  _pullForce: 30
   _damageInterval: 1
   _damageAmount: 1
 --- !u!135 &7025705335461800531

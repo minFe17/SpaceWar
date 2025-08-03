@@ -5,13 +5,14 @@ using Utils;
 public class PassiveData
 {
     // 데이터 싱글턴
+    [SerializeField] int _type;
     [SerializeField] string _name;
     [SerializeField] string _info;
     [SerializeField] string _imageName;
 
-    PassiveSpriteManager _spriteManager;
     protected UIManager _uiManager;
-    protected PlayerData _playerData = DataSingleton<PlayerData>.Instance;
+    
+    PassiveSpriteManager _spriteManager;
 
     public string Name { get => _name; }
     public string Info { get => _info; }
@@ -27,5 +28,8 @@ public class PassiveData
         }
     }
 
-    public virtual void AddPassive() { }
+    public void AddPassive() 
+    {
+        GenericSingleton<PassiveManager>.Instance.GetPassive((EPassiveType)_type).AddPassive();
+    }
 }

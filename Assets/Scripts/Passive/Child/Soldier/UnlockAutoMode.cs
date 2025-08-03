@@ -1,7 +1,9 @@
-public class UnlockAutoMode : PassiveData
+using Utils;
+
+public class UnlockAutoMode : IPassiveEffect
 {
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.UnlockSecondSkill = true;
+        DataSingleton<PlayerData>.Instance.UnlockSecondSkill = true;
     }
 }

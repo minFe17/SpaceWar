@@ -47,16 +47,26 @@ public class EnemyManager : MonoBehaviour
         _worldList.Add(new ThirdWorld());
     }
 
+    /// <summary>
+    /// 현재 월드에서 사용한 몬스터 및 보스 리소스를 언로드
+    /// </summary>
     public void ReleaseAsset()
     {
+        // 언로드할 몬스터가 없으면 바로 종료
         if (_enemys.Count == 0)
             return;
 
-        _enemys.Clear();
+        // 개별 몬스터 리소스 해제
         for (int i = 0; i < _enemys.Count; i++)
             _addressableManager.Release(_enemys[i]);
 
+        // 리스트 초기화
+        _enemys.Clear();
+
+        // 보스 리소스 해제
         _addressableManager.Release(Boss);
+
+        // 현재 월드에 등록된 리소스 해제
         _worldList[(int)_worldManager.WorldType].ReleaseAsset();
     }
 

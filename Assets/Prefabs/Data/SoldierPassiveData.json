@@ -1,14 +1,16 @@
 {
     "_playerPassiveDatas": [
-        {
-            "_name": "점사모드 해제",
-            "_info": "점사모드를 해제합니다",
-            "_imageName": "UnlockBurstMode"
-        },
-        {
-            "_name": "연사모드 해제",
-            "_info": "연사모드를 해제합니다",
-            "_imageName": "UnlockAutoMode"
-        }
+      {
+        "_type": 8,
+        "_name": "점사모드 해제",
+        "_info": "점사모드를 해제합니다",
+        "_imageName": "UnlockBurstMode"
+      },
+      {
+        "_type": 9,
+        "_name": "연사모드 해제",
+        "_info": "연사모드를 해제합니다",
+        "_imageName": "UnlockAutoMode"
+      }
     ]
 }

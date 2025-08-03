@@ -1,7 +1,9 @@
-public class HpUpByMoney : PassiveData
+using Utils;
+
+public class HpUpByMoney : IPassiveEffect
 {
-    public override void AddPassive()
+    void IPassiveEffect.AddPassive()
     {
-        _playerData.HPUpByMoney = true;
+        DataSingleton<PlayerData>.Instance.HPUpByMoney = true;
     }
 }
