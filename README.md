@@ -1,2 +1,20 @@
-# SpaceWar
-SpaceWar PlayFile URL : https://drive.google.com/drive/folders/18WZSqXNyJuGsgbTpNkzVsd09ctLJd4dV?usp=sharing
+# 🎮 Space War
+
+이 게임은 로그라이크 요소와 **TPS(3인칭 슈팅)**를 결합한 액션 게임입니다.  
+플레이어는 무작위로 생성되는 던전을 탐험하며, 각 스테이지의 포탈을 찾아 다음 스테이지로 이동하고,  
+최종 스테이지에 등장하는 보스를 처치하는 것이 목표입니다.
+
+- **플랫폼** : PC (Windows)
+- **Unity 버전** : 2021.3.27f1
+- **📄 노션 링크** : [Notion 링크](https://mincheolstudy.notion.site/Space-War-182d4b6c965c80618712c7dc3ea4bbf4)
+---
+
+## 🎯 기술 목표
+
+이 프로젝트는 다음과 같은 기술적 목표 및 학습을 중심으로 개발되었습니다:
+
+- **BSP 기반** 랜덤 맵 생성 알고리즘 구현
+- **Mesh** 지형 생성
+- **연쇄 타격** 로직 구현
+- **범위 물리 효과** 처리
+- **Shader & VFX Graph**를 통한 시각 효과 연출
